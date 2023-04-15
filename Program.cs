@@ -1,4 +1,6 @@
 ﻿using ASI.Forms.Identification.Authentication;
+using ASI.Forms.Identification.Registration;
+using ASI.Forms.Main;
 using System;
 using System.Windows.Forms;
 
@@ -14,7 +16,7 @@ namespace ASI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Auth());
+            Application.Run(new Forms.Main.ASI());
         }
     }
 }

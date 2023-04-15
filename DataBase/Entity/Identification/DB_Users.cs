@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ASI.DataBase.Entity.Identification
 {
-    public class DB_Users
+    public static class DB_Users
     {
         private static int idUsers;
         private static string fullnameUsers;
