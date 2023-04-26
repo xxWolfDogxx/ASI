@@ -52,6 +52,16 @@ namespace ASI.DataBase.Scripts
         //Запрос на справочник пользователей(доступ только у админов)
         internal static string script_SelectUser_User = $"SELECT * FROM `asi`.`users` WHERE `role` = 'ROLE_USER'";
 
+        //
+        //Скрипты для Принтеров модификация
+        //
+        //Запрос на вытаскивание данных в combobox 
+        internal static string script_SelectPtinter_Audit = $"SELECT Auditorium FROM `audiences`";
+        //Отправка на добавление записи
+        internal static string script_ADDPrinter = "INSERT INTO `printers`(`Brand`, `Model`, `InventoryNumber`, `Auditorium`, `DoubleЫSided_Printing`, `DrumUnit`, `Color`) VALUES (@brandPrinter,@modelPrinter,@inventNumPtinter, @auditPtinter, @doubleSidedPrinter, @drumUnitPrinter, @colorPrinter)";
+        //internal static string script_SelectPtinter_DuplexPrinting = $"SELECT DoubleЫSided_Printing FROM `printers`";
+        //internal static string script_SelectPtinter_DrumUnit = $"SELECT DrumUnit FROM `printers`";
+        //internal static string script_SelectPtinter_Color = $"SELECT Color FROM `printers`";
 
 
 

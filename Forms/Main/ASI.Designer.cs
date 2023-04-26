@@ -530,6 +530,6 @@ namespace ASI.Forms.Main
         private System.Windows.Forms.GroupBox SelectTableGroupBox;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Panel RightMainPanel;
-        private System.Windows.Forms.DataGridView GridView;
+        internal System.Windows.Forms.DataGridView GridView;
     }
 }
