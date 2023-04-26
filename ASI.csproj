@@ -114,6 +114,12 @@
     <Compile Include="Forms\Main\ASI.Designer.cs">
       <DependentUpon>ASI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Modification\Printer\ModPrinter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Modification\Printer\ModPrinter.Designer.cs">
+      <DependentUpon>ModPrinter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Function\isUsersExists.cs" />
     <Compile Include="Function\SHA256.cs" />
     <Compile Include="Program.cs" />
@@ -126,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main\ASI.resx">
       <DependentUpon>ASI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Modification\Printer\ModPrinter.resx">
+      <DependentUpon>ModPrinter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -150,9 +159,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\Modification\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="resource\icons\AppIcon.ico" />
     <Content Include="resource\icons\identification\2203549_admin_avatar_human_login_user_icon.png" />

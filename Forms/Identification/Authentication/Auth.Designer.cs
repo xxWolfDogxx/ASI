@@ -47,7 +47,6 @@ namespace ASI.Forms.Identification.Authentication
             this.PassTextBox = new System.Windows.Forms.TextBox();
             this.LoginGrupBox = new System.Windows.Forms.GroupBox();
             this.LoginTextBox = new System.Windows.Forms.TextBox();
-            this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
             this.LogoPanel.SuspendLayout();
             this.AuthPanel.SuspendLayout();
             this.DopGrupBox.SuspendLayout();
@@ -310,6 +309,6 @@ namespace ASI.Forms.Identification.Authentication
         private System.Windows.Forms.LinkLabel ForgotPassLinkLabel;
         private System.Windows.Forms.LinkLabel RegsLinkLabel;
         private System.Windows.Forms.Label ErrorLabel;
-        private MySql.Data.MySqlClient.CustomInstaller customInstaller1;
+    //    private MySql.Data.MySqlClient.CustomInstaller customInstaller1;
     }
 }

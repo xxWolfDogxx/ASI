@@ -56,10 +56,12 @@ namespace ASI.Forms.Identification.Authentication
                 if (table.Rows.Count > 0)
                 {
                     db.openConnection();
-                    //Заносим пароль в переменную passUserDB
-                    var _passUsers = new MySqlCommand();
-                    _passUsers.CommandText = DataBase.Scripts.ScriptMySql.script_SelectUserPassDB; //Делаем выборку из БД, берем пароль из таблицы users, где login будет идентичен с тем что ввел пользователь
-                    _passUsers.Parameters.Add("@uPL", MySqlDbType.VarChar).Value = LoginTextBox.Text;
+                //Заносим пароль в переменную passUserDB
+                MySqlCommand _passUsers = new MySqlCommand
+                {
+                    CommandText = DataBase.Scripts.ScriptMySql.script_SelectUserPassDB //Делаем выборку из БД, берем пароль из таблицы users, где login будет идентичен с тем что ввел пользователь
+                };
+                _passUsers.Parameters.Add("@uPL", MySqlDbType.VarChar).Value = LoginTextBox.Text;
                     _passUsers.Connection = db.getConnection();
 
                     var PassUsersDB = _passUsers.ExecuteReader();
