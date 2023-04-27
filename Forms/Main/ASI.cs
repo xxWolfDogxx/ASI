@@ -197,24 +197,81 @@ namespace ASI.Forms.Main
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //скрывает нынешную форму
-            Modification.Printer.ModPrinter modPrinter = new Modification.Printer.ModPrinter(false); //объявляем форму, которую желаем открыть
-            
-            DataBase.Entity.Printer.Printer.Id = GridView.CurrentRow.Cells[0].Value.ToString();
-            DataBase.Entity.Printer.Printer.Brand1 = GridView.CurrentRow.Cells[1].Value.ToString();
-            DataBase.Entity.Printer.Printer.Model1 = GridView.CurrentRow.Cells[2].Value.ToString();
-            DataBase.Entity.Printer.Printer.Invent1 = GridView.CurrentRow.Cells[3].Value.ToString();
-            DataBase.Entity.Printer.Printer.Audit1 = GridView.CurrentRow.Cells[4].Value.ToString();
-            DataBase.Entity.Printer.Printer.Doubl1 = GridView.CurrentRow.Cells[5].Value.ToString();
-            DataBase.Entity.Printer.Printer.Drum1 = GridView.CurrentRow.Cells[6].Value.ToString();
-            DataBase.Entity.Printer.Printer.Color1 = GridView.CurrentRow.Cells[7].Value.ToString();
-            modPrinter.ShowDialog(); //показываем, объявленную форму
-             //закрываем нынешную форму
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
            // modPrinter.Text = "Редактирование принтера";
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            //скрывает нынешную форму
+
+                                     //закрываем нынешную форму
+
+            TreeNode CurrentNode = treeView1.SelectedNode;
+
+            switch (Convert.ToString(CurrentNode))
+            {
+                case ("TreeNode: Все"):
+
+                    MessageBox.Show("hhhh");
+                    break;
+
+                case ("TreeNode: Администратор"):
+     
+
+                    break;
+
+                case ("TreeNode: Пользователь"):
+
+
+                    break;
+
+                case ("TreeNode: Роли"):
+ 
+
+                    break;
+
+                case ("TreeNode: Принтер"):
+                    Modification.Printer.ModCartrige modPrinter = new Modification.Printer.ModPrinter(); //объявляем форму, которую желаем открыть
+
+                    DataBase.Entity.Printer.Printer.Id = GridView.CurrentRow.Cells[0].Value.ToString();
+                    DataBase.Entity.Printer.Printer.Brand1 = GridView.CurrentRow.Cells[1].Value.ToString();
+                    DataBase.Entity.Printer.Printer.Model1 = GridView.CurrentRow.Cells[2].Value.ToString();
+                    DataBase.Entity.Printer.Printer.Invent1 = GridView.CurrentRow.Cells[3].Value.ToString();
+                    DataBase.Entity.Printer.Printer.Audit1 = GridView.CurrentRow.Cells[4].Value.ToString();
+                    DataBase.Entity.Printer.Printer.Doubl1 = GridView.CurrentRow.Cells[5].Value.ToString();
+                    DataBase.Entity.Printer.Printer.Drum1 = GridView.CurrentRow.Cells[6].Value.ToString();
+                    DataBase.Entity.Printer.Printer.Color1 = GridView.CurrentRow.Cells[7].Value.ToString();
+                    modPrinter.ShowDialog();
+
+                    break;
+
+                case ("TreeNode: Картридж"):
+       
+
+                    break;
+
+                case ("TreeNode: Аудитория"):
+            
+
+
+                    break;
+
+                case ("TreeNode: Установки"):
+                  
+
+                    break;
+
+                case ("TreeNode: Статус работоспобности"):
+                   
+
+                    break;
+
+            }
         }
     }
 }

@@ -92,10 +92,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBase\ConnectionForMySQL\DB.cs" />
+    <Compile Include="DataBase\Entity\Audit\Audiences.cs" />
+    <Compile Include="DataBase\Entity\Cartrige\Cartrige.cs" />
     <Compile Include="DataBase\Entity\Identification\DB_Auth.cs" />
     <Compile Include="DataBase\Entity\Identification\DB_Role.cs" />
     <Compile Include="DataBase\Entity\Identification\DB_Users.cs" />
     <Compile Include="DataBase\Entity\Printer\Printer.cs" />
+    <Compile Include="DataBase\Entity\Setup\Setup.cs" />
     <Compile Include="DataBase\Scripts\ScriptMySql.cs" />
     <Compile Include="Forms\Identification\Authentication\Auth.cs">
       <SubType>Form</SubType>
@@ -115,6 +118,12 @@
     <Compile Include="Forms\Main\ASI.Designer.cs">
       <DependentUpon>ASI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Modification\Cartrige\ModCartrige.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Modification\Cartrige\ModCartrige.Designer.cs">
+      <DependentUpon>ModCartrige.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Modification\Printer\ModPrinter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main\ASI.resx">
       <DependentUpon>ASI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Modification\Cartrige\ModCartrige.resx">
+      <DependentUpon>ModCartrige.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Modification\Printer\ModPrinter.resx">
       <DependentUpon>ModPrinter.cs</DependentUpon>

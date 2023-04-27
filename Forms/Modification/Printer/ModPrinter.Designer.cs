@@ -1,7 +1,7 @@
 ﻿
 namespace ASI.Forms.Modification.Printer
 {
-    partial class ModPrinter
+    partial class ModCartrige
     {
         /// <summary>
         /// Required designer variable.
@@ -339,7 +339,7 @@ namespace ASI.Forms.Modification.Printer
             this.AddPrinterBut.UseVisualStyleBackColor = true;
             this.AddPrinterBut.Click += new System.EventHandler(this.AddPrinterBut_Click);
             // 
-            // ModPrinter
+            // ModCartrige
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -348,7 +348,7 @@ namespace ASI.Forms.Modification.Printer
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.LogoPanel);
-            this.Name = "ModPrinter";
+            this.Name = "ModCartrige";
             this.Padding = new System.Windows.Forms.Padding(13, 14, 13, 14);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Куница";

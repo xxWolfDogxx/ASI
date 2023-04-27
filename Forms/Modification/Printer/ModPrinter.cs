@@ -12,12 +12,12 @@ using System.Windows.Forms;
 
 namespace ASI.Forms.Modification.Printer
 {
-    public partial class ModPrinter : Form
+    public partial class ModCartrige : Form
     {
-        public bool edit;
-        public ModPrinter(bool ed)
+        
+        public ModCartrige()
         {
-            edit = ed;
+           
             InitializeComponent();
         }
 
