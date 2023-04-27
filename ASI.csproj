@@ -95,6 +95,7 @@
     <Compile Include="DataBase\Entity\Identification\DB_Auth.cs" />
     <Compile Include="DataBase\Entity\Identification\DB_Role.cs" />
     <Compile Include="DataBase\Entity\Identification\DB_Users.cs" />
+    <Compile Include="DataBase\Entity\Printer\Printer.cs" />
     <Compile Include="DataBase\Scripts\ScriptMySql.cs" />
     <Compile Include="Forms\Identification\Authentication\Auth.cs">
       <SubType>Form</SubType>

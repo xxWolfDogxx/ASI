@@ -59,6 +59,8 @@ namespace ASI.DataBase.Scripts
         internal static string script_SelectPtinter_Audit = $"SELECT Auditorium FROM `audiences`";
         //Отправка на добавление записи
         internal static string script_ADDPrinter = "INSERT INTO `printers`(`Brand`, `Model`, `InventoryNumber`, `Auditorium`, `DoubleЫSided_Printing`, `DrumUnit`, `Color`) VALUES (@brandPrinter,@modelPrinter,@inventNumPtinter, @auditPtinter, @doubleSidedPrinter, @drumUnitPrinter, @colorPrinter)";
+
+        internal static string script_UpdatePrinter = "UPDATE `printers` SET `Brand`=@brandPrinter,`Model`=@modelPrinter,`InventoryNumber`=@inventNum,`Auditorium`=@audit,`DoubleЫSided_Printing`=@doublPrinter,`DrumUnit`=@drumPrinter,`Color`=@colorPrinter WHERE `Id`=@idPrinter";
         //internal static string script_SelectPtinter_DuplexPrinting = $"SELECT DoubleЫSided_Printing FROM `printers`";
         //internal static string script_SelectPtinter_DrumUnit = $"SELECT DrumUnit FROM `printers`";
         //internal static string script_SelectPtinter_Color = $"SELECT Color FROM `printers`";

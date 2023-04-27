@@ -14,8 +14,10 @@ namespace ASI.Forms.Modification.Printer
 {
     public partial class ModPrinter : Form
     {
-        public ModPrinter()
+        public bool edit;
+        public ModPrinter(bool ed)
         {
+            edit = ed;
             InitializeComponent();
         }
 
@@ -70,6 +72,7 @@ namespace ASI.Forms.Modification.Printer
             while (audit.Read()) { AuditComBox.Items.Add(audit.GetString(0)); }; // Перебираем данные занося их в переменную
             db.closeConnection(); // Закрываем подключение к БД 
             AuditComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            
 
             DuplexPrintingComBox.Items.Add("Есть");
             DuplexPrintingComBox.Items.Add("Отустсвует");
@@ -82,6 +85,53 @@ namespace ASI.Forms.Modification.Printer
             ColorComBox.Items.Add("Есть");
             ColorComBox.Items.Add("Отустсвует");
             ColorComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            IdPrinterTextBox.Text = DataBase.Entity.Printer.Printer.Id;
+            BrandPrinterTextBox.Text = DataBase.Entity.Printer.Printer.Brand1;
+            ModelPrinterTextBox.Text = DataBase.Entity.Printer.Printer.Model1;
+            AuditComBox.Text = DataBase.Entity.Printer.Printer.Audit1;
+            InventTextBox.Text = DataBase.Entity.Printer.Printer.Invent1;
+            DuplexPrintingComBox.Text = DataBase.Entity.Printer.Printer.Doubl1;
+            DrumUnitComBox.Text = DataBase.Entity.Printer.Printer.Drum1;
+            ColorComBox.Text = DataBase.Entity.Printer.Printer.Color1;
+
+
+
+        }
+
+        private void ModPrinterBut_Click(object sender, EventArgs e)
+        {
+            DB db = new DB();
+            MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdatePrinter, db.getConnection());
+
+            db.openConnection();
+            //Заносим данные в запрос
+            AddCom.Parameters.Add("@idPrinter", MySqlDbType.Int32).Value = IdPrinterTextBox.Text;
+            AddCom.Parameters.Add("@brandPrinter", MySqlDbType.VarChar).Value = BrandPrinterTextBox.Text;
+            AddCom.Parameters.Add("@modelPrinter", MySqlDbType.VarChar).Value = ModelPrinterTextBox.Text;
+            AddCom.Parameters.Add("@inventNum", MySqlDbType.VarChar).Value = InventTextBox.Text;
+            AddCom.Parameters.Add("@audit", MySqlDbType.VarChar).Value = AuditComBox.SelectedItem;
+            AddCom.Parameters.Add("@doublPrinter", MySqlDbType.VarChar).Value = DuplexPrintingComBox.SelectedItem;
+            AddCom.Parameters.Add("@drumPrinter", MySqlDbType.VarChar).Value = DrumUnitComBox.SelectedItem;
+            AddCom.Parameters.Add("@colorPrinter", MySqlDbType.VarChar).Value = ColorComBox.SelectedItem;
+            db.closeConnection(); //Закрываем подключение к БД
+
+            db.openConnection();
+            if (AddCom.ExecuteNonQuery() == 1)
+            {
+                MessageBox.Show("Заявка изменина");
+                //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
+                Hide();
+                Main.ASI inMain = new Main.ASI();
+                inMain.ShowDialog();
+                this.Close();
+
+            }
+            else
+            {
+                MessageBox.Show("Заполните все поля");
+            }
+            db.closeConnection(); //Закрываем подключение к БД
 
         }
     }

@@ -324,6 +324,7 @@ namespace ASI.Forms.Modification.Printer
             this.ModPrinterBut.TabIndex = 1;
             this.ModPrinterBut.Text = "Изменить";
             this.ModPrinterBut.UseVisualStyleBackColor = true;
+            this.ModPrinterBut.Click += new System.EventHandler(this.ModPrinterBut_Click);
             // 
             // AddPrinterBut
             // 
@@ -350,7 +351,7 @@ namespace ASI.Forms.Modification.Printer
             this.Name = "ModPrinter";
             this.Padding = new System.Windows.Forms.Padding(13, 14, 13, 14);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ModPrinter";
+            this.Text = "Куница";
             this.Load += new System.EventHandler(this.ModPrinter_Load);
             this.LogoPanel.ResumeLayout(false);
             this.LogoPanel.PerformLayout();
@@ -380,24 +381,24 @@ namespace ASI.Forms.Modification.Printer
         private System.Windows.Forms.Label LogoLabel;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.ComboBox ColorComBox;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.ComboBox DrumUnitComBox;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.ComboBox DuplexPrintingComBox;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.ComboBox AuditComBox;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox InventTextBox;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox ModelPrinterTextBox;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox BrandPrinterTextBox;
         private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.TextBox IdPrinterTextBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button CancleBut;
         private System.Windows.Forms.Button ModPrinterBut;
         private System.Windows.Forms.Button AddPrinterBut;
+        internal System.Windows.Forms.ComboBox ColorComBox;
+        internal System.Windows.Forms.ComboBox DrumUnitComBox;
+        internal System.Windows.Forms.ComboBox DuplexPrintingComBox;
+        internal System.Windows.Forms.ComboBox AuditComBox;
+        internal System.Windows.Forms.TextBox InventTextBox;
+        internal System.Windows.Forms.TextBox ModelPrinterTextBox;
+        internal System.Windows.Forms.TextBox BrandPrinterTextBox;
+        public System.Windows.Forms.TextBox IdPrinterTextBox;
     }
 }

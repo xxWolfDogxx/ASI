@@ -16,7 +16,7 @@ namespace ASI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Forms.Modification.Printer.ModPrinter());
+            Application.Run(new ASI.Forms.Main.ASI());
         }
     }
 }

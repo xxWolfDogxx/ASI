@@ -17,6 +17,8 @@ namespace ASI.Forms.Main
         public ASI()
         {
             InitializeComponent();
+            GridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            GridView.AllowUserToAddRows = false;
         }
 
         private void ASI_FormClosed(object sender, FormClosedEventArgs e)
@@ -58,6 +60,7 @@ namespace ASI.Forms.Main
                     GridView.Columns["Email"].HeaderText = "Эл. почта";
                     GridView.Columns["Password"].Visible = false;
                     GridView.Columns["Role"].HeaderText = "Роль";
+               
 
                     break;
 
@@ -114,10 +117,13 @@ namespace ASI.Forms.Main
                     
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["Brand"].HeaderText = "Бренд";
+                    GridView.Columns["Id"].Visible=false;
                     GridView.Columns["Model"].HeaderText = "Модель";
                     GridView.Columns["InventoryNumber"].HeaderText = "Инвентарный номер";
                     GridView.Columns["DoubleЫSided_Printing"].HeaderText = "Двусторонняя печать";
                     GridView.Columns["DrumUnit"].HeaderText = "Отдельный фотобарабан";
+
+                   
 
                     //Центруем заголовки
                    // GridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -187,6 +193,28 @@ namespace ASI.Forms.Main
         private void ASI_Load(object sender, EventArgs e)
         {
             treeView1.ExpandAll();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //скрывает нынешную форму
+            Modification.Printer.ModPrinter modPrinter = new Modification.Printer.ModPrinter(false); //объявляем форму, которую желаем открыть
+            
+            DataBase.Entity.Printer.Printer.Id = GridView.CurrentRow.Cells[0].Value.ToString();
+            DataBase.Entity.Printer.Printer.Brand1 = GridView.CurrentRow.Cells[1].Value.ToString();
+            DataBase.Entity.Printer.Printer.Model1 = GridView.CurrentRow.Cells[2].Value.ToString();
+            DataBase.Entity.Printer.Printer.Invent1 = GridView.CurrentRow.Cells[3].Value.ToString();
+            DataBase.Entity.Printer.Printer.Audit1 = GridView.CurrentRow.Cells[4].Value.ToString();
+            DataBase.Entity.Printer.Printer.Doubl1 = GridView.CurrentRow.Cells[5].Value.ToString();
+            DataBase.Entity.Printer.Printer.Drum1 = GridView.CurrentRow.Cells[6].Value.ToString();
+            DataBase.Entity.Printer.Printer.Color1 = GridView.CurrentRow.Cells[7].Value.ToString();
+            modPrinter.ShowDialog(); //показываем, объявленную форму
+             //закрываем нынешную форму
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           // modPrinter.Text = "Редактирование принтера";
         }
     }
 }
