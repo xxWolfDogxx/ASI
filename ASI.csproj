@@ -118,6 +118,12 @@
     <Compile Include="Forms\Main\ASI.Designer.cs">
       <DependentUpon>ASI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Modification\Audiences\ModAudit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Modification\Audiences\ModAudit.Designer.cs">
+      <DependentUpon>ModAudit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Modification\Cartrige\ModCartrige.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main\ASI.resx">
       <DependentUpon>ASI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Modification\Audiences\ModAudit.resx">
+      <DependentUpon>ModAudit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Modification\Cartrige\ModCartrige.resx">
       <DependentUpon>ModCartrige.cs</DependentUpon>
