@@ -36,6 +36,7 @@
             this.LogoLabel = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.CommentCartrigeTextBox = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.RefillCartrigeComBox = new System.Windows.Forms.ComboBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -48,7 +49,6 @@
             this.BrandCartrigeTextBox = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.IdCartrigeTextBox = new System.Windows.Forms.TextBox();
-            this.CommentCartrigeTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.LogoPanel.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -85,6 +85,7 @@
             this.CancleBut.TabIndex = 2;
             this.CancleBut.Text = "Отмена";
             this.CancleBut.UseVisualStyleBackColor = true;
+            this.CancleBut.Click += new System.EventHandler(this.CancleBut_Click);
             // 
             // ModCartrigeBut
             // 
@@ -97,6 +98,7 @@
             this.ModCartrigeBut.TabIndex = 1;
             this.ModCartrigeBut.Text = "Изменить";
             this.ModCartrigeBut.UseVisualStyleBackColor = true;
+            this.ModCartrigeBut.Click += new System.EventHandler(this.ModCartrigeBut_Click);
             // 
             // AddCartrigeBut
             // 
@@ -109,6 +111,7 @@
             this.AddCartrigeBut.TabIndex = 0;
             this.AddCartrigeBut.Text = "Добавить";
             this.AddCartrigeBut.UseVisualStyleBackColor = true;
+            this.AddCartrigeBut.Click += new System.EventHandler(this.AddCartrigeBut_Click);
             // 
             // LogoPanel
             // 
@@ -162,6 +165,15 @@
             this.groupBox9.TabIndex = 6;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Комментарий";
+            // 
+            // CommentCartrigeTextBox
+            // 
+            this.CommentCartrigeTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.CommentCartrigeTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CommentCartrigeTextBox.Location = new System.Drawing.Point(10, 23);
+            this.CommentCartrigeTextBox.Name = "CommentCartrigeTextBox";
+            this.CommentCartrigeTextBox.Size = new System.Drawing.Size(544, 31);
+            this.CommentCartrigeTextBox.TabIndex = 2;
             // 
             // groupBox7
             // 
@@ -299,16 +311,6 @@
             this.IdCartrigeTextBox.Size = new System.Drawing.Size(544, 31);
             this.IdCartrigeTextBox.TabIndex = 1;
             // 
-            // CommentCartrigeTextBox
-            // 
-            this.CommentCartrigeTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.CommentCartrigeTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CommentCartrigeTextBox.Location = new System.Drawing.Point(10, 23);
-            this.CommentCartrigeTextBox.Name = "CommentCartrigeTextBox";
-            this.CommentCartrigeTextBox.ReadOnly = true;
-            this.CommentCartrigeTextBox.Size = new System.Drawing.Size(544, 31);
-            this.CommentCartrigeTextBox.TabIndex = 2;
-            // 
             // ModCartrige
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -322,6 +324,7 @@
             this.Name = "ModCartrige";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ModCartrige";
+            this.Load += new System.EventHandler(this.ModCartrige_Load);
             this.groupBox1.ResumeLayout(false);
             this.LogoPanel.ResumeLayout(false);
             this.LogoPanel.PerformLayout();

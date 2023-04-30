@@ -9,11 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ASI.DataBase.Scripts;
+using ASI.DataBase.ConnectionForMySQL;
 
 namespace ASI.Forms.Main
 {
     public partial class ASI : Form
     {
+        internal static string Modif;
+        private string table;
+
         public ASI()
         {
             InitializeComponent();
@@ -29,10 +33,8 @@ namespace ASI.Forms.Main
             auth.ShowDialog();            
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        private void UpdateTable()
         {
-            
-
             DataBase.ConnectionForMySQL.DB db = new DataBase.ConnectionForMySQL.DB();
             MySqlDataAdapter mySql_dataAdapter = new MySqlDataAdapter(); //Через класс MySqlDataAdapter отправляем запрос в БД для получения данных
             DataTable table = new DataTable(); //Создаем класс DataTable для того чтоб занести данные из запроса в виртуальную таблицу          
@@ -60,7 +62,7 @@ namespace ASI.Forms.Main
                     GridView.Columns["Email"].HeaderText = "Эл. почта";
                     GridView.Columns["Password"].Visible = false;
                     GridView.Columns["Role"].HeaderText = "Роль";
-               
+
 
                     break;
 
@@ -114,20 +116,21 @@ namespace ASI.Forms.Main
                     mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectGuidePrinters, db.getConnection());
                     mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
                     GridView.DataSource = table; //Заполняем саму таблицу на форме                 
-                    
+
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["Brand"].HeaderText = "Бренд";
-                    GridView.Columns["Id"].Visible=false;
+                    GridView.Columns["Id"].Visible = false;
                     GridView.Columns["Model"].HeaderText = "Модель";
                     GridView.Columns["InventoryNumber"].HeaderText = "Инвентарный номер";
+                    GridView.Columns["Auditorium"].HeaderText = "Аудитория";
                     GridView.Columns["DoubleЫSided_Printing"].HeaderText = "Двусторонняя печать";
                     GridView.Columns["DrumUnit"].HeaderText = "Отдельный фотобарабан";
 
-                   
+
 
                     //Центруем заголовки
-                   // GridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    
+                    // GridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
                     break;
 
                 case ("TreeNode: Картридж"):
@@ -166,12 +169,12 @@ namespace ASI.Forms.Main
                     GridView.DataSource = table; //Заполняем саму таблицу на форме
 
                     //Меняем название столбцов на руссифицированное
-                    GridView.Columns["Id_printer"].HeaderText = "ID принтера";
-                    GridView.Columns["Id_cartrige"].HeaderText = "ID картриджа";
-                    GridView.Columns["Data_setup"].HeaderText = "Дата установки";
-                    GridView.Columns["Data_setup"].DefaultCellStyle.Format = "yyyy-dd-MM";
-                    GridView.Columns["Data_withdrawals"].HeaderText = "Дата снятия";
-                    GridView.Columns["Id_user"].HeaderText = "Пользователь";
+                    GridView.Columns["Invent_printer"].HeaderText = "Инвентарный номер принтера";
+                    GridView.Columns["Number_cartrige"].HeaderText = "Номер картриджа";
+                    GridView.Columns["Data_setup"].HeaderText = "Дата установки картриджа";
+                    GridView.Columns["Data_setup"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                    GridView.Columns["Data_withdrawals"].HeaderText = "Дата снятия картриджа";
+                    //GridView.Columns["Id_user"].HeaderText = "Пользователь";
 
                     break;
 
@@ -190,38 +193,34 @@ namespace ASI.Forms.Main
             db.closeConnection();
         }
 
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            UpdateTable();
+        }
+
         private void ASI_Load(object sender, EventArgs e)
         {
             treeView1.ExpandAll();
+            treeView1.Nodes[0].Remove();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void AddToolBut_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-           // modPrinter.Text = "Редактирование принтера";
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            //скрывает нынешную форму
-
-                                     //закрываем нынешную форму
 
             TreeNode CurrentNode = treeView1.SelectedNode;
+
+            Modif = "Добавить";
 
             switch (Convert.ToString(CurrentNode))
             {
                 case ("TreeNode: Все"):
 
-                    MessageBox.Show("hhhh");
+
                     break;
 
                 case ("TreeNode: Администратор"):
-     
+
 
                     break;
 
@@ -231,47 +230,340 @@ namespace ASI.Forms.Main
                     break;
 
                 case ("TreeNode: Роли"):
- 
+
 
                     break;
 
                 case ("TreeNode: Принтер"):
-                    Modification.Printer.ModCartrige modPrinter = new Modification.Printer.ModPrinter(); //объявляем форму, которую желаем открыть
+                    Modification.Printer.ModPrinter modPrinter = new Modification.Printer.ModPrinter(); //объявляем форму, которую желаем открыть
 
-                    DataBase.Entity.Printer.Printer.Id = GridView.CurrentRow.Cells[0].Value.ToString();
-                    DataBase.Entity.Printer.Printer.Brand1 = GridView.CurrentRow.Cells[1].Value.ToString();
-                    DataBase.Entity.Printer.Printer.Model1 = GridView.CurrentRow.Cells[2].Value.ToString();
-                    DataBase.Entity.Printer.Printer.Invent1 = GridView.CurrentRow.Cells[3].Value.ToString();
-                    DataBase.Entity.Printer.Printer.Audit1 = GridView.CurrentRow.Cells[4].Value.ToString();
-                    DataBase.Entity.Printer.Printer.Doubl1 = GridView.CurrentRow.Cells[5].Value.ToString();
-                    DataBase.Entity.Printer.Printer.Drum1 = GridView.CurrentRow.Cells[6].Value.ToString();
-                    DataBase.Entity.Printer.Printer.Color1 = GridView.CurrentRow.Cells[7].Value.ToString();
+                    DataBase.Entity.Printer.Printer.Id = null;
+                    DataBase.Entity.Printer.Printer.Brand1 = null;
+                    DataBase.Entity.Printer.Printer.Model1 = null;
+                    DataBase.Entity.Printer.Printer.Invent1 = null;
+                    DataBase.Entity.Printer.Printer.Audit1 = null;
+                    DataBase.Entity.Printer.Printer.Doubl1 = null;
+                    DataBase.Entity.Printer.Printer.Drum1 = null;
+                    DataBase.Entity.Printer.Printer.Color1 = null;
+
                     modPrinter.ShowDialog();
+                    UpdateTable();
+                    break;
+
+                case ("TreeNode: Картридж"):
+
+                        Modification.Cartrige.ModCartrige modCartrige = new Modification.Cartrige.ModCartrige(); //объявляем форму, которую желаем открыть
+
+                        DataBase.Entity.Cartrige.Cartrige.Id = null;
+                        DataBase.Entity.Cartrige.Cartrige.Brand1 = null;
+                        DataBase.Entity.Cartrige.Cartrige.Model1 = null;
+                        DataBase.Entity.Cartrige.Cartrige.Number1 = null;
+                        DataBase.Entity.Cartrige.Cartrige.Status1 = null;
+                        DataBase.Entity.Cartrige.Cartrige.Refill1 = null;
+                        DataBase.Entity.Cartrige.Cartrige.Comment1 = null;
+
+                        modCartrige.ShowDialog();
+                        UpdateTable();
+                    break;
+
+                case ("TreeNode: Аудитория"):
+
+                    Modification.Audiences.ModAudit modAudit = new Modification.Audiences.ModAudit(); //объявляем форму, которую желаем открыть
+
+                    DataBase.Entity.Audit.Audiences.Id = null;
+                    DataBase.Entity.Audit.Audiences.Auditorium1 = null;
+                    DataBase.Entity.Audit.Audiences.Comments1 = null;
+
+                    modAudit.ShowDialog();
+                    UpdateTable();
+
+                    break;
+
+                case ("TreeNode: Установки"):
+                    Modification.Setup.ModSetup modSetup = new Modification.Setup.ModSetup(); //объявляем форму, которую желаем открыть
+
+                    DataBase.Entity.Setup.Setup.Id = null;
+                    DataBase.Entity.Setup.Setup.IdPrinter = null ;
+                    DataBase.Entity.Setup.Setup.IdCartrige = null;
+                    DataBase.Entity.Setup.Setup.Data_setup = null;
+                    DataBase.Entity.Setup.Setup.Data_withdrawals = null;
+
+                    modSetup.ShowDialog();
+                    UpdateTable();
+                    break;
+
+                case ("TreeNode: Статус работоспобности"):
+                    Modification.StatusWork.ModStatusWork modStatusWork = new Modification.StatusWork.ModStatusWork(); //объявляем форму, которую желаем открыть
+
+                    DataBase.Entity.StatusWork.StatusWork.Id = null;
+                    DataBase.Entity.StatusWork.StatusWork.Status = null;
+
+                    modStatusWork.ShowDialog();
+                    UpdateTable();
+                    break;
+
+            }
+
+        }
+
+        private void ModToolBut_Click(object sender, EventArgs e)
+        {
+
+            TreeNode CurrentNode = treeView1.SelectedNode;
+
+            Modif = "Изменить";
+
+            switch (Convert.ToString(CurrentNode))
+            {
+                case ("TreeNode: Все"):
+
+
+                    break;
+
+                case ("TreeNode: Администратор"):
+
+
+                    break;
+
+                case ("TreeNode: Пользователь"):
+
+
+                    break;
+
+                case ("TreeNode: Роли"):
+
+
+                    break;
+
+                case ("TreeNode: Принтер"):
+                    
+                    if (GridView.CurrentRow != null)
+                    {
+                        Modification.Printer.ModPrinter modPrinter = new Modification.Printer.ModPrinter(); //объявляем форму, которую желаем открыть
+
+                        DataBase.Entity.Printer.Printer.Id = GridView.CurrentRow.Cells[0].Value.ToString();
+                        DataBase.Entity.Printer.Printer.Brand1 = GridView.CurrentRow.Cells[1].Value.ToString();
+                        DataBase.Entity.Printer.Printer.Model1 = GridView.CurrentRow.Cells[2].Value.ToString();
+                        DataBase.Entity.Printer.Printer.Invent1 = GridView.CurrentRow.Cells[3].Value.ToString();
+                        DataBase.Entity.Printer.Printer.Audit1 = GridView.CurrentRow.Cells[4].Value.ToString();
+                        DataBase.Entity.Printer.Printer.Doubl1 = GridView.CurrentRow.Cells[5].Value.ToString();
+                        DataBase.Entity.Printer.Printer.Drum1 = GridView.CurrentRow.Cells[6].Value.ToString();
+                        DataBase.Entity.Printer.Printer.Color1 = GridView.CurrentRow.Cells[7].Value.ToString();
+
+                        modPrinter.ShowDialog();
+                        UpdateTable();
+                    }
+                    else { MessageBox.Show("Выделите строчку для редактирования"); }
+                   
 
                     break;
 
                 case ("TreeNode: Картридж"):
-       
+                    if (GridView.CurrentRow != null)
+                    {
+                        Modification.Cartrige.ModCartrige modCartrige = new Modification.Cartrige.ModCartrige(); //объявляем форму, которую желаем открыть
+
+                        DataBase.Entity.Cartrige.Cartrige.Id = GridView.CurrentRow.Cells[0].Value.ToString();
+                        DataBase.Entity.Cartrige.Cartrige.Brand1 = GridView.CurrentRow.Cells[2].Value.ToString();
+                        DataBase.Entity.Cartrige.Cartrige.Model1 = GridView.CurrentRow.Cells[3].Value.ToString();
+                        DataBase.Entity.Cartrige.Cartrige.Number1 = GridView.CurrentRow.Cells[1].Value.ToString();
+                        DataBase.Entity.Cartrige.Cartrige.Status1 = GridView.CurrentRow.Cells[4].Value.ToString();
+                        DataBase.Entity.Cartrige.Cartrige.Refill1 = GridView.CurrentRow.Cells[5].Value.ToString();
+                        DataBase.Entity.Cartrige.Cartrige.Comment1 = GridView.CurrentRow.Cells[6].Value.ToString();
+
+                        modCartrige.ShowDialog();
+                        UpdateTable();
+                    }
+                    else { MessageBox.Show("Выделите строчку для редактирования"); }
+                  
 
                     break;
 
                 case ("TreeNode: Аудитория"):
-            
+                    if (GridView.CurrentRow != null)
+                    {
+                        Modification.Audiences.ModAudit modAudit = new Modification.Audiences.ModAudit(); //объявляем форму, которую желаем открыть
+
+                        DataBase.Entity.Audit.Audiences.Id = GridView.CurrentRow.Cells[0].Value.ToString();
+                        DataBase.Entity.Audit.Audiences.Auditorium1 = GridView.CurrentRow.Cells[1].Value.ToString();
+                        DataBase.Entity.Audit.Audiences.Comments1 = GridView.CurrentRow.Cells[2].Value.ToString();
+
+                        modAudit.ShowDialog();
+                        UpdateTable();
+                    }
+                    else { MessageBox.Show("Выделите строчку для редактирования"); }
 
 
                     break;
 
                 case ("TreeNode: Установки"):
-                  
+                    if (GridView.CurrentRow != null)
+                    {
+                        Modification.Setup.ModSetup modSetup = new Modification.Setup.ModSetup(); //объявляем форму, которую желаем открыть
+
+                        DataBase.Entity.Setup.Setup.Id = GridView.CurrentRow.Cells[0].Value.ToString(); 
+                        DataBase.Entity.Setup.Setup.IdPrinter = GridView.CurrentRow.Cells[1].Value.ToString(); 
+                        DataBase.Entity.Setup.Setup.IdCartrige = GridView.CurrentRow.Cells[2].Value.ToString(); 
+                        DataBase.Entity.Setup.Setup.Data_setup = GridView.CurrentRow.Cells[3].Value.ToString(); 
+                        DataBase.Entity.Setup.Setup.Data_withdrawals = GridView.CurrentRow.Cells[4].Value.ToString(); 
+
+                        modSetup.ShowDialog();
+                        UpdateTable();
+                    }
+                    else { MessageBox.Show("Выделите строчку для редактирования"); }
 
                     break;
 
                 case ("TreeNode: Статус работоспобности"):
-                   
+                    if (GridView.CurrentRow != null)
+                    {
+                        Modification.StatusWork.ModStatusWork modStatusWork = new Modification.StatusWork.ModStatusWork(); //объявляем форму, которую желаем открыть
+
+                        DataBase.Entity.StatusWork.StatusWork.Id = GridView.CurrentRow.Cells[0].Value.ToString();
+                        DataBase.Entity.StatusWork.StatusWork.Status = GridView.CurrentRow.Cells[1].Value.ToString();
+
+                        modStatusWork.ShowDialog();
+                        UpdateTable();
+                    }
+                    else { MessageBox.Show("Выделите строчку для редактирования"); }
 
                     break;
 
             }
+        }
+
+        private void UpdateToolBut_Click(object sender, EventArgs e)
+        {
+            UpdateTable();
+        }
+
+        private void DelToolBut_Click(object sender, EventArgs e)
+        {
+            TreeNode CurrentNode = treeView1.SelectedNode;
+            DB db = new DB();
+
+            DialogResult result = MessageBox.Show(
+                "Вы уверены, что хотите удалить эту запись: \n" +
+                "ID = " +
+                GridView.CurrentRow.Cells[0].Value.ToString() + "Данные после удаления, вернуть будет невозможно!",
+                "Подтверждение",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1,
+                MessageBoxOptions.RightAlign
+                ) ;
+
+            db.openConnection();
+            switch (Convert.ToString(CurrentNode))
+            {
+                case ("TreeNode: Все"):
+                    
+
+                    break;
+
+                case ("TreeNode: Администратор"):
+
+
+                    break;
+
+                case ("TreeNode: Пользователь"):
+
+
+                    break;
+
+                case ("TreeNode: Роли"):
+
+
+                    break;
+
+                case ("TreeNode: Принтер"):
+
+                    if (result == DialogResult.Yes)
+                    {
+                        MySqlCommand AddCom = new MySqlCommand("DELETE FROM printers WHERE `id` = @id", db.getConnection());
+                        AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+
+                        AddCom.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Запись удалена!");
+                    }
+
+                    break;
+
+                case ("TreeNode: Картридж"):
+
+                    if (result == DialogResult.Yes)
+                    {
+                        MySqlCommand AddCom = new MySqlCommand("DELETE FROM cartrige WHERE `id` = @id", db.getConnection());
+                        AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+
+                        AddCom.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Запись удалена!");
+                    }
+
+                    break;
+
+                case ("TreeNode: Аудитория"):
+
+
+                    if (result == DialogResult.Yes)
+                    {
+                        MySqlCommand AddCom = new MySqlCommand("DELETE FROM audiences WHERE `id` = @id", db.getConnection());
+                        AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+
+                        AddCom.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Запись удалена!");
+                    }
+
+
+
+
+                        break;
+
+                case ("TreeNode: Установки"):
+
+                    if (result == DialogResult.Yes)
+                    {
+                        MySqlCommand AddCom = new MySqlCommand("DELETE FROM setup WHERE `id` = @id", db.getConnection());
+                        AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+
+                        AddCom.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Запись удалена!");
+                    }
+
+                    break;
+
+                case ("TreeNode: Статус работоспобности"):
+
+                    if (result == DialogResult.Yes)
+                    {
+                        MySqlCommand AddCom = new MySqlCommand("DELETE FROM statuscartrige WHERE `id` = @id", db.getConnection());
+                        AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+
+                        AddCom.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Запись удалена!");
+                    }
+
+                    break;
+
+            }
+            db.closeConnection(); //Закрываем подключение к БД
+
+            UpdateTable();
         }
     }
 }

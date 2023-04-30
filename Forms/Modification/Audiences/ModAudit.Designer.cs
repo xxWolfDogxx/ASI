@@ -32,7 +32,7 @@
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.CommentAuditTextBox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.AuditTextBox = new System.Windows.Forms.TextBox();
+            this.AuditTextBox = new System.Windows.Forms.MaskedTextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.IdAuditTextBox = new System.Windows.Forms.TextBox();
             this.LogoPanel = new System.Windows.Forms.Panel();
@@ -83,7 +83,6 @@
             this.CommentAuditTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CommentAuditTextBox.Location = new System.Drawing.Point(10, 23);
             this.CommentAuditTextBox.Name = "CommentAuditTextBox";
-            this.CommentAuditTextBox.ReadOnly = true;
             this.CommentAuditTextBox.Size = new System.Drawing.Size(544, 31);
             this.CommentAuditTextBox.TabIndex = 2;
             // 
@@ -105,9 +104,10 @@
             this.AuditTextBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.AuditTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AuditTextBox.Location = new System.Drawing.Point(10, 23);
+            this.AuditTextBox.Mask = "99 - 999";
             this.AuditTextBox.Name = "AuditTextBox";
             this.AuditTextBox.Size = new System.Drawing.Size(544, 31);
-            this.AuditTextBox.TabIndex = 0;
+            this.AuditTextBox.TabIndex = 1;
             // 
             // groupBox10
             // 
@@ -178,6 +178,7 @@
             this.CancleBut.TabIndex = 2;
             this.CancleBut.Text = "Отмена";
             this.CancleBut.UseVisualStyleBackColor = true;
+            this.CancleBut.Click += new System.EventHandler(this.CancleBut_Click);
             // 
             // ModAuditBut
             // 
@@ -190,6 +191,7 @@
             this.ModAuditBut.TabIndex = 1;
             this.ModAuditBut.Text = "Изменить";
             this.ModAuditBut.UseVisualStyleBackColor = true;
+            this.ModAuditBut.Click += new System.EventHandler(this.ModAuditBut_Click);
             // 
             // AddAuditBut
             // 
@@ -202,6 +204,7 @@
             this.AddAuditBut.TabIndex = 0;
             this.AddAuditBut.Text = "Добавить";
             this.AddAuditBut.UseVisualStyleBackColor = true;
+            this.AddAuditBut.Click += new System.EventHandler(this.AddAuditBut_Click);
             // 
             // ModAudit
             // 
@@ -216,6 +219,7 @@
             this.Name = "ModAudit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ModAudit";
+            this.Load += new System.EventHandler(this.ModAudit_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox9.ResumeLayout(false);
@@ -233,12 +237,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox9;
         public System.Windows.Forms.TextBox CommentAuditTextBox;
-        private System.Windows.Forms.GroupBox groupBox3;
-        internal System.Windows.Forms.TextBox AuditTextBox;
         private System.Windows.Forms.GroupBox groupBox10;
         public System.Windows.Forms.TextBox IdAuditTextBox;
         private System.Windows.Forms.Panel LogoPanel;
@@ -247,5 +247,8 @@
         private System.Windows.Forms.Button CancleBut;
         private System.Windows.Forms.Button ModAuditBut;
         private System.Windows.Forms.Button AddAuditBut;
+        public System.Windows.Forms.MaskedTextBox AuditTextBox;
+        public System.Windows.Forms.GroupBox groupBox2;
+        public System.Windows.Forms.GroupBox groupBox3;
     }
 }

@@ -99,6 +99,7 @@
     <Compile Include="DataBase\Entity\Identification\DB_Users.cs" />
     <Compile Include="DataBase\Entity\Printer\Printer.cs" />
     <Compile Include="DataBase\Entity\Setup\Setup.cs" />
+    <Compile Include="DataBase\Entity\StatusWork\StatusWork.cs" />
     <Compile Include="DataBase\Scripts\ScriptMySql.cs" />
     <Compile Include="Forms\Identification\Authentication\Auth.cs">
       <SubType>Form</SubType>
@@ -142,6 +143,16 @@
     <Compile Include="Forms\Modification\Setup\ModSetup.Designer.cs">
       <DependentUpon>ModSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Modification\StatusWork\ModStatusWork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Modification\StatusWork\ModStatusWork.Designer.cs">
+      <DependentUpon>ModStatusWork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Function\isAudiencesExists.cs" />
+    <Compile Include="Function\isCartrigeExists.cs" />
+    <Compile Include="Function\isPrinterExists.cs" />
+    <Compile Include="Function\isStatusWorkExists.cs" />
     <Compile Include="Function\isUsersExists.cs" />
     <Compile Include="Function\SHA256.cs" />
     <Compile Include="Program.cs" />
@@ -166,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Modification\Setup\ModSetup.resx">
       <DependentUpon>ModSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Modification\StatusWork\ModStatusWork.resx">
+      <DependentUpon>ModStatusWork.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -29,6 +29,14 @@ namespace ASI.DataBase.Scripts
         //
         //Запрос на сверку введенной почты с повторами в базе данных
         internal static string script_isUsersExists = $"SELECT * FROM `users` WHERE `Email` = @uL";
+        //Запрос на сверку введенной аудитории с повторами в базе данных
+        internal static string script_isAudiencesExists = $"SELECT * FROM `audiences` WHERE `Auditorium` = @auditExists";
+        //Запрос на сверку введенной номером картриджа с повторами в базе данных
+        internal static string script_isCartrigeExists = $"SELECT * FROM `cartrige` WHERE `Number` = @numberCartrige";
+        //Запрос на сверку введенной номером картриджа с повторами в базе данных
+        internal static string script_isPrinterExists = $"SELECT * FROM `printers` WHERE `InventoryNumber` = @printerExists";
+        //Запрос на сверку введенной номером картриджа с повторами в базе данных
+        internal static string script_isStatusWorkExists = $"SELECT * FROM `statuscartrige` WHERE `status` = @statusWork";
 
         //
         //Скрипты для основной формы
@@ -61,11 +69,48 @@ namespace ASI.DataBase.Scripts
         internal static string script_ADDPrinter = "INSERT INTO `printers`(`Brand`, `Model`, `InventoryNumber`, `Auditorium`, `DoubleЫSided_Printing`, `DrumUnit`, `Color`) VALUES (@brandPrinter,@modelPrinter,@inventNumPtinter, @auditPtinter, @doubleSidedPrinter, @drumUnitPrinter, @colorPrinter)";
 
         internal static string script_UpdatePrinter = "UPDATE `printers` SET `Brand`=@brandPrinter,`Model`=@modelPrinter,`InventoryNumber`=@inventNum,`Auditorium`=@audit,`DoubleЫSided_Printing`=@doublPrinter,`DrumUnit`=@drumPrinter,`Color`=@colorPrinter WHERE `Id`=@idPrinter";
-        //internal static string script_SelectPtinter_DuplexPrinting = $"SELECT DoubleЫSided_Printing FROM `printers`";
-        //internal static string script_SelectPtinter_DrumUnit = $"SELECT DrumUnit FROM `printers`";
-        //internal static string script_SelectPtinter_Color = $"SELECT Color FROM `printers`";
 
 
+        //
+        //Скрипты для Картриджев модификация
+        //
+        //Запрос на вытаскивание данных в combobox Статус работоспособности
+        internal static string script_SelectStatusWork = $"SELECT status FROM `statuscartrige`";
+        //Запрос на вытаскивание данных в combobox Перезаправлености
+        internal static string script_SelectRefill = $"SELECT status FROM `refill`";
+        //Запрос на изменение записи картриджа
+        internal static string script_UpdateCartrige = "UPDATE `cartrige` SET `Number`=@numberCartrige,`Brand`=@brandCartrige,`Model`=@modelCartrige,`Status`=@statusWorkCartrige,`Refill`=@refillCartrige,`Comment`=@comCartrige WHERE `Id`=@idCartrige";
+        //Запрос на вставку записи картриджа
+        internal static string script_InsertCartrige = "INSERT INTO `cartrige`(`Number`, `Brand`, `Model`, `Status`, `Refill`, `Comment`) VALUES (@numberCartrige,@brandCartrige,@modelCartrige,@statusWorkCartrige,@refillCartrige,@comCartrige)";
 
+        //
+        //Скрипты для Аудиторий модификация
+        //
+        //Запрос на изменение записи картриджа
+        internal static string script_UpdateAudit = "UPDATE `audiences` SET `Auditorium`= @audit,`Comments`= @comAudit WHERE `Id` = @idAudit";
+        //Запрос на вставку записи картриджа
+        internal static string script_InsertAudit = "INSERT INTO `audiences`(`Auditorium`, `Comments`) VALUES (@audit,@comAudit)";
+
+        //
+        //Скрипты для статус работоспособности модификация
+        //
+        //Запрос на изменение записи статус работоспособности
+        internal static string script_UpdateStatusWork = "UPDATE `statuscartrige` SET `Status`= @statusWork WHERE `Id` = @idStatusWork";
+        //Запрос на вставку записи статус работоспособности
+        internal static string script_InsertStatusWork = "INSERT INTO `statuscartrige`(`Status`) VALUES (@statusWork)";
+
+
+        //
+        //Скрипты для Установок модификация
+        //
+        //Запрос на вытаскивание данных в combobox Инвентарный номер принтера
+        internal static string script_SelectInventPrinter = $"SELECT InventoryNumber FROM `printers`";
+        //Запрос на вытаскивание данных в combobox Номер картриджа
+        internal static string script_SelectNumberCartrige = $"SELECT Number FROM `cartrige`";
+        //Запрос на изменение записи установок
+        internal static string script_UpdateSetup = "UPDATE `setup` SET `Invent_printer`=@inventPrinterSetup,`Number_cartrige`=@numberCartrigeSetup,`Data_setup`=@dataSetup,`Data_withdrawals`=@dataWithDrawals WHERE `Id` = @idSetup";
+        //Запрос на вставку записи установок
+        internal static string script_InsertSetup = "INSERT INTO `setup`(`Invent_printer`, `Number_cartrige`, `Data_setup`, `Data_withdrawals`) VALUES (@inventPrinterSetup,@numberCartrigeSetup,@dataSetup,@dataWithDrawals)";
     }
+    
 }

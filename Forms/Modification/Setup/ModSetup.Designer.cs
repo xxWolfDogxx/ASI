@@ -31,11 +31,11 @@ namespace ASI.Forms.Modification.Setup
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.DateWithDrawal = new System.Windows.Forms.DateTimePicker();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.DateSetup = new System.Windows.Forms.DateTimePicker();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.IdCartrigeSetupTextBox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.IdPrinterSetupTextBox = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.IdSetupTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -44,8 +44,8 @@ namespace ASI.Forms.Modification.Setup
             this.AddSetupBut = new System.Windows.Forms.Button();
             this.LogoPanel = new System.Windows.Forms.Panel();
             this.LogoLabel = new System.Windows.Forms.Label();
-            this.DateSetup = new System.Windows.Forms.DateTimePicker();
-            this.DateWithDrawal = new System.Windows.Forms.DateTimePicker();
+            this.InventPrinterSetupComBox = new System.Windows.Forms.ComboBox();
+            this.NumberCartrigeSetupComBox = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -86,6 +86,20 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Дата снятия";
             // 
+            // DateWithDrawal
+            // 
+            this.DateWithDrawal.CustomFormat = "dd.MM.yyyy";
+            this.DateWithDrawal.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DateWithDrawal.Font = new System.Drawing.Font("Calibri", 14F);
+            this.DateWithDrawal.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DateWithDrawal.Location = new System.Drawing.Point(10, 23);
+            this.DateWithDrawal.MaxDate = new System.DateTime(2035, 12, 31, 0, 0, 0, 0);
+            this.DateWithDrawal.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
+            this.DateWithDrawal.Name = "DateWithDrawal";
+            this.DateWithDrawal.Size = new System.Drawing.Size(544, 30);
+            this.DateWithDrawal.TabIndex = 2;
+            this.DateWithDrawal.Value = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
+            // 
             // groupBox5
             // 
             this.groupBox5.AutoSize = true;
@@ -99,10 +113,24 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Дата установки";
             // 
+            // DateSetup
+            // 
+            this.DateSetup.CustomFormat = "dd.MM.yyyy";
+            this.DateSetup.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DateSetup.Font = new System.Drawing.Font("Calibri", 14F);
+            this.DateSetup.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DateSetup.Location = new System.Drawing.Point(10, 23);
+            this.DateSetup.MaxDate = new System.DateTime(2035, 12, 31, 0, 0, 0, 0);
+            this.DateSetup.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
+            this.DateSetup.Name = "DateSetup";
+            this.DateSetup.Size = new System.Drawing.Size(544, 30);
+            this.DateSetup.TabIndex = 1;
+            this.DateSetup.Value = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
+            // 
             // groupBox4
             // 
             this.groupBox4.AutoSize = true;
-            this.groupBox4.Controls.Add(this.IdCartrigeSetupTextBox);
+            this.groupBox4.Controls.Add(this.NumberCartrigeSetupComBox);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox4.Location = new System.Drawing.Point(10, 151);
             this.groupBox4.Name = "groupBox4";
@@ -110,21 +138,12 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox4.Size = new System.Drawing.Size(564, 64);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "ID Картриджа";
-            // 
-            // IdCartrigeSetupTextBox
-            // 
-            this.IdCartrigeSetupTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.IdCartrigeSetupTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.IdCartrigeSetupTextBox.Location = new System.Drawing.Point(10, 23);
-            this.IdCartrigeSetupTextBox.Name = "IdCartrigeSetupTextBox";
-            this.IdCartrigeSetupTextBox.Size = new System.Drawing.Size(544, 31);
-            this.IdCartrigeSetupTextBox.TabIndex = 0;
+            this.groupBox4.Text = "Номер картриджа";
             // 
             // groupBox3
             // 
             this.groupBox3.AutoSize = true;
-            this.groupBox3.Controls.Add(this.IdPrinterSetupTextBox);
+            this.groupBox3.Controls.Add(this.InventPrinterSetupComBox);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox3.Location = new System.Drawing.Point(10, 87);
             this.groupBox3.Name = "groupBox3";
@@ -132,16 +151,7 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox3.Size = new System.Drawing.Size(564, 64);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "ID Принтера";
-            // 
-            // IdPrinterSetupTextBox
-            // 
-            this.IdPrinterSetupTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.IdPrinterSetupTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.IdPrinterSetupTextBox.Location = new System.Drawing.Point(10, 23);
-            this.IdPrinterSetupTextBox.Name = "IdPrinterSetupTextBox";
-            this.IdPrinterSetupTextBox.Size = new System.Drawing.Size(544, 31);
-            this.IdPrinterSetupTextBox.TabIndex = 0;
+            this.groupBox3.Text = "Инвентарный номер принтера";
             // 
             // groupBox10
             // 
@@ -191,6 +201,7 @@ namespace ASI.Forms.Modification.Setup
             this.CancleBut.TabIndex = 2;
             this.CancleBut.Text = "Отмена";
             this.CancleBut.UseVisualStyleBackColor = true;
+            this.CancleBut.Click += new System.EventHandler(this.CancleBut_Click);
             // 
             // ModSetupBut
             // 
@@ -203,6 +214,7 @@ namespace ASI.Forms.Modification.Setup
             this.ModSetupBut.TabIndex = 1;
             this.ModSetupBut.Text = "Изменить";
             this.ModSetupBut.UseVisualStyleBackColor = true;
+            this.ModSetupBut.Click += new System.EventHandler(this.ModSetupBut_Click);
             // 
             // AddSetupBut
             // 
@@ -215,6 +227,7 @@ namespace ASI.Forms.Modification.Setup
             this.AddSetupBut.TabIndex = 0;
             this.AddSetupBut.Text = "Добавить";
             this.AddSetupBut.UseVisualStyleBackColor = true;
+            this.AddSetupBut.Click += new System.EventHandler(this.AddSetupBut_Click);
             // 
             // LogoPanel
             // 
@@ -237,33 +250,25 @@ namespace ASI.Forms.Modification.Setup
             this.LogoLabel.TabIndex = 0;
             this.LogoLabel.Text = "Установленно";
             // 
-            // DateSetup
+            // InventPrinterSetupComBox
             // 
-            this.DateSetup.CustomFormat = "mm.dd.yyyy";
-            this.DateSetup.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DateSetup.Font = new System.Drawing.Font("Calibri", 14F);
-            this.DateSetup.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateSetup.Location = new System.Drawing.Point(10, 23);
-            this.DateSetup.MaxDate = new System.DateTime(2035, 12, 31, 0, 0, 0, 0);
-            this.DateSetup.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
-            this.DateSetup.Name = "DateSetup";
-            this.DateSetup.Size = new System.Drawing.Size(544, 30);
-            this.DateSetup.TabIndex = 1;
-            this.DateSetup.Value = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
+            this.InventPrinterSetupComBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.InventPrinterSetupComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.InventPrinterSetupComBox.FormattingEnabled = true;
+            this.InventPrinterSetupComBox.Location = new System.Drawing.Point(10, 23);
+            this.InventPrinterSetupComBox.Name = "InventPrinterSetupComBox";
+            this.InventPrinterSetupComBox.Size = new System.Drawing.Size(544, 31);
+            this.InventPrinterSetupComBox.TabIndex = 1;
             // 
-            // DateWithDrawal
+            // NumberCartrigeSetupComBox
             // 
-            this.DateWithDrawal.CustomFormat = "mm.dd.yyyy";
-            this.DateWithDrawal.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DateWithDrawal.Font = new System.Drawing.Font("Calibri", 14F);
-            this.DateWithDrawal.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateWithDrawal.Location = new System.Drawing.Point(10, 23);
-            this.DateWithDrawal.MaxDate = new System.DateTime(2035, 12, 31, 0, 0, 0, 0);
-            this.DateWithDrawal.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
-            this.DateWithDrawal.Name = "DateWithDrawal";
-            this.DateWithDrawal.Size = new System.Drawing.Size(544, 30);
-            this.DateWithDrawal.TabIndex = 2;
-            this.DateWithDrawal.Value = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
+            this.NumberCartrigeSetupComBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.NumberCartrigeSetupComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NumberCartrigeSetupComBox.FormattingEnabled = true;
+            this.NumberCartrigeSetupComBox.Location = new System.Drawing.Point(10, 23);
+            this.NumberCartrigeSetupComBox.Name = "NumberCartrigeSetupComBox";
+            this.NumberCartrigeSetupComBox.Size = new System.Drawing.Size(544, 31);
+            this.NumberCartrigeSetupComBox.TabIndex = 2;
             // 
             // ModSetup
             // 
@@ -278,14 +283,13 @@ namespace ASI.Forms.Modification.Setup
             this.Name = "ModSetup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ModSetup";
+            this.Load += new System.EventHandler(this.ModSetup_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -304,9 +308,7 @@ namespace ASI.Forms.Modification.Setup
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.DateTimePicker DateSetup;
         private System.Windows.Forms.GroupBox groupBox4;
-        internal System.Windows.Forms.TextBox IdCartrigeSetupTextBox;
         private System.Windows.Forms.GroupBox groupBox3;
-        internal System.Windows.Forms.TextBox IdPrinterSetupTextBox;
         private System.Windows.Forms.GroupBox groupBox10;
         public System.Windows.Forms.TextBox IdSetupTextBox;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -315,5 +317,7 @@ namespace ASI.Forms.Modification.Setup
         private System.Windows.Forms.Button AddSetupBut;
         private System.Windows.Forms.Panel LogoPanel;
         private System.Windows.Forms.Label LogoLabel;
+        private System.Windows.Forms.ComboBox NumberCartrigeSetupComBox;
+        private System.Windows.Forms.ComboBox InventPrinterSetupComBox;
     }
 }

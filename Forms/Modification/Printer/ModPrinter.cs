@@ -12,10 +12,11 @@ using System.Windows.Forms;
 
 namespace ASI.Forms.Modification.Printer
 {
-    public partial class ModCartrige : Form
+    public partial class ModPrinter : Form
     {
+        internal static string PrinterInven;
         
-        public ModCartrige()
+        public ModPrinter()
         {
            
             InitializeComponent();
@@ -39,29 +40,47 @@ namespace ASI.Forms.Modification.Printer
             AddCom.Parameters.Add("@colorPrinter", MySqlDbType.VarChar).Value = ColorComBox.SelectedItem;
             db.closeConnection(); //Закрываем подключение к БД
 
+            PrinterInven = InventTextBox.Text;
 
-            //Проверка на успешную отправку запроса
-            db.openConnection();
-            if (AddCom.ExecuteNonQuery() == 1)
+            // Проверка на повторного пользователя
+            if (Function.isPrinterExists.isPrinExists())
             {
-                MessageBox.Show("Заявка добавлена");
-                //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
-                Hide();
-                Main.ASI inMain = new Main.ASI();
-                inMain.ShowDialog();
-                this.Close();
-
+                return;
             }
             else
             {
-                MessageBox.Show("Заполните все поля");
+                db.openConnection();
+                if (AddCom.ExecuteNonQuery() == 1)
+                {
+                    MessageBox.Show("Запись добавлена");
+                    //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
+                    Hide();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Заполните все поля");
+                }
+                db.closeConnection(); //Закрываем подключение к БД
             }
-            db.closeConnection(); //Закрываем подключение к БД
         }
 
         private void ModPrinter_Load(object sender, EventArgs e)
         {
             DB db = new DB();
+
+            switch (Forms.Main.ASI.Modif)
+            {
+                case ("Изменить"):
+                    AddPrinterBut.Visible = false;
+                    ModPrinterBut.Visible = true;
+                    break;
+                case ("Добавить"):
+                    AddPrinterBut.Visible = true;
+                    ModPrinterBut.Visible = false;
+                    break;
+            }
+
             //Заносим в поле почты клиентов
             db.openConnection(); // Открываем подключение к БД
             var AuditCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
@@ -116,23 +135,30 @@ namespace ASI.Forms.Modification.Printer
             AddCom.Parameters.Add("@colorPrinter", MySqlDbType.VarChar).Value = ColorComBox.SelectedItem;
             db.closeConnection(); //Закрываем подключение к БД
 
-            db.openConnection();
-            if (AddCom.ExecuteNonQuery() == 1)
-            {
-                MessageBox.Show("Заявка изменина");
-                //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
-                Hide();
-                Main.ASI inMain = new Main.ASI();
-                inMain.ShowDialog();
-                this.Close();
+            PrinterInven = InventTextBox.Text;
 
-            }
-            else
-            {
-                MessageBox.Show("Заполните все поля");
-            }
-            db.closeConnection(); //Закрываем подключение к БД
+            
+                db.openConnection();
+                if (AddCom.ExecuteNonQuery() == 1)
+                {
+                    MessageBox.Show("Запись изменина");
+                    //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
+                    Hide();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Заполните все поля");
+                }
+                db.closeConnection(); //Закрываем подключение к БД
+            
 
+        }
+
+        private void CancleBut_Click(object sender, EventArgs e)
+        {
+            Hide();
+            this.Close();
         }
     }
 }

@@ -10,55 +10,33 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ASI.Forms.Modification.Audiences
+namespace ASI.Forms.Modification.StatusWork
 {
-    public partial class ModAudit : Form
+    public partial class ModStatusWork : Form
     {
-        internal static string Audit;
-        public ModAudit()
+        internal static string statusWork;
+        public ModStatusWork()
         {
             InitializeComponent();
         }
 
-        private void ModAudit_Load(object sender, EventArgs e)
-        {
-            IdAuditTextBox.Text = DataBase.Entity.Audit.Audiences.Id;
-            AuditTextBox.Text = DataBase.Entity.Audit.Audiences.Auditorium1;
-            CommentAuditTextBox.Text = DataBase.Entity.Audit.Audiences.Comments1;
-
-            switch (Forms.Main.ASI.Modif)
-            {
-                case ("Изменить"):
-                    AddAuditBut.Visible = false;
-                    ModAuditBut.Visible = true;
-                    break;
-                case ("Добавить"):
-                    AddAuditBut.Visible = true;
-                    ModAuditBut.Visible = false;
-                    break;
-            }
-        }
-
-        private void CancleBut_Click(object sender, EventArgs e)
-        {
-            Hide();
-            this.Close();
-        }
-
-        private void AddAuditBut_Click(object sender, EventArgs e)
+        private void AddStatusWorkBut_Click(object sender, EventArgs e)
         {
             DB db = new DB();
-            MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_InsertAudit, db.getConnection());
-            Audit = AuditTextBox.Text;
-            db.openConnection();
+
+            db.openConnection(); //Открываем подключение к БД
+            //Запрос на вставку данных с формы в базу данных
+            MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_InsertStatusWork, db.getConnection());
+
             //Заносим данные в запрос
-            AddCom.Parameters.Add("@audit", MySqlDbType.VarChar).Value = AuditTextBox.Text;
-            AddCom.Parameters.Add("@comAudit", MySqlDbType.VarChar).Value = CommentAuditTextBox.Text;
+            AddCom.Parameters.Add("@statusWork", MySqlDbType.VarChar).Value = StatusWorkTextBox.Text;
 
             db.closeConnection(); //Закрываем подключение к БД
 
+            statusWork = StatusWorkTextBox.Text;
+
             // Проверка на повторного пользователя
-            if (Function.isAudiencesExists.isAuditExists())
+            if (Function.isStatusWorkExists.isStatusExists())
             {
                 return;
             }
@@ -69,7 +47,6 @@ namespace ASI.Forms.Modification.Audiences
                 {
                     MessageBox.Show("Запись добавлена");
                     //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
-
                     Hide();
                     this.Close();
                 }
@@ -81,24 +58,44 @@ namespace ASI.Forms.Modification.Audiences
             }
         }
 
-        private void ModAuditBut_Click(object sender, EventArgs e)
+        private void ModStatusWork_Load(object sender, EventArgs e)
+        {
+            IdStatusWorkTextBox.Text = DataBase.Entity.StatusWork.StatusWork.Id;
+            StatusWorkTextBox.Text = DataBase.Entity.StatusWork.StatusWork.Status;
+
+            switch (Forms.Main.ASI.Modif)
+            {
+                case ("Изменить"):
+                    AddStatusWorkBut.Visible = false;
+                    ModStatusWorkBut.Visible = true;
+                    break;
+                case ("Добавить"):
+                    AddStatusWorkBut.Visible = true;
+                    ModStatusWorkBut.Visible = false;
+                    break;
+            }
+
+        }
+
+        private void ModStatusWorkBut_Click(object sender, EventArgs e)
         {
             DB db = new DB();
-            MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateAudit, db.getConnection());
 
-            db.openConnection();
+            db.openConnection(); //Открываем подключение к БД
+            //Запрос на вставку данных с формы в базу данных
+            MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateStatusWork, db.getConnection());
+
             //Заносим данные в запрос
-            AddCom.Parameters.Add("@idAudit", MySqlDbType.VarChar).Value = IdAuditTextBox.Text;
-            AddCom.Parameters.Add("@audit", MySqlDbType.VarChar).Value = AuditTextBox.Text;
-            AddCom.Parameters.Add("@comAudit", MySqlDbType.VarChar).Value = CommentAuditTextBox.Text;
+            AddCom.Parameters.Add("@idStatusWork", MySqlDbType.VarChar).Value = IdStatusWorkTextBox.Text;
+            AddCom.Parameters.Add("@statusWork", MySqlDbType.VarChar).Value = StatusWorkTextBox.Text;
 
             db.closeConnection(); //Закрываем подключение к БД
 
-            Audit = AuditTextBox.Text;
 
+            statusWork = StatusWorkTextBox.Text;
 
             // Проверка на повторного пользователя
-            if (Function.isAudiencesExists.isAuditExists())
+            if (Function.isStatusWorkExists.isStatusExists())
             {
                 return;
             }
@@ -120,5 +117,10 @@ namespace ASI.Forms.Modification.Audiences
             }
         }
 
+        private void CancleBut_Click(object sender, EventArgs e)
+        {
+            Hide();
+            this.Close();
+        }
     }
 }

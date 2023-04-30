@@ -1,7 +1,7 @@
 ﻿
 namespace ASI.Forms.Modification.Printer
 {
-    partial class ModCartrige
+    partial class ModPrinter
     {
         /// <summary>
         /// Required designer variable.
@@ -312,6 +312,7 @@ namespace ASI.Forms.Modification.Printer
             this.CancleBut.TabIndex = 2;
             this.CancleBut.Text = "Отмена";
             this.CancleBut.UseVisualStyleBackColor = true;
+            this.CancleBut.Click += new System.EventHandler(this.CancleBut_Click);
             // 
             // ModPrinterBut
             // 
@@ -339,7 +340,7 @@ namespace ASI.Forms.Modification.Printer
             this.AddPrinterBut.UseVisualStyleBackColor = true;
             this.AddPrinterBut.Click += new System.EventHandler(this.AddPrinterBut_Click);
             // 
-            // ModCartrige
+            // ModPrinter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -348,7 +349,8 @@ namespace ASI.Forms.Modification.Printer
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.LogoPanel);
-            this.Name = "ModCartrige";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "ModPrinter";
             this.Padding = new System.Windows.Forms.Padding(13, 14, 13, 14);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Куница";
