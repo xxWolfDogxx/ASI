@@ -96,14 +96,6 @@ namespace ASI.Forms.Modification.Audiences
 
             Audit = AuditTextBox.Text;
 
-
-            // Проверка на повторного пользователя
-            if (Function.isAudiencesExists.isAuditExists())
-            {
-                return;
-            }
-            else
-            {
                 db.openConnection();
                 if (AddCom.ExecuteNonQuery() == 1)
                 {
@@ -117,7 +109,7 @@ namespace ASI.Forms.Modification.Audiences
                     MessageBox.Show("Заполните все поля");
                 }
                 db.closeConnection(); //Закрываем подключение к БД
-            }
+            
         }
 
     }

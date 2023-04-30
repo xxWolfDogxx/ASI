@@ -144,13 +144,7 @@ namespace ASI.Forms.Modification.Cartrige
 
             numCartrige = NumberCartrigeTextBox.Text;
 
-            // Проверка на повторного пользователя
-            if (Function.isCartrigeExists.isCarExists())
-            {
-                return;
-            }
-            else
-            {
+
                 db.openConnection();
                 if (AddCom.ExecuteNonQuery() == 1)
                 {
@@ -164,7 +158,7 @@ namespace ASI.Forms.Modification.Cartrige
                     MessageBox.Show("Заполните все поля");
                 }
                 db.closeConnection(); //Закрываем подключение к БД
-            }
+            
 
         }
 
