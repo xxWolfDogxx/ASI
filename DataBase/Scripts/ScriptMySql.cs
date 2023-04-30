@@ -95,9 +95,9 @@ namespace ASI.DataBase.Scripts
         //Скрипты для статус работоспособности модификация
         //
         //Запрос на изменение записи статус работоспособности
-        internal static string script_UpdateStatusWork = "UPDATE `statuscartrige` SET `Status`= @statusWork WHERE `Id` = @idStatusWork";
+        internal static string script_UpdateStatusWork = "UPDATE `refill` SET `Status`= @statusWork WHERE `Id` = @idStatusWork";
         //Запрос на вставку записи статус работоспособности
-        internal static string script_InsertStatusWork = "INSERT INTO `statuscartrige`(`Status`) VALUES (@statusWork)";
+        internal static string script_InsertStatusWork = "INSERT INTO `refill`(`Status`) VALUES (@statusWork)";
 
 
         //

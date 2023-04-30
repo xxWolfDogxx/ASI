@@ -16,7 +16,7 @@ namespace ASI.Forms.Main
     public partial class ASI : Form
     {
         internal static string Modif;
-        private string table;
+        //private string table;
 
         public ASI()
         {
@@ -35,6 +35,8 @@ namespace ASI.Forms.Main
 
         private void UpdateTable()
         {
+            bool visibleColum = false;
+
             DataBase.ConnectionForMySQL.DB db = new DataBase.ConnectionForMySQL.DB();
             MySqlDataAdapter mySql_dataAdapter = new MySqlDataAdapter(); //Через класс MySqlDataAdapter отправляем запрос в БД для получения данных
             DataTable table = new DataTable(); //Создаем класс DataTable для того чтоб занести данные из запроса в виртуальную таблицу          
@@ -47,6 +49,7 @@ namespace ASI.Forms.Main
             //Расставить выборку по ролям
             //-----------------------------------------------------------
             db.openConnection();
+            
             switch (Convert.ToString(CurrentNode))
             {
                 case ("TreeNode: Все"):
@@ -55,7 +58,11 @@ namespace ASI.Forms.Main
                     mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
                     GridView.DataSource = table; //Заполняем саму таблицу на форме
 
+                    
+
                     //Меняем название столбцов на руссифицированное
+                    GridView.Columns["Id"].Visible = visibleColum;
+
                     GridView.Columns["FullName"].HeaderText = "ФИО";
                     GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
                     GridView.Columns["Phone"].HeaderText = "Номер телефона";
@@ -74,6 +81,8 @@ namespace ASI.Forms.Main
 
                     //Меняем название столбцов на руссифицированное
                     //Меняем название столбцов на руссифицированное
+                    GridView.Columns["Id"].Visible = visibleColum;
+
                     GridView.Columns["FullName"].HeaderText = "ФИО";
                     GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
                     GridView.Columns["Phone"].HeaderText = "Номер телефона";
@@ -91,6 +100,8 @@ namespace ASI.Forms.Main
 
                     //Меняем название столбцов на руссифицированное
                     //Меняем название столбцов на руссифицированное
+                    GridView.Columns["Id"].Visible = visibleColum;
+
                     GridView.Columns["FullName"].HeaderText = "ФИО";
                     GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
                     GridView.Columns["Phone"].HeaderText = "Номер телефона";
@@ -107,6 +118,8 @@ namespace ASI.Forms.Main
                     GridView.DataSource = table; //Заполняем саму таблицу на форме
 
                     //Меняем название столбцов на руссифицированное
+                    GridView.Columns["Id"].Visible = visibleColum;
+
                     GridView.Columns["role"].HeaderText = "Роли";
 
                     break;
@@ -117,9 +130,12 @@ namespace ASI.Forms.Main
                     mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
                     GridView.DataSource = table; //Заполняем саму таблицу на форме                 
 
+                    //GridView.Columns[1].Selected = true;
+
                     //Меняем название столбцов на руссифицированное
+                    GridView.Columns["Id"].Visible = visibleColum;
+
                     GridView.Columns["Brand"].HeaderText = "Бренд";
-                    GridView.Columns["Id"].Visible = false;
                     GridView.Columns["Model"].HeaderText = "Модель";
                     GridView.Columns["InventoryNumber"].HeaderText = "Инвентарный номер";
                     GridView.Columns["Auditorium"].HeaderText = "Аудитория";
@@ -140,6 +156,8 @@ namespace ASI.Forms.Main
                     GridView.DataSource = table; //Заполняем саму таблицу на форме
 
                     //Меняем название столбцов на руссифицированное
+                    GridView.Columns["Id"].Visible = visibleColum;
+
                     GridView.Columns["Brand"].HeaderText = "Бренд";
                     GridView.Columns["Model"].HeaderText = "Модель";
                     GridView.Columns["Number"].HeaderText = "Уникальный номер";
@@ -156,6 +174,8 @@ namespace ASI.Forms.Main
                     GridView.DataSource = table; //Заполняем саму таблицу на форме
 
                     //Меняем название столбцов на руссифицированное
+                    GridView.Columns["Id"].Visible = visibleColum;
+
                     GridView.Columns["Auditorium"].HeaderText = "Корпус / Аудитория";
                     GridView.Columns["Comments"].HeaderText = "Комментарий";
 
@@ -169,6 +189,8 @@ namespace ASI.Forms.Main
                     GridView.DataSource = table; //Заполняем саму таблицу на форме
 
                     //Меняем название столбцов на руссифицированное
+                    GridView.Columns["Id"].Visible = visibleColum;
+
                     GridView.Columns["Invent_printer"].HeaderText = "Инвентарный номер принтера";
                     GridView.Columns["Number_cartrige"].HeaderText = "Номер картриджа";
                     GridView.Columns["Data_setup"].HeaderText = "Дата установки картриджа";
@@ -178,14 +200,19 @@ namespace ASI.Forms.Main
 
                     break;
 
-                case ("TreeNode: Статус работоспобности"):
+                case ("TreeNode: Статус работоспобности картриджа"):
                     GridView.ClearSelection(); //Чистим таблицу
                     mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectGuideRefill, db.getConnection());
                     mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
                     GridView.DataSource = table; //Заполняем саму таблицу на форме
 
                     //Меняем название столбцов на руссифицированное
+                    GridView.Columns["Id"].Visible = visibleColum;
+
                     GridView.Columns["Status"].HeaderText = "Рабочее состояние";
+
+                    break;
+                default:
 
                     break;
 
@@ -194,14 +221,18 @@ namespace ASI.Forms.Main
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
+        {            
             UpdateTable();
         }
 
         private void ASI_Load(object sender, EventArgs e)
         {
             treeView1.ExpandAll();
+            
+
             treeView1.Nodes[0].Remove();
+
+            treeView1.Nodes[1].Nodes[0].Checked=true;
         }
 
 
@@ -209,7 +240,7 @@ namespace ASI.Forms.Main
         {
 
             TreeNode CurrentNode = treeView1.SelectedNode;
-
+            
             Modif = "Добавить";
 
             switch (Convert.ToString(CurrentNode))
@@ -292,7 +323,7 @@ namespace ASI.Forms.Main
                     UpdateTable();
                     break;
 
-                case ("TreeNode: Статус работоспобности"):
+                case ("TreeNode: Статус работоспобности картриджа"):
                     Modification.StatusWork.ModStatusWork modStatusWork = new Modification.StatusWork.ModStatusWork(); //объявляем форму, которую желаем открыть
 
                     DataBase.Entity.StatusWork.StatusWork.Id = null;
@@ -414,7 +445,7 @@ namespace ASI.Forms.Main
 
                     break;
 
-                case ("TreeNode: Статус работоспобности"):
+                case ("TreeNode: Статус работоспобности картриджа"):
                     if (GridView.CurrentRow != null)
                     {
                         Modification.StatusWork.ModStatusWork modStatusWork = new Modification.StatusWork.ModStatusWork(); //объявляем форму, которую желаем открыть
@@ -441,129 +472,137 @@ namespace ASI.Forms.Main
         {
             TreeNode CurrentNode = treeView1.SelectedNode;
             DB db = new DB();
-
-            DialogResult result = MessageBox.Show(
-                "Вы уверены, что хотите удалить эту запись: \n" +
-                "ID = " +
-                GridView.CurrentRow.Cells[0].Value.ToString() + "Данные после удаления, вернуть будет невозможно!",
-                "Подтверждение",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Information,
-                MessageBoxDefaultButton.Button1,
-                MessageBoxOptions.RightAlign
-                ) ;
-
-            db.openConnection();
-            switch (Convert.ToString(CurrentNode))
+            if (GridView.CurrentRow != null)
             {
-                case ("TreeNode: Все"):
-                    
+                DialogResult result = MessageBox.Show(
+                    "Вы уверены, что хотите удалить эту запись: " +
+                    "ID = " +
+                    GridView.CurrentRow.Cells[0].Value.ToString() + "\nДанные после удаления, вернуть будет невозможно!",
+                    "Подтвердите удаление",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1,
+                    MessageBoxOptions.RightAlign
+                    );
 
-                    break;
-
-                case ("TreeNode: Администратор"):
-
-
-                    break;
-
-                case ("TreeNode: Пользователь"):
-
-
-                    break;
-
-                case ("TreeNode: Роли"):
-
-
-                    break;
-
-                case ("TreeNode: Принтер"):
-
-                    if (result == DialogResult.Yes)
-                    {
-                        MySqlCommand AddCom = new MySqlCommand("DELETE FROM printers WHERE `id` = @id", db.getConnection());
-                        AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
-
-                        AddCom.ExecuteNonQuery();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Запись удалена!");
-                    }
-
-                    break;
-
-                case ("TreeNode: Картридж"):
-
-                    if (result == DialogResult.Yes)
-                    {
-                        MySqlCommand AddCom = new MySqlCommand("DELETE FROM cartrige WHERE `id` = @id", db.getConnection());
-                        AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
-
-                        AddCom.ExecuteNonQuery();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Запись удалена!");
-                    }
-
-                    break;
-
-                case ("TreeNode: Аудитория"):
-
-
-                    if (result == DialogResult.Yes)
-                    {
-                        MySqlCommand AddCom = new MySqlCommand("DELETE FROM audiences WHERE `id` = @id", db.getConnection());
-                        AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
-
-                        AddCom.ExecuteNonQuery();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Запись удалена!");
-                    }
-
-
+                db.openConnection();
+                switch (Convert.ToString(CurrentNode))
+                {
+                    case ("TreeNode: Все"):
 
 
                         break;
 
-                case ("TreeNode: Установки"):
+                    case ("TreeNode: Администратор"):
 
-                    if (result == DialogResult.Yes)
-                    {
-                        MySqlCommand AddCom = new MySqlCommand("DELETE FROM setup WHERE `id` = @id", db.getConnection());
-                        AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
 
-                        AddCom.ExecuteNonQuery();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Запись удалена!");
-                    }
+                        break;
 
-                    break;
+                    case ("TreeNode: Пользователь"):
 
-                case ("TreeNode: Статус работоспобности"):
 
-                    if (result == DialogResult.Yes)
-                    {
-                        MySqlCommand AddCom = new MySqlCommand("DELETE FROM statuscartrige WHERE `id` = @id", db.getConnection());
-                        AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+                        break;
 
-                        AddCom.ExecuteNonQuery();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Запись удалена!");
-                    }
+                    case ("TreeNode: Роли"):
 
-                    break;
 
+                        break;
+
+                    case ("TreeNode: Принтер"):
+
+                        if (result == DialogResult.Yes)
+                        {
+                            MySqlCommand AddCom = new MySqlCommand("DELETE FROM printers WHERE `id` = @id", db.getConnection());
+                            AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+
+                            AddCom.ExecuteNonQuery();
+                            MessageBox.Show("Запись удалена!");
+                        }
+                        else
+                        {
+                            
+                        }
+
+                        break;
+
+                    case ("TreeNode: Картридж"):
+
+                        if (result == DialogResult.Yes)
+                        {
+                            MySqlCommand AddCom = new MySqlCommand("DELETE FROM cartrige WHERE `id` = @id", db.getConnection());
+                            AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+
+                            AddCom.ExecuteNonQuery();
+                            MessageBox.Show("Запись удалена!");
+                        }
+                        else
+                        {
+                            
+                        }
+
+                        break;
+
+                    case ("TreeNode: Аудитория"):
+
+
+                        if (result == DialogResult.Yes)
+                        {
+                            MySqlCommand AddCom = new MySqlCommand("DELETE FROM audiences WHERE `id` = @id", db.getConnection());
+                            AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+
+                            AddCom.ExecuteNonQuery();
+                            MessageBox.Show("Запись удалена!");
+                        }
+                        else
+                        {
+                          
+                        }
+
+                        break;
+
+                    case ("TreeNode: Установки"):
+
+                        if (result == DialogResult.Yes)
+                        {
+                            MySqlCommand AddCom = new MySqlCommand("DELETE FROM setup WHERE `id` = @id", db.getConnection());
+                            AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+
+                            AddCom.ExecuteNonQuery();
+                            MessageBox.Show("Запись удалена!");
+                        }
+                        else
+                        {
+                         
+                        }
+
+                        break;
+
+                    case ("TreeNode: Статус работоспобности картриджа"):
+
+                        if (result == DialogResult.Yes)
+                        {
+                            MySqlCommand AddCom = new MySqlCommand("DELETE FROM refill WHERE `id` = @id", db.getConnection());
+                            AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+
+                            AddCom.ExecuteNonQuery();
+                            MessageBox.Show("Запись удалена!");
+                        }
+                        else
+                        {
+                           
+                        }
+
+                        break;
+
+                }
+                db.closeConnection(); //Закрываем подключение к БД
+
+                UpdateTable();
             }
-            db.closeConnection(); //Закрываем подключение к БД
-
-            UpdateTable();
+            else
+            {
+                MessageBox.Show("Выделите строчку для удаления");
+            }
         }
     }
 }

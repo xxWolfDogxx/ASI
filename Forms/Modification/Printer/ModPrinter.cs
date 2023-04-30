@@ -15,6 +15,7 @@ namespace ASI.Forms.Modification.Printer
     public partial class ModPrinter : Form
     {
         internal static string PrinterInven;
+        internal static string PrinterInvenDB;
         
         public ModPrinter()
         {
@@ -81,6 +82,10 @@ namespace ASI.Forms.Modification.Printer
                     break;
             }
 
+
+
+            //---------------------------------------------------------------------------------------------------------------------------------------
+
             //Заносим в поле почты клиентов
             db.openConnection(); // Открываем подключение к БД
             var AuditCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
@@ -121,6 +126,18 @@ namespace ASI.Forms.Modification.Printer
         private void ModPrinterBut_Click(object sender, EventArgs e)
         {
             DB db = new DB();
+
+            //Заносим в 
+            db.openConnection(); // Открываем подключение к БД
+            var PrinterDBCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
+            PrinterDBCom.CommandText = "Select InventoryNumber From printers Where id = @idPrinter"; // Запрос на какие либо даные
+            PrinterDBCom.Connection = db.getConnection(); //Отправляем запрос
+            PrinterDBCom.Parameters.Add("@idPrinter", MySqlDbType.Int32).Value = IdPrinterTextBox.Text;
+
+            var printerDB = PrinterDBCom.ExecuteReader(); // Создаем переменную, в которую будем вносить по порядку все полученные данные из запроса
+            while (printerDB.Read()) { PrinterInvenDB=(printerDB.GetString(0)); }; // Перебираем данные занося их в переменную
+            db.closeConnection(); // Закрываем подключение к БД 
+
             MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdatePrinter, db.getConnection());
 
             db.openConnection();
@@ -137,8 +154,9 @@ namespace ASI.Forms.Modification.Printer
 
             PrinterInven = InventTextBox.Text;
 
-            
-                db.openConnection();
+            db.openConnection();
+            if(PrinterInven == PrinterInvenDB)
+            {
                 if (AddCom.ExecuteNonQuery() == 1)
                 {
                     MessageBox.Show("Запись изменина");
@@ -150,8 +168,13 @@ namespace ASI.Forms.Modification.Printer
                 {
                     MessageBox.Show("Заполните все поля");
                 }
-                db.closeConnection(); //Закрываем подключение к БД
-            
+            }
+            else if (Function.isPrinterExists.isPrinExists())
+            {
+                return;
+            }
+            else { MessageBox.Show("Поправить - разработчику\nModPrinter, проверка на повторы при изменении записи"); }
+            db.closeConnection();
 
         }
 

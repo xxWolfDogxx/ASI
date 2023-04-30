@@ -15,6 +15,7 @@ namespace ASI.Forms.Modification.Cartrige
     public partial class ModCartrige : Form
     {
         internal static string numCartrige;
+        internal static string numCartrigeDB;
         public ModCartrige()
         {
             InitializeComponent();
@@ -128,6 +129,18 @@ namespace ASI.Forms.Modification.Cartrige
         private void ModCartrigeBut_Click(object sender, EventArgs e)
         {
             DB db = new DB();
+
+            //Заносим в 
+            db.openConnection(); // Открываем подключение к БД
+            var CartrigeDBCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
+            CartrigeDBCom.CommandText = "Select number From cartrige Where id = @idCartrige"; // Запрос на какие либо даные
+            CartrigeDBCom.Connection = db.getConnection(); //Отправляем запрос
+            CartrigeDBCom.Parameters.Add("@idCartrige", MySqlDbType.Int32).Value = IdCartrigeTextBox.Text;
+
+            var cartrigeDB = CartrigeDBCom.ExecuteReader(); // Создаем переменную, в которую будем вносить по порядку все полученные данные из запроса
+            while (cartrigeDB.Read()) { numCartrigeDB = (cartrigeDB.GetString(0)); }; // Перебираем данные занося их в переменную
+            db.closeConnection(); // Закрываем подключение к БД 
+
             MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateCartrige, db.getConnection());
 
             db.openConnection();
@@ -144,8 +157,9 @@ namespace ASI.Forms.Modification.Cartrige
 
             numCartrige = NumberCartrigeTextBox.Text;
 
-
-                db.openConnection();
+            db.openConnection();
+            if (numCartrige == numCartrigeDB)
+            {
                 if (AddCom.ExecuteNonQuery() == 1)
                 {
                     MessageBox.Show("Запись изменина");
@@ -157,8 +171,14 @@ namespace ASI.Forms.Modification.Cartrige
                 {
                     MessageBox.Show("Заполните все поля");
                 }
-                db.closeConnection(); //Закрываем подключение к БД
-            
+            }
+            else if (Function.isPrinterExists.isPrinExists())
+            {
+                return;
+            }
+            else { MessageBox.Show("Поправить - разработчику\nModCartrige, проверка на повторы при изменении записи"); }
+            db.closeConnection();
+
 
         }
 

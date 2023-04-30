@@ -47,7 +47,7 @@ namespace ASI.Forms.Main
             System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Принтер");
             System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Картридж");
             System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Аудитория");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Статус работоспобности");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Статус работоспобности картриджа");
             System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Справочник", new System.Windows.Forms.TreeNode[] {
             treeNode8,
             treeNode9,
@@ -352,11 +352,11 @@ namespace ASI.Forms.Main
             // 
             this.ButtonPanel.Controls.Add(this.groupBox1);
             this.ButtonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ButtonPanel.Location = new System.Drawing.Point(0, 510);
+            this.ButtonPanel.Location = new System.Drawing.Point(0, 362);
             this.ButtonPanel.Margin = new System.Windows.Forms.Padding(5);
             this.ButtonPanel.Name = "ButtonPanel";
             this.ButtonPanel.Padding = new System.Windows.Forms.Padding(15);
-            this.ButtonPanel.Size = new System.Drawing.Size(1064, 171);
+            this.ButtonPanel.Size = new System.Drawing.Size(1064, 319);
             this.ButtonPanel.TabIndex = 1;
             // 
             // groupBox1
@@ -366,7 +366,7 @@ namespace ASI.Forms.Main
             this.groupBox1.Margin = new System.Windows.Forms.Padding(10);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox1.Size = new System.Drawing.Size(1034, 141);
+            this.groupBox1.Size = new System.Drawing.Size(1034, 289);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Фильтры";
@@ -380,7 +380,7 @@ namespace ASI.Forms.Main
             this.MainPanel.Margin = new System.Windows.Forms.Padding(5);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.MainPanel.Size = new System.Drawing.Size(1064, 484);
+            this.MainPanel.Size = new System.Drawing.Size(1064, 336);
             this.MainPanel.TabIndex = 2;
             // 
             // RightMainPanel
@@ -391,7 +391,7 @@ namespace ASI.Forms.Main
             this.RightMainPanel.Location = new System.Drawing.Point(278, 5);
             this.RightMainPanel.Name = "RightMainPanel";
             this.RightMainPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.RightMainPanel.Size = new System.Drawing.Size(781, 474);
+            this.RightMainPanel.Size = new System.Drawing.Size(781, 326);
             this.RightMainPanel.TabIndex = 1;
             // 
             // GridView
@@ -401,8 +401,9 @@ namespace ASI.Forms.Main
             this.GridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.GridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.GridView.BackgroundColor = System.Drawing.Color.Silver;
+            this.GridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -424,7 +425,7 @@ namespace ASI.Forms.Main
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.GridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.GridView.Size = new System.Drawing.Size(771, 424);
+            this.GridView.Size = new System.Drawing.Size(771, 276);
             this.GridView.TabIndex = 0;
             // 
             // toolStrip1
@@ -529,7 +530,7 @@ namespace ASI.Forms.Main
             this.LeftMainPanel.Margin = new System.Windows.Forms.Padding(5);
             this.LeftMainPanel.Name = "LeftMainPanel";
             this.LeftMainPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.LeftMainPanel.Size = new System.Drawing.Size(273, 474);
+            this.LeftMainPanel.Size = new System.Drawing.Size(273, 326);
             this.LeftMainPanel.TabIndex = 0;
             // 
             // SelectTableGroupBox
@@ -541,7 +542,7 @@ namespace ASI.Forms.Main
             this.SelectTableGroupBox.Margin = new System.Windows.Forms.Padding(5);
             this.SelectTableGroupBox.Name = "SelectTableGroupBox";
             this.SelectTableGroupBox.Padding = new System.Windows.Forms.Padding(5);
-            this.SelectTableGroupBox.Size = new System.Drawing.Size(263, 464);
+            this.SelectTableGroupBox.Size = new System.Drawing.Size(263, 316);
             this.SelectTableGroupBox.TabIndex = 0;
             this.SelectTableGroupBox.TabStop = false;
             this.SelectTableGroupBox.Text = "Таблицы";
@@ -550,6 +551,9 @@ namespace ASI.Forms.Main
             // 
             this.treeView1.BackColor = System.Drawing.Color.Gainsboro;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.FullRowSelect = true;
+            this.treeView1.HideSelection = false;
+            this.treeView1.HotTracking = true;
             this.treeView1.ItemHeight = 30;
             this.treeView1.Location = new System.Drawing.Point(5, 25);
             this.treeView1.Margin = new System.Windows.Forms.Padding(10);
@@ -564,6 +568,7 @@ namespace ASI.Forms.Main
             treeNode4.Text = "Роли";
             treeNode5.Name = "UsersKnot";
             treeNode5.Text = "Пользователи";
+            treeNode6.Checked = true;
             treeNode6.Name = "InstalVetw";
             treeNode6.Text = "Установки";
             treeNode7.Name = "ViewsKnot";
@@ -575,14 +580,14 @@ namespace ASI.Forms.Main
             treeNode10.Name = "AuditoriumGuide";
             treeNode10.Text = "Аудитория";
             treeNode11.Name = "RefillVetw";
-            treeNode11.Text = "Статус работоспобности";
+            treeNode11.Text = "Статус работоспобности картриджа";
             treeNode12.Name = "GuideKnot";
             treeNode12.Text = "Справочник";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode5,
             treeNode7,
             treeNode12});
-            this.treeView1.Size = new System.Drawing.Size(253, 434);
+            this.treeView1.Size = new System.Drawing.Size(253, 286);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -600,7 +605,6 @@ namespace ASI.Forms.Main
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "ASI";
-            this.Text = "ASI";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ASI_FormClosed);
             this.Load += new System.EventHandler(this.ASI_Load);

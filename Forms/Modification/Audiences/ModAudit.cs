@@ -15,6 +15,7 @@ namespace ASI.Forms.Modification.Audiences
     public partial class ModAudit : Form
     {
         internal static string Audit;
+        internal static string AuditDB;
         public ModAudit()
         {
             InitializeComponent();
@@ -84,6 +85,17 @@ namespace ASI.Forms.Modification.Audiences
         private void ModAuditBut_Click(object sender, EventArgs e)
         {
             DB db = new DB();
+
+            //Заносим в 
+            db.openConnection(); // Открываем подключение к БД
+            var AuditDBCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
+            AuditDBCom.CommandText = "Select Audit From audiences Where id = @idAudit"; // Запрос на какие либо даные
+            AuditDBCom.Connection = db.getConnection(); //Отправляем запрос
+            AuditDBCom.Parameters.Add("@idAudit", MySqlDbType.Int32).Value = IdAuditTextBox.Text;
+
+            var auditDB = AuditDBCom.ExecuteReader(); // Создаем переменную, в которую будем вносить по порядку все полученные данные из запроса
+            while (auditDB.Read()) { AuditDB = (auditDB.GetString(0)); }; // Перебираем данные занося их в переменную
+            db.closeConnection(); // Закрываем подключение к БД
             MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateAudit, db.getConnection());
 
             db.openConnection();
@@ -96,7 +108,9 @@ namespace ASI.Forms.Modification.Audiences
 
             Audit = AuditTextBox.Text;
 
-                db.openConnection();
+            db.openConnection();
+            if (Audit == AuditDB)
+            {
                 if (AddCom.ExecuteNonQuery() == 1)
                 {
                     MessageBox.Show("Запись изменина");
@@ -108,8 +122,14 @@ namespace ASI.Forms.Modification.Audiences
                 {
                     MessageBox.Show("Заполните все поля");
                 }
-                db.closeConnection(); //Закрываем подключение к БД
-            
+            }
+            else if (Function.isPrinterExists.isPrinExists())
+            {
+                return;
+            }
+            else { MessageBox.Show("Поправить - разработчику\nModAudit, проверка на повторы при изменении записи"); }
+            db.closeConnection();
+
         }
 
     }
