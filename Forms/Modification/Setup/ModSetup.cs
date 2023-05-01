@@ -26,10 +26,12 @@ namespace ASI.Forms.Modification.Setup
             switch (Forms.Main.ASI.Modif)
             {
                 case ("Изменить"):
+                    LogoLabel.Text = "Изменение записи";
                     AddSetupBut.Visible = false;
                     ModSetupBut.Visible = true;
                     break;
                 case ("Добавить"):
+                    LogoLabel.Text = "Добавление записи";
                     AddSetupBut.Visible = true;
                     ModSetupBut.Visible = false;
                     break;

@@ -24,13 +24,17 @@ namespace ASI.Function
             adapter.SelectCommand = command;
             adapter.Fill(table);
 
-            if (table.Rows.Count >= 1)
+            if (Forms.Modification.StatusWork.ModStatusWork.statusWork == Forms.Modification.StatusWork.ModStatusWork.statusWorkDB)
+            {               
+                return false;
+            }
+            else if (table.Rows.Count >= 1)
             {
                 MessageBox.Show("Статус уже существует");
                 return true;
             }
             else
-            {
+            {               
                 return false;
             }
         }

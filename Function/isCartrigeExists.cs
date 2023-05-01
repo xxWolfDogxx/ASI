@@ -24,9 +24,13 @@ namespace ASI.Function
             adapter.SelectCommand = command;
             adapter.Fill(table);
 
-            if (table.Rows.Count >= 1)
+            if (Forms.Modification.Cartrige.ModCartrige.numCartrige == Forms.Modification.Cartrige.ModCartrige.numCartrigeDB)
             {
-                MessageBox.Show("Такой номер картриджа уже существует");
+                return false;
+            }
+            else if (table.Rows.Count >= 1)
+            {
+                MessageBox.Show("Номер картриджа уже существует");
                 return true;
             }
             else

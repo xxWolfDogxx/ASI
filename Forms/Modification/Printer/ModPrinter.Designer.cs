@@ -80,11 +80,11 @@ namespace ASI.Forms.Modification.Printer
             this.LogoLabel.AutoSize = true;
             this.LogoLabel.Font = new System.Drawing.Font("Calibri", 25.81132F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LogoLabel.Location = new System.Drawing.Point(209, 23);
+            this.LogoLabel.Location = new System.Drawing.Point(119, 22);
             this.LogoLabel.Name = "LogoLabel";
-            this.LogoLabel.Size = new System.Drawing.Size(158, 42);
+            this.LogoLabel.Size = new System.Drawing.Size(348, 42);
             this.LogoLabel.TabIndex = 0;
-            this.LogoLabel.Text = "Принтер";
+            this.LogoLabel.Text = "Добавление принтер";
             // 
             // groupBox2
             // 
@@ -353,7 +353,7 @@ namespace ASI.Forms.Modification.Printer
             this.Name = "ModPrinter";
             this.Padding = new System.Windows.Forms.Padding(13, 14, 13, 14);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Куница";
+            this.Text = "Принтер";
             this.Load += new System.EventHandler(this.ModPrinter_Load);
             this.LogoPanel.ResumeLayout(false);
             this.LogoPanel.PerformLayout();

@@ -25,17 +25,9 @@ namespace ASI.Forms.Main
             GridView.AllowUserToAddRows = false;
         }
 
-        private void ASI_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            //Переход на форму для авторизации
-            Forms.Identification.Authentication.Auth auth = new Forms.Identification.Authentication.Auth();
-            Hide();
-            auth.ShowDialog();            
-        }
-
         private void UpdateTable()
         {
-            bool visibleColum = false;
+            bool visibleColum = true;
 
             DataBase.ConnectionForMySQL.DB db = new DataBase.ConnectionForMySQL.DB();
             MySqlDataAdapter mySql_dataAdapter = new MySqlDataAdapter(); //Через класс MySqlDataAdapter отправляем запрос в БД для получения данных
@@ -62,7 +54,7 @@ namespace ASI.Forms.Main
 
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["Id"].Visible = visibleColum;
-
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
                     GridView.Columns["FullName"].HeaderText = "ФИО";
                     GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
                     GridView.Columns["Phone"].HeaderText = "Номер телефона";
@@ -82,7 +74,7 @@ namespace ASI.Forms.Main
                     //Меняем название столбцов на руссифицированное
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["Id"].Visible = visibleColum;
-
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
                     GridView.Columns["FullName"].HeaderText = "ФИО";
                     GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
                     GridView.Columns["Phone"].HeaderText = "Номер телефона";
@@ -101,7 +93,7 @@ namespace ASI.Forms.Main
                     //Меняем название столбцов на руссифицированное
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["Id"].Visible = visibleColum;
-
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
                     GridView.Columns["FullName"].HeaderText = "ФИО";
                     GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
                     GridView.Columns["Phone"].HeaderText = "Номер телефона";
@@ -119,7 +111,7 @@ namespace ASI.Forms.Main
 
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["Id"].Visible = visibleColum;
-
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
                     GridView.Columns["role"].HeaderText = "Роли";
 
                     break;
@@ -134,7 +126,7 @@ namespace ASI.Forms.Main
 
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["Id"].Visible = visibleColum;
-
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
                     GridView.Columns["Brand"].HeaderText = "Бренд";
                     GridView.Columns["Model"].HeaderText = "Модель";
                     GridView.Columns["InventoryNumber"].HeaderText = "Инвентарный номер";
@@ -157,7 +149,7 @@ namespace ASI.Forms.Main
 
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["Id"].Visible = visibleColum;
-
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
                     GridView.Columns["Brand"].HeaderText = "Бренд";
                     GridView.Columns["Model"].HeaderText = "Модель";
                     GridView.Columns["Number"].HeaderText = "Уникальный номер";
@@ -175,7 +167,7 @@ namespace ASI.Forms.Main
 
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["Id"].Visible = visibleColum;
-
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
                     GridView.Columns["Auditorium"].HeaderText = "Корпус / Аудитория";
                     GridView.Columns["Comments"].HeaderText = "Комментарий";
 
@@ -190,7 +182,7 @@ namespace ASI.Forms.Main
 
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["Id"].Visible = visibleColum;
-
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
                     GridView.Columns["Invent_printer"].HeaderText = "Инвентарный номер принтера";
                     GridView.Columns["Number_cartrige"].HeaderText = "Номер картриджа";
                     GridView.Columns["Data_setup"].HeaderText = "Дата установки картриджа";
@@ -208,6 +200,7 @@ namespace ASI.Forms.Main
 
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["Id"].Visible = visibleColum;
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
                     GridView.Columns["Status"].HeaderText = "Рабочее состояние";
 
@@ -602,6 +595,35 @@ namespace ASI.Forms.Main
             else
             {
                 MessageBox.Show("Выделите строчку для удаления");
+            }
+        }
+
+
+
+        private void ASI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "Вы уверены, что хотели бы выйти из профиля?",
+                "Выход",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1
+                );
+
+            if (result == DialogResult.Yes)
+            {                              
+                Forms.Identification.Authentication.Auth auth = new Forms.Identification.Authentication.Auth();
+                this.Hide();
+                auth.ShowDialog();                
+                this.Close();
+            }
+            else if (result == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                e.Cancel = true;
             }
         }
     }

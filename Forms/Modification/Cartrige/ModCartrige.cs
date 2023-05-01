@@ -70,10 +70,12 @@ namespace ASI.Forms.Modification.Cartrige
             switch (Forms.Main.ASI.Modif)
             {
                 case ("Изменить"):
+                    LogoLabel.Text = "Изменение картриджа";
                     AddCartrigeBut.Visible = false;
                     ModCartrigeBut.Visible = true;
                     break;
                 case ("Добавить"):
+                    LogoLabel.Text = "Добавление картриджа";
                     AddCartrigeBut.Visible = true;
                     ModCartrigeBut.Visible = false;
                     break;
@@ -158,7 +160,11 @@ namespace ASI.Forms.Modification.Cartrige
             numCartrige = NumberCartrigeTextBox.Text;
 
             db.openConnection();
-            if (numCartrige == numCartrigeDB)
+            if (Function.isCartrigeExists.isCarExists() == true)
+            {
+                return;
+            }
+            else if (Function.isCartrigeExists.isCarExists() == false)
             {
                 if (AddCom.ExecuteNonQuery() == 1)
                 {
@@ -172,13 +178,8 @@ namespace ASI.Forms.Modification.Cartrige
                     MessageBox.Show("Заполните все поля");
                 }
             }
-            else if (Function.isPrinterExists.isPrinExists())
-            {
-                return;
-            }
             else { MessageBox.Show("Поправить - разработчику\nModCartrige, проверка на повторы при изменении записи"); }
             db.closeConnection();
-
 
         }
 

@@ -24,7 +24,12 @@ namespace ASI.Function
             adapter.SelectCommand = command;
             adapter.Fill(table);
 
-            if (table.Rows.Count >= 1)
+
+            if (Forms.Modification.Printer.ModPrinter.PrinterInven == Forms.Modification.Printer.ModPrinter.PrinterInvenDB)
+            {
+                return false;
+            }
+            else if (table.Rows.Count >= 1)
             {
                 MessageBox.Show("Инветарный номер принтера уже существует");
                 return true;

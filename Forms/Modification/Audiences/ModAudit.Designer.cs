@@ -97,7 +97,7 @@
             this.groupBox3.Size = new System.Drawing.Size(564, 64);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Корпус / Аудитория";
+            this.groupBox3.Text = "Корпус - Аудитория";
             // 
             // AuditTextBox
             // 
@@ -108,6 +108,7 @@
             this.AuditTextBox.Name = "AuditTextBox";
             this.AuditTextBox.Size = new System.Drawing.Size(544, 31);
             this.AuditTextBox.TabIndex = 1;
+            this.AuditTextBox.Text = "04";
             // 
             // groupBox10
             // 
@@ -148,11 +149,11 @@
             this.LogoLabel.AutoSize = true;
             this.LogoLabel.Font = new System.Drawing.Font("Calibri", 25.81132F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LogoLabel.Location = new System.Drawing.Point(209, 23);
+            this.LogoLabel.Location = new System.Drawing.Point(107, 23);
             this.LogoLabel.Name = "LogoLabel";
-            this.LogoLabel.Size = new System.Drawing.Size(185, 42);
+            this.LogoLabel.Size = new System.Drawing.Size(382, 42);
             this.LogoLabel.TabIndex = 0;
-            this.LogoLabel.Text = "Картридж";
+            this.LogoLabel.Text = "Добавление аудитории";
             // 
             // groupBox1
             // 
@@ -218,7 +219,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ModAudit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ModAudit";
+            this.Text = "Корпус - Аудитория";
             this.Load += new System.EventHandler(this.ModAudit_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

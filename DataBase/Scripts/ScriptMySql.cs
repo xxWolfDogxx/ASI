@@ -36,7 +36,7 @@ namespace ASI.DataBase.Scripts
         //Запрос на сверку введенной номером картриджа с повторами в базе данных
         internal static string script_isPrinterExists = $"SELECT * FROM `printers` WHERE `InventoryNumber` = @printerExists";
         //Запрос на сверку введенной номером картриджа с повторами в базе данных
-        internal static string script_isStatusWorkExists = $"SELECT * FROM `statuscartrige` WHERE `status` = @statusWork";
+        internal static string script_isStatusWorkExists = $"SELECT * FROM `refill` WHERE `status` = @statusWork";
 
         //
         //Скрипты для основной формы

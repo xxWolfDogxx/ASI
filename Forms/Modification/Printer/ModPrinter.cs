@@ -73,10 +73,12 @@ namespace ASI.Forms.Modification.Printer
             switch (Forms.Main.ASI.Modif)
             {
                 case ("Изменить"):
+                    LogoLabel.Text = "Изменение принтера";
                     AddPrinterBut.Visible = false;
                     ModPrinterBut.Visible = true;
                     break;
                 case ("Добавить"):
+                    LogoLabel.Text = "Добавление принтера";
                     AddPrinterBut.Visible = true;
                     ModPrinterBut.Visible = false;
                     break;
@@ -155,7 +157,11 @@ namespace ASI.Forms.Modification.Printer
             PrinterInven = InventTextBox.Text;
 
             db.openConnection();
-            if(PrinterInven == PrinterInvenDB)
+            if (Function.isPrinterExists.isPrinExists() == true)
+            {
+                return;
+            }
+            else if (Function.isPrinterExists.isPrinExists() == false)
             {
                 if (AddCom.ExecuteNonQuery() == 1)
                 {
@@ -168,10 +174,6 @@ namespace ASI.Forms.Modification.Printer
                 {
                     MessageBox.Show("Заполните все поля");
                 }
-            }
-            else if (Function.isPrinterExists.isPrinExists())
-            {
-                return;
             }
             else { MessageBox.Show("Поправить - разработчику\nModPrinter, проверка на повторы при изменении записи"); }
             db.closeConnection();

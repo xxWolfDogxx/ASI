@@ -35,7 +35,9 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.DateSetup = new System.Windows.Forms.DateTimePicker();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.NumberCartrigeSetupComBox = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.InventPrinterSetupComBox = new System.Windows.Forms.ComboBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.IdSetupTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -44,8 +46,6 @@ namespace ASI.Forms.Modification.Setup
             this.AddSetupBut = new System.Windows.Forms.Button();
             this.LogoPanel = new System.Windows.Forms.Panel();
             this.LogoLabel = new System.Windows.Forms.Label();
-            this.InventPrinterSetupComBox = new System.Windows.Forms.ComboBox();
-            this.NumberCartrigeSetupComBox = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -140,6 +140,16 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Номер картриджа";
             // 
+            // NumberCartrigeSetupComBox
+            // 
+            this.NumberCartrigeSetupComBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.NumberCartrigeSetupComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NumberCartrigeSetupComBox.FormattingEnabled = true;
+            this.NumberCartrigeSetupComBox.Location = new System.Drawing.Point(10, 23);
+            this.NumberCartrigeSetupComBox.Name = "NumberCartrigeSetupComBox";
+            this.NumberCartrigeSetupComBox.Size = new System.Drawing.Size(544, 31);
+            this.NumberCartrigeSetupComBox.TabIndex = 2;
+            // 
             // groupBox3
             // 
             this.groupBox3.AutoSize = true;
@@ -152,6 +162,16 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Инвентарный номер принтера";
+            // 
+            // InventPrinterSetupComBox
+            // 
+            this.InventPrinterSetupComBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.InventPrinterSetupComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.InventPrinterSetupComBox.FormattingEnabled = true;
+            this.InventPrinterSetupComBox.Location = new System.Drawing.Point(10, 23);
+            this.InventPrinterSetupComBox.Name = "InventPrinterSetupComBox";
+            this.InventPrinterSetupComBox.Size = new System.Drawing.Size(544, 31);
+            this.InventPrinterSetupComBox.TabIndex = 1;
             // 
             // groupBox10
             // 
@@ -244,31 +264,11 @@ namespace ASI.Forms.Modification.Setup
             this.LogoLabel.AutoSize = true;
             this.LogoLabel.Font = new System.Drawing.Font("Calibri", 25.81132F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LogoLabel.Location = new System.Drawing.Point(176, 22);
+            this.LogoLabel.Location = new System.Drawing.Point(142, 24);
             this.LogoLabel.Name = "LogoLabel";
-            this.LogoLabel.Size = new System.Drawing.Size(240, 42);
+            this.LogoLabel.Size = new System.Drawing.Size(313, 42);
             this.LogoLabel.TabIndex = 0;
-            this.LogoLabel.Text = "Установленно";
-            // 
-            // InventPrinterSetupComBox
-            // 
-            this.InventPrinterSetupComBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.InventPrinterSetupComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.InventPrinterSetupComBox.FormattingEnabled = true;
-            this.InventPrinterSetupComBox.Location = new System.Drawing.Point(10, 23);
-            this.InventPrinterSetupComBox.Name = "InventPrinterSetupComBox";
-            this.InventPrinterSetupComBox.Size = new System.Drawing.Size(544, 31);
-            this.InventPrinterSetupComBox.TabIndex = 1;
-            // 
-            // NumberCartrigeSetupComBox
-            // 
-            this.NumberCartrigeSetupComBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.NumberCartrigeSetupComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NumberCartrigeSetupComBox.FormattingEnabled = true;
-            this.NumberCartrigeSetupComBox.Location = new System.Drawing.Point(10, 23);
-            this.NumberCartrigeSetupComBox.Name = "NumberCartrigeSetupComBox";
-            this.NumberCartrigeSetupComBox.Size = new System.Drawing.Size(544, 31);
-            this.NumberCartrigeSetupComBox.TabIndex = 2;
+            this.LogoLabel.Text = "Добавление записи";
             // 
             // ModSetup
             // 
@@ -282,7 +282,7 @@ namespace ASI.Forms.Modification.Setup
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ModSetup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "ModSetup";
+            this.Text = "Установки";
             this.Load += new System.EventHandler(this.ModSetup_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

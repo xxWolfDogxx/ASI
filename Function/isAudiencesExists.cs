@@ -23,8 +23,11 @@ namespace ASI.Function
 
             adapter.SelectCommand = command;
             adapter.Fill(table);
-
-            if (table.Rows.Count >= 1)
+            if (Forms.Modification.Audiences.ModAudit.Audit == Forms.Modification.Audiences.ModAudit.AuditDB)
+            {
+                return false;
+            }
+            else if (table.Rows.Count >= 1)
             {
                 MessageBox.Show("Аудитория уже существует");
                 return true;

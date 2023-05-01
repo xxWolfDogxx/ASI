@@ -128,11 +128,11 @@
             this.LogoLabel.AutoSize = true;
             this.LogoLabel.Font = new System.Drawing.Font("Calibri", 25.81132F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LogoLabel.Location = new System.Drawing.Point(209, 23);
+            this.LogoLabel.Location = new System.Drawing.Point(114, 20);
             this.LogoLabel.Name = "LogoLabel";
-            this.LogoLabel.Size = new System.Drawing.Size(185, 42);
+            this.LogoLabel.Size = new System.Drawing.Size(375, 42);
             this.LogoLabel.TabIndex = 0;
-            this.LogoLabel.Text = "Картридж";
+            this.LogoLabel.Text = "Добавление картридж";
             // 
             // groupBox2
             // 
@@ -323,7 +323,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ModCartrige";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ModCartrige";
+            this.Text = "Картридж";
             this.Load += new System.EventHandler(this.ModCartrige_Load);
             this.groupBox1.ResumeLayout(false);
             this.LogoPanel.ResumeLayout(false);

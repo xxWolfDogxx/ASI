@@ -31,6 +31,7 @@ namespace ASI.Forms.Modification.StatusWork
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.StatusWorkTextBox = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.IdStatusWorkTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -39,7 +40,6 @@ namespace ASI.Forms.Modification.StatusWork
             this.AddStatusWorkBut = new System.Windows.Forms.Button();
             this.LogoPanel = new System.Windows.Forms.Panel();
             this.LogoLabel = new System.Windows.Forms.Label();
-            this.StatusWorkTextBox = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox10.SuspendLayout();
@@ -73,6 +73,15 @@ namespace ASI.Forms.Modification.StatusWork
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Статус";
+            // 
+            // StatusWorkTextBox
+            // 
+            this.StatusWorkTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.StatusWorkTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.StatusWorkTextBox.Location = new System.Drawing.Point(10, 23);
+            this.StatusWorkTextBox.Name = "StatusWorkTextBox";
+            this.StatusWorkTextBox.Size = new System.Drawing.Size(544, 31);
+            this.StatusWorkTextBox.TabIndex = 2;
             // 
             // groupBox10
             // 
@@ -165,20 +174,11 @@ namespace ASI.Forms.Modification.StatusWork
             this.LogoLabel.AutoSize = true;
             this.LogoLabel.Font = new System.Drawing.Font("Calibri", 25.81132F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LogoLabel.Location = new System.Drawing.Point(69, 21);
+            this.LogoLabel.Location = new System.Drawing.Point(130, 22);
             this.LogoLabel.Name = "LogoLabel";
-            this.LogoLabel.Size = new System.Drawing.Size(466, 42);
+            this.LogoLabel.Size = new System.Drawing.Size(347, 42);
             this.LogoLabel.TabIndex = 0;
-            this.LogoLabel.Text = "Статус работоспособности";
-            // 
-            // StatusWorkTextBox
-            // 
-            this.StatusWorkTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.StatusWorkTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.StatusWorkTextBox.Location = new System.Drawing.Point(10, 23);
-            this.StatusWorkTextBox.Name = "StatusWorkTextBox";
-            this.StatusWorkTextBox.Size = new System.Drawing.Size(544, 31);
-            this.StatusWorkTextBox.TabIndex = 2;
+            this.LogoLabel.Text = "Добавление статуса";
             // 
             // ModStatusWork
             // 
@@ -192,7 +192,7 @@ namespace ASI.Forms.Modification.StatusWork
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ModStatusWork";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "ModStatusWork";
+            this.Text = "Статус работоспособности картриджа";
             this.Load += new System.EventHandler(this.ModStatusWork_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

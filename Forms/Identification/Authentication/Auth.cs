@@ -97,7 +97,7 @@ namespace ASI.Forms.Identification.Authentication
 
                         //Переход на главную форму
                         Main.ASI asi = new Main.ASI();
-                        Hide();
+                        this.Hide();
                         asi.ShowDialog();
                         this.Close();
 
@@ -138,7 +138,8 @@ namespace ASI.Forms.Identification.Authentication
 
         private void Auth_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+                      
+            Environment.Exit(0);
         }
     }
 }
