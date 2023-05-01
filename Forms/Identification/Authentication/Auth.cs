@@ -80,7 +80,7 @@ namespace ASI.Forms.Identification.Authentication
                         DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers = LoginTextBox.Text;
                     
                     // Внести поправки для значения null в цикле (выдает ошибку что нельзя записать)
-                    /*
+                    
                         //Заносим профиль пользователя в переменную role
                         db.openConnection();
                         var _roleUsers = new MySqlCommand();
@@ -92,8 +92,8 @@ namespace ASI.Forms.Identification.Authentication
                         while (RoleUsersDB.Read()) { DataBase.Entity.Identification.DB_Users.RoleUsersForRole = RoleUsersDB.GetString(0); }; //Перебираем все значения
                         db.closeConnection();
 
-                        MessageBox.Show(DataBase.Entity.Identification.DB_Users.RoleUsersForRole);
-                    */
+                        MessageBox.Show("Ваш уровень доступа: " + DataBase.Entity.Identification.DB_Users.RoleUsersForRole);
+                    
 
                         //Переход на главную форму
                         Main.ASI asi = new Main.ASI();

@@ -221,9 +221,46 @@ namespace ASI.Forms.Main
         private void ASI_Load(object sender, EventArgs e)
         {
             treeView1.ExpandAll();
-            
+                        
+            switch (DataBase.Entity.Identification.DB_Users.RoleUsersForRole)
+            {
+                case ("ROLE_ROOT"):
+                    treeView1.Nodes[0].Nodes[1].Remove();
+                    treeView1.Nodes[0].Nodes[2].Remove();
 
-            treeView1.Nodes[0].Remove();
+                    Sep2.Visible = true;
+                    Sep3.Visible = true;
+                    Sep4.Visible = true;
+                    AddToolBut.Visible = true;
+                    ModToolBut.Visible = true;
+                    DelToolBut.Visible = true;
+
+                    break;
+
+                case ("ROLE_ADMIN"):
+                    treeView1.Nodes[0].Remove();
+
+                    Sep2.Visible = true;
+                    Sep3.Visible = true;
+                    Sep4.Visible = true;
+                    AddToolBut.Visible = true;
+                    ModToolBut.Visible = true;
+                    DelToolBut.Visible = true;
+
+                    break;
+
+                case ("ROLE_USER"):
+                    treeView1.Nodes[0].Remove();
+
+                    Sep2.Visible = false;
+                    Sep3.Visible = false;
+                    Sep4.Visible = false;
+                    AddToolBut.Visible = false;
+                    ModToolBut.Visible = false;
+                    DelToolBut.Visible = false;
+
+                    break;
+            }
 
             treeView1.SelectedNode = treeView1.Nodes[0].Nodes[0];
             treeView1.Focus();
@@ -662,13 +699,50 @@ namespace ASI.Forms.Main
         {
             if (e.KeyCode == Keys.Enter)
             {
-                Search(); // тут что надо то и делаешь
+                Search();
             }
         }
 
         private void searchBut_Click(object sender, EventArgs e)
         {
             Search();
+        }
+
+        private void обАккаунтеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InsertGlobalVar_Users();
+           /* DialogResult result = MessageBox.Show(
+               text,
+               "Об аккаунте",
+               MessageBoxButtons.OK,
+               MessageBoxIcon.Information,
+               MessageBoxDefaultButton.Button1
+               );*/
+        }
+
+        private void InsertGlobalVar_Users()
+        {
+            DB db = new DB();
+            db.openConnection();
+           /* MySqlCommand idCom = new MySqlCommand("Select id From users WHERE Email = @email", db.getConnection());
+            idCom.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;
+            idCom.ExecuteNonQuery();
+            MySqlDataReader reader = idCom.ExecuteReader();
+            while (reader.Read()) { Convert.ToString(DataBase.Entity.Identification.DB_Users.IdUsers)= Convert.ToString(reader); };
+            MessageBox.Show(Convert.ToString(DataBase.Entity.Identification.DB_Users.IdUsers));
+
+            /* MySqlCommand fullnameCom = new MySqlCommand("Select fullname From users WHERE Email = @email", db.getConnection());
+             fullnameCom.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;
+
+             MySqlCommand dateCom = new MySqlCommand("Select DateOfBirth From users WHERE Email = @email", db.getConnection());
+             dateCom.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;
+
+
+             MySqlCommand phoneCom = new MySqlCommand("Select Phone From users WHERE Email = @email", db.getConnection());
+             phoneCom.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;*/
+
+
+            db.closeConnection();
         }
     }
 }

@@ -297,8 +297,9 @@ namespace ASI.Forms.Identification.Registration
             // DateOfBirthDateTimePicker
             // 
             this.DateOfBirthDateTimePicker.CalendarFont = new System.Drawing.Font("Calibri", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DateOfBirthDateTimePicker.CustomFormat = "";
+            this.DateOfBirthDateTimePicker.CustomFormat = "dd.MM.yyyy";
             this.DateOfBirthDateTimePicker.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DateOfBirthDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.DateOfBirthDateTimePicker.Location = new System.Drawing.Point(15, 30);
             this.DateOfBirthDateTimePicker.MaxDate = new System.DateTime(2035, 12, 31, 0, 0, 0, 0);
             this.DateOfBirthDateTimePicker.MinDate = new System.DateTime(1920, 1, 1, 0, 0, 0, 0);
