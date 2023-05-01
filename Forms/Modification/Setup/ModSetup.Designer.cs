@@ -29,6 +29,7 @@ namespace ASI.Forms.Modification.Setup
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModSetup));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.DateWithDrawal = new System.Windows.Forms.DateTimePicker();
@@ -69,7 +70,7 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox2.Size = new System.Drawing.Size(584, 351);
-            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Поля";
             // 
@@ -82,7 +83,7 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox6.Size = new System.Drawing.Size(564, 63);
-            this.groupBox6.TabIndex = 3;
+            this.groupBox6.TabIndex = 5;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Дата снятия";
             // 
@@ -109,7 +110,7 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox5.Size = new System.Drawing.Size(564, 63);
-            this.groupBox5.TabIndex = 2;
+            this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Дата установки";
             // 
@@ -136,7 +137,7 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox4.Size = new System.Drawing.Size(564, 64);
-            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Номер картриджа";
             // 
@@ -159,7 +160,7 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox3.Size = new System.Drawing.Size(564, 64);
-            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Инвентарный номер принтера";
             // 
@@ -182,7 +183,7 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox10.Size = new System.Drawing.Size(564, 64);
-            this.groupBox10.TabIndex = 7;
+            this.groupBox10.TabIndex = 1;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "ID";
             // 
@@ -207,7 +208,7 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(20);
             this.groupBox1.Size = new System.Drawing.Size(584, 134);
-            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
             // CancleBut
@@ -280,6 +281,7 @@ namespace ASI.Forms.Modification.Setup
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.LogoPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModSetup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Установки";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModAudit));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.CommentAuditTextBox = new System.Windows.Forms.TextBox();
@@ -60,7 +61,7 @@
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox2.Size = new System.Drawing.Size(584, 230);
-            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Поля";
             // 
@@ -73,7 +74,7 @@
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox9.Size = new System.Drawing.Size(564, 64);
-            this.groupBox9.TabIndex = 6;
+            this.groupBox9.TabIndex = 3;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Комментарий";
             // 
@@ -95,7 +96,7 @@
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox3.Size = new System.Drawing.Size(564, 64);
-            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Корпус - Аудитория";
             // 
@@ -119,7 +120,7 @@
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox10.Size = new System.Drawing.Size(564, 64);
-            this.groupBox10.TabIndex = 7;
+            this.groupBox10.TabIndex = 1;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "ID";
             // 
@@ -142,7 +143,7 @@
             this.LogoPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.LogoPanel.Name = "LogoPanel";
             this.LogoPanel.Size = new System.Drawing.Size(584, 87);
-            this.LogoPanel.TabIndex = 9;
+            this.LogoPanel.TabIndex = 0;
             // 
             // LogoLabel
             // 
@@ -165,7 +166,7 @@
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(20);
             this.groupBox1.Size = new System.Drawing.Size(584, 134);
-            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
             // CancleBut
@@ -217,6 +218,7 @@
             this.Controls.Add(this.LogoPanel);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModAudit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Корпус - Аудитория";

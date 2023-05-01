@@ -19,10 +19,12 @@ namespace ASI.Forms.Modification.Audiences
         public ModAudit()
         {
             InitializeComponent();
+            AuditTextBox.Focus();
         }
 
         private void ModAudit_Load(object sender, EventArgs e)
         {
+            
             IdAuditTextBox.Text = DataBase.Entity.Audit.Audiences.Id;
             AuditTextBox.Text = DataBase.Entity.Audit.Audiences.Auditorium1;
             CommentAuditTextBox.Text = DataBase.Entity.Audit.Audiences.Comments1;

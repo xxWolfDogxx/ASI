@@ -225,7 +225,9 @@ namespace ASI.Forms.Main
 
             treeView1.Nodes[0].Remove();
 
-            treeView1.Nodes[1].Nodes[0].Checked=true;
+            treeView1.SelectedNode = treeView1.Nodes[0].Nodes[0];
+            treeView1.Focus();
+            
         }
 
 
@@ -625,6 +627,48 @@ namespace ASI.Forms.Main
             {
                 e.Cancel = true;
             }
+        }
+
+
+        private void Search()
+        {
+
+          
+                if (GridView.RowCount != 0)
+                {
+                    for (int i = GridView.CurrentCell.RowIndex + 1; i < GridView.RowCount; i++)
+                    {
+                        string text = searchTextBox.Text.ToUpper();
+                        for (int j = 0; j < GridView.ColumnCount; j++)
+                            if (GridView.Rows[i].Cells[j].Value.ToString().ToUpper().Contains(text))
+                            {
+                                GridView.CurrentCell = GridView[0, i];
+                                return;
+                            }
+
+                    }
+                    MessageBox.Show(this, "Достигнут конец, больше совпадений не найдено!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    GridView.CurrentCell = GridView[0, 0];
+                }
+                else
+                {
+                    MessageBox.Show(this, "В таблице нет данных!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            
+        }
+
+
+        private void searchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Search(); // тут что надо то и делаешь
+            }
+        }
+
+        private void searchBut_Click(object sender, EventArgs e)
+        {
+            Search();
         }
     }
 }

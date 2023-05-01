@@ -108,7 +108,7 @@ namespace ASI.Forms.Identification.Authentication
             this.DopGrupBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DopGrupBox.Name = "DopGrupBox";
             this.DopGrupBox.Size = new System.Drawing.Size(504, 55);
-            this.DopGrupBox.TabIndex = 2;
+            this.DopGrupBox.TabIndex = 5;
             // 
             // ForgotPassLinkLabel
             // 
@@ -145,7 +145,7 @@ namespace ASI.Forms.Identification.Authentication
             this.AuthButGrupBox.Name = "AuthButGrupBox";
             this.AuthButGrupBox.Padding = new System.Windows.Forms.Padding(10);
             this.AuthButGrupBox.Size = new System.Drawing.Size(504, 86);
-            this.AuthButGrupBox.TabIndex = 5;
+            this.AuthButGrupBox.TabIndex = 4;
             this.AuthButGrupBox.TabStop = false;
             // 
             // AuthButton
@@ -172,7 +172,7 @@ namespace ASI.Forms.Identification.Authentication
             this.CheckPassPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CheckPassPanel.Name = "CheckPassPanel";
             this.CheckPassPanel.Size = new System.Drawing.Size(504, 46);
-            this.CheckPassPanel.TabIndex = 4;
+            this.CheckPassPanel.TabIndex = 3;
             // 
             // ErrorLabel
             // 
@@ -213,7 +213,7 @@ namespace ASI.Forms.Identification.Authentication
             this.PassGrupBox.Name = "PassGrupBox";
             this.PassGrupBox.Padding = new System.Windows.Forms.Padding(15, 10, 15, 10);
             this.PassGrupBox.Size = new System.Drawing.Size(504, 75);
-            this.PassGrupBox.TabIndex = 3;
+            this.PassGrupBox.TabIndex = 1;
             this.PassGrupBox.TabStop = false;
             this.PassGrupBox.Text = "Пароль";
             // 
@@ -240,7 +240,7 @@ namespace ASI.Forms.Identification.Authentication
             this.LoginGrupBox.Name = "LoginGrupBox";
             this.LoginGrupBox.Padding = new System.Windows.Forms.Padding(15, 10, 15, 10);
             this.LoginGrupBox.Size = new System.Drawing.Size(504, 75);
-            this.LoginGrupBox.TabIndex = 2;
+            this.LoginGrupBox.TabIndex = 0;
             this.LoginGrupBox.TabStop = false;
             this.LoginGrupBox.Text = "Эл. почта";
             // 
