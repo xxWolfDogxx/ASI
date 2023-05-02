@@ -135,6 +135,30 @@ namespace ASI.Forms.Modification.Consumable
         {
             DB db = new DB();
 
+            if (Convert.ToString(WriteoffConsumableComBox.SelectedItem) == "Да")
+            {
+                var _convertStringToBoolWriteoff = true;
+                writeoffBool = _convertStringToBoolWriteoff;
+
+            }
+            else
+            {
+                var _convertStringToBoolWriteoff = false;
+                writeoffBool = _convertStringToBoolWriteoff;
+            }
+
+            if (Convert.ToString(ReadyConsumableComBox.SelectedItem) == "Установлен")
+            {
+                var _convertStringToBoolReady = true;
+                readyBool = _convertStringToBoolReady;
+
+            }
+            else
+            {
+                var _convertStringToBoolReady = false;
+                readyBool = _convertStringToBoolReady;
+            }
+
             //Заносим в 
             db.openConnection(); // Открываем подключение к БД
             var ConsumableDBCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand

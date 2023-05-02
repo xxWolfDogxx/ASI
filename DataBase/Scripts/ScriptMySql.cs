@@ -31,12 +31,16 @@ namespace ASI.DataBase.Scripts
         internal static string script_isUsersExists = $"SELECT * FROM `users` WHERE `Email` = @uL";
         //Запрос на сверку введенной аудитории с повторами в базе данных
         internal static string script_isRoomExists = $"SELECT * FROM `room` WHERE `name` = @roomExists";
+        //Запрос на сверку введенной аудитории с повторами в базе данных
+        internal static string script_isModelExists = $"SELECT * FROM `model` WHERE `name` = @nameExists";
         //Запрос на сверку введенной номером картриджа с повторами в базе данных
         internal static string script_isConsumableExists = $"SELECT * FROM `cartrige` WHERE `code` = @numberCartrige";
         //Запрос на сверку введенной номером картриджа с повторами в базе данных
         internal static string script_isPrinterExists = $"SELECT * FROM `printer` WHERE `inventory` = @printerExists";
         //Запрос на сверку введенной номером картриджа с повторами в базе данных
         internal static string script_isStatusWorkExists = $"SELECT * FROM `refill` WHERE `status` = @statusWork";
+        //Запрос на сверку введенной номером картриджа с повторами в базе данных
+        internal static string script_isTypeExists = $"SELECT * FROM `cartrige_type` WHERE `name` = @typeExists";
 
         //
         //Скрипты для основной формы
@@ -95,7 +99,7 @@ namespace ASI.DataBase.Scripts
         //Запрос на изменение аудитории
         internal static string script_UpdateRoom_ModRoom = "UPDATE `room` SET `name`=@room WHERE `id`= @idRoom";
         //Запрос на вставку аудитории
-        internal static string script_InsertRoom_ModRoom = "INSERT INTO `room`(`id`, `name`) VALUES (@room)";
+        internal static string script_InsertRoom_ModRoom = "INSERT INTO `room`(`name`) VALUES (@room)";
 
         //
         //Скрипты для ModFill
@@ -104,6 +108,24 @@ namespace ASI.DataBase.Scripts
         internal static string script_UpdateFill_ModFill = "UPDATE `fill` SET `id_cartrige`=@cartrigeFill,`date`=@dateFill,`note`=@noteFill WHERE `id`=@idFill";
         //Запрос на вставку записи статус работоспособности
         internal static string script_InsertFill_ModFill = "INSERT INTO `fill`(`id_cartrige`, `date`, `note`) VALUES (@cartrigeFill,@dateFill,@noteFill)";
+        
+        
+        //
+        //Скрипты для ModModel
+        //
+        //Запрос на изменение записи статус работоспособности
+        internal static string script_UpdateModel_ModModel = "UPDATE `model` SET `name`=@nameModel WHERE `id`= @idModel";
+        //Запрос на вставку записи статус работоспособности
+        internal static string script_InsertModel_ModModel = "INSERT INTO `model`(`name`) VALUES (@nameModel)";
+        
+        
+        //
+        //Скрипты для ModModel
+        //
+        //Запрос на изменение записи статус работоспособности
+        internal static string script_UpdateType_ModCartrigeType = "UPDATE `cartrige_type` SET `name`=@type,`refill`=@refill WHERE `id`=@idType";
+        //Запрос на вставку записи статус работоспособности
+        internal static string script_InsertType_ModCartrigeType = "INSERT INTO `cartrige_type`(`name`, `refill`) VALUES (@type,@refill)";
 
 
         //

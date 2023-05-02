@@ -40,6 +40,9 @@ namespace ASI.Forms.Modification.Room
                     ModAuditBut.Visible = false;
                     break;
             }
+
+            IdRoomTextBox.Text = Convert.ToString( DataBase.Entity.Audit.Audiences.Id);
+            RoomTextBox.Text = DataBase.Entity.Audit.Audiences.Name;
         }
 
         private void CancleBut_Click(object sender, EventArgs e)
@@ -53,6 +56,7 @@ namespace ASI.Forms.Modification.Room
             DB db = new DB();
             MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_InsertRoom_ModRoom, db.getConnection());
             Room = RoomTextBox.Text;
+            RoomDB = null;
             db.openConnection();
             //Заносим данные в запрос
             AddCom.Parameters.Add("@room", MySqlDbType.VarChar).Value = RoomTextBox.Text;
@@ -92,13 +96,13 @@ namespace ASI.Forms.Modification.Room
             var RoomDBCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
             RoomDBCom.CommandText = "Select name  From room Where id = @idRoom"; // Запрос на какие либо даные
             RoomDBCom.Connection = db.getConnection(); //Отправляем запрос
-            RoomDBCom.Parameters.Add("@idRoom", MySqlDbType.Int32).Value = IdRoomTextBox.Text;
-
-            
+            RoomDBCom.Parameters.Add("@idRoom", MySqlDbType.Int32).Value = IdRoomTextBox.Text;            
 
             var roomDB = RoomDBCom.ExecuteReader(); // Создаем переменную, в которую будем вносить по порядку все полученные данные из запроса
             while (roomDB.Read()) { RoomDB = (roomDB.GetString(0)); }; // Перебираем данные занося их в переменную
             db.closeConnection(); // Закрываем подключение к БД
+
+
             MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateRoom_ModRoom, db.getConnection());
 
             db.openConnection();

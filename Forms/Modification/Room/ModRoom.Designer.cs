@@ -56,7 +56,7 @@
             this.groupBox2.Location = new System.Drawing.Point(0, 87);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox2.Size = new System.Drawing.Size(584, 230);
+            this.groupBox2.Size = new System.Drawing.Size(584, 160);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Поля";
@@ -136,7 +136,7 @@
             this.groupBox1.Controls.Add(this.ModAuditBut);
             this.groupBox1.Controls.Add(this.AddAuditBut);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 317);
+            this.groupBox1.Location = new System.Drawing.Point(0, 247);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(20);
             this.groupBox1.Size = new System.Drawing.Size(584, 134);
@@ -187,7 +187,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(584, 451);
+            this.ClientSize = new System.Drawing.Size(584, 381);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.LogoPanel);
             this.Controls.Add(this.groupBox1);

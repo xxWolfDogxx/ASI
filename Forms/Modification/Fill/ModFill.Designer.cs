@@ -32,40 +32,40 @@ namespace ASI.Forms.Modification.Fill
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModFill));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.RefillComBox = new System.Windows.Forms.ComboBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.NoteFillTextBox = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.IdFillTextBox = new System.Windows.Forms.TextBox();
+            this.IdTypeTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.CancleBut = new System.Windows.Forms.Button();
             this.ModFillBut = new System.Windows.Forms.Button();
             this.AddFillBut = new System.Windows.Forms.Button();
             this.LogoPanel = new System.Windows.Forms.Panel();
             this.LogoLabel = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.NoteFillTextBox = new System.Windows.Forms.TextBox();
+            this.gr = new System.Windows.Forms.GroupBox();
             this.DateFillDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.IdCartrigeComBox = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.LogoPanel.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.gr.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
             this.groupBox2.AutoSize = true;
             this.groupBox2.Controls.Add(this.groupBox5);
-            this.groupBox2.Controls.Add(this.groupBox4);
+            this.groupBox2.Controls.Add(this.gr);
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.groupBox10);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 90);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox2.Size = new System.Drawing.Size(584, 298);
+            this.groupBox2.Size = new System.Drawing.Size(584, 291);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Поля";
@@ -73,7 +73,7 @@ namespace ASI.Forms.Modification.Fill
             // groupBox3
             // 
             this.groupBox3.AutoSize = true;
-            this.groupBox3.Controls.Add(this.IdCartrigeComBox);
+            this.groupBox3.Controls.Add(this.RefillComBox);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox3.Location = new System.Drawing.Point(10, 87);
             this.groupBox3.Name = "groupBox3";
@@ -83,10 +83,42 @@ namespace ASI.Forms.Modification.Fill
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Картридж";
             // 
+            // RefillComBox
+            // 
+            this.RefillComBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.RefillComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RefillComBox.FormattingEnabled = true;
+            this.RefillComBox.Location = new System.Drawing.Point(10, 23);
+            this.RefillComBox.Name = "RefillComBox";
+            this.RefillComBox.Size = new System.Drawing.Size(544, 31);
+            this.RefillComBox.TabIndex = 1;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.AutoSize = true;
+            this.groupBox5.Controls.Add(this.NoteFillTextBox);
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox5.Location = new System.Drawing.Point(10, 215);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox5.Size = new System.Drawing.Size(564, 64);
+            this.groupBox5.TabIndex = 2;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Заметки";
+            // 
+            // NoteFillTextBox
+            // 
+            this.NoteFillTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.NoteFillTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NoteFillTextBox.Location = new System.Drawing.Point(10, 23);
+            this.NoteFillTextBox.Name = "NoteFillTextBox";
+            this.NoteFillTextBox.Size = new System.Drawing.Size(544, 31);
+            this.NoteFillTextBox.TabIndex = 2;
+            // 
             // groupBox10
             // 
             this.groupBox10.AutoSize = true;
-            this.groupBox10.Controls.Add(this.IdFillTextBox);
+            this.groupBox10.Controls.Add(this.IdTypeTextBox);
             this.groupBox10.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox10.Location = new System.Drawing.Point(10, 23);
             this.groupBox10.Name = "groupBox10";
@@ -96,16 +128,16 @@ namespace ASI.Forms.Modification.Fill
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "ID";
             // 
-            // IdFillTextBox
+            // IdTypeTextBox
             // 
-            this.IdFillTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.IdFillTextBox.Enabled = false;
-            this.IdFillTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.IdFillTextBox.Location = new System.Drawing.Point(10, 23);
-            this.IdFillTextBox.Name = "IdFillTextBox";
-            this.IdFillTextBox.ReadOnly = true;
-            this.IdFillTextBox.Size = new System.Drawing.Size(544, 31);
-            this.IdFillTextBox.TabIndex = 1;
+            this.IdTypeTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.IdTypeTextBox.Enabled = false;
+            this.IdTypeTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.IdTypeTextBox.Location = new System.Drawing.Point(10, 23);
+            this.IdTypeTextBox.Name = "IdTypeTextBox";
+            this.IdTypeTextBox.ReadOnly = true;
+            this.IdTypeTextBox.Size = new System.Drawing.Size(544, 31);
+            this.IdTypeTextBox.TabIndex = 1;
             // 
             // groupBox1
             // 
@@ -113,7 +145,7 @@ namespace ASI.Forms.Modification.Fill
             this.groupBox1.Controls.Add(this.ModFillBut);
             this.groupBox1.Controls.Add(this.AddFillBut);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 388);
+            this.groupBox1.Location = new System.Drawing.Point(0, 381);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(20);
             this.groupBox1.Size = new System.Drawing.Size(584, 134);
@@ -180,40 +212,18 @@ namespace ASI.Forms.Modification.Fill
             this.LogoLabel.TabIndex = 0;
             this.LogoLabel.Text = "Добавление заправки";
             // 
-            // groupBox4
+            // gr
             // 
-            this.groupBox4.AutoSize = true;
-            this.groupBox4.Controls.Add(this.DateFillDatePicker);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox4.Location = new System.Drawing.Point(10, 151);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox4.Size = new System.Drawing.Size(564, 64);
-            this.groupBox4.TabIndex = 3;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Дата заправки";
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.AutoSize = true;
-            this.groupBox5.Controls.Add(this.NoteFillTextBox);
-            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox5.Location = new System.Drawing.Point(10, 215);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox5.Size = new System.Drawing.Size(564, 64);
-            this.groupBox5.TabIndex = 4;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Заметки";
-            // 
-            // NoteFillTextBox
-            // 
-            this.NoteFillTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.NoteFillTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NoteFillTextBox.Location = new System.Drawing.Point(10, 23);
-            this.NoteFillTextBox.Name = "NoteFillTextBox";
-            this.NoteFillTextBox.Size = new System.Drawing.Size(544, 31);
-            this.NoteFillTextBox.TabIndex = 2;
+            this.gr.AutoSize = true;
+            this.gr.Controls.Add(this.DateFillDatePicker);
+            this.gr.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gr.Location = new System.Drawing.Point(10, 151);
+            this.gr.Name = "gr";
+            this.gr.Padding = new System.Windows.Forms.Padding(10);
+            this.gr.Size = new System.Drawing.Size(564, 64);
+            this.gr.TabIndex = 3;
+            this.gr.TabStop = false;
+            this.gr.Text = "Дата заправки";
             // 
             // DateFillDatePicker
             // 
@@ -227,25 +237,15 @@ namespace ASI.Forms.Modification.Fill
             this.DateFillDatePicker.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.DateFillDatePicker.Name = "DateFillDatePicker";
             this.DateFillDatePicker.Size = new System.Drawing.Size(544, 31);
-            this.DateFillDatePicker.TabIndex = 2;
+            this.DateFillDatePicker.TabIndex = 1;
             this.DateFillDatePicker.Value = new System.DateTime(2023, 5, 2, 0, 0, 0, 0);
-            // 
-            // IdCartrigeComBox
-            // 
-            this.IdCartrigeComBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.IdCartrigeComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.IdCartrigeComBox.FormattingEnabled = true;
-            this.IdCartrigeComBox.Location = new System.Drawing.Point(10, 23);
-            this.IdCartrigeComBox.Name = "IdCartrigeComBox";
-            this.IdCartrigeComBox.Size = new System.Drawing.Size(544, 31);
-            this.IdCartrigeComBox.TabIndex = 1;
             // 
             // ModFill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(584, 522);
+            this.ClientSize = new System.Drawing.Size(584, 515);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.LogoPanel);
@@ -258,14 +258,14 @@ namespace ASI.Forms.Modification.Fill
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.LogoPanel.ResumeLayout(false);
             this.LogoPanel.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
+            this.gr.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,7 +276,7 @@ namespace ASI.Forms.Modification.Fill
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox10;
-        public System.Windows.Forms.TextBox IdFillTextBox;
+        public System.Windows.Forms.TextBox IdTypeTextBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button CancleBut;
         private System.Windows.Forms.Button ModFillBut;
@@ -285,8 +285,8 @@ namespace ASI.Forms.Modification.Fill
         private System.Windows.Forms.Label LogoLabel;
         private System.Windows.Forms.GroupBox groupBox5;
         public System.Windows.Forms.TextBox NoteFillTextBox;
-        private System.Windows.Forms.GroupBox groupBox4;
+        internal System.Windows.Forms.ComboBox RefillComBox;
+        private System.Windows.Forms.GroupBox gr;
         private System.Windows.Forms.DateTimePicker DateFillDatePicker;
-        internal System.Windows.Forms.ComboBox IdCartrigeComBox;
     }
 }

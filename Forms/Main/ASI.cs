@@ -146,11 +146,11 @@ namespace ASI.Forms.Main
 
                     GridView.Columns["name"].HeaderText = "Название";
                     GridView.Columns["code"].HeaderText = "Уникальный номер";
-                    GridView.Columns["bay_date"].HeaderText = "Дата закупки";
+                    GridView.Columns["buy_date"].HeaderText = "Дата закупки";
                     GridView.Columns["writeoff"].HeaderText = "Списанный";
                     GridView.Columns["note"].HeaderText = "Заметки";
                     GridView.Columns["ready"].HeaderText = "Готовность";
-                    GridView.Columns["id_cadrtrige_type"].HeaderText = "Тип картриджа";
+                    GridView.Columns["id_cartrige_type"].HeaderText = "Тип картриджа";
                     GridView.Columns["id_room"].HeaderText = "Аудитория";
                     GridView.Columns["id_model"].HeaderText = "Модель";
 

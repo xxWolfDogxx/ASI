@@ -4,7 +4,7 @@ namespace ASI.DataBase.ConnectionForMySQL
 {
     class DB
     {
-        MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root; password=root; database=asi_old");
+        MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root; password=root; database=asi");
 
         public void openConnection()
         {

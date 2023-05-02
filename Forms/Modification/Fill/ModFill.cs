@@ -28,7 +28,7 @@ namespace ASI.Forms.Modification.Fill
             MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_InsertFill_ModFill, db.getConnection());
 
             //Заносим данные в запрос
-            AddCom.Parameters.Add("@cartrigeFill", MySqlDbType.Int32).Value = Convert.ToInt32(IdCartrigeComBox.SelectedItem);
+            AddCom.Parameters.Add("@cartrigeFill", MySqlDbType.Int32).Value = Convert.ToInt32(RefillComBox.SelectedItem);
             AddCom.Parameters.Add("@dateFill", MySqlDbType.Date).Value = Convert.ToDateTime(value: DateFillDatePicker.Value);
             AddCom.Parameters.Add("@noteFill", MySqlDbType.VarChar).Value = NoteFillTextBox.Text;
 
@@ -79,8 +79,8 @@ namespace ASI.Forms.Modification.Fill
             MySqlCommand ModCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateFill_ModFill, db.getConnection());
 
             //Заносим данные в запрос
-            ModCom.Parameters.Add("@idFill", MySqlDbType.Int32).Value = Convert.ToInt32(IdFillTextBox.Text);
-            ModCom.Parameters.Add("@cartrigeFill", MySqlDbType.Int32).Value = Convert.ToInt32(IdCartrigeComBox.SelectedItem);
+            ModCom.Parameters.Add("@idFill", MySqlDbType.Int32).Value = Convert.ToInt32(IdTypeTextBox.Text);
+            ModCom.Parameters.Add("@cartrigeFill", MySqlDbType.Int32).Value = Convert.ToInt32(RefillComBox.SelectedItem);
             ModCom.Parameters.Add("@dateFill", MySqlDbType.Date).Value = Convert.ToDateTime(value: DateFillDatePicker.Value);
             ModCom.Parameters.Add("@noteFill", MySqlDbType.VarChar).Value = NoteFillTextBox.Text;
 
