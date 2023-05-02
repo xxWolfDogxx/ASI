@@ -29,19 +29,17 @@ namespace ASI.Forms.Modification.Printer
 
             db.openConnection(); //Открываем подключение к БД
             //Запрос на вставку данных с формы в базу данных
-            MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_ADDPrinter, db.getConnection());
+            MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_ADDPrinter_ModPrinter, db.getConnection());
 
             //Заносим данные в запрос
-            AddCom.Parameters.Add("@brandPrinter", MySqlDbType.VarChar).Value = BrandPrinterTextBox.Text;
-            AddCom.Parameters.Add("@modelPrinter", MySqlDbType.VarChar).Value = ModelPrinterTextBox.Text;
-            AddCom.Parameters.Add("@inventNumPtinter", MySqlDbType.VarChar).Value = InventTextBox.Text;
-            AddCom.Parameters.Add("@auditPtinter", MySqlDbType.VarChar).Value = AuditComBox.SelectedItem;
-            AddCom.Parameters.Add("@doubleSidedPrinter", MySqlDbType.VarChar).Value = DuplexPrintingComBox.SelectedItem;
-            AddCom.Parameters.Add("@drumUnitPrinter", MySqlDbType.VarChar).Value = DrumUnitComBox.SelectedItem;
-            AddCom.Parameters.Add("@colorPrinter", MySqlDbType.VarChar).Value = ColorComBox.SelectedItem;
+            AddCom.Parameters.Add("@namePrinter", MySqlDbType.VarChar).Value = NamePrinterTextBox.Text;
+            AddCom.Parameters.Add("@inventoryPtinter", MySqlDbType.VarChar).Value = InventoryPrinterTextBox.Text;
+            AddCom.Parameters.Add("@roomPtinter", MySqlDbType.VarChar).Value = RoomComBox.SelectedItem;
+            AddCom.Parameters.Add("@notePrinter", MySqlDbType.VarChar).Value = NoteTextBox.Text;
+            AddCom.Parameters.Add("@modelPrinter", MySqlDbType.VarChar).Value = ModelComBox.SelectedItem;
             db.closeConnection(); //Закрываем подключение к БД
 
-            PrinterInven = InventTextBox.Text;
+            PrinterInven = InventoryPrinterTextBox.Text;
 
             // Проверка на повторного пользователя
             if (Function.isPrinterExists.isPrinExists())
@@ -95,31 +93,12 @@ namespace ASI.Forms.Modification.Printer
             AuditCom.Connection = db.getConnection(); //Отправляем запрос
 
             var audit = AuditCom.ExecuteReader(); // Создаем переменную, в которую будем вносить по порядку все полученные данные из запроса
-            while (audit.Read()) { AuditComBox.Items.Add(audit.GetString(0)); }; // Перебираем данные занося их в переменную
+            while (audit.Read()) { RoomComBox.Items.Add(audit.GetString(0)); }; // Перебираем данные занося их в переменную
             db.closeConnection(); // Закрываем подключение к БД 
-            AuditComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            RoomComBox.DropDownStyle = ComboBoxStyle.DropDownList;
             
 
-            DuplexPrintingComBox.Items.Add("Есть");
-            DuplexPrintingComBox.Items.Add("Отустсвует");
-            DuplexPrintingComBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            DrumUnitComBox.Items.Add("Есть");
-            DrumUnitComBox.Items.Add("Отустсвует");
-            DrumUnitComBox.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            ColorComBox.Items.Add("Есть");
-            ColorComBox.Items.Add("Отустсвует");
-            ColorComBox.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            IdPrinterTextBox.Text = DataBase.Entity.Printer.Printer.Id;
-            BrandPrinterTextBox.Text = DataBase.Entity.Printer.Printer.Brand1;
-            ModelPrinterTextBox.Text = DataBase.Entity.Printer.Printer.Model1;
-            AuditComBox.Text = DataBase.Entity.Printer.Printer.Audit1;
-            InventTextBox.Text = DataBase.Entity.Printer.Printer.Invent1;
-            DuplexPrintingComBox.Text = DataBase.Entity.Printer.Printer.Doubl1;
-            DrumUnitComBox.Text = DataBase.Entity.Printer.Printer.Drum1;
-            ColorComBox.Text = DataBase.Entity.Printer.Printer.Color1;
 
 
 
@@ -140,21 +119,19 @@ namespace ASI.Forms.Modification.Printer
             while (printerDB.Read()) { PrinterInvenDB=(printerDB.GetString(0)); }; // Перебираем данные занося их в переменную
             db.closeConnection(); // Закрываем подключение к БД 
 
-            MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdatePrinter, db.getConnection());
+            MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdatePrinter_ModPrinter, db.getConnection());
 
             db.openConnection();
             //Заносим данные в запрос
             AddCom.Parameters.Add("@idPrinter", MySqlDbType.Int32).Value = IdPrinterTextBox.Text;
-            AddCom.Parameters.Add("@brandPrinter", MySqlDbType.VarChar).Value = BrandPrinterTextBox.Text;
-            AddCom.Parameters.Add("@modelPrinter", MySqlDbType.VarChar).Value = ModelPrinterTextBox.Text;
-            AddCom.Parameters.Add("@inventNum", MySqlDbType.VarChar).Value = InventTextBox.Text;
-            AddCom.Parameters.Add("@audit", MySqlDbType.VarChar).Value = AuditComBox.SelectedItem;
-            AddCom.Parameters.Add("@doublPrinter", MySqlDbType.VarChar).Value = DuplexPrintingComBox.SelectedItem;
-            AddCom.Parameters.Add("@drumPrinter", MySqlDbType.VarChar).Value = DrumUnitComBox.SelectedItem;
-            AddCom.Parameters.Add("@colorPrinter", MySqlDbType.VarChar).Value = ColorComBox.SelectedItem;
+            AddCom.Parameters.Add("@namePrinter", MySqlDbType.VarChar).Value = NamePrinterTextBox.Text;
+            AddCom.Parameters.Add("@inventoryPtinter", MySqlDbType.VarChar).Value = InventoryPrinterTextBox.Text;
+            AddCom.Parameters.Add("@roomPtinter", MySqlDbType.VarChar).Value = RoomComBox.SelectedItem;
+            AddCom.Parameters.Add("@notePrinter", MySqlDbType.VarChar).Value = NoteTextBox.Text;
+            AddCom.Parameters.Add("@modelPrinter", MySqlDbType.VarChar).Value = ModelComBox.SelectedItem;
             db.closeConnection(); //Закрываем подключение к БД
 
-            PrinterInven = InventTextBox.Text;
+            PrinterInven = InventoryPrinterTextBox.Text;
 
             db.openConnection();
             if (Function.isPrinterExists.isPrinExists() == true)

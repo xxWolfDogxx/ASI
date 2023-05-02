@@ -30,11 +30,11 @@ namespace ASI.DataBase.Scripts
         //Запрос на сверку введенной почты с повторами в базе данных
         internal static string script_isUsersExists = $"SELECT * FROM `users` WHERE `Email` = @uL";
         //Запрос на сверку введенной аудитории с повторами в базе данных
-        internal static string script_isAudiencesExists = $"SELECT * FROM `audiences` WHERE `Auditorium` = @auditExists";
+        internal static string script_isRoomExists = $"SELECT * FROM `room` WHERE `name` = @roomExists";
         //Запрос на сверку введенной номером картриджа с повторами в базе данных
-        internal static string script_isCartrigeExists = $"SELECT * FROM `cartrige` WHERE `Number` = @numberCartrige";
+        internal static string script_isConsumableExists = $"SELECT * FROM `cartrige` WHERE `code` = @numberCartrige";
         //Запрос на сверку введенной номером картриджа с повторами в базе данных
-        internal static string script_isPrinterExists = $"SELECT * FROM `printers` WHERE `InventoryNumber` = @printerExists";
+        internal static string script_isPrinterExists = $"SELECT * FROM `printer` WHERE `inventory` = @printerExists";
         //Запрос на сверку введенной номером картриджа с повторами в базе данных
         internal static string script_isStatusWorkExists = $"SELECT * FROM `refill` WHERE `status` = @statusWork";
 
@@ -42,15 +42,19 @@ namespace ASI.DataBase.Scripts
         //Скрипты для основной формы
         //
         //Запрос на справочник принтеров
-        internal static string script_SelectGuidePrinters = $"SELECT * FROM `printers`";
+        internal static string script_SelectPrinter = $"SELECT * FROM `printer`";
         //Запрос на справочник картриджей
-        internal static string script_SelectGuideCartrige = $"SELECT * FROM `cartrige`";
+        internal static string script_SelectCartrige = $"SELECT * FROM `cartrige`";
         //Запрос на справочник аудиторий
-        internal static string script_SelectGuideAuditorium = $"SELECT * FROM `audiences`";
+        internal static string script_SelectRoom = $"SELECT * FROM `room`";
         //Запрос на справочник Установок
         internal static string script_SelectSetup = $"SELECT * FROM `setup`";
         //Запрос на справочник перезаправленных картриджей
-        internal static string script_SelectGuideRefill = $"SELECT * FROM `refill`";
+        internal static string script_SelectFill = $"SELECT * FROM `fill`";
+        //Запрос на справочник перезаправленных картриджей
+        internal static string script_SelectModel = $"SELECT * FROM `model`";
+        //Запрос на справочник перезаправленных картриджей
+        internal static string script_SelectCartrigeType = $"SELECT * FROM `cartrige_type`";
         //Запрос на справочник Роли (доступ только у админов)
         internal static string script_SelectGuideRole = $"SELECT * FROM `roles`";
         //Запрос на справочник всех пользователей (доступ только у админов)
@@ -65,10 +69,12 @@ namespace ASI.DataBase.Scripts
         //
         //Запрос на вытаскивание данных в combobox 
         internal static string script_SelectPtinter_Audit = $"SELECT Auditorium FROM `audiences`";
+        
+        internal static string script_SelectPrinter_ = $"SELECT Auditorium FROM `audiences`";
         //Отправка на добавление записи
-        internal static string script_ADDPrinter = "INSERT INTO `printers`(`Brand`, `Model`, `InventoryNumber`, `Auditorium`, `DoubleЫSided_Printing`, `DrumUnit`, `Color`) VALUES (@brandPrinter,@modelPrinter,@inventNumPtinter, @auditPtinter, @doubleSidedPrinter, @drumUnitPrinter, @colorPrinter)";
+        internal static string script_ADDPrinter_ModPrinter = "INSERT INTO `printer`(`name`, `inventory`, `id_room`, `note`, `id_model`) VALUES(@namePrinter, @inventoryPtinter, @roomPtinter, @notePrinter, @modelPrinter)";
 
-        internal static string script_UpdatePrinter = "UPDATE `printers` SET `Brand`=@brandPrinter,`Model`=@modelPrinter,`InventoryNumber`=@inventNum,`Auditorium`=@audit,`DoubleЫSided_Printing`=@doublPrinter,`DrumUnit`=@drumPrinter,`Color`=@colorPrinter WHERE `Id`=@idPrinter";
+        internal static string script_UpdatePrinter_ModPrinter = "UPDATE `printer` SET `name`=@namePrinter,`inventory`=@inventoryPtinter,`id_room`=@roomPtinter,`note`=@notePrinter,`id_model`=@modelPrinter WHERE `id`=@idPrinter";
 
 
         //
@@ -79,25 +85,25 @@ namespace ASI.DataBase.Scripts
         //Запрос на вытаскивание данных в combobox Перезаправлености
         internal static string script_SelectRefill = $"SELECT status FROM `refill`";
         //Запрос на изменение записи картриджа
-        internal static string script_UpdateCartrige = "UPDATE `cartrige` SET `Number`=@numberCartrige,`Brand`=@brandCartrige,`Model`=@modelCartrige,`Status`=@statusWorkCartrige,`Refill`=@refillCartrige,`Comment`=@comCartrige WHERE `Id`=@idCartrige";
+        internal static string script_UpdateConsumable_ModConsumable= "UPDATE `cartrige` SET `name`=@nameConsumable,`code`=@codeConsumable,`buy_date`=@buy_dateConsumable,`writeoff`=@writeoffConsumable,`note`=@noteConsumable,`ready`=@readyConsumable,`id_cartrige_type`=@typeConsumable,`id_room`=@roomConsumable,`id_model`=@modelConsumable WHERE `id`=@idConsumable";
         //Запрос на вставку записи картриджа
-        internal static string script_InsertCartrige = "INSERT INTO `cartrige`(`Number`, `Brand`, `Model`, `Status`, `Refill`, `Comment`) VALUES (@numberCartrige,@brandCartrige,@modelCartrige,@statusWorkCartrige,@refillCartrige,@comCartrige)";
+        internal static string script_InsertConsumable_ModConsumable = "INSERT INTO `cartrige`(`name`, `code`, `buy_date`, `writeoff`, `note`, `ready`, `id_cartrige_type`, `id_room`, `id_model`) VALUES (@nameConsumable, @codeConsumable, @buy_dateConsumable, @writeoffConsumable,@noteConsumable,@readyConsumable,@typeConsumable,@roomConsumable,@modelConsumable)";
 
         //
-        //Скрипты для Аудиторий модификация
+        //Скрипты для ModRoom
         //
-        //Запрос на изменение записи картриджа
-        internal static string script_UpdateAudit = "UPDATE `audiences` SET `Auditorium`= @audit,`Comments`= @comAudit WHERE `Id` = @idAudit";
-        //Запрос на вставку записи картриджа
-        internal static string script_InsertAudit = "INSERT INTO `audiences`(`Auditorium`, `Comments`) VALUES (@audit,@comAudit)";
+        //Запрос на изменение аудитории
+        internal static string script_UpdateRoom_ModRoom = "UPDATE `room` SET `name`=@room WHERE `id`= @idRoom";
+        //Запрос на вставку аудитории
+        internal static string script_InsertRoom_ModRoom = "INSERT INTO `room`(`id`, `name`) VALUES (@room)";
 
         //
-        //Скрипты для статус работоспособности модификация
+        //Скрипты для ModFill
         //
         //Запрос на изменение записи статус работоспособности
-        internal static string script_UpdateStatusWork = "UPDATE `refill` SET `Status`= @statusWork WHERE `Id` = @idStatusWork";
+        internal static string script_UpdateFill_ModFill = "UPDATE `fill` SET `id_cartrige`=@cartrigeFill,`date`=@dateFill,`note`=@noteFill WHERE `id`=@idFill";
         //Запрос на вставку записи статус работоспособности
-        internal static string script_InsertStatusWork = "INSERT INTO `refill`(`Status`) VALUES (@statusWork)";
+        internal static string script_InsertFill_ModFill = "INSERT INTO `fill`(`id_cartrige`, `date`, `note`) VALUES (@cartrigeFill,@dateFill,@noteFill)";
 
 
         //

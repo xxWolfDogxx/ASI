@@ -18,19 +18,19 @@ namespace ASI.Function
             DataTable table = new DataTable();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
 
-            MySqlCommand command = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_isCartrigeExists, db.getConnection());
-            command.Parameters.Add("@numberCartrige", MySqlDbType.VarChar).Value = Forms.Modification.Cartrige.ModCartrige.numCartrige;
+            MySqlCommand command = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_isConsumableExists, db.getConnection());
+            command.Parameters.Add("@numberCartrige", MySqlDbType.VarChar).Value = Forms.Modification.Consumable.ModConsumable.numCartrige;
 
             adapter.SelectCommand = command;
             adapter.Fill(table);
 
-            if (Forms.Modification.Cartrige.ModCartrige.numCartrige == Forms.Modification.Cartrige.ModCartrige.numCartrigeDB)
+            if (Forms.Modification.Consumable.ModConsumable.numCartrige == Forms.Modification.Consumable.ModConsumable.numCartrigeDB)
             {
                 return false;
             }
             else if (table.Rows.Count >= 1)
             {
-                MessageBox.Show("Номер картриджа уже существует");
+                MessageBox.Show("Код расходника уже существует");
                 return true;
             }
             else

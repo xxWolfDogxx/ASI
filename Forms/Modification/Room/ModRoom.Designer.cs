@@ -1,6 +1,6 @@
-﻿namespace ASI.Forms.Modification.Audiences
+﻿namespace ASI.Forms.Modification.Room
 {
-    partial class ModAudit
+    partial class ModRoom
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModAudit));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModRoom));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.CommentAuditTextBox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.AuditTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.RoomTextBox = new System.Windows.Forms.MaskedTextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.IdAuditTextBox = new System.Windows.Forms.TextBox();
+            this.IdRoomTextBox = new System.Windows.Forms.TextBox();
             this.LogoPanel = new System.Windows.Forms.Panel();
             this.LogoLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -43,7 +41,6 @@
             this.ModAuditBut = new System.Windows.Forms.Button();
             this.AddAuditBut = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
-            this.groupBox9.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.LogoPanel.SuspendLayout();
@@ -53,7 +50,6 @@
             // groupBox2
             // 
             this.groupBox2.AutoSize = true;
-            this.groupBox2.Controls.Add(this.groupBox9);
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.groupBox10);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -65,32 +61,10 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Поля";
             // 
-            // groupBox9
-            // 
-            this.groupBox9.AutoSize = true;
-            this.groupBox9.Controls.Add(this.CommentAuditTextBox);
-            this.groupBox9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox9.Location = new System.Drawing.Point(10, 151);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox9.Size = new System.Drawing.Size(564, 64);
-            this.groupBox9.TabIndex = 3;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Комментарий";
-            // 
-            // CommentAuditTextBox
-            // 
-            this.CommentAuditTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.CommentAuditTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CommentAuditTextBox.Location = new System.Drawing.Point(10, 23);
-            this.CommentAuditTextBox.Name = "CommentAuditTextBox";
-            this.CommentAuditTextBox.Size = new System.Drawing.Size(544, 31);
-            this.CommentAuditTextBox.TabIndex = 2;
-            // 
             // groupBox3
             // 
             this.groupBox3.AutoSize = true;
-            this.groupBox3.Controls.Add(this.AuditTextBox);
+            this.groupBox3.Controls.Add(this.RoomTextBox);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox3.Location = new System.Drawing.Point(10, 87);
             this.groupBox3.Name = "groupBox3";
@@ -100,21 +74,21 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Корпус - Аудитория";
             // 
-            // AuditTextBox
+            // RoomTextBox
             // 
-            this.AuditTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AuditTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AuditTextBox.Location = new System.Drawing.Point(10, 23);
-            this.AuditTextBox.Mask = "99 - 999";
-            this.AuditTextBox.Name = "AuditTextBox";
-            this.AuditTextBox.Size = new System.Drawing.Size(544, 31);
-            this.AuditTextBox.TabIndex = 1;
-            this.AuditTextBox.Text = "04";
+            this.RoomTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.RoomTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RoomTextBox.Location = new System.Drawing.Point(10, 23);
+            this.RoomTextBox.Mask = "99 - 999";
+            this.RoomTextBox.Name = "RoomTextBox";
+            this.RoomTextBox.Size = new System.Drawing.Size(544, 31);
+            this.RoomTextBox.TabIndex = 1;
+            this.RoomTextBox.Text = "04";
             // 
             // groupBox10
             // 
             this.groupBox10.AutoSize = true;
-            this.groupBox10.Controls.Add(this.IdAuditTextBox);
+            this.groupBox10.Controls.Add(this.IdRoomTextBox);
             this.groupBox10.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox10.Location = new System.Drawing.Point(10, 23);
             this.groupBox10.Name = "groupBox10";
@@ -124,16 +98,16 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "ID";
             // 
-            // IdAuditTextBox
+            // IdRoomTextBox
             // 
-            this.IdAuditTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.IdAuditTextBox.Enabled = false;
-            this.IdAuditTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.IdAuditTextBox.Location = new System.Drawing.Point(10, 23);
-            this.IdAuditTextBox.Name = "IdAuditTextBox";
-            this.IdAuditTextBox.ReadOnly = true;
-            this.IdAuditTextBox.Size = new System.Drawing.Size(544, 31);
-            this.IdAuditTextBox.TabIndex = 1;
+            this.IdRoomTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.IdRoomTextBox.Enabled = false;
+            this.IdRoomTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.IdRoomTextBox.Location = new System.Drawing.Point(10, 23);
+            this.IdRoomTextBox.Name = "IdRoomTextBox";
+            this.IdRoomTextBox.ReadOnly = true;
+            this.IdRoomTextBox.Size = new System.Drawing.Size(544, 31);
+            this.IdRoomTextBox.TabIndex = 1;
             // 
             // LogoPanel
             // 
@@ -208,7 +182,7 @@
             this.AddAuditBut.UseVisualStyleBackColor = true;
             this.AddAuditBut.Click += new System.EventHandler(this.AddAuditBut_Click);
             // 
-            // ModAudit
+            // ModRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -219,14 +193,12 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "ModAudit";
+            this.Name = "ModRoom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Корпус - Аудитория";
             this.Load += new System.EventHandler(this.ModAudit_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox10.ResumeLayout(false);
@@ -240,17 +212,15 @@
         }
 
         #endregion
-        private System.Windows.Forms.GroupBox groupBox9;
-        public System.Windows.Forms.TextBox CommentAuditTextBox;
         private System.Windows.Forms.GroupBox groupBox10;
-        public System.Windows.Forms.TextBox IdAuditTextBox;
+        public System.Windows.Forms.TextBox IdRoomTextBox;
         private System.Windows.Forms.Panel LogoPanel;
         private System.Windows.Forms.Label LogoLabel;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button CancleBut;
         private System.Windows.Forms.Button ModAuditBut;
         private System.Windows.Forms.Button AddAuditBut;
-        public System.Windows.Forms.MaskedTextBox AuditTextBox;
+        public System.Windows.Forms.MaskedTextBox RoomTextBox;
         public System.Windows.Forms.GroupBox groupBox2;
         public System.Windows.Forms.GroupBox groupBox3;
     }

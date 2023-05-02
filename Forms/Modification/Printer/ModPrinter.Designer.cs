@@ -33,33 +33,27 @@ namespace ASI.Forms.Modification.Printer
             this.LogoPanel = new System.Windows.Forms.Panel();
             this.LogoLabel = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.ColorComBox = new System.Windows.Forms.ComboBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.DrumUnitComBox = new System.Windows.Forms.ComboBox();
+            this.ModelComBox = new System.Windows.Forms.ComboBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.DuplexPrintingComBox = new System.Windows.Forms.ComboBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.AuditComBox = new System.Windows.Forms.ComboBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.InventTextBox = new System.Windows.Forms.TextBox();
+            this.RoomComBox = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.ModelPrinterTextBox = new System.Windows.Forms.TextBox();
+            this.InventoryPrinterTextBox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.BrandPrinterTextBox = new System.Windows.Forms.TextBox();
+            this.NamePrinterTextBox = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.IdPrinterTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.CancleBut = new System.Windows.Forms.Button();
             this.ModPrinterBut = new System.Windows.Forms.Button();
             this.AddPrinterBut = new System.Windows.Forms.Button();
+            this.NoteTextBox = new System.Windows.Forms.TextBox();
             this.LogoPanel.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox10.SuspendLayout();
@@ -90,11 +84,9 @@ namespace ASI.Forms.Modification.Printer
             // groupBox2
             // 
             this.groupBox2.AutoSize = true;
-            this.groupBox2.Controls.Add(this.groupBox9);
             this.groupBox2.Controls.Add(this.groupBox8);
             this.groupBox2.Controls.Add(this.groupBox7);
             this.groupBox2.Controls.Add(this.groupBox6);
-            this.groupBox2.Controls.Add(this.groupBox5);
             this.groupBox2.Controls.Add(this.groupBox4);
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.groupBox10);
@@ -102,129 +94,74 @@ namespace ASI.Forms.Modification.Printer
             this.groupBox2.Location = new System.Drawing.Point(13, 104);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox2.Size = new System.Drawing.Size(558, 559);
+            this.groupBox2.Size = new System.Drawing.Size(558, 419);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Поля";
             // 
-            // groupBox9
-            // 
-            this.groupBox9.AutoSize = true;
-            this.groupBox9.Controls.Add(this.ColorComBox);
-            this.groupBox9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox9.Location = new System.Drawing.Point(10, 471);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox9.Size = new System.Drawing.Size(538, 64);
-            this.groupBox9.TabIndex = 8;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Цветной";
-            // 
-            // ColorComBox
-            // 
-            this.ColorComBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ColorComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ColorComBox.FormattingEnabled = true;
-            this.ColorComBox.Location = new System.Drawing.Point(10, 23);
-            this.ColorComBox.Name = "ColorComBox";
-            this.ColorComBox.Size = new System.Drawing.Size(518, 31);
-            this.ColorComBox.TabIndex = 0;
-            // 
             // groupBox8
             // 
             this.groupBox8.AutoSize = true;
-            this.groupBox8.Controls.Add(this.DrumUnitComBox);
+            this.groupBox8.Controls.Add(this.ModelComBox);
             this.groupBox8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox8.Location = new System.Drawing.Point(10, 407);
+            this.groupBox8.Location = new System.Drawing.Point(10, 343);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox8.Size = new System.Drawing.Size(538, 64);
             this.groupBox8.TabIndex = 7;
             this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Есть ли фотобарабан";
+            this.groupBox8.Text = "Модель";
             // 
-            // DrumUnitComBox
+            // ModelComBox
             // 
-            this.DrumUnitComBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DrumUnitComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DrumUnitComBox.FormattingEnabled = true;
-            this.DrumUnitComBox.Location = new System.Drawing.Point(10, 23);
-            this.DrumUnitComBox.Name = "DrumUnitComBox";
-            this.DrumUnitComBox.Size = new System.Drawing.Size(518, 31);
-            this.DrumUnitComBox.TabIndex = 0;
+            this.ModelComBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ModelComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ModelComBox.FormattingEnabled = true;
+            this.ModelComBox.Location = new System.Drawing.Point(10, 23);
+            this.ModelComBox.Name = "ModelComBox";
+            this.ModelComBox.Size = new System.Drawing.Size(518, 31);
+            this.ModelComBox.TabIndex = 0;
             // 
             // groupBox7
             // 
             this.groupBox7.AutoSize = true;
-            this.groupBox7.Controls.Add(this.DuplexPrintingComBox);
+            this.groupBox7.Controls.Add(this.NoteTextBox);
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox7.Location = new System.Drawing.Point(10, 343);
+            this.groupBox7.Location = new System.Drawing.Point(10, 279);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox7.Size = new System.Drawing.Size(538, 64);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Есть ли двусторонняя печать";
-            // 
-            // DuplexPrintingComBox
-            // 
-            this.DuplexPrintingComBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DuplexPrintingComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DuplexPrintingComBox.FormattingEnabled = true;
-            this.DuplexPrintingComBox.Location = new System.Drawing.Point(10, 23);
-            this.DuplexPrintingComBox.Name = "DuplexPrintingComBox";
-            this.DuplexPrintingComBox.Size = new System.Drawing.Size(518, 31);
-            this.DuplexPrintingComBox.TabIndex = 0;
+            this.groupBox7.Text = "Заметки";
             // 
             // groupBox6
             // 
             this.groupBox6.AutoSize = true;
-            this.groupBox6.Controls.Add(this.AuditComBox);
+            this.groupBox6.Controls.Add(this.RoomComBox);
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox6.Location = new System.Drawing.Point(10, 279);
+            this.groupBox6.Location = new System.Drawing.Point(10, 215);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox6.Size = new System.Drawing.Size(538, 64);
-            this.groupBox6.TabIndex = 5;
+            this.groupBox6.TabIndex = 4;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Аудитория";
             // 
-            // AuditComBox
+            // RoomComBox
             // 
-            this.AuditComBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AuditComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AuditComBox.FormattingEnabled = true;
-            this.AuditComBox.Location = new System.Drawing.Point(10, 23);
-            this.AuditComBox.Name = "AuditComBox";
-            this.AuditComBox.Size = new System.Drawing.Size(518, 31);
-            this.AuditComBox.TabIndex = 0;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.AutoSize = true;
-            this.groupBox5.Controls.Add(this.InventTextBox);
-            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox5.Location = new System.Drawing.Point(10, 215);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox5.Size = new System.Drawing.Size(538, 64);
-            this.groupBox5.TabIndex = 4;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Инвентарный номер";
-            // 
-            // InventTextBox
-            // 
-            this.InventTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.InventTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.InventTextBox.Location = new System.Drawing.Point(10, 23);
-            this.InventTextBox.Name = "InventTextBox";
-            this.InventTextBox.Size = new System.Drawing.Size(518, 31);
-            this.InventTextBox.TabIndex = 0;
+            this.RoomComBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.RoomComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RoomComBox.FormattingEnabled = true;
+            this.RoomComBox.Location = new System.Drawing.Point(10, 23);
+            this.RoomComBox.Name = "RoomComBox";
+            this.RoomComBox.Size = new System.Drawing.Size(518, 31);
+            this.RoomComBox.TabIndex = 0;
             // 
             // groupBox4
             // 
             this.groupBox4.AutoSize = true;
-            this.groupBox4.Controls.Add(this.ModelPrinterTextBox);
+            this.groupBox4.Controls.Add(this.InventoryPrinterTextBox);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox4.Location = new System.Drawing.Point(10, 151);
             this.groupBox4.Name = "groupBox4";
@@ -232,21 +169,21 @@ namespace ASI.Forms.Modification.Printer
             this.groupBox4.Size = new System.Drawing.Size(538, 64);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Модель";
+            this.groupBox4.Text = "Инвентарный номер";
             // 
-            // ModelPrinterTextBox
+            // InventoryPrinterTextBox
             // 
-            this.ModelPrinterTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ModelPrinterTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ModelPrinterTextBox.Location = new System.Drawing.Point(10, 23);
-            this.ModelPrinterTextBox.Name = "ModelPrinterTextBox";
-            this.ModelPrinterTextBox.Size = new System.Drawing.Size(518, 31);
-            this.ModelPrinterTextBox.TabIndex = 0;
+            this.InventoryPrinterTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.InventoryPrinterTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.InventoryPrinterTextBox.Location = new System.Drawing.Point(10, 23);
+            this.InventoryPrinterTextBox.Name = "InventoryPrinterTextBox";
+            this.InventoryPrinterTextBox.Size = new System.Drawing.Size(518, 31);
+            this.InventoryPrinterTextBox.TabIndex = 0;
             // 
             // groupBox3
             // 
             this.groupBox3.AutoSize = true;
-            this.groupBox3.Controls.Add(this.BrandPrinterTextBox);
+            this.groupBox3.Controls.Add(this.NamePrinterTextBox);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox3.Location = new System.Drawing.Point(10, 87);
             this.groupBox3.Name = "groupBox3";
@@ -254,16 +191,16 @@ namespace ASI.Forms.Modification.Printer
             this.groupBox3.Size = new System.Drawing.Size(538, 64);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Бренд";
+            this.groupBox3.Text = "Название";
             // 
-            // BrandPrinterTextBox
+            // NamePrinterTextBox
             // 
-            this.BrandPrinterTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BrandPrinterTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BrandPrinterTextBox.Location = new System.Drawing.Point(10, 23);
-            this.BrandPrinterTextBox.Name = "BrandPrinterTextBox";
-            this.BrandPrinterTextBox.Size = new System.Drawing.Size(518, 31);
-            this.BrandPrinterTextBox.TabIndex = 0;
+            this.NamePrinterTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.NamePrinterTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NamePrinterTextBox.Location = new System.Drawing.Point(10, 23);
+            this.NamePrinterTextBox.Name = "NamePrinterTextBox";
+            this.NamePrinterTextBox.Size = new System.Drawing.Size(518, 31);
+            this.NamePrinterTextBox.TabIndex = 0;
             // 
             // groupBox10
             // 
@@ -295,7 +232,7 @@ namespace ASI.Forms.Modification.Printer
             this.groupBox1.Controls.Add(this.ModPrinterBut);
             this.groupBox1.Controls.Add(this.AddPrinterBut);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(13, 663);
+            this.groupBox1.Location = new System.Drawing.Point(13, 523);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(20);
             this.groupBox1.Size = new System.Drawing.Size(558, 134);
@@ -341,12 +278,21 @@ namespace ASI.Forms.Modification.Printer
             this.AddPrinterBut.UseVisualStyleBackColor = true;
             this.AddPrinterBut.Click += new System.EventHandler(this.AddPrinterBut_Click);
             // 
+            // NoteTextBox
+            // 
+            this.NoteTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.NoteTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NoteTextBox.Location = new System.Drawing.Point(10, 23);
+            this.NoteTextBox.Name = "NoteTextBox";
+            this.NoteTextBox.Size = new System.Drawing.Size(518, 31);
+            this.NoteTextBox.TabIndex = 1;
+            // 
             // ModPrinter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(584, 811);
+            this.ClientSize = new System.Drawing.Size(584, 671);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.LogoPanel);
@@ -361,12 +307,10 @@ namespace ASI.Forms.Modification.Printer
             this.LogoPanel.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -384,11 +328,9 @@ namespace ASI.Forms.Modification.Printer
         private System.Windows.Forms.Panel LogoPanel;
         private System.Windows.Forms.Label LogoLabel;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox10;
@@ -396,13 +338,11 @@ namespace ASI.Forms.Modification.Printer
         private System.Windows.Forms.Button CancleBut;
         private System.Windows.Forms.Button ModPrinterBut;
         private System.Windows.Forms.Button AddPrinterBut;
-        internal System.Windows.Forms.ComboBox ColorComBox;
-        internal System.Windows.Forms.ComboBox DrumUnitComBox;
-        internal System.Windows.Forms.ComboBox DuplexPrintingComBox;
-        internal System.Windows.Forms.ComboBox AuditComBox;
-        internal System.Windows.Forms.TextBox InventTextBox;
-        internal System.Windows.Forms.TextBox ModelPrinterTextBox;
-        internal System.Windows.Forms.TextBox BrandPrinterTextBox;
+        internal System.Windows.Forms.ComboBox ModelComBox;
+        internal System.Windows.Forms.ComboBox RoomComBox;
+        internal System.Windows.Forms.TextBox InventoryPrinterTextBox;
+        internal System.Windows.Forms.TextBox NamePrinterTextBox;
         public System.Windows.Forms.TextBox IdPrinterTextBox;
+        internal System.Windows.Forms.TextBox NoteTextBox;
     }
 }

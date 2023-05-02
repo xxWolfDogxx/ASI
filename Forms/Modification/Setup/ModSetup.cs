@@ -37,40 +37,10 @@ namespace ASI.Forms.Modification.Setup
                     break;
             }
 
-            //
-            //Заносим в поле Инвентарный номер принтера
-            //
-            db.openConnection(); // Открываем подключение к БД
-            var Printer_SetupCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
-            Printer_SetupCom.CommandText = DataBase.Scripts.ScriptMySql.script_SelectInventPrinter; // Запрос на какие либо данные
-            Printer_SetupCom.Connection = db.getConnection(); //Отправляем запрос
 
-            var printer = Printer_SetupCom.ExecuteReader(); // Создаем переменную, в которую будем вносить по порядку все полученные данные из запроса
-            while (printer.Read()) { InventPrinterSetupComBox.Items.Add(printer.GetString(0)); }; // Перебираем данные занося их в переменную
-            db.closeConnection(); // Закрываем подключение к БД 
-            //--------------------------------------------------------------------------------------------------------------------------------
 
-            //
-            //Заносим в поле Номер картриджа
-            //
-            db.openConnection(); // Открываем подключение к БД
-            var Cartrige_SetupCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
-            Cartrige_SetupCom.CommandText =DataBase.Scripts.ScriptMySql.script_SelectNumberCartrige; // Запрос на какие либо данные
-            Cartrige_SetupCom.Connection = db.getConnection(); //Отправляем запрос
-
-            var cartrige = Cartrige_SetupCom.ExecuteReader(); // Создаем переменную, в которую будем вносить по порядку все полученные данные из запроса
-            while (cartrige.Read()) { NumberCartrigeSetupComBox.Items.Add(cartrige.GetString(0)); }; // Перебираем данные занося их в переменную
-            db.closeConnection(); // Закрываем подключение к БД 
-                                  //--------------------------------------------------------------------------------------------------------------------------------
-
-            IdSetupTextBox.Text = DataBase.Entity.Setup.Setup.Id;
-            InventPrinterSetupComBox.Text = DataBase.Entity.Setup.Setup.IdPrinter;
-            NumberCartrigeSetupComBox.Text = DataBase.Entity.Setup.Setup.IdCartrige;
-            DateSetup.Text = DataBase.Entity.Setup.Setup.Data_setup;
-            DateWithDrawal.Text = DataBase.Entity.Setup.Setup.Data_withdrawals;
-
-            InventPrinterSetupComBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            NumberCartrigeSetupComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            PrinterSetupComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            CartrigeSetupComBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
         }
 
@@ -83,10 +53,12 @@ namespace ASI.Forms.Modification.Setup
             MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_InsertSetup, db.getConnection());
 
             //Заносим данные в запрос
-            AddCom.Parameters.Add("@inventPrinterSetup", MySqlDbType.VarChar).Value = InventPrinterSetupComBox.SelectedItem;
-            AddCom.Parameters.Add("@numberCartrigeSetup", MySqlDbType.VarChar).Value = NumberCartrigeSetupComBox.SelectedItem;
-            AddCom.Parameters.Add("@dataSetup", MySqlDbType.Date).Value = DateSetup.Value;
-            AddCom.Parameters.Add("@dataWithDrawals", MySqlDbType.Date).Value = DateWithDrawal.Value;
+            AddCom.Parameters.Add("@printerSetup", MySqlDbType.Int32).Value =Convert.ToInt32(PrinterSetupComBox.SelectedItem);
+            AddCom.Parameters.Add("@cartrigeSetup", MySqlDbType.Int32).Value = Convert.ToInt32(CartrigeSetupComBox.SelectedItem);
+            AddCom.Parameters.Add("@dataStartSetup", MySqlDbType.Date).Value =Convert.ToDateTime(value: DateStartDatePicker.Value);
+            AddCom.Parameters.Add("@dataEndSetup", MySqlDbType.Date).Value = Convert.ToDateTime(value: DateEndDatePicker.Value);
+            AddCom.Parameters.Add("@noteSetup", MySqlDbType.VarChar).Value = NoteSetupTextBox.Text;
+
 
             db.closeConnection(); //Закрываем подключение к БД
 
@@ -117,11 +89,12 @@ namespace ASI.Forms.Modification.Setup
             MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateSetup, db.getConnection());
 
             //Заносим данные в запрос
-            AddCom.Parameters.Add("@idSetup", MySqlDbType.VarChar).Value = IdSetupTextBox.Text;
-            AddCom.Parameters.Add("@inventPrinterSetup", MySqlDbType.VarChar).Value = InventPrinterSetupComBox.SelectedItem;
-            AddCom.Parameters.Add("@numberCartrigeSetup", MySqlDbType.VarChar).Value = NumberCartrigeSetupComBox.SelectedItem;
-            AddCom.Parameters.Add("@dataSetup", MySqlDbType.Date).Value = DateSetup.Value;
-            AddCom.Parameters.Add("@dataWithDrawals", MySqlDbType.Date).Value = DateWithDrawal.Value;
+            AddCom.Parameters.Add("@idSetup", MySqlDbType.Int32).Value = Convert.ToInt32(IdSetupTextBox.Text);
+            AddCom.Parameters.Add("@printerSetup", MySqlDbType.Int32).Value = Convert.ToInt32(PrinterSetupComBox.SelectedItem);
+            AddCom.Parameters.Add("@cartrigeSetup", MySqlDbType.Int32).Value = Convert.ToInt32(CartrigeSetupComBox.SelectedItem);
+            AddCom.Parameters.Add("@dataStartSetup", MySqlDbType.Date).Value = Convert.ToDateTime(value: DateStartDatePicker.Value);
+            AddCom.Parameters.Add("@dataEndSetup", MySqlDbType.Date).Value = Convert.ToDateTime(value: DateEndDatePicker.Value);
+            AddCom.Parameters.Add("@noteSetup", MySqlDbType.VarChar).Value = NoteSetupTextBox.Text;
 
             db.closeConnection(); //Закрываем подключение к БД
 

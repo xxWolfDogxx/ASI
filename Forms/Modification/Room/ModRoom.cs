@@ -10,24 +10,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ASI.Forms.Modification.Audiences
+namespace ASI.Forms.Modification.Room
 {
-    public partial class ModAudit : Form
+    public partial class ModRoom : Form
     {
-        internal static string Audit;
-        internal static string AuditDB;
-        public ModAudit()
+        internal static string Room;
+        internal static string RoomDB;
+        public ModRoom()
         {
             InitializeComponent();
-            AuditTextBox.Focus();
+            RoomTextBox.Focus();
         }
 
         private void ModAudit_Load(object sender, EventArgs e)
         {
             
-            IdAuditTextBox.Text = DataBase.Entity.Audit.Audiences.Id;
-            AuditTextBox.Text = DataBase.Entity.Audit.Audiences.Auditorium1;
-            CommentAuditTextBox.Text = DataBase.Entity.Audit.Audiences.Comments1;
 
             switch (Forms.Main.ASI.Modif)
             {
@@ -54,12 +51,11 @@ namespace ASI.Forms.Modification.Audiences
         private void AddAuditBut_Click(object sender, EventArgs e)
         {
             DB db = new DB();
-            MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_InsertAudit, db.getConnection());
-            Audit = AuditTextBox.Text;
+            MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_InsertRoom_ModRoom, db.getConnection());
+            Room = RoomTextBox.Text;
             db.openConnection();
             //Заносим данные в запрос
-            AddCom.Parameters.Add("@audit", MySqlDbType.VarChar).Value = AuditTextBox.Text;
-            AddCom.Parameters.Add("@comAudit", MySqlDbType.VarChar).Value = CommentAuditTextBox.Text;
+            AddCom.Parameters.Add("@room", MySqlDbType.VarChar).Value = RoomTextBox.Text;
 
             db.closeConnection(); //Закрываем подключение к БД
 
@@ -93,27 +89,27 @@ namespace ASI.Forms.Modification.Audiences
 
             //Заносим в 
             db.openConnection(); // Открываем подключение к БД
-            var AuditDBCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
-            AuditDBCom.CommandText = "Select 	Auditorium  From audiences Where id = @idAudit"; // Запрос на какие либо даные
-            AuditDBCom.Connection = db.getConnection(); //Отправляем запрос
-            AuditDBCom.Parameters.Add("@idAudit", MySqlDbType.Int32).Value = IdAuditTextBox.Text;
+            var RoomDBCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
+            RoomDBCom.CommandText = "Select name  From room Where id = @idRoom"; // Запрос на какие либо даные
+            RoomDBCom.Connection = db.getConnection(); //Отправляем запрос
+            RoomDBCom.Parameters.Add("@idRoom", MySqlDbType.Int32).Value = IdRoomTextBox.Text;
 
             
 
-            var auditDB = AuditDBCom.ExecuteReader(); // Создаем переменную, в которую будем вносить по порядку все полученные данные из запроса
-            while (auditDB.Read()) { AuditDB = (auditDB.GetString(0)); }; // Перебираем данные занося их в переменную
+            var roomDB = RoomDBCom.ExecuteReader(); // Создаем переменную, в которую будем вносить по порядку все полученные данные из запроса
+            while (roomDB.Read()) { RoomDB = (roomDB.GetString(0)); }; // Перебираем данные занося их в переменную
             db.closeConnection(); // Закрываем подключение к БД
-            MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateAudit, db.getConnection());
+            MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateRoom_ModRoom, db.getConnection());
 
             db.openConnection();
             //Заносим данные в запрос
-            AddCom.Parameters.Add("@idAudit", MySqlDbType.VarChar).Value = IdAuditTextBox.Text;
-            AddCom.Parameters.Add("@audit", MySqlDbType.VarChar).Value = AuditTextBox.Text;
-            AddCom.Parameters.Add("@comAudit", MySqlDbType.VarChar).Value = CommentAuditTextBox.Text;
+            AddCom.Parameters.Add("@idRoom", MySqlDbType.VarChar).Value = IdRoomTextBox.Text;
+            AddCom.Parameters.Add("@room", MySqlDbType.VarChar).Value = RoomTextBox.Text;
+
 
             db.closeConnection(); //Закрываем подключение к БД
 
-            Audit = AuditTextBox.Text;
+            Room = RoomTextBox.Text;
 
             db.openConnection();
             if (Function.isAudiencesExists.isAuditExists() == true)
@@ -134,7 +130,7 @@ namespace ASI.Forms.Modification.Audiences
                     MessageBox.Show("Заполните все поля");
                 }
             }
-            else { MessageBox.Show("Поправить - разработчику\nModAudit, проверка на повторы при изменении записи"); }
+            else { MessageBox.Show("Поправить - разработчику\nModRoom, проверка на повторы при изменении записи"); }
             db.closeConnection();
 
         }

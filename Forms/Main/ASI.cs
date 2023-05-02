@@ -118,59 +118,54 @@ namespace ASI.Forms.Main
 
                 case ("TreeNode: Принтер"):
                     GridView.ClearSelection(); //Чистим таблицу
-                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectGuidePrinters, db.getConnection());
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectPrinter, db.getConnection());
                     mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
                     GridView.DataSource = table; //Заполняем саму таблицу на форме                 
 
-                    //GridView.Columns[1].Selected = true;
-
                     //Меняем название столбцов на руссифицированное
-                    GridView.Columns["Id"].Visible = visibleColum;
+                    GridView.Columns["id"].Visible = visibleColum;
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-                    GridView.Columns["Brand"].HeaderText = "Бренд";
-                    GridView.Columns["Model"].HeaderText = "Модель";
-                    GridView.Columns["InventoryNumber"].HeaderText = "Инвентарный номер";
-                    GridView.Columns["Auditorium"].HeaderText = "Аудитория";
-                    GridView.Columns["DoubleЫSided_Printing"].HeaderText = "Двусторонняя печать";
-                    GridView.Columns["DrumUnit"].HeaderText = "Отдельный фотобарабан";
 
-
-
-                    //Центруем заголовки
-                    // GridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    GridView.Columns["name"].HeaderText = "Название";
+                    GridView.Columns["inventory"].HeaderText = "Инвентарный номер";
+                    GridView.Columns["id_room"].HeaderText = "Аудитория";
+                    GridView.Columns["note"].HeaderText = "Заметки";
+                    GridView.Columns["id_model"].HeaderText = "Модель";
 
                     break;
 
-                case ("TreeNode: Картридж"):
+                case ("TreeNode: Расходники"):
                     GridView.ClearSelection(); //Чистим таблицу
-                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectGuideCartrige, db.getConnection());
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectCartrige, db.getConnection());
                     mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
                     GridView.DataSource = table; //Заполняем саму таблицу на форме
 
                     //Меняем название столбцов на руссифицированное
-                    GridView.Columns["Id"].Visible = visibleColum;
+                    GridView.Columns["id"].Visible = visibleColum;
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-                    GridView.Columns["Brand"].HeaderText = "Бренд";
-                    GridView.Columns["Model"].HeaderText = "Модель";
-                    GridView.Columns["Number"].HeaderText = "Уникальный номер";
-                    GridView.Columns["Status"].HeaderText = "Статус картриджа";
-                    GridView.Columns["Refill"].HeaderText = "Перезаправлен картридж";
-                    GridView.Columns["Comment"].HeaderText = "Комментарий";
+
+                    GridView.Columns["name"].HeaderText = "Название";
+                    GridView.Columns["code"].HeaderText = "Уникальный номер";
+                    GridView.Columns["bay_date"].HeaderText = "Дата закупки";
+                    GridView.Columns["writeoff"].HeaderText = "Списанный";
+                    GridView.Columns["note"].HeaderText = "Заметки";
+                    GridView.Columns["ready"].HeaderText = "Готовность";
+                    GridView.Columns["id_cadrtrige_type"].HeaderText = "Тип картриджа";
+                    GridView.Columns["id_room"].HeaderText = "Аудитория";
+                    GridView.Columns["id_model"].HeaderText = "Модель";
 
                     break;
 
                 case ("TreeNode: Аудитория"):
                     GridView.ClearSelection(); //Чистим таблицу
-                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectGuideAuditorium, db.getConnection());
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectRoom, db.getConnection());
                     mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
                     GridView.DataSource = table; //Заполняем саму таблицу на форме
 
                     //Меняем название столбцов на руссифицированное
-                    GridView.Columns["Id"].Visible = visibleColum;
+                    GridView.Columns["id"].Visible = visibleColum;
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-                    GridView.Columns["Auditorium"].HeaderText = "Корпус / Аудитория";
-                    GridView.Columns["Comments"].HeaderText = "Комментарий";
-
+                    GridView.Columns["name"].HeaderText = "Аудитория";
 
                     break;
 
@@ -181,20 +176,39 @@ namespace ASI.Forms.Main
                     GridView.DataSource = table; //Заполняем саму таблицу на форме
 
                     //Меняем название столбцов на руссифицированное
-                    GridView.Columns["Id"].Visible = visibleColum;
+                    GridView.Columns["id"].Visible = visibleColum;
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-                    GridView.Columns["Invent_printer"].HeaderText = "Инвентарный номер принтера";
-                    GridView.Columns["Number_cartrige"].HeaderText = "Номер картриджа";
-                    GridView.Columns["Data_setup"].HeaderText = "Дата установки картриджа";
-                    GridView.Columns["Data_setup"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                    GridView.Columns["Data_withdrawals"].HeaderText = "Дата снятия картриджа";
+
+                    GridView.Columns["id_printer"].HeaderText = "Инвентарный номер принтера";
+                    GridView.Columns["id_cartrige"].HeaderText = "Номер картриджа";
+                    GridView.Columns["start"].HeaderText = "Дата установки картриджа";
+                    GridView.Columns["start"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                    GridView.Columns["end"].HeaderText = "Дата снятия картриджа";
+                    GridView.Columns["end"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                    GridView.Columns["note"].HeaderText = "Заметки";
                     //GridView.Columns["Id_user"].HeaderText = "Пользователь";
 
                     break;
 
-                case ("TreeNode: Статус работоспобности картриджа"):
+                case ("TreeNode: Перезаправлен"):
                     GridView.ClearSelection(); //Чистим таблицу
-                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectGuideRefill, db.getConnection());
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectFill, db.getConnection());
+                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                    GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                    //Меняем название столбцов на руссифицированное
+                    GridView.Columns["id"].Visible = visibleColum;
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                    GridView.Columns["id_cartrige"].HeaderText = "Номер картриджа";
+                    GridView.Columns["date"].HeaderText = "Дата заправки";
+                    GridView.Columns["note"].HeaderText = "Заметки";
+
+                    break;
+
+                case ("TreeNode: Тип расходника"):
+                    GridView.ClearSelection(); //Чистим таблицу
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectCartrigeType, db.getConnection());
                     mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
                     GridView.DataSource = table; //Заполняем саму таблицу на форме
 
@@ -202,7 +216,22 @@ namespace ASI.Forms.Main
                     GridView.Columns["Id"].Visible = visibleColum;
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
-                    GridView.Columns["Status"].HeaderText = "Рабочее состояние";
+                    GridView.Columns["name"].HeaderText = "Название";
+                    GridView.Columns["refill"].HeaderText = "Доступна перезаправка";
+
+                    break;
+
+                case ("TreeNode: Модели"):
+                    GridView.ClearSelection(); //Чистим таблицу
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectModel, db.getConnection());
+                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                    GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                    //Меняем название столбцов на руссифицированное
+                    GridView.Columns["Id"].Visible = visibleColum;
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                    GridView.Columns["name"].HeaderText = "Название";
 
                     break;
                 default:
@@ -300,42 +329,42 @@ namespace ASI.Forms.Main
                 case ("TreeNode: Принтер"):
                     Modification.Printer.ModPrinter modPrinter = new Modification.Printer.ModPrinter(); //объявляем форму, которую желаем открыть
 
-                    DataBase.Entity.Printer.Printer.Id = null;
-                    DataBase.Entity.Printer.Printer.Brand1 = null;
-                    DataBase.Entity.Printer.Printer.Model1 = null;
-                    DataBase.Entity.Printer.Printer.Invent1 = null;
-                    DataBase.Entity.Printer.Printer.Audit1 = null;
-                    DataBase.Entity.Printer.Printer.Doubl1 = null;
-                    DataBase.Entity.Printer.Printer.Drum1 = null;
-                    DataBase.Entity.Printer.Printer.Color1 = null;
+                    DataBase.Entity.Printer.Printer.Id = Convert.ToInt32(null);
+                    DataBase.Entity.Printer.Printer.Name = null;
+                    DataBase.Entity.Printer.Printer.Inventory = null;
+                    DataBase.Entity.Printer.Printer.Id_room = Convert.ToInt32(null);
+                    DataBase.Entity.Printer.Printer.Note = null;
+                    DataBase.Entity.Printer.Printer.Id_model = Convert.ToInt32(null);
 
                     modPrinter.ShowDialog();
                     UpdateTable();
                     break;
 
-                case ("TreeNode: Картридж"):
+                case ("TreeNode: Расходники"):
 
-                        Modification.Cartrige.ModCartrige modCartrige = new Modification.Cartrige.ModCartrige(); //объявляем форму, которую желаем открыть
+                        Modification.Consumable.ModConsumable modConsumable = new Modification.Consumable.ModConsumable(); //объявляем форму, которую желаем открыть
 
-                        DataBase.Entity.Cartrige.Cartrige.Id = null;
-                        DataBase.Entity.Cartrige.Cartrige.Brand1 = null;
-                        DataBase.Entity.Cartrige.Cartrige.Model1 = null;
-                        DataBase.Entity.Cartrige.Cartrige.Number1 = null;
-                        DataBase.Entity.Cartrige.Cartrige.Status1 = null;
-                        DataBase.Entity.Cartrige.Cartrige.Refill1 = null;
-                        DataBase.Entity.Cartrige.Cartrige.Comment1 = null;
+                        DataBase.Entity.Consumable.Consumable.Id = Convert.ToInt32(null);
+                        DataBase.Entity.Consumable.Consumable.Name = null;
+                        DataBase.Entity.Consumable.Consumable.Code = null;
+                        DataBase.Entity.Consumable.Consumable.Bay_date = Convert.ToDateTime(value: null);
+                        DataBase.Entity.Consumable.Consumable.Writeoff = Convert.ToBoolean(null);
+                        DataBase.Entity.Consumable.Consumable.Note = null;
+                        DataBase.Entity.Consumable.Consumable.Ready = Convert.ToBoolean(null);
+                        DataBase.Entity.Consumable.Consumable.Id_cartrige_type = Convert.ToInt32(null);
+                        DataBase.Entity.Consumable.Consumable.Id_room = Convert.ToInt32(null);
+                        DataBase.Entity.Consumable.Consumable.Id_model = Convert.ToInt32(null);
 
-                        modCartrige.ShowDialog();
+                        modConsumable.ShowDialog();
                         UpdateTable();
                     break;
 
                 case ("TreeNode: Аудитория"):
 
-                    Modification.Audiences.ModAudit modAudit = new Modification.Audiences.ModAudit(); //объявляем форму, которую желаем открыть
+                    Modification.Room.ModRoom modAudit = new Modification.Room.ModRoom(); //объявляем форму, которую желаем открыть
 
-                    DataBase.Entity.Audit.Audiences.Id = null;
-                    DataBase.Entity.Audit.Audiences.Auditorium1 = null;
-                    DataBase.Entity.Audit.Audiences.Comments1 = null;
+                    DataBase.Entity.Audit.Audiences.Id = Convert.ToInt32(null);
+                    DataBase.Entity.Audit.Audiences.Name = null;
 
                     modAudit.ShowDialog();
                     UpdateTable();
@@ -345,24 +374,54 @@ namespace ASI.Forms.Main
                 case ("TreeNode: Установки"):
                     Modification.Setup.ModSetup modSetup = new Modification.Setup.ModSetup(); //объявляем форму, которую желаем открыть
 
-                    DataBase.Entity.Setup.Setup.Id = null;
-                    DataBase.Entity.Setup.Setup.IdPrinter = null ;
-                    DataBase.Entity.Setup.Setup.IdCartrige = null;
-                    DataBase.Entity.Setup.Setup.Data_setup = null;
-                    DataBase.Entity.Setup.Setup.Data_withdrawals = null;
+                    DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
+                    DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(null);
+                    DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(null);
+                    DataBase.Entity.Setup.Setup.Start = Convert.ToDateTime(value: null);
+                    DataBase.Entity.Setup.Setup.End = Convert.ToDateTime(value: null);
+                    DataBase.Entity.Setup.Setup.Note = null;
 
                     modSetup.ShowDialog();
                     UpdateTable();
                     break;
 
-                case ("TreeNode: Статус работоспобности картриджа"):
-                    Modification.StatusWork.ModStatusWork modStatusWork = new Modification.StatusWork.ModStatusWork(); //объявляем форму, которую желаем открыть
+                case ("TreeNode: Перезаправлен"):
+                    Modification.Fill.ModFill modFill = new Modification.Fill.ModFill(); //объявляем форму, которую желаем открыть
 
-                    DataBase.Entity.StatusWork.StatusWork.Id = null;
-                    DataBase.Entity.StatusWork.StatusWork.Status = null;
+                    DataBase.Entity.Fill.Fill.Id = Convert.ToInt32(null);
+                    DataBase.Entity.Fill.Fill.Id_cartrige = Convert.ToInt32(null);
+                    DataBase.Entity.Fill.Fill.Date = Convert.ToDateTime(value: null);
+                    DataBase.Entity.Fill.Fill.Note = null;
 
-                    modStatusWork.ShowDialog();
+                    modFill.ShowDialog();
                     UpdateTable();
+
+                    break;
+
+                case ("TreeNode: Тип расходника"):
+                    Modification.CartrigeType.ModCartrigeType modCartrigeType = new Modification.CartrigeType.ModCartrigeType(); //объявляем форму, которую желаем открыть
+
+                    DataBase.Entity.CartrigeType.CartrigeType.Id = Convert.ToInt32(null);
+                    DataBase.Entity.CartrigeType.CartrigeType.Name = null;
+                    DataBase.Entity.CartrigeType.CartrigeType.Refill = Convert.ToBoolean(null);
+
+
+                    modCartrigeType.ShowDialog();
+                    UpdateTable();
+
+                    break;
+
+                case ("TreeNode: Модели"):
+                    Modification.Model.ModModel modModel = new Modification.Model.ModModel(); //объявляем форму, которую желаем открыть
+
+                    DataBase.Entity.Model.Model.Id = Convert.ToInt32(null);
+                    DataBase.Entity.Model.Model.Name = null;
+
+                    modModel.ShowDialog();
+                    UpdateTable();
+
+                    break;
+                default:
                     break;
 
             }
@@ -404,14 +463,12 @@ namespace ASI.Forms.Main
                     {
                         Modification.Printer.ModPrinter modPrinter = new Modification.Printer.ModPrinter(); //объявляем форму, которую желаем открыть
 
-                        DataBase.Entity.Printer.Printer.Id = GridView.CurrentRow.Cells[0].Value.ToString();
-                        DataBase.Entity.Printer.Printer.Brand1 = GridView.CurrentRow.Cells[1].Value.ToString();
-                        DataBase.Entity.Printer.Printer.Model1 = GridView.CurrentRow.Cells[2].Value.ToString();
-                        DataBase.Entity.Printer.Printer.Invent1 = GridView.CurrentRow.Cells[3].Value.ToString();
-                        DataBase.Entity.Printer.Printer.Audit1 = GridView.CurrentRow.Cells[4].Value.ToString();
-                        DataBase.Entity.Printer.Printer.Doubl1 = GridView.CurrentRow.Cells[5].Value.ToString();
-                        DataBase.Entity.Printer.Printer.Drum1 = GridView.CurrentRow.Cells[6].Value.ToString();
-                        DataBase.Entity.Printer.Printer.Color1 = GridView.CurrentRow.Cells[7].Value.ToString();
+                        DataBase.Entity.Printer.Printer.Id =Convert.ToInt32(GridView.CurrentRow.Cells[0].Value.ToString());
+                        DataBase.Entity.Printer.Printer.Name = GridView.CurrentRow.Cells[1].Value.ToString();
+                        DataBase.Entity.Printer.Printer.Inventory = GridView.CurrentRow.Cells[2].Value.ToString();
+                        DataBase.Entity.Printer.Printer.Id_room = Convert.ToInt32(GridView.CurrentRow.Cells[3].Value.ToString());
+                        DataBase.Entity.Printer.Printer.Note = GridView.CurrentRow.Cells[4].Value.ToString();
+                        DataBase.Entity.Printer.Printer.Id_model = Convert.ToInt32(GridView.CurrentRow.Cells[5].Value.ToString());
 
                         modPrinter.ShowDialog();
                         UpdateTable();
@@ -421,20 +478,23 @@ namespace ASI.Forms.Main
 
                     break;
 
-                case ("TreeNode: Картридж"):
+                case ("TreeNode: Расходники"):
                     if (GridView.CurrentRow != null)
                     {
-                        Modification.Cartrige.ModCartrige modCartrige = new Modification.Cartrige.ModCartrige(); //объявляем форму, которую желаем открыть
+                        Modification.Consumable.ModConsumable modConsumable = new Modification.Consumable.ModConsumable(); //объявляем форму, которую желаем открыть
 
-                        DataBase.Entity.Cartrige.Cartrige.Id = GridView.CurrentRow.Cells[0].Value.ToString();
-                        DataBase.Entity.Cartrige.Cartrige.Brand1 = GridView.CurrentRow.Cells[2].Value.ToString();
-                        DataBase.Entity.Cartrige.Cartrige.Model1 = GridView.CurrentRow.Cells[3].Value.ToString();
-                        DataBase.Entity.Cartrige.Cartrige.Number1 = GridView.CurrentRow.Cells[1].Value.ToString();
-                        DataBase.Entity.Cartrige.Cartrige.Status1 = GridView.CurrentRow.Cells[4].Value.ToString();
-                        DataBase.Entity.Cartrige.Cartrige.Refill1 = GridView.CurrentRow.Cells[5].Value.ToString();
-                        DataBase.Entity.Cartrige.Cartrige.Comment1 = GridView.CurrentRow.Cells[6].Value.ToString();
+                        DataBase.Entity.Consumable.Consumable.Id = Convert.ToInt32(GridView.CurrentRow.Cells[0].Value.ToString());
+                        DataBase.Entity.Consumable.Consumable.Name = GridView.CurrentRow.Cells[1].Value.ToString();
+                        DataBase.Entity.Consumable.Consumable.Code = GridView.CurrentRow.Cells[2].Value.ToString();
+                        DataBase.Entity.Consumable.Consumable.Bay_date = Convert.ToDateTime(value: GridView.CurrentRow.Cells[3].Value.ToString());
+                        DataBase.Entity.Consumable.Consumable.Writeoff = Convert.ToBoolean(GridView.CurrentRow.Cells[4].Value.ToString());
+                        DataBase.Entity.Consumable.Consumable.Note = GridView.CurrentRow.Cells[5].Value.ToString();
+                        DataBase.Entity.Consumable.Consumable.Ready = Convert.ToBoolean(GridView.CurrentRow.Cells[6].Value.ToString());
+                        DataBase.Entity.Consumable.Consumable.Id_cartrige_type = Convert.ToInt32(GridView.CurrentRow.Cells[7].Value.ToString());
+                        DataBase.Entity.Consumable.Consumable.Id_room = Convert.ToInt32(GridView.CurrentRow.Cells[8].Value.ToString());
+                        DataBase.Entity.Consumable.Consumable.Id_model = Convert.ToInt32(GridView.CurrentRow.Cells[9].Value.ToString());
 
-                        modCartrige.ShowDialog();
+                        modConsumable.ShowDialog();
                         UpdateTable();
                     }
                     else { MessageBox.Show("Выделите строчку для редактирования"); }
@@ -445,11 +505,10 @@ namespace ASI.Forms.Main
                 case ("TreeNode: Аудитория"):
                     if (GridView.CurrentRow != null)
                     {
-                        Modification.Audiences.ModAudit modAudit = new Modification.Audiences.ModAudit(); //объявляем форму, которую желаем открыть
+                        Modification.Room.ModRoom modAudit = new Modification.Room.ModRoom(); //объявляем форму, которую желаем открыть
 
-                        DataBase.Entity.Audit.Audiences.Id = GridView.CurrentRow.Cells[0].Value.ToString();
-                        DataBase.Entity.Audit.Audiences.Auditorium1 = GridView.CurrentRow.Cells[1].Value.ToString();
-                        DataBase.Entity.Audit.Audiences.Comments1 = GridView.CurrentRow.Cells[2].Value.ToString();
+                        DataBase.Entity.Audit.Audiences.Id = Convert.ToInt32(GridView.CurrentRow.Cells[0].Value.ToString());
+                        DataBase.Entity.Audit.Audiences.Name = GridView.CurrentRow.Cells[1].Value.ToString();
 
                         modAudit.ShowDialog();
                         UpdateTable();
@@ -464,11 +523,12 @@ namespace ASI.Forms.Main
                     {
                         Modification.Setup.ModSetup modSetup = new Modification.Setup.ModSetup(); //объявляем форму, которую желаем открыть
 
-                        DataBase.Entity.Setup.Setup.Id = GridView.CurrentRow.Cells[0].Value.ToString(); 
-                        DataBase.Entity.Setup.Setup.IdPrinter = GridView.CurrentRow.Cells[1].Value.ToString(); 
-                        DataBase.Entity.Setup.Setup.IdCartrige = GridView.CurrentRow.Cells[2].Value.ToString(); 
-                        DataBase.Entity.Setup.Setup.Data_setup = GridView.CurrentRow.Cells[3].Value.ToString(); 
-                        DataBase.Entity.Setup.Setup.Data_withdrawals = GridView.CurrentRow.Cells[4].Value.ToString(); 
+                        DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(GridView.CurrentRow.Cells[0].Value.ToString());
+                        DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(GridView.CurrentRow.Cells[1].Value.ToString());
+                        DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells[2].Value.ToString());
+                        DataBase.Entity.Setup.Setup.Start = Convert.ToDateTime(value: GridView.CurrentRow.Cells[3].Value.ToString());
+                        DataBase.Entity.Setup.Setup.End = Convert.ToDateTime(value: GridView.CurrentRow.Cells[4].Value.ToString());
+                        DataBase.Entity.Setup.Setup.Note = GridView.CurrentRow.Cells[5].Value.ToString();
 
                         modSetup.ShowDialog();
                         UpdateTable();
@@ -477,19 +537,43 @@ namespace ASI.Forms.Main
 
                     break;
 
-                case ("TreeNode: Статус работоспобности картриджа"):
-                    if (GridView.CurrentRow != null)
-                    {
-                        Modification.StatusWork.ModStatusWork modStatusWork = new Modification.StatusWork.ModStatusWork(); //объявляем форму, которую желаем открыть
+                case ("TreeNode: Перезаправлен"):
+                    Modification.Fill.ModFill modFill = new Modification.Fill.ModFill(); //объявляем форму, которую желаем открыть
 
-                        DataBase.Entity.StatusWork.StatusWork.Id = GridView.CurrentRow.Cells[0].Value.ToString();
-                        DataBase.Entity.StatusWork.StatusWork.Status = GridView.CurrentRow.Cells[1].Value.ToString();
+                    DataBase.Entity.Fill.Fill.Id = Convert.ToInt32(GridView.CurrentRow.Cells[0].Value.ToString());
+                    DataBase.Entity.Fill.Fill.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells[1].Value.ToString());
+                    DataBase.Entity.Fill.Fill.Date = Convert.ToDateTime(value: GridView.CurrentRow.Cells[2].Value.ToString());
+                    DataBase.Entity.Fill.Fill.Note = GridView.CurrentRow.Cells[3].Value.ToString();
 
-                        modStatusWork.ShowDialog();
-                        UpdateTable();
-                    }
-                    else { MessageBox.Show("Выделите строчку для редактирования"); }
+                    modFill.ShowDialog();
+                    UpdateTable();
 
+                    break;
+
+                case ("TreeNode: Тип расходника"):
+                    Modification.CartrigeType.ModCartrigeType modCartrigeType = new Modification.CartrigeType.ModCartrigeType(); //объявляем форму, которую желаем открыть
+
+                    DataBase.Entity.CartrigeType.CartrigeType.Id = Convert.ToInt32(GridView.CurrentRow.Cells[0].Value.ToString());
+                    DataBase.Entity.CartrigeType.CartrigeType.Name = GridView.CurrentRow.Cells[1].Value.ToString();
+                    DataBase.Entity.CartrigeType.CartrigeType.Refill = Convert.ToBoolean(GridView.CurrentRow.Cells[2].Value.ToString());
+
+
+                    modCartrigeType.ShowDialog();
+                    UpdateTable();
+
+                    break;
+
+                case ("TreeNode: Модели"):
+                    Modification.Model.ModModel modModel = new Modification.Model.ModModel(); //объявляем форму, которую желаем открыть
+
+                    DataBase.Entity.Model.Model.Id = Convert.ToInt32(GridView.CurrentRow.Cells[0].Value.ToString());
+                    DataBase.Entity.Model.Model.Name = GridView.CurrentRow.Cells[1].Value.ToString();
+
+                    modModel.ShowDialog();
+                    UpdateTable();
+
+                    break;
+                default:
                     break;
 
             }
@@ -544,10 +628,10 @@ namespace ASI.Forms.Main
 
                         if (result == DialogResult.Yes)
                         {
-                            MySqlCommand AddCom = new MySqlCommand("DELETE FROM printers WHERE `id` = @id", db.getConnection());
-                            AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+                            MySqlCommand DelCom = new MySqlCommand("DELETE FROM printer WHERE `id` = @id", db.getConnection());
+                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
 
-                            AddCom.ExecuteNonQuery();
+                            DelCom.ExecuteNonQuery();
                             MessageBox.Show("Запись удалена!");
                         }
                         else
@@ -557,14 +641,14 @@ namespace ASI.Forms.Main
 
                         break;
 
-                    case ("TreeNode: Картридж"):
+                    case ("TreeNode: Расходники"):
 
                         if (result == DialogResult.Yes)
                         {
-                            MySqlCommand AddCom = new MySqlCommand("DELETE FROM cartrige WHERE `id` = @id", db.getConnection());
-                            AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+                            MySqlCommand DelCom = new MySqlCommand("DELETE FROM cartrige WHERE `id` = @id", db.getConnection());
+                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
 
-                            AddCom.ExecuteNonQuery();
+                            DelCom.ExecuteNonQuery();
                             MessageBox.Show("Запись удалена!");
                         }
                         else
@@ -579,10 +663,10 @@ namespace ASI.Forms.Main
 
                         if (result == DialogResult.Yes)
                         {
-                            MySqlCommand AddCom = new MySqlCommand("DELETE FROM audiences WHERE `id` = @id", db.getConnection());
-                            AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+                            MySqlCommand DelCom = new MySqlCommand("DELETE FROM room WHERE `id` = @id", db.getConnection());
+                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
 
-                            AddCom.ExecuteNonQuery();
+                            DelCom.ExecuteNonQuery();
                             MessageBox.Show("Запись удалена!");
                         }
                         else
@@ -596,10 +680,10 @@ namespace ASI.Forms.Main
 
                         if (result == DialogResult.Yes)
                         {
-                            MySqlCommand AddCom = new MySqlCommand("DELETE FROM setup WHERE `id` = @id", db.getConnection());
-                            AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+                            MySqlCommand DelCom = new MySqlCommand("DELETE FROM setup WHERE `id` = @id", db.getConnection());
+                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
 
-                            AddCom.ExecuteNonQuery();
+                            DelCom.ExecuteNonQuery();
                             MessageBox.Show("Запись удалена!");
                         }
                         else
@@ -609,21 +693,53 @@ namespace ASI.Forms.Main
 
                         break;
 
-                    case ("TreeNode: Статус работоспобности картриджа"):
-
+                    case ("TreeNode: Перезаправлен"):
                         if (result == DialogResult.Yes)
                         {
-                            MySqlCommand AddCom = new MySqlCommand("DELETE FROM refill WHERE `id` = @id", db.getConnection());
-                            AddCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+                            MySqlCommand DelCom = new MySqlCommand("DELETE FROM fill WHERE `id` = @id", db.getConnection());
+                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
 
-                            AddCom.ExecuteNonQuery();
+                            DelCom.ExecuteNonQuery();
                             MessageBox.Show("Запись удалена!");
                         }
                         else
                         {
-                           
+
                         }
 
+                        break;
+
+                    case ("TreeNode: Тип расходника"):
+                        if (result == DialogResult.Yes)
+                        {
+                            MySqlCommand DelCom = new MySqlCommand("DELETE FROM cartrige_type WHERE `id` = @id", db.getConnection());
+                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+
+                            DelCom.ExecuteNonQuery();
+                            MessageBox.Show("Запись удалена!");
+                        }
+                        else
+                        {
+
+                        }
+                        break;
+
+                    case ("TreeNode: Модели"):
+                        if (result == DialogResult.Yes)
+                        {
+                            MySqlCommand DelCom = new MySqlCommand("DELETE FROM model WHERE `id` = @id", db.getConnection());
+                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+
+                            DelCom.ExecuteNonQuery();
+                            MessageBox.Show("Запись удалена!");
+                        }
+                        else
+                        {
+
+                        }
+                        break;
+
+                    default:
                         break;
 
                 }
@@ -633,7 +749,7 @@ namespace ASI.Forms.Main
             }
             else
             {
-                MessageBox.Show("Выделите строчку для удаления");
+                MessageBox.Show("Выделите строку для удаления");
             }
         }
 

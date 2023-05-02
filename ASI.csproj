@@ -93,13 +93,15 @@
   <ItemGroup>
     <Compile Include="DataBase\ConnectionForMySQL\DB.cs" />
     <Compile Include="DataBase\Entity\Audit\Audiences.cs" />
-    <Compile Include="DataBase\Entity\Cartrige\Cartrige.cs" />
+    <Compile Include="DataBase\Entity\Consumable\Consumable.cs" />
+    <Compile Include="DataBase\Entity\Fill\Fill.cs" />
     <Compile Include="DataBase\Entity\Identification\DB_Auth.cs" />
     <Compile Include="DataBase\Entity\Identification\DB_Role.cs" />
     <Compile Include="DataBase\Entity\Identification\DB_Users.cs" />
+    <Compile Include="DataBase\Entity\Model\Model.cs" />
     <Compile Include="DataBase\Entity\Printer\Printer.cs" />
     <Compile Include="DataBase\Entity\Setup\Setup.cs" />
-    <Compile Include="DataBase\Entity\StatusWork\StatusWork.cs" />
+    <Compile Include="DataBase\Entity\CartrigeType\CartrigeType.cs" />
     <Compile Include="DataBase\Scripts\ScriptMySql.cs" />
     <Compile Include="Forms\Identification\Authentication\Auth.cs">
       <SubType>Form</SubType>
@@ -119,17 +121,29 @@
     <Compile Include="Forms\Main\ASI.Designer.cs">
       <DependentUpon>ASI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Modification\Audiences\ModAudit.cs">
+    <Compile Include="Forms\Modification\CartrigeType\ModCartrigeType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Modification\Audiences\ModAudit.Designer.cs">
-      <DependentUpon>ModAudit.cs</DependentUpon>
+    <Compile Include="Forms\Modification\CartrigeType\ModCartrigeType.Designer.cs">
+      <DependentUpon>ModCartrigeType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Modification\Cartrige\ModCartrige.cs">
+    <Compile Include="Forms\Modification\Model\ModModel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Modification\Cartrige\ModCartrige.Designer.cs">
-      <DependentUpon>ModCartrige.cs</DependentUpon>
+    <Compile Include="Forms\Modification\Model\ModModel.Designer.cs">
+      <DependentUpon>ModModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Modification\Room\ModRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Modification\Room\ModRoom.Designer.cs">
+      <DependentUpon>ModRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Modification\Consumable\ModConsumable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Modification\Consumable\ModConsumable.Designer.cs">
+      <DependentUpon>ModConsumable.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Modification\Printer\ModPrinter.cs">
       <SubType>Form</SubType>
@@ -143,11 +157,11 @@
     <Compile Include="Forms\Modification\Setup\ModSetup.Designer.cs">
       <DependentUpon>ModSetup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Modification\StatusWork\ModStatusWork.cs">
+    <Compile Include="Forms\Modification\Fill\ModFill.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Modification\StatusWork\ModStatusWork.Designer.cs">
-      <DependentUpon>ModStatusWork.cs</DependentUpon>
+    <Compile Include="Forms\Modification\Fill\ModFill.Designer.cs">
+      <DependentUpon>ModFill.cs</DependentUpon>
     </Compile>
     <Compile Include="Function\isAudiencesExists.cs" />
     <Compile Include="Function\isCartrigeExists.cs" />
@@ -166,11 +180,11 @@
     <EmbeddedResource Include="Forms\Main\ASI.resx">
       <DependentUpon>ASI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Modification\Audiences\ModAudit.resx">
-      <DependentUpon>ModAudit.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Modification\Room\ModRoom.resx">
+      <DependentUpon>ModRoom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Modification\Cartrige\ModCartrige.resx">
-      <DependentUpon>ModCartrige.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Modification\Consumable\ModConsumable.resx">
+      <DependentUpon>ModConsumable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Modification\Printer\ModPrinter.resx">
       <DependentUpon>ModPrinter.cs</DependentUpon>
@@ -178,8 +192,8 @@
     <EmbeddedResource Include="Forms\Modification\Setup\ModSetup.resx">
       <DependentUpon>ModSetup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Modification\StatusWork\ModStatusWork.resx">
-      <DependentUpon>ModStatusWork.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Modification\Fill\ModFill.resx">
+      <DependentUpon>ModFill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

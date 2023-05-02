@@ -18,12 +18,12 @@ namespace ASI.Function
             DataTable table = new DataTable();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
 
-            MySqlCommand command = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_isAudiencesExists, db.getConnection());
-            command.Parameters.Add("@auditExists", MySqlDbType.VarChar).Value = Forms.Modification.Audiences.ModAudit.Audit;
+            MySqlCommand command = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_isRoomExists, db.getConnection());
+            command.Parameters.Add("@roomExists", MySqlDbType.VarChar).Value = Forms.Modification.Room.ModRoom.Room;
 
             adapter.SelectCommand = command;
             adapter.Fill(table);
-            if (Forms.Modification.Audiences.ModAudit.Audit == Forms.Modification.Audiences.ModAudit.AuditDB)
+            if (Forms.Modification.Room.ModRoom.Room == Forms.Modification.Room.ModRoom.RoomDB)
             {
                 return false;
             }
