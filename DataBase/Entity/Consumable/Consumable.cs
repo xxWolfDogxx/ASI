@@ -15,9 +15,9 @@ namespace ASI.DataBase.Entity.Consumable
         private static bool writeoff;
         private static string note;
         private static bool ready;
-        private static int id_cartrige_type;
-        private static int id_room;
-        private static int id_model;
+        private static string id_cartrige_type;
+        private static string id_room;
+        private static string id_model;
 
         public static int Id { get => id; set => id = value; }
         public static string Name { get => name; set => name = value; }
@@ -26,8 +26,8 @@ namespace ASI.DataBase.Entity.Consumable
         public static bool Writeoff { get => writeoff; set => writeoff = value; }
         public static string Note { get => note; set => note = value; }
         public static bool Ready { get => ready; set => ready = value; }
-        public static int Id_cartrige_type { get => id_cartrige_type; set => id_cartrige_type = value; }
-        public static int Id_room { get => id_room; set => id_room = value; }
-        public static int Id_model { get => id_model; set => id_model = value; }
+        public static string Id_cartrige_type { get => id_cartrige_type; set => id_cartrige_type = value; }
+        public static string Id_room { get => id_room; set => id_room = value; }
+        public static string Id_model { get => id_model; set => id_model = value; }
     }
 }

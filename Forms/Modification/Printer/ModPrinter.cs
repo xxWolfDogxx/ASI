@@ -89,18 +89,25 @@ namespace ASI.Forms.Modification.Printer
             //Заносим в поле почты клиентов
             db.openConnection(); // Открываем подключение к БД
             var AuditCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
-            AuditCom.CommandText = DataBase.Scripts.ScriptMySql.script_SelectPtinter_Audit; // Запрос на какие либо даные
+            AuditCom.CommandText = DataBase.Scripts.ScriptMySql.script_SelectPrinter_Room; // Запрос на какие либо даные
             AuditCom.Connection = db.getConnection(); //Отправляем запрос
 
             var audit = AuditCom.ExecuteReader(); // Создаем переменную, в которую будем вносить по порядку все полученные данные из запроса
             while (audit.Read()) { RoomComBox.Items.Add(audit.GetString(0)); }; // Перебираем данные занося их в переменную
             db.closeConnection(); // Закрываем подключение к БД 
-            RoomComBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            
+
+            //Заносим в поле почты клиентов
+            db.openConnection(); // Открываем подключение к БД
+            var ModelCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
+            ModelCom.CommandText = DataBase.Scripts.ScriptMySql.script_SelectPrinter_Model; // Запрос на какие либо даные
+            ModelCom.Connection = db.getConnection(); //Отправляем запрос
+
+            var model = ModelCom.ExecuteReader(); // Создаем переменную, в которую будем вносить по порядку все полученные данные из запроса
+            while (model.Read()) { ModelComBox.Items.Add(model.GetString(0)); }; // Перебираем данные занося их в переменную
+            db.closeConnection(); // Закрываем подключение к БД 
 
 
-
-
+            RoomComBox.DropDownStyle = ComboBoxStyle.DropDownList;      
 
         }
 
@@ -111,7 +118,7 @@ namespace ASI.Forms.Modification.Printer
             //Заносим в 
             db.openConnection(); // Открываем подключение к БД
             var PrinterDBCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
-            PrinterDBCom.CommandText = "Select InventoryNumber From printers Where id = @idPrinter"; // Запрос на какие либо даные
+            PrinterDBCom.CommandText = "Select Inventory From printer Where id = @idPrinter"; // Запрос на какие либо даные
             PrinterDBCom.Connection = db.getConnection(); //Отправляем запрос
             PrinterDBCom.Parameters.Add("@idPrinter", MySqlDbType.Int32).Value = IdPrinterTextBox.Text;
 

@@ -46,9 +46,16 @@ namespace ASI.DataBase.Scripts
         //Скрипты для основной формы
         //
         //Запрос на справочник принтеров
-        internal static string script_SelectPrinter = $"SELECT * FROM `printer`";
+        internal static string script_SelectPrinter = "SELECT printer.id, printer.name, printer.inventory, room.name , printer.note, model.name " +
+                "FROM printer " +
+                "INNER JOIN room ON printer.id_room = room.Id " +
+                "INNER JOIN model ON printer.id_model = model.id";
         //Запрос на справочник картриджей
-        internal static string script_SelectCartrige = $"SELECT * FROM `cartrige`";
+        internal static string script_SelectCartrige = "SELECT cartrige.id, cartrige.name, cartrige.code, cartrige.buy_date, cartrige.writeoff, cartrige.note, cartrige.ready, cartrige_type.name, room.name, model.name " +
+                "FROM cartrige "+
+                "INNER JOIN cartrige_type ON cartrige.id_cartrige_type = cartrige_type.id "+
+                "INNER JOIN room ON cartrige.id_room = room.Id "+
+                "INNER JOIN model ON cartrige.id_model = model.id";
         //Запрос на справочник аудиторий
         internal static string script_SelectRoom = $"SELECT * FROM `room`";
         //Запрос на справочник Установок
@@ -72,9 +79,9 @@ namespace ASI.DataBase.Scripts
         //Скрипты для Принтеров модификация
         //
         //Запрос на вытаскивание данных в combobox 
-        internal static string script_SelectPtinter_Audit = $"SELECT Auditorium FROM `audiences`";
+        internal static string script_SelectPrinter_Room = $"SELECT name FROM `room`";
         
-        internal static string script_SelectPrinter_ = $"SELECT Auditorium FROM `audiences`";
+        internal static string script_SelectPrinter_Model = $"SELECT name FROM `model`";
         //Отправка на добавление записи
         internal static string script_ADDPrinter_ModPrinter = "INSERT INTO `printer`(`name`, `inventory`, `id_room`, `note`, `id_model`) VALUES(@namePrinter, @inventoryPtinter, @roomPtinter, @notePrinter, @modelPrinter)";
 

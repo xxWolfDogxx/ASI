@@ -128,9 +128,9 @@ namespace ASI.Forms.Main
 
                     GridView.Columns["name"].HeaderText = "Название";
                     GridView.Columns["inventory"].HeaderText = "Инвентарный номер";
-                    GridView.Columns["id_room"].HeaderText = "Аудитория";
+                    GridView.Columns["name1"].HeaderText = "Аудитория";
                     GridView.Columns["note"].HeaderText = "Заметки";
-                    GridView.Columns["id_model"].HeaderText = "Модель";
+                    GridView.Columns["name2"].HeaderText = "Модель";
 
                     break;
 
@@ -150,9 +150,9 @@ namespace ASI.Forms.Main
                     GridView.Columns["writeoff"].HeaderText = "Списанный";
                     GridView.Columns["note"].HeaderText = "Заметки";
                     GridView.Columns["ready"].HeaderText = "Готовность";
-                    GridView.Columns["id_cartrige_type"].HeaderText = "Тип картриджа";
-                    GridView.Columns["id_room"].HeaderText = "Аудитория";
-                    GridView.Columns["id_model"].HeaderText = "Модель";
+                    GridView.Columns["name1"].HeaderText = "Тип картриджа";
+                    GridView.Columns["name2"].HeaderText = "Аудитория";
+                    GridView.Columns["name3"].HeaderText = "Модель";
 
                     break;
 
@@ -182,9 +182,9 @@ namespace ASI.Forms.Main
                     GridView.Columns["id_printer"].HeaderText = "Инвентарный номер принтера";
                     GridView.Columns["id_cartrige"].HeaderText = "Номер картриджа";
                     GridView.Columns["start"].HeaderText = "Дата установки картриджа";
-                    GridView.Columns["start"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                    //GridView.Columns["start"].DefaultCellStyle.Format = "dd/MM/yyyy";
                     GridView.Columns["end"].HeaderText = "Дата снятия картриджа";
-                    GridView.Columns["end"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                    //GridView.Columns["end"].DefaultCellStyle.Format = "dd/MM/yyyy";
                     GridView.Columns["note"].HeaderText = "Заметки";
                     //GridView.Columns["Id_user"].HeaderText = "Пользователь";
 
@@ -332,9 +332,9 @@ namespace ASI.Forms.Main
                     DataBase.Entity.Printer.Printer.Id = Convert.ToInt32(null);
                     DataBase.Entity.Printer.Printer.Name = null;
                     DataBase.Entity.Printer.Printer.Inventory = null;
-                    DataBase.Entity.Printer.Printer.Id_room = Convert.ToInt32(null);
+                    DataBase.Entity.Printer.Printer.Id_room = Convert.ToString(null);
                     DataBase.Entity.Printer.Printer.Note = null;
-                    DataBase.Entity.Printer.Printer.Id_model = Convert.ToInt32(null);
+                    DataBase.Entity.Printer.Printer.Id_model = Convert.ToString(null);
 
                     modPrinter.ShowDialog();
                     UpdateTable();
@@ -351,9 +351,9 @@ namespace ASI.Forms.Main
                         DataBase.Entity.Consumable.Consumable.Writeoff = Convert.ToBoolean(null);
                         DataBase.Entity.Consumable.Consumable.Note = null;
                         DataBase.Entity.Consumable.Consumable.Ready = Convert.ToBoolean(null);
-                        DataBase.Entity.Consumable.Consumable.Id_cartrige_type = Convert.ToInt32(null);
-                        DataBase.Entity.Consumable.Consumable.Id_room = Convert.ToInt32(null);
-                        DataBase.Entity.Consumable.Consumable.Id_model = Convert.ToInt32(null);
+                        DataBase.Entity.Consumable.Consumable.Id_cartrige_type = Convert.ToString(null);
+                        DataBase.Entity.Consumable.Consumable.Id_room = Convert.ToString(null);
+                        DataBase.Entity.Consumable.Consumable.Id_model = Convert.ToString(null);
 
                         modConsumable.ShowDialog();
                         UpdateTable();
@@ -466,9 +466,9 @@ namespace ASI.Forms.Main
                         DataBase.Entity.Printer.Printer.Id =Convert.ToInt32(GridView.CurrentRow.Cells[0].Value.ToString());
                         DataBase.Entity.Printer.Printer.Name = GridView.CurrentRow.Cells[1].Value.ToString();
                         DataBase.Entity.Printer.Printer.Inventory = GridView.CurrentRow.Cells[2].Value.ToString();
-                        DataBase.Entity.Printer.Printer.Id_room = Convert.ToInt32(GridView.CurrentRow.Cells[3].Value.ToString());
-                        DataBase.Entity.Printer.Printer.Note = GridView.CurrentRow.Cells[4].Value.ToString();
-                        DataBase.Entity.Printer.Printer.Id_model = Convert.ToInt32(GridView.CurrentRow.Cells[5].Value.ToString());
+                        DataBase.Entity.Printer.Printer.Id_room = Convert.ToString(GridView.CurrentRow.Cells[3].Value.ToString());
+                        //DataBase.Entity.Printer.Printer.Note = GridView.CurrentRow.Cells[4].Value.ToString();
+                        DataBase.Entity.Printer.Printer.Id_model = Convert.ToString(GridView.CurrentRow.Cells[5].Value.ToString());
 
                         modPrinter.ShowDialog();
                         UpdateTable();
@@ -490,9 +490,9 @@ namespace ASI.Forms.Main
                         DataBase.Entity.Consumable.Consumable.Writeoff = Convert.ToBoolean(GridView.CurrentRow.Cells[4].Value.ToString());
                         DataBase.Entity.Consumable.Consumable.Note = GridView.CurrentRow.Cells[5].Value.ToString();
                         DataBase.Entity.Consumable.Consumable.Ready = Convert.ToBoolean(GridView.CurrentRow.Cells[6].Value.ToString());
-                        DataBase.Entity.Consumable.Consumable.Id_cartrige_type = Convert.ToInt32(GridView.CurrentRow.Cells[7].Value.ToString());
-                        DataBase.Entity.Consumable.Consumable.Id_room = Convert.ToInt32(GridView.CurrentRow.Cells[8].Value.ToString());
-                        DataBase.Entity.Consumable.Consumable.Id_model = Convert.ToInt32(GridView.CurrentRow.Cells[9].Value.ToString());
+                        DataBase.Entity.Consumable.Consumable.Id_cartrige_type = Convert.ToString(GridView.CurrentRow.Cells[7].Value.ToString());
+                        DataBase.Entity.Consumable.Consumable.Id_room = Convert.ToString(GridView.CurrentRow.Cells[8].Value.ToString());
+                        DataBase.Entity.Consumable.Consumable.Id_model = Convert.ToString(GridView.CurrentRow.Cells[9].Value.ToString());
 
                         modConsumable.ShowDialog();
                         UpdateTable();
