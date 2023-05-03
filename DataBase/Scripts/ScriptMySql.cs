@@ -30,7 +30,7 @@ namespace ASI.DataBase.Scripts
         //Запрос на сверку введенной почты с повторами в базе данных
         internal static string script_isUsersExists = $"SELECT * FROM `users` WHERE `Email` = @uL";
         //Запрос на сверку введенной аудитории с повторами в базе данных
-        internal static string script_isRoomExists = $"SELECT * FROM `room` WHERE `name` = @roomExists";
+        internal static string script_isRoomExists = $"SELECT * FROM `room` WHERE `name` = @nameExists";
         //Запрос на сверку введенной аудитории с повторами в базе данных
         internal static string script_isModelExists = $"SELECT * FROM `model` WHERE `name` = @nameExists";
         //Запрос на сверку введенной номером картриджа с повторами в базе данных

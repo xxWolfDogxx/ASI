@@ -11,7 +11,7 @@ namespace ASI.DataBase.Entity.Consumable
         private static int id;
         private static string name;
         private static string code;
-        private static string bay_date;
+        private static DateTime bay_date;
         private static bool writeoff;
         private static string note;
         private static bool ready;
@@ -22,7 +22,7 @@ namespace ASI.DataBase.Entity.Consumable
         public static int Id { get => id; set => id = value; }
         public static string Name { get => name; set => name = value; }
         public static string Code { get => code; set => code = value; }
-        public static string Bay_date { get => bay_date; set => bay_date = value; }
+        public static DateTime Bay_date { get => bay_date; set => bay_date = value; }
         public static bool Writeoff { get => writeoff; set => writeoff = value; }
         public static string Note { get => note; set => note = value; }
         public static bool Ready { get => ready; set => ready = value; }

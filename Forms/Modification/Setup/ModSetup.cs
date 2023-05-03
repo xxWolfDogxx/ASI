@@ -92,7 +92,12 @@ namespace ASI.Forms.Modification.Setup
             AddCom.Parameters.Add("@printerSetup", MySqlDbType.Int32).Value =Convert.ToInt32(PrinterSetupComBox.SelectedValue);
             AddCom.Parameters.Add("@cartrigeSetup", MySqlDbType.Int32).Value = Convert.ToInt32(CartrigeSetupComBox.SelectedValue);
             AddCom.Parameters.Add("@dataStartSetup", MySqlDbType.Date).Value =Convert.ToDateTime(value: DateStartDatePicker.Value);
-            AddCom.Parameters.Add("@dataEndSetup", MySqlDbType.Date).Value = Convert.ToDateTime(value: DateEndDatePicker.Value);
+           
+            if (DateEndDatePicker.Checked)
+                AddCom.Parameters.AddWithValue("@dataEndSetup", DateEndDatePicker.Value);
+            else
+                AddCom.Parameters.AddWithValue("@dataEndSetup", null);
+           
             AddCom.Parameters.Add("@noteSetup", MySqlDbType.VarChar).Value = NoteSetupTextBox.Text;
 
 
@@ -129,7 +134,12 @@ namespace ASI.Forms.Modification.Setup
             AddCom.Parameters.Add("@printerSetup", MySqlDbType.Int32).Value = Convert.ToInt32(PrinterSetupComBox.SelectedValue);
             AddCom.Parameters.Add("@cartrigeSetup", MySqlDbType.Int32).Value = Convert.ToInt32(CartrigeSetupComBox.SelectedValue);
             AddCom.Parameters.Add("@dataStartSetup", MySqlDbType.Date).Value = Convert.ToDateTime(value: DateStartDatePicker.Value);
-            AddCom.Parameters.Add("@dataEndSetup", MySqlDbType.Date).Value =
+
+            if (DateEndDatePicker.Checked)
+                AddCom.Parameters.AddWithValue("@dataEndSetup", DateEndDatePicker.Value);
+            else
+                AddCom.Parameters.AddWithValue("@dataEndSetup", null);
+
             AddCom.Parameters.Add("@noteSetup", MySqlDbType.VarChar).Value = NoteSetupTextBox.Text;
 
             db.closeConnection(); //Закрываем подключение к БД

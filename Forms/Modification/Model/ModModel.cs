@@ -97,7 +97,7 @@ namespace ASI.Forms.Modification.Model
             while (consumableDB.Read()) { ModelDB = (consumableDB.GetString(0)); }; // Перебираем данные занося их в переменную
             db.closeConnection(); // Закрываем подключение к БД 
 
-            MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_InsertModel_ModModel, db.getConnection());
+            MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateModel_ModModel, db.getConnection());
 
             db.openConnection();
             //Заносим данные в запрос

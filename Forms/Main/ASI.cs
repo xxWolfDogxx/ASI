@@ -318,7 +318,7 @@ namespace ASI.Forms.Main
                         DataBase.Entity.Consumable.Consumable.Id = Convert.ToInt32(null);
                         DataBase.Entity.Consumable.Consumable.Name = null;
                         DataBase.Entity.Consumable.Consumable.Code = null;
-                        DataBase.Entity.Consumable.Consumable.Bay_date =  null;
+                        DataBase.Entity.Consumable.Consumable.Bay_date = Convert.ToDateTime(DateTime.Today);
                         DataBase.Entity.Consumable.Consumable.Writeoff = Convert.ToBoolean(null);
                         DataBase.Entity.Consumable.Consumable.Note = null;
                         DataBase.Entity.Consumable.Consumable.Ready = Convert.ToBoolean(null);
@@ -457,7 +457,7 @@ namespace ASI.Forms.Main
                         DataBase.Entity.Consumable.Consumable.Id = Convert.ToInt32(GridView.CurrentRow.Cells[0].Value.ToString());
                         DataBase.Entity.Consumable.Consumable.Name = GridView.CurrentRow.Cells[1].Value.ToString();
                         DataBase.Entity.Consumable.Consumable.Code = GridView.CurrentRow.Cells[2].Value.ToString();
-                        DataBase.Entity.Consumable.Consumable.Bay_date = GridView.CurrentRow.Cells[3].Value.ToString();
+                        DataBase.Entity.Consumable.Consumable.Bay_date = Convert.ToDateTime(GridView.CurrentRow.Cells[3].Value);
                         DataBase.Entity.Consumable.Consumable.Writeoff = Convert.ToBoolean(GridView.CurrentRow.Cells[4].Value);
                         DataBase.Entity.Consumable.Consumable.Note = GridView.CurrentRow.Cells[5].Value.ToString();
                         DataBase.Entity.Consumable.Consumable.Ready = Convert.ToBoolean(GridView.CurrentRow.Cells[6].Value);

@@ -170,7 +170,7 @@ namespace ASI.Forms.Modification.Consumable
             NameСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Name;
             CodeСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Code;
             ///MessageBox.Show(DataBase.Entity.Consumable.Consumable.Bay_date.ToString());
-            DateConsumableDatePicker.Text = DataBase.Entity.Consumable.Consumable.Bay_date.ToString();
+            DateConsumableDatePicker.Value = Convert.ToDateTime(DataBase.Entity.Consumable.Consumable.Bay_date);
 
             if (DataBase.Entity.Consumable.Consumable.Writeoff == true)
             {
