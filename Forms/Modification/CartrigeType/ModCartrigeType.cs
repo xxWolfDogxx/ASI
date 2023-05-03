@@ -44,7 +44,16 @@ namespace ASI.Forms.Modification.CartrigeType
 
             IdTypeTextBox.Text = Convert.ToString(DataBase.Entity.CartrigeType.CartrigeType.Id);
             TypeTextBox.Text = DataBase.Entity.CartrigeType.CartrigeType.Name;
-            RefillComBox.Text =Convert.ToString( DataBase.Entity.CartrigeType.CartrigeType.Refill);
+
+            if(DataBase.Entity.CartrigeType.CartrigeType.Refill == true)
+            {
+                RefillComBox.SelectedItem = "Да";
+            }
+            else if (DataBase.Entity.CartrigeType.CartrigeType.Refill == false)
+            {
+                RefillComBox.SelectedItem = "Нет";
+            }
+
 
             RefillComBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
@@ -70,7 +79,7 @@ namespace ASI.Forms.Modification.CartrigeType
             db.openConnection();
             //Заносим данные в запрос
             AddCom.Parameters.Add("@type", MySqlDbType.VarChar).Value = TypeTextBox.Text;
-            AddCom.Parameters.Add("@refill", MySqlDbType.VarChar).Value = refillBool;
+            AddCom.Parameters.Add("@refill", MySqlDbType.UByte).Value = refillBool;
 
 
             db.closeConnection(); //Закрываем подключение к БД
@@ -135,7 +144,7 @@ namespace ASI.Forms.Modification.CartrigeType
             //Заносим данные в запрос
             AddCom.Parameters.Add("@idType", MySqlDbType.Int32).Value = Convert.ToInt32(IdTypeTextBox.Text);
             AddCom.Parameters.Add("@type", MySqlDbType.VarChar).Value = TypeTextBox.Text;
-            AddCom.Parameters.Add("@refill", MySqlDbType.VarChar).Value = refillBool;
+            AddCom.Parameters.Add("@refill", MySqlDbType.UByte).Value = refillBool;
 
 
             db.closeConnection(); //Закрываем подключение к БД

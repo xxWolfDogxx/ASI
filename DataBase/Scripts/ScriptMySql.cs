@@ -46,22 +46,37 @@ namespace ASI.DataBase.Scripts
         //Скрипты для основной формы
         //
         //Запрос на справочник принтеров
-        internal static string script_SelectPrinter = "SELECT printer.id, printer.name, printer.inventory, room.name , printer.note, model.name " +
+        internal static string script_SelectPrinter = "SELECT printer.id AS ID, printer.name AS Название, printer.inventory AS 'Инвентарный номер', room.name AS Аудитория , printer.note AS Заметки, model.name AS Модель " +
                 "FROM printer " +
                 "INNER JOIN room ON printer.id_room = room.Id " +
                 "INNER JOIN model ON printer.id_model = model.id";
         //Запрос на справочник картриджей
-        internal static string script_SelectCartrige = "SELECT cartrige.id, cartrige.name, cartrige.code, cartrige.buy_date, cartrige.writeoff, cartrige.note, cartrige.ready, cartrige_type.name, room.name, model.name " +
+        internal static string script_SelectCartrige = "SELECT cartrige.id AS ID, cartrige.name AS Название, cartrige.code AS 'Уникальный номер', cartrige.buy_date AS 'Дата покупки', cartrige.writeoff AS Списанный, cartrige.note AS Заметки, cartrige.ready AS Готовность, cartrige_type.name AS 'Тип расходника', room.name AS Аудитория, model.name AS 'Подходит к модели'" +
                 "FROM cartrige "+
                 "INNER JOIN cartrige_type ON cartrige.id_cartrige_type = cartrige_type.id "+
                 "INNER JOIN room ON cartrige.id_room = room.Id "+
                 "INNER JOIN model ON cartrige.id_model = model.id";
-        //Запрос на справочник аудиторий
-        internal static string script_SelectRoom = $"SELECT * FROM `room`";
+
+        //ModConsumamble
+
+
         //Запрос на справочник Установок
-        internal static string script_SelectSetup = $"SELECT * FROM `setup`";
+        internal static string script_SelectSetup = "SELECT setup.id AS 'ID', printer.name AS 'Название принтера', cartrige.code AS 'Номер расходника', setup.start AS 'Дата установки', setup.end AS 'Дата снятия', setup.note AS 'Заметки' " + 
+                "FROM setup "+
+                "INNER JOIN printer ON setup.id_printer = printer.id "+
+                "INNER JOIN cartrige ON setup.id_cartrige = cartrige.id";
+
         //Запрос на справочник перезаправленных картриджей
-        internal static string script_SelectFill = $"SELECT * FROM `fill`";
+        internal static string script_SelectFill = "SELECT fill.id AS 'ID', cartrige.code AS 'Номер картриджа', fill.date AS 'Дата заправки', fill.note AS 'Заметки' "+
+                "FROM fill "+
+                "INNER JOIN cartrige ON fill.id_cartrige = cartrige.id";
+
+
+
+        internal static string script_SelectRoom="SELECT * FROM `room`";
+        internal static string script_SelectPrinter_ModSetup="SELECT * FROM `printer`";
+        internal static string script_SelectCartrige_ModSetup= "SELECT * FROM `cartrige` ";
+
         //Запрос на справочник перезаправленных картриджей
         internal static string script_SelectModel = $"SELECT * FROM `model`";
         //Запрос на справочник перезаправленных картриджей
@@ -79,7 +94,7 @@ namespace ASI.DataBase.Scripts
         //Скрипты для Принтеров модификация
         //
         //Запрос на вытаскивание данных в combobox 
-        internal static string script_SelectPrinter_Room = $"SELECT name FROM `room`";
+        internal static string script_SelectPrinter_Room = $"SELECT id AS id_room, name AS name_room FROM `room`";
         
         internal static string script_SelectPrinter_Model = $"SELECT name FROM `model`";
         //Отправка на добавление записи
@@ -143,9 +158,9 @@ namespace ASI.DataBase.Scripts
         //Запрос на вытаскивание данных в combobox Номер картриджа
         internal static string script_SelectNumberCartrige = $"SELECT Number FROM `cartrige`";
         //Запрос на изменение записи установок
-        internal static string script_UpdateSetup = "UPDATE `setup` SET `Invent_printer`=@inventPrinterSetup,`Number_cartrige`=@numberCartrigeSetup,`Data_setup`=@dataSetup,`Data_withdrawals`=@dataWithDrawals WHERE `Id` = @idSetup";
+        internal static string script_UpdateSetup = "UPDATE `setup` SET `id_printer` = @printerSetup,`id_cartrige`=@cartrigeSetup,`start`=@dataStartSetup,`end`=@dataEndSetup,`note`=@noteSetup WHERE `id`= @idSetup";
         //Запрос на вставку записи установок
-        internal static string script_InsertSetup = "INSERT INTO `setup`(`Invent_printer`, `Number_cartrige`, `Data_setup`, `Data_withdrawals`) VALUES (@inventPrinterSetup,@numberCartrigeSetup,@dataSetup,@dataWithDrawals)";
+        internal static string script_InsertSetup = "INSERT INTO `setup`(`id_printer`, `id_cartrige`, `start`, `end`, `note`) VALUES (@printerSetup,@cartrigeSetup,@dataStartSetup,@dataEndSetup,@noteSetup)";
     }
     
 }

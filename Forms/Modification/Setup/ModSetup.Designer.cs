@@ -31,6 +31,8 @@ namespace ASI.Forms.Modification.Setup
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModSetup));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.NoteSetupTextBox = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.DateEndDatePicker = new System.Windows.Forms.DateTimePicker();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -47,9 +49,8 @@ namespace ASI.Forms.Modification.Setup
             this.AddSetupBut = new System.Windows.Forms.Button();
             this.LogoPanel = new System.Windows.Forms.Panel();
             this.LogoLabel = new System.Windows.Forms.Label();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.NoteSetupTextBox = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -57,7 +58,6 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox10.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.LogoPanel.SuspendLayout();
-            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -78,6 +78,28 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Поля";
             // 
+            // groupBox7
+            // 
+            this.groupBox7.AutoSize = true;
+            this.groupBox7.Controls.Add(this.NoteSetupTextBox);
+            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox7.Location = new System.Drawing.Point(10, 341);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox7.Size = new System.Drawing.Size(564, 64);
+            this.groupBox7.TabIndex = 6;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Заметки";
+            // 
+            // NoteSetupTextBox
+            // 
+            this.NoteSetupTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.NoteSetupTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NoteSetupTextBox.Location = new System.Drawing.Point(10, 23);
+            this.NoteSetupTextBox.Name = "NoteSetupTextBox";
+            this.NoteSetupTextBox.Size = new System.Drawing.Size(544, 31);
+            this.NoteSetupTextBox.TabIndex = 1;
+            // 
             // groupBox6
             // 
             this.groupBox6.AutoSize = true;
@@ -93,7 +115,8 @@ namespace ASI.Forms.Modification.Setup
             // 
             // DateEndDatePicker
             // 
-            this.DateEndDatePicker.CustomFormat = "dd.MM.yyyy";
+            this.DateEndDatePicker.Checked = false;
+            this.DateEndDatePicker.CustomFormat = "";
             this.DateEndDatePicker.Dock = System.Windows.Forms.DockStyle.Top;
             this.DateEndDatePicker.Font = new System.Drawing.Font("Calibri", 14F);
             this.DateEndDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
@@ -101,9 +124,11 @@ namespace ASI.Forms.Modification.Setup
             this.DateEndDatePicker.MaxDate = new System.DateTime(2035, 12, 31, 0, 0, 0, 0);
             this.DateEndDatePicker.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.DateEndDatePicker.Name = "DateEndDatePicker";
+            this.DateEndDatePicker.ShowCheckBox = true;
             this.DateEndDatePicker.Size = new System.Drawing.Size(544, 30);
             this.DateEndDatePicker.TabIndex = 2;
             this.DateEndDatePicker.Value = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
+            this.DateEndDatePicker.ValueChanged += new System.EventHandler(this.DateEndDatePicker_ValueChanged);
             // 
             // groupBox5
             // 
@@ -275,28 +300,6 @@ namespace ASI.Forms.Modification.Setup
             this.LogoLabel.TabIndex = 0;
             this.LogoLabel.Text = "Добавление записи";
             // 
-            // groupBox7
-            // 
-            this.groupBox7.AutoSize = true;
-            this.groupBox7.Controls.Add(this.NoteSetupTextBox);
-            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox7.Location = new System.Drawing.Point(10, 341);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox7.Size = new System.Drawing.Size(564, 64);
-            this.groupBox7.TabIndex = 6;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Заметки";
-            // 
-            // NoteSetupTextBox
-            // 
-            this.NoteSetupTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.NoteSetupTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NoteSetupTextBox.Location = new System.Drawing.Point(10, 23);
-            this.NoteSetupTextBox.Name = "NoteSetupTextBox";
-            this.NoteSetupTextBox.Size = new System.Drawing.Size(544, 31);
-            this.NoteSetupTextBox.TabIndex = 1;
-            // 
             // ModSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -314,6 +317,8 @@ namespace ASI.Forms.Modification.Setup
             this.Load += new System.EventHandler(this.ModSetup_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
@@ -323,8 +328,6 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox1.ResumeLayout(false);
             this.LogoPanel.ResumeLayout(false);
             this.LogoPanel.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

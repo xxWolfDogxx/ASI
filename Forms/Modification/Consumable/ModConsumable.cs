@@ -39,7 +39,7 @@ namespace ASI.Forms.Modification.Consumable
                 writeoffBool = _convertStringToBoolWriteoff;
             }
 
-            if (Convert.ToString(ReadyConsumableComBox.SelectedItem) == "Установлен")
+            if (Convert.ToString(ReadyConsumableComBox.SelectedItem) == "Да")
             {
                 var _convertStringToBoolReady = true;
                 readyBool = _convertStringToBoolReady;
@@ -58,12 +58,12 @@ namespace ASI.Forms.Modification.Consumable
             AddCom.Parameters.Add("@nameConsumable", MySqlDbType.VarChar).Value = NameСonsumableTextBox.Text;
             AddCom.Parameters.Add("@codeConsumable", MySqlDbType.VarChar).Value = CodeСonsumableTextBox.Text;
             AddCom.Parameters.Add("@buy_dateConsumable", MySqlDbType.Date).Value = DateConsumableDatePicker.Value;
-            AddCom.Parameters.Add("@writeoffConsumable", MySqlDbType.VarChar).Value = writeoffBool;
+            AddCom.Parameters.Add("@writeoffConsumable", MySqlDbType.UByte).Value = writeoffBool;
             AddCom.Parameters.Add("@noteConsumable", MySqlDbType.VarChar).Value = NoteConsumableTextBox.Text;
-            AddCom.Parameters.Add("@readyConsumable", MySqlDbType.VarChar).Value = readyBool;
-            AddCom.Parameters.Add("@typeConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(TypeConsumableComBox.SelectedItem);
-            AddCom.Parameters.Add("@roomConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(RoomConsumableComBox.SelectedItem);
-            AddCom.Parameters.Add("@modelConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(ModelConsumableComBox.SelectedItem);
+            AddCom.Parameters.Add("@readyConsumable", MySqlDbType.UByte).Value = readyBool;
+            AddCom.Parameters.Add("@typeConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(TypeConsumableComBox.SelectedValue);
+            AddCom.Parameters.Add("@roomConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(RoomConsumableComBox.SelectedValue);
+            AddCom.Parameters.Add("@modelConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(ModelConsumableComBox.SelectedValue);
 
             db.closeConnection(); //Закрываем подключение к БД
 
@@ -97,14 +97,6 @@ namespace ASI.Forms.Modification.Consumable
         {
             DB db = new DB(); //Объявляем подключение к классу "Подключения БД"
 
-            WriteoffConsumableComBox.Items.Add("Да");
-            WriteoffConsumableComBox.Items.Add("Нет");
-
-            ReadyConsumableComBox.Items.Add("Свободен");
-            ReadyConsumableComBox.Items.Add("Установлен");
-
-
-
             switch (Forms.Main.ASI.Modif)
             {
                 case ("Изменить"):
@@ -119,16 +111,91 @@ namespace ASI.Forms.Modification.Consumable
                     break;
             }
 
+
+            //
+            //Задаем первичные значения для ComBox
+            //
+            MySqlDataAdapter mySql_dataAdapter = new MySqlDataAdapter();
+            DataTable tableRoom = new DataTable();
+            DataTable tableModel = new DataTable();
+            DataTable tableType = new DataTable();
+
+            //RoomComBox insert iteam
+            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectRoom, db.getConnection());
+            mySql_dataAdapter.Fill(tableRoom);
+
+            //ModelComBox insert iteam
+            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectModel, db.getConnection());
+            mySql_dataAdapter.Fill(tableModel);
+            
+            //ModelComBox insert iteam
+            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectCartrigeType, db.getConnection());
+            mySql_dataAdapter.Fill(tableType);
+
+            //Source for ComBox
+            RoomConsumableComBox.DataSource = tableRoom;
+            ModelConsumableComBox.DataSource = tableModel;
+            TypeConsumableComBox.DataSource = tableType;
+
+            //Отбираем все значения что хотим показать и те что хотим скрыть
+            RoomConsumableComBox.DisplayMember = "name";
+            RoomConsumableComBox.ValueMember = "id";
+
+            ModelConsumableComBox.DisplayMember = "name";
+            ModelConsumableComBox.ValueMember = "id";
+            
+            TypeConsumableComBox.DisplayMember = "name";
+            TypeConsumableComBox.ValueMember = "id";
+
+            WriteoffConsumableComBox.Items.Add("Да");
+            WriteoffConsumableComBox.Items.Add("Нет");
+
+            ReadyConsumableComBox.Items.Add("Да");
+            ReadyConsumableComBox.Items.Add("Нет");
+
+
             //
             //Блокируем ввод от руки в combox
             //
-           ReadyConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            ReadyConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
            TypeConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
            RoomConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
            ModelConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
-           WriteoffConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;         
+           WriteoffConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            
+            //
+            //Заносим в поля данные
+            //
+            IdСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Id.ToString();
+            NameСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Name;
+            CodeСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Code;
+            ///MessageBox.Show(DataBase.Entity.Consumable.Consumable.Bay_date.ToString());
+            DateConsumableDatePicker.Text = DataBase.Entity.Consumable.Consumable.Bay_date.ToString();
+
+            if (DataBase.Entity.Consumable.Consumable.Writeoff == true)
+            {
+                WriteoffConsumableComBox.SelectedItem = "Да";
+            }
+            else if (DataBase.Entity.Consumable.Consumable.Writeoff == false)
+            {
+                WriteoffConsumableComBox.SelectedItem = "Нет";
+            }
+
+            RoomConsumableComBox.SelectedItem = DataBase.Entity.Consumable.Consumable.Id_room;
+            NoteConsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Note;
+
+            if(DataBase.Entity.Consumable.Consumable.Ready == true)
+            {
+                ReadyConsumableComBox.SelectedItem = "Да";
+            }
+            else if (DataBase.Entity.Consumable.Consumable.Ready == false)
+            {
+                ReadyConsumableComBox.SelectedItem = "Нет";
+            }
+            ModelConsumableComBox.SelectedItem = DataBase.Entity.Consumable.Consumable.Id_model;
+            TypeConsumableComBox.SelectedItem = DataBase.Entity.Consumable.Consumable.Id_cartrige_type;
+
+
         }
 
         private void ModCartrigeBut_Click(object sender, EventArgs e)
@@ -147,7 +214,7 @@ namespace ASI.Forms.Modification.Consumable
                 writeoffBool = _convertStringToBoolWriteoff;
             }
 
-            if (Convert.ToString(ReadyConsumableComBox.SelectedItem) == "Установлен")
+            if (Convert.ToString(ReadyConsumableComBox.SelectedItem) == "Да")
             {
                 var _convertStringToBoolReady = true;
                 readyBool = _convertStringToBoolReady;
@@ -171,19 +238,19 @@ namespace ASI.Forms.Modification.Consumable
             db.closeConnection(); // Закрываем подключение к БД 
 
             MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateConsumable_ModConsumable, db.getConnection());
-
+           
             db.openConnection();
             //Заносим данные в запрос
             AddCom.Parameters.Add("@idConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(IdСonsumableTextBox.Text);
             AddCom.Parameters.Add("@nameConsumable", MySqlDbType.VarChar).Value = NameСonsumableTextBox.Text;
             AddCom.Parameters.Add("@codeConsumable", MySqlDbType.VarChar).Value = CodeСonsumableTextBox.Text;
             AddCom.Parameters.Add("@buy_dateConsumable", MySqlDbType.Date).Value = DateConsumableDatePicker.Value;
-            AddCom.Parameters.Add("@writeoffConsumable", MySqlDbType.VarChar).Value = writeoffBool;
+            AddCom.Parameters.Add("@writeoffConsumable", MySqlDbType.UByte).Value = writeoffBool;
             AddCom.Parameters.Add("@noteConsumable", MySqlDbType.VarChar).Value = NoteConsumableTextBox.Text;
-            AddCom.Parameters.Add("@readyConsumable", MySqlDbType.VarChar).Value = readyBool;
-            AddCom.Parameters.Add("@typeConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(TypeConsumableComBox.SelectedItem);
-            AddCom.Parameters.Add("@roomConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(RoomConsumableComBox.SelectedItem);
-            AddCom.Parameters.Add("@modelConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(ModelConsumableComBox.SelectedItem);
+            AddCom.Parameters.Add("@readyConsumable", MySqlDbType.UByte).Value = readyBool;
+            AddCom.Parameters.Add("@typeConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(TypeConsumableComBox.SelectedValue);
+            AddCom.Parameters.Add("@roomConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(RoomConsumableComBox.SelectedValue);
+            AddCom.Parameters.Add("@modelConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(ModelConsumableComBox.SelectedValue);
 
             db.closeConnection(); //Закрываем подключение к БД
 

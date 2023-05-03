@@ -34,9 +34,9 @@ namespace ASI.Forms.Modification.Printer
             //Заносим данные в запрос
             AddCom.Parameters.Add("@namePrinter", MySqlDbType.VarChar).Value = NamePrinterTextBox.Text;
             AddCom.Parameters.Add("@inventoryPtinter", MySqlDbType.VarChar).Value = InventoryPrinterTextBox.Text;
-            AddCom.Parameters.Add("@roomPtinter", MySqlDbType.VarChar).Value = RoomComBox.SelectedItem;
+            AddCom.Parameters.Add("@roomPtinter", MySqlDbType.Int32).Value = RoomComBox.SelectedValue;
             AddCom.Parameters.Add("@notePrinter", MySqlDbType.VarChar).Value = NoteTextBox.Text;
-            AddCom.Parameters.Add("@modelPrinter", MySqlDbType.VarChar).Value = ModelComBox.SelectedItem;
+            AddCom.Parameters.Add("@modelPrinter", MySqlDbType.Int32).Value = ModelComBox.SelectedValue;
             db.closeConnection(); //Закрываем подключение к БД
 
             PrinterInven = InventoryPrinterTextBox.Text;
@@ -68,6 +68,7 @@ namespace ASI.Forms.Modification.Printer
         {
             DB db = new DB();
 
+            //Hide button option
             switch (Forms.Main.ASI.Modif)
             {
                 case ("Изменить"):
@@ -82,32 +83,45 @@ namespace ASI.Forms.Modification.Printer
                     break;
             }
 
+            //
+            //Задаем первичные значения для ComBox
+            //
+            MySqlDataAdapter mySql_dataAdapter = new MySqlDataAdapter();
+            DataTable tableRoom = new DataTable();
+            DataTable tableModel = new DataTable();
 
+            //RoomComBox insert iteam
+            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectRoom, db.getConnection());            
+            mySql_dataAdapter.Fill(tableRoom);
 
-            //---------------------------------------------------------------------------------------------------------------------------------------
+            //ModelComBox insert iteam
+            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectModel, db.getConnection());
+            mySql_dataAdapter.Fill(tableModel);
 
-            //Заносим в поле почты клиентов
-            db.openConnection(); // Открываем подключение к БД
-            var AuditCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
-            AuditCom.CommandText = DataBase.Scripts.ScriptMySql.script_SelectPrinter_Room; // Запрос на какие либо даные
-            AuditCom.Connection = db.getConnection(); //Отправляем запрос
+            //Source for ComBox
+            RoomComBox.DataSource=tableRoom;
+            ModelComBox.DataSource=tableModel;
+           
+            //Отбираем все значения что хотим показать и те что хотим скрыть
+            RoomComBox.DisplayMember = "name";
+            RoomComBox.ValueMember = "id";
+            ModelComBox.DisplayMember = "name";
+            ModelComBox.ValueMember = "id";
 
-            var audit = AuditCom.ExecuteReader(); // Создаем переменную, в которую будем вносить по порядку все полученные данные из запроса
-            while (audit.Read()) { RoomComBox.Items.Add(audit.GetString(0)); }; // Перебираем данные занося их в переменную
-            db.closeConnection(); // Закрываем подключение к БД 
-
-            //Заносим в поле почты клиентов
-            db.openConnection(); // Открываем подключение к БД
-            var ModelCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
-            ModelCom.CommandText = DataBase.Scripts.ScriptMySql.script_SelectPrinter_Model; // Запрос на какие либо даные
-            ModelCom.Connection = db.getConnection(); //Отправляем запрос
-
-            var model = ModelCom.ExecuteReader(); // Создаем переменную, в которую будем вносить по порядку все полученные данные из запроса
-            while (model.Read()) { ModelComBox.Items.Add(model.GetString(0)); }; // Перебираем данные занося их в переменную
-            db.closeConnection(); // Закрываем подключение к БД 
-
-
+            //Блокируем ввод от руки в ComBox
             RoomComBox.DropDownStyle = ComboBoxStyle.DropDownList;      
+            ModelComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+
+            //
+            //Заносим в поля данные
+            //
+            IdPrinterTextBox.Text = DataBase.Entity.Printer.Printer.Id.ToString();
+            NamePrinterTextBox.Text = DataBase.Entity.Printer.Printer.Name;
+            InventoryPrinterTextBox.Text = DataBase.Entity.Printer.Printer.Inventory;
+            RoomComBox.SelectedItem = DataBase.Entity.Printer.Printer.Id_room;
+            NoteTextBox.Text = DataBase.Entity.Printer.Printer.Note;
+            ModelComBox.SelectedItem = DataBase.Entity.Printer.Printer.Id_model;
 
         }
 
@@ -133,9 +147,9 @@ namespace ASI.Forms.Modification.Printer
             AddCom.Parameters.Add("@idPrinter", MySqlDbType.Int32).Value = IdPrinterTextBox.Text;
             AddCom.Parameters.Add("@namePrinter", MySqlDbType.VarChar).Value = NamePrinterTextBox.Text;
             AddCom.Parameters.Add("@inventoryPtinter", MySqlDbType.VarChar).Value = InventoryPrinterTextBox.Text;
-            AddCom.Parameters.Add("@roomPtinter", MySqlDbType.VarChar).Value = RoomComBox.SelectedItem;
+            AddCom.Parameters.Add("@roomPtinter", MySqlDbType.Int32).Value = RoomComBox.SelectedValue;
             AddCom.Parameters.Add("@notePrinter", MySqlDbType.VarChar).Value = NoteTextBox.Text;
-            AddCom.Parameters.Add("@modelPrinter", MySqlDbType.VarChar).Value = ModelComBox.SelectedItem;
+            AddCom.Parameters.Add("@modelPrinter", MySqlDbType.Int32).Value = ModelComBox.SelectedValue;
             db.closeConnection(); //Закрываем подключение к БД
 
             PrinterInven = InventoryPrinterTextBox.Text;
@@ -166,6 +180,7 @@ namespace ASI.Forms.Modification.Printer
 
         private void CancleBut_Click(object sender, EventArgs e)
         {
+            
             Hide();
             this.Close();
         }
