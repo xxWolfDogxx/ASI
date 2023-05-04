@@ -68,6 +68,11 @@ namespace ASI.Forms.Modification.Fill
                     break;
             }
 
+
+            //
+            //Блокируем ввод от руки в combox
+            //
+            RefillComBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void ModStatusWorkBut_Click(object sender, EventArgs e)

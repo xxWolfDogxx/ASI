@@ -181,7 +181,7 @@ namespace ASI.Forms.Modification.Consumable
                 WriteoffConsumableComBox.SelectedItem = "Нет";
             }
 
-            RoomConsumableComBox.SelectedItem = DataBase.Entity.Consumable.Consumable.Id_room;
+            RoomConsumableComBox.SelectedValue = DataBase.Entity.Consumable.Consumable.Id_room;
             NoteConsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Note;
 
             if(DataBase.Entity.Consumable.Consumable.Ready == true)
@@ -192,9 +192,9 @@ namespace ASI.Forms.Modification.Consumable
             {
                 ReadyConsumableComBox.SelectedItem = "Нет";
             }
-            ModelConsumableComBox.SelectedItem = DataBase.Entity.Consumable.Consumable.Id_model;
-            TypeConsumableComBox.SelectedItem = DataBase.Entity.Consumable.Consumable.Id_cartrige_type;
-
+            ModelConsumableComBox.SelectedValue = DataBase.Entity.Consumable.Consumable.Id_model;
+            TypeConsumableComBox.SelectedValue = DataBase.Entity.Consumable.Consumable.Id_cartrige_type;
+            MessageBox.Show(DataBase.Entity.Consumable.Consumable.Id_cartrige_type);
 
         }
 

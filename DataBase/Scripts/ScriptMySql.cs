@@ -30,7 +30,7 @@ namespace ASI.DataBase.Scripts
         //Запрос на сверку введенной почты с повторами в базе данных
         internal static string script_isUsersExists = $"SELECT * FROM `users` WHERE `Email` = @uL";
         //Запрос на сверку введенной аудитории с повторами в базе данных
-        internal static string script_isRoomExists = $"SELECT * FROM `room` WHERE `name` = @nameExists";
+        internal static string script_isRoomExists = $"SELECT * FROM `room` WHERE `name` = @roomExists";
         //Запрос на сверку введенной аудитории с повторами в базе данных
         internal static string script_isModelExists = $"SELECT * FROM `model` WHERE `name` = @nameExists";
         //Запрос на сверку введенной номером картриджа с повторами в базе данных
@@ -51,7 +51,7 @@ namespace ASI.DataBase.Scripts
                 "INNER JOIN room ON printer.id_room = room.Id " +
                 "INNER JOIN model ON printer.id_model = model.id";
         //Запрос на справочник картриджей
-        internal static string script_SelectCartrige = "SELECT cartrige.id AS ID, cartrige.name AS Название, cartrige.code AS 'Уникальный номер', cartrige.buy_date AS 'Дата покупки', cartrige.writeoff AS Списанный, cartrige.note AS Заметки, cartrige.ready AS Готовность, cartrige_type.name AS 'Тип расходника', room.name AS Аудитория, model.name AS 'Подходит к модели'" +
+        internal static string script_SelectCartrige = "SELECT cartrige.id AS ID, cartrige.name AS Название, cartrige.code AS 'Уникальный номер', cartrige.buy_date AS 'Дата покупки', cartrige.writeoff AS Списанный, cartrige.note AS Заметки, cartrige.ready AS Готовность, cartrige.id_cartrige_type AS 'id_type',cartrige_type.name AS 'Тип расходника', cartrige.id_room, room.name AS Аудитория, cartrige.id_model, model.name AS 'Подходит к модели'" +
                 "FROM cartrige "+
                 "INNER JOIN cartrige_type ON cartrige.id_cartrige_type = cartrige_type.id "+
                 "INNER JOIN room ON cartrige.id_room = room.Id "+

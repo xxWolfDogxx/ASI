@@ -23,20 +23,6 @@ namespace ASI.Forms.Modification.Setup
         {
             DB db = new DB(); //Объявляем подключение к классу "Подключения БД"
 
-            switch (Forms.Main.ASI.Modif)
-            {
-                case ("Изменить"):
-                    LogoLabel.Text = "Изменение записи";
-                    AddSetupBut.Visible = false;
-                    ModSetupBut.Visible = true;
-                    break;
-                case ("Добавить"):
-                    LogoLabel.Text = "Добавление записи";
-                    AddSetupBut.Visible = true;
-                    ModSetupBut.Visible = false;
-                    break;
-            }
-
             //
             //Задаем первичные значения для ComBox
             //
@@ -66,16 +52,66 @@ namespace ASI.Forms.Modification.Setup
             PrinterSetupComBox.DropDownStyle = ComboBoxStyle.DropDownList;
             CartrigeSetupComBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
+            switch (Forms.Main.ASI.Modif)
+            {
+                case ("Изменить"):
+                    LogoLabel.Text = "Изменение записи";
+                    AddSetupBut.Visible = false;
+                    ModSetupBut.Visible = true;
+                    CartrigeSetupComBox.Enabled = true;
 
-            //
-            //Заносим в поля данные
-            //
-            IdSetupTextBox.Text = DataBase.Entity.Setup.Setup.Id.ToString();
-            PrinterSetupComBox.SelectedItem = DataBase.Entity.Setup.Setup.Id_printer;
-            CartrigeSetupComBox.SelectedItem = DataBase.Entity.Setup.Setup.Id_cartrige;
-            DateStartDatePicker.Text = DataBase.Entity.Setup.Setup.Start;
-            DateEndDatePicker.Text = DataBase.Entity.Setup.Setup.End;
-            NoteSetupTextBox.Text = DataBase.Entity.Setup.Setup.Note;
+                    //
+                    //Заносим в поля данные
+                    //
+                    IdSetupTextBox.Text = DataBase.Entity.Setup.Setup.Id.ToString();
+                    PrinterSetupComBox.SelectedItem = DataBase.Entity.Setup.Setup.Id_printer;
+                    CartrigeSetupComBox.SelectedItem = DataBase.Entity.Setup.Setup.Id_cartrige;
+                    DateStartDatePicker.Text = DataBase.Entity.Setup.Setup.Start;
+                    DateEndDatePicker.Text = DataBase.Entity.Setup.Setup.End;
+                    NoteSetupTextBox.Text = DataBase.Entity.Setup.Setup.Note;
+
+                    break;
+                case ("Добавить"):
+                    LogoLabel.Text = "Добавление записи";
+                    AddSetupBut.Visible = true;
+                    ModSetupBut.Visible = false;
+                    CartrigeSetupComBox.Enabled = true;
+
+                    //
+                    //Заносим в поля данные
+                    //
+                    IdSetupTextBox.Text = DataBase.Entity.Setup.Setup.Id.ToString();
+                    PrinterSetupComBox.SelectedItem = DataBase.Entity.Setup.Setup.Id_printer;
+                    CartrigeSetupComBox.SelectedItem = DataBase.Entity.Setup.Setup.Id_cartrige;
+                    DateStartDatePicker.Text = DataBase.Entity.Setup.Setup.Start;
+                    DateEndDatePicker.Text = DataBase.Entity.Setup.Setup.End;
+                    NoteSetupTextBox.Text = DataBase.Entity.Setup.Setup.Note;
+
+                    break;
+                case ("Установка"):
+                    LogoLabel.Text = "Добавление записи";
+                    
+                    AddSetupBut.Visible = true;
+                    ModSetupBut.Visible = false;
+
+                    //
+                    //Заносим в поля данные
+                    //
+                    IdSetupTextBox.Text = DataBase.Entity.Setup.Setup.Id.ToString();
+                    PrinterSetupComBox.SelectedItem = DataBase.Entity.Setup.Setup.Id_printer;
+                    CartrigeSetupComBox.SelectedValue = DataBase.Entity.Setup.Setup.Id_cartrige;
+                    DateStartDatePicker.Text = DataBase.Entity.Setup.Setup.Start;
+                    DateEndDatePicker.Text = DataBase.Entity.Setup.Setup.End;
+                    NoteSetupTextBox.Text = DataBase.Entity.Setup.Setup.Note;
+
+                    CartrigeSetupComBox.Enabled = false;
+                    
+                    break;
+
+                default:
+                    break;
+                  
+            }
 
 
         }

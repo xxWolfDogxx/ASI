@@ -41,7 +41,7 @@ namespace ASI.Forms.Main
             //Расставить выборку по ролям
             //-----------------------------------------------------------
             db.openConnection();
-            
+
             switch (Convert.ToString(CurrentNode))
             {
                 case ("TreeNode: Все"):
@@ -50,7 +50,7 @@ namespace ASI.Forms.Main
                     mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
                     GridView.DataSource = table; //Заполняем саму таблицу на форме
 
-                    
+
 
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["Id"].Visible = visibleColum;
@@ -61,6 +61,8 @@ namespace ASI.Forms.Main
                     GridView.Columns["Email"].HeaderText = "Эл. почта";
                     GridView.Columns["Password"].Visible = false;
                     GridView.Columns["Role"].HeaderText = "Роль";
+
+                    SetupToolBut.Visible = false;
 
 
                     break;
@@ -82,6 +84,9 @@ namespace ASI.Forms.Main
                     GridView.Columns["Password"].Visible = false;
                     GridView.Columns["Role"].HeaderText = "Роль";
 
+                    SetupToolBut.Visible = false;
+
+
                     break;
 
                 case ("TreeNode: Пользователь"):
@@ -101,6 +106,9 @@ namespace ASI.Forms.Main
                     GridView.Columns["Password"].Visible = false;
                     GridView.Columns["Role"].HeaderText = "Роль";
 
+                    SetupToolBut.Visible = false;
+
+
                     break;
 
                 case ("TreeNode: Роли"):
@@ -114,6 +122,9 @@ namespace ASI.Forms.Main
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
                     GridView.Columns["role"].HeaderText = "Роли";
 
+                    SetupToolBut.Visible = false;
+
+
                     break;
 
                 case ("TreeNode: Принтер"):
@@ -126,6 +137,9 @@ namespace ASI.Forms.Main
                     GridView.Columns["ID"].Visible = visibleColum;
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
+                    SetupToolBut.Visible = false;
+
+
                     break;
 
                 case ("TreeNode: Расходники"):
@@ -136,7 +150,13 @@ namespace ASI.Forms.Main
 
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["ID"].Visible = visibleColum;
+                    GridView.Columns["id_type"].Visible = false;
+                    GridView.Columns["id_room"].Visible = false;
+                    GridView.Columns["id_model"].Visible = false;
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                    SetupToolBut.Visible = true;
+
 
                     break;
 
@@ -151,6 +171,9 @@ namespace ASI.Forms.Main
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
                     GridView.Columns["name"].HeaderText = "Аудитория";
 
+                    SetupToolBut.Visible = false;
+
+
                     break;
 
                 case ("TreeNode: Установки"):
@@ -163,6 +186,9 @@ namespace ASI.Forms.Main
                     GridView.Columns["id"].Visible = visibleColum;
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
+                    SetupToolBut.Visible = false;
+
+
                     break;
 
                 case ("TreeNode: Перезаправлен"):
@@ -174,6 +200,9 @@ namespace ASI.Forms.Main
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["id"].Visible = visibleColum;
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                    SetupToolBut.Visible = false;
+
 
                     break;
 
@@ -190,6 +219,9 @@ namespace ASI.Forms.Main
                     GridView.Columns["name"].HeaderText = "Название";
                     GridView.Columns["refill"].HeaderText = "Доступна перезаправка";
 
+                    SetupToolBut.Visible = false;
+
+
                     break;
 
                 case ("TreeNode: Модели"):
@@ -204,6 +236,9 @@ namespace ASI.Forms.Main
 
                     GridView.Columns["name"].HeaderText = "Название";
 
+                    SetupToolBut.Visible = false;
+
+
                     break;
                 default:
 
@@ -214,14 +249,14 @@ namespace ASI.Forms.Main
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {            
+        {
             UpdateTable();
         }
 
         private void ASI_Load(object sender, EventArgs e)
         {
             treeView1.ExpandAll();
-                        
+
             switch (DataBase.Entity.Identification.DB_Users.RoleUsersForRole)
             {
                 case ("ROLE_ROOT"):
@@ -234,6 +269,7 @@ namespace ASI.Forms.Main
                     AddToolBut.Visible = true;
                     ModToolBut.Visible = true;
                     DelToolBut.Visible = true;
+                    SetupToolBut.Visible = true;
 
                     break;
 
@@ -246,6 +282,7 @@ namespace ASI.Forms.Main
                     AddToolBut.Visible = true;
                     ModToolBut.Visible = true;
                     DelToolBut.Visible = true;
+                    SetupToolBut.Visible = true;
 
                     break;
 
@@ -258,13 +295,14 @@ namespace ASI.Forms.Main
                     AddToolBut.Visible = false;
                     ModToolBut.Visible = false;
                     DelToolBut.Visible = false;
+                    SetupToolBut.Visible = false;
 
                     break;
             }
 
             treeView1.SelectedNode = treeView1.Nodes[0].Nodes[0];
             treeView1.Focus();
-            
+
         }
 
 
@@ -272,7 +310,7 @@ namespace ASI.Forms.Main
         {
 
             TreeNode CurrentNode = treeView1.SelectedNode;
-            
+
             Modif = "Добавить";
 
             switch (Convert.ToString(CurrentNode))
@@ -313,21 +351,21 @@ namespace ASI.Forms.Main
 
                 case ("TreeNode: Расходники"):
 
-                        Modification.Consumable.ModConsumable modConsumable = new Modification.Consumable.ModConsumable(); //объявляем форму, которую желаем открыть
+                    Modification.Consumable.ModConsumable modConsumable = new Modification.Consumable.ModConsumable(); //объявляем форму, которую желаем открыть
 
-                        DataBase.Entity.Consumable.Consumable.Id = Convert.ToInt32(null);
-                        DataBase.Entity.Consumable.Consumable.Name = null;
-                        DataBase.Entity.Consumable.Consumable.Code = null;
-                        DataBase.Entity.Consumable.Consumable.Bay_date = Convert.ToDateTime(DateTime.Today);
-                        DataBase.Entity.Consumable.Consumable.Writeoff = Convert.ToBoolean(null);
-                        DataBase.Entity.Consumable.Consumable.Note = null;
-                        DataBase.Entity.Consumable.Consumable.Ready = Convert.ToBoolean(null);
-                        DataBase.Entity.Consumable.Consumable.Id_cartrige_type = Convert.ToString(null);
-                        DataBase.Entity.Consumable.Consumable.Id_room = Convert.ToString(null);
-                        DataBase.Entity.Consumable.Consumable.Id_model = Convert.ToString(null);
+                    DataBase.Entity.Consumable.Consumable.Id = Convert.ToInt32(null);
+                    DataBase.Entity.Consumable.Consumable.Name = null;
+                    DataBase.Entity.Consumable.Consumable.Code = null;
+                    DataBase.Entity.Consumable.Consumable.Bay_date = Convert.ToDateTime(DateTime.Today);
+                    DataBase.Entity.Consumable.Consumable.Writeoff = Convert.ToBoolean(null);
+                    DataBase.Entity.Consumable.Consumable.Note = null;
+                    DataBase.Entity.Consumable.Consumable.Ready = Convert.ToBoolean(null);
+                    DataBase.Entity.Consumable.Consumable.Id_cartrige_type = Convert.ToString(null);
+                    DataBase.Entity.Consumable.Consumable.Id_room = Convert.ToString(null);
+                    DataBase.Entity.Consumable.Consumable.Id_model = Convert.ToString(null);
 
-                        modConsumable.ShowDialog();
-                        UpdateTable();
+                    modConsumable.ShowDialog();
+                    UpdateTable();
                     break;
 
                 case ("TreeNode: Аудитория"):
@@ -429,12 +467,12 @@ namespace ASI.Forms.Main
                     break;
 
                 case ("TreeNode: Принтер"):
-                    
+
                     if (GridView.CurrentRow != null)
                     {
                         Modification.Printer.ModPrinter modPrinter = new Modification.Printer.ModPrinter(); //объявляем форму, которую желаем открыть
 
-                        DataBase.Entity.Printer.Printer.Id =Convert.ToInt32(GridView.CurrentRow.Cells[0].Value.ToString());
+                        DataBase.Entity.Printer.Printer.Id = Convert.ToInt32(GridView.CurrentRow.Cells[0].Value.ToString());
                         DataBase.Entity.Printer.Printer.Name = GridView.CurrentRow.Cells[1].Value.ToString();
                         DataBase.Entity.Printer.Printer.Inventory = GridView.CurrentRow.Cells[2].Value.ToString();
                         DataBase.Entity.Printer.Printer.Id_room = Convert.ToString(GridView.CurrentRow.Cells[3].Value);
@@ -445,7 +483,7 @@ namespace ASI.Forms.Main
                         UpdateTable();
                     }
                     else { MessageBox.Show("Выделите строчку для редактирования"); }
-                   
+
 
                     break;
 
@@ -461,15 +499,15 @@ namespace ASI.Forms.Main
                         DataBase.Entity.Consumable.Consumable.Writeoff = Convert.ToBoolean(GridView.CurrentRow.Cells[4].Value);
                         DataBase.Entity.Consumable.Consumable.Note = GridView.CurrentRow.Cells[5].Value.ToString();
                         DataBase.Entity.Consumable.Consumable.Ready = Convert.ToBoolean(GridView.CurrentRow.Cells[6].Value);
-                        DataBase.Entity.Consumable.Consumable.Id_cartrige_type = Convert.ToString(GridView.CurrentRow.Cells[7].Value);
-                        DataBase.Entity.Consumable.Consumable.Id_room = Convert.ToString(GridView.CurrentRow.Cells[8].Value);
-                        DataBase.Entity.Consumable.Consumable.Id_model = Convert.ToString(GridView.CurrentRow.Cells[9].Value);
+                        DataBase.Entity.Consumable.Consumable.Id_cartrige_type = Convert.ToString(GridView.CurrentRow.Cells["id_type"].Value);
+                        DataBase.Entity.Consumable.Consumable.Id_room = Convert.ToString(GridView.CurrentRow.Cells["id_room"].Value);
+                        DataBase.Entity.Consumable.Consumable.Id_model = Convert.ToString(GridView.CurrentRow.Cells["id_model"].Value);
 
                         modConsumable.ShowDialog();
                         UpdateTable();
                     }
                     else { MessageBox.Show("Выделите строчку для редактирования"); }
-                  
+
 
                     break;
 
@@ -497,7 +535,7 @@ namespace ASI.Forms.Main
                         DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(GridView.CurrentRow.Cells[0].Value);
                         DataBase.Entity.Setup.Setup.Id_printer = Convert.ToString(GridView.CurrentRow.Cells[1].Value.ToString());
                         DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToString(GridView.CurrentRow.Cells[2].Value.ToString());
-                        DataBase.Entity.Setup.Setup.Start =GridView.CurrentRow.Cells[3].Value.ToString();
+                        DataBase.Entity.Setup.Setup.Start = GridView.CurrentRow.Cells[3].Value.ToString();
                         DataBase.Entity.Setup.Setup.End = GridView.CurrentRow.Cells[4].Value.ToString();
                         DataBase.Entity.Setup.Setup.Note = GridView.CurrentRow.Cells[5].Value.ToString();
 
@@ -607,7 +645,7 @@ namespace ASI.Forms.Main
                         }
                         else
                         {
-                            
+
                         }
 
                         break;
@@ -624,7 +662,7 @@ namespace ASI.Forms.Main
                         }
                         else
                         {
-                            
+
                         }
 
                         break;
@@ -642,7 +680,7 @@ namespace ASI.Forms.Main
                         }
                         else
                         {
-                          
+
                         }
 
                         break;
@@ -659,7 +697,7 @@ namespace ASI.Forms.Main
                         }
                         else
                         {
-                         
+
                         }
 
                         break;
@@ -737,10 +775,10 @@ namespace ASI.Forms.Main
                 );
 
             if (result == DialogResult.Yes)
-            {                              
+            {
                 Forms.Identification.Authentication.Auth auth = new Forms.Identification.Authentication.Auth();
                 this.Hide();
-                auth.ShowDialog();                
+                auth.ShowDialog();
                 this.Close();
             }
             else if (result == DialogResult.No)
@@ -757,28 +795,28 @@ namespace ASI.Forms.Main
         private void Search()
         {
 
-          
-                if (GridView.RowCount != 0)
-                {
-                    for (int i = GridView.CurrentCell.RowIndex + 1; i < GridView.RowCount; i++)
-                    {
-                        string text = searchTextBox.Text.ToUpper();
-                        for (int j = 0; j < GridView.ColumnCount; j++)
-                            if (GridView.Rows[i].Cells[j].Value.ToString().ToUpper().Contains(text))
-                            {
-                                GridView.CurrentCell = GridView[0, i];
-                                return;
-                            }
 
-                    }
-                    MessageBox.Show(this, "Достигнут конец, больше совпадений не найдено!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    GridView.CurrentCell = GridView[0, 0];
-                }
-                else
+            if (GridView.RowCount != 0)
+            {
+                for (int i = GridView.CurrentCell.RowIndex + 1; i < GridView.RowCount; i++)
                 {
-                    MessageBox.Show(this, "В таблице нет данных!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    string text = searchTextBox.Text.ToUpper();
+                    for (int j = 0; j < GridView.ColumnCount; j++)
+                        if (GridView.Rows[i].Cells[j].Value.ToString().ToUpper().Contains(text))
+                        {
+                            GridView.CurrentCell = GridView[0, i];
+                            return;
+                        }
+
                 }
-            
+                MessageBox.Show(this, "Достигнут конец, больше совпадений не найдено!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                GridView.CurrentCell = GridView[0, 0];
+            }
+            else
+            {
+                MessageBox.Show(this, "В таблице нет данных!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
 
 
@@ -798,38 +836,75 @@ namespace ASI.Forms.Main
         private void обАккаунтеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             InsertGlobalVar_Users();
-           /* DialogResult result = MessageBox.Show(
-               text,
-               "Об аккаунте",
-               MessageBoxButtons.OK,
-               MessageBoxIcon.Information,
-               MessageBoxDefaultButton.Button1
-               );*/
+            /* DialogResult result = MessageBox.Show(
+                text,
+                "Об аккаунте",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1
+                );*/
         }
 
         private void InsertGlobalVar_Users()
         {
             DB db = new DB();
             db.openConnection();
-           /* MySqlCommand idCom = new MySqlCommand("Select id From users WHERE Email = @email", db.getConnection());
-            idCom.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;
-            idCom.ExecuteNonQuery();
-            MySqlDataReader reader = idCom.ExecuteReader();
-            while (reader.Read()) { Convert.ToString(DataBase.Entity.Identification.DB_Users.IdUsers)= Convert.ToString(reader); };
-            MessageBox.Show(Convert.ToString(DataBase.Entity.Identification.DB_Users.IdUsers));
+            /* MySqlCommand idCom = new MySqlCommand("Select id From users WHERE Email = @email", db.getConnection());
+             idCom.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;
+             idCom.ExecuteNonQuery();
+             MySqlDataReader reader = idCom.ExecuteReader();
+             while (reader.Read()) { Convert.ToString(DataBase.Entity.Identification.DB_Users.IdUsers)= Convert.ToString(reader); };
+             MessageBox.Show(Convert.ToString(DataBase.Entity.Identification.DB_Users.IdUsers));
 
-            /* MySqlCommand fullnameCom = new MySqlCommand("Select fullname From users WHERE Email = @email", db.getConnection());
-             fullnameCom.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;
+             /* MySqlCommand fullnameCom = new MySqlCommand("Select fullname From users WHERE Email = @email", db.getConnection());
+              fullnameCom.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;
 
-             MySqlCommand dateCom = new MySqlCommand("Select DateOfBirth From users WHERE Email = @email", db.getConnection());
-             dateCom.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;
+              MySqlCommand dateCom = new MySqlCommand("Select DateOfBirth From users WHERE Email = @email", db.getConnection());
+              dateCom.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;
 
 
-             MySqlCommand phoneCom = new MySqlCommand("Select Phone From users WHERE Email = @email", db.getConnection());
-             phoneCom.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;*/
+              MySqlCommand phoneCom = new MySqlCommand("Select Phone From users WHERE Email = @email", db.getConnection());
+              phoneCom.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;*/
 
 
             db.closeConnection();
+        }
+
+        private void SetupToolBut_Click(object sender, EventArgs e)
+        {
+            TreeNode CurrentNode = treeView1.SelectedNode;
+            DB db = new DB();
+            Modif = "Установка";
+
+                db.openConnection();
+                switch (Convert.ToString(CurrentNode))
+                {
+                    case ("TreeNode: Принтер"):
+
+
+                        break;
+
+                    case ("TreeNode: Расходники"):
+                        if (GridView.CurrentRow != null)
+                        {
+                            Modification.Setup.ModSetup modSetup = new Modification.Setup.ModSetup(); //объявляем форму, которую желаем открыть
+
+                            DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
+                            DataBase.Entity.Setup.Setup.Id_printer = null;
+                            DataBase.Entity.Setup.Setup.Id_cartrige = GridView.CurrentRow.Cells["id"].Value.ToString();
+                            DataBase.Entity.Setup.Setup.Start = null;
+                            DataBase.Entity.Setup.Setup.End = null;
+                            DataBase.Entity.Setup.Setup.Note = null;
+
+                            modSetup.ShowDialog();
+                            UpdateTable();
+                        }
+                        else { MessageBox.Show("Выделите строчку для редактирования"); }
+
+                    break;
+                }
+            db.closeConnection();
+            
         }
     }
 }
