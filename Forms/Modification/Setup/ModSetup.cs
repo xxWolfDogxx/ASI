@@ -53,7 +53,7 @@ namespace ASI.Forms.Modification.Setup
                     AddSetupBut.Visible = false;
                     ModSetupBut.Visible = true;
                     CartrigeSetupComBox.Enabled = true;
-
+                    EndGB.Visible = true;
                     //
                     //Заносим в поля данные
                     //
@@ -70,7 +70,7 @@ namespace ASI.Forms.Modification.Setup
                     AddSetupBut.Visible = true;
                     ModSetupBut.Visible = false;
                     CartrigeSetupComBox.Enabled = true;
-
+                    EndGB.Visible = false;
                     //
                     //Заносим в поля данные
                     //
@@ -84,7 +84,7 @@ namespace ASI.Forms.Modification.Setup
                     break;
                 case ("Установка"):
                     LogoLabel.Text = "Добавление записи";
-                    
+
                     AddSetupBut.Visible = true;
                     ModSetupBut.Visible = false;
 
@@ -93,18 +93,51 @@ namespace ASI.Forms.Modification.Setup
                     //
                     IdSetupTextBox.Text = DataBase.Entity.Setup.Setup.Id.ToString();
                     CartrigeSetupComBox.SelectedValue = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_cartrige);
-                    PrinterSetupComBox.SelectedValue = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_printer); 
+                    PrinterSetupComBox.SelectedValue = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_printer);
                     DateStartDatePicker.Text = DataBase.Entity.Setup.Setup.Start;
                     DateEndDatePicker.Text = DataBase.Entity.Setup.Setup.End;
                     NoteSetupTextBox.Text = DataBase.Entity.Setup.Setup.Note;
 
                     CartrigeSetupComBox.Enabled = false;
+
+
+
+                    break;
+                case ("Снятие"):
+                    LogoLabel.Text = "Изменение записи";
+
+                    AddSetupBut.Visible = false;
+                    ModSetupBut.Visible = true;
+
+                    MySqlCommand mySqlCommand = new MySqlCommand("SELECT * FROM `setup` WHERE `id_cartrige` = {DataBase.Entity.Setup.Setup.Id_cartrige} && `end` is null;", db.getConnection());
+                    mySqlCommand.Parameters.Add("@idCartrige", MySqlDbType.Int32).Value = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_cartrige);
+
+                    DataTable setup = new DataTable();
                     
+
+                    if(mySqlCommand.ExecuteNonQuery() == 1)
+                    {
+
+                    }
+                    //
+                    //Заносим в поля данные
+                    //
+                    IdSetupTextBox.Text = DataBase.Entity.Setup.Setup.Id.ToString();
+                    CartrigeSetupComBox.SelectedValue = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_cartrige);
+                    PrinterSetupComBox.SelectedValue = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_printer);
+                    DateStartDatePicker.Text = DataBase.Entity.Setup.Setup.Start;
+                    DateEndDatePicker.Text = DataBase.Entity.Setup.Setup.End;
+                    NoteSetupTextBox.Text = DataBase.Entity.Setup.Setup.Note;
+
+                    CartrigeSetupComBox.Enabled = false;
+
+
+
                     break;
 
                 default:
                     break;
-                  
+
             }
 
 
@@ -117,18 +150,26 @@ namespace ASI.Forms.Modification.Setup
             db.openConnection(); //Открываем подключение к БД
             //Запрос на вставку данных с формы в базу данных
             MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_InsertSetup, db.getConnection());
-
             //Заносим данные в запрос
-            AddCom.Parameters.Add("@printerSetup", MySqlDbType.Int32).Value =Convert.ToInt32(PrinterSetupComBox.SelectedValue);
+            AddCom.Parameters.Add("@printerSetup", MySqlDbType.Int32).Value = Convert.ToInt32(PrinterSetupComBox.SelectedValue);
             AddCom.Parameters.Add("@cartrigeSetup", MySqlDbType.Int32).Value = Convert.ToInt32(CartrigeSetupComBox.SelectedValue);
-            AddCom.Parameters.Add("@dataStartSetup", MySqlDbType.Date).Value =Convert.ToDateTime(value: DateStartDatePicker.Value);
-           
-            if (DateEndDatePicker.Checked)
-                AddCom.Parameters.AddWithValue("@dataEndSetup", DateEndDatePicker.Value);
-            else
-                AddCom.Parameters.AddWithValue("@dataEndSetup", null);
-           
+            AddCom.Parameters.Add("@dataStartSetup", MySqlDbType.Date).Value = Convert.ToDateTime(value: DateStartDatePicker.Value);
             AddCom.Parameters.Add("@noteSetup", MySqlDbType.VarChar).Value = NoteSetupTextBox.Text;
+
+            MySqlCommand AddCheckSetupCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateSetupCheck_Cartrige, db.getConnection());
+            AddCheckSetupCom.Parameters.Add("@idCartrige", MySqlDbType.Int32).Value = Convert.ToInt32(CartrigeSetupComBox.SelectedValue);
+
+            if (DateEndDatePicker.Checked)
+            {
+                AddCheckSetupCom.Parameters.Add("@setupCheck", MySqlDbType.UByte).Value = Convert.ToBoolean(true);
+                AddCom.Parameters.AddWithValue("@dataEndSetup", DateEndDatePicker.Value);
+
+            }
+            else
+            {
+                AddCom.Parameters.AddWithValue("@dataEndSetup", DBNull.Value);
+                AddCheckSetupCom.Parameters.Add("@setupCheck", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
+            }
 
 
             db.closeConnection(); //Закрываем подключение к БД
@@ -136,7 +177,7 @@ namespace ASI.Forms.Modification.Setup
 
             //Проверка на успешную отправку запроса
             db.openConnection();
-            if (AddCom.ExecuteNonQuery() == 1)
+            if (AddCom.ExecuteNonQuery() == 1 && AddCheckSetupCom.ExecuteNonQuery() == 1)
             {
                 MessageBox.Show("Запись добавлена");
                 //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
@@ -164,20 +205,31 @@ namespace ASI.Forms.Modification.Setup
             AddCom.Parameters.Add("@printerSetup", MySqlDbType.Int32).Value = Convert.ToInt32(PrinterSetupComBox.SelectedValue);
             AddCom.Parameters.Add("@cartrigeSetup", MySqlDbType.Int32).Value = Convert.ToInt32(CartrigeSetupComBox.SelectedValue);
             AddCom.Parameters.Add("@dataStartSetup", MySqlDbType.Date).Value = Convert.ToDateTime(value: DateStartDatePicker.Value);
+            AddCom.Parameters.Add("@noteSetup", MySqlDbType.VarChar).Value = NoteSetupTextBox.Text;
+
+            MySqlCommand AddCheckSetupCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateSetupCheck_Cartrige, db.getConnection());
+            AddCheckSetupCom.Parameters.Add("@idCartrige", MySqlDbType.Int32).Value = Convert.ToInt32(CartrigeSetupComBox.SelectedValue);
 
             if (DateEndDatePicker.Checked)
+            {
+                AddCheckSetupCom.Parameters.Add("@setupCheck", MySqlDbType.UByte).Value = Convert.ToBoolean(true);
                 AddCom.Parameters.AddWithValue("@dataEndSetup", DateEndDatePicker.Value);
-            else
-                AddCom.Parameters.AddWithValue("@dataEndSetup", null);
 
-            AddCom.Parameters.Add("@noteSetup", MySqlDbType.VarChar).Value = NoteSetupTextBox.Text;
+            }
+            else
+            {
+                AddCom.Parameters.AddWithValue("@dataEndSetup", DBNull.Value);
+                AddCheckSetupCom.Parameters.Add("@setupCheck", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
+            }
+
+
 
             db.closeConnection(); //Закрываем подключение к БД
 
 
             //Проверка на успешную отправку запроса
             db.openConnection();
-            if (AddCom.ExecuteNonQuery() == 1)
+            if (AddCom.ExecuteNonQuery() == 1 && AddCheckSetupCom.ExecuteNonQuery() == 1)
             {
                 MessageBox.Show("Запись изменина");
                 //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней

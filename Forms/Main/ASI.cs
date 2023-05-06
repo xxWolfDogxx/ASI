@@ -187,7 +187,7 @@ namespace ASI.Forms.Main
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["id"].Visible = visibleColum;
                     GridView.Columns["id_printer"].Visible = false;
-                    GridView.Columns["id_cartrige"].Visible = false ;
+                    GridView.Columns["id_cartrige"].Visible = false;
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
                     SetupToolBut.Visible = false;
@@ -474,7 +474,7 @@ namespace ASI.Forms.Main
                     if (GridView.CurrentRow != null)
                     {
                         Modification.Printer.ModPrinter modPrinter = new Modification.Printer.ModPrinter(); //объявляем форму, которую желаем открыть
-                        
+
                         DataBase.Entity.Printer.Printer.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
                         DataBase.Entity.Printer.Printer.Name = GridView.CurrentRow.Cells["Название"].Value.ToString();
                         DataBase.Entity.Printer.Printer.Inventory = GridView.CurrentRow.Cells["Инвентарный номер"].Value.ToString();
@@ -494,7 +494,7 @@ namespace ASI.Forms.Main
                     if (GridView.CurrentRow != null)
                     {
                         Modification.Consumable.ModConsumable modConsumable = new Modification.Consumable.ModConsumable(); //объявляем форму, которую желаем открыть
-                        
+
                         //modConsumable.IdСonsumableTextBox = Convert.ToString(GridView.CurrentRow.Cells["i"].Value.ToString());
 
                         DataBase.Entity.Consumable.Consumable.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value.ToString());
@@ -539,7 +539,7 @@ namespace ASI.Forms.Main
 
                         DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
                         DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(GridView.CurrentRow.Cells["id_printer"].Value);
-                        DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["id_cartrige"].Value);   
+                        DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["id_cartrige"].Value);
                         DataBase.Entity.Setup.Setup.Start = GridView.CurrentRow.Cells["Дата установки"].Value.ToString();
                         DataBase.Entity.Setup.Setup.End = GridView.CurrentRow.Cells["Дата снятия"].Value.ToString();
                         DataBase.Entity.Setup.Setup.Note = GridView.CurrentRow.Cells["Заметки"].Value.ToString();
@@ -695,7 +695,7 @@ namespace ASI.Forms.Main
                         if (result == DialogResult.Yes)
                         {
                             MySqlCommand DelCom = new MySqlCommand("DELETE FROM setup WHERE `id` = @id", db.getConnection());
-                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells["ID"].Value;
 
                             DelCom.ExecuteNonQuery();
                             MessageBox.Show("Запись удалена!");
@@ -877,35 +877,51 @@ namespace ASI.Forms.Main
             DB db = new DB();
             Modif = "Установка";
 
-                db.openConnection();
-                switch (Convert.ToString(CurrentNode))
-                {
-                    case ("TreeNode: Принтер"):
+            db.openConnection();
+            switch (Convert.ToString(CurrentNode))
+            {
+                case ("TreeNode: Принтер"):
 
 
-                        break;
+                    break;
 
-                    case ("TreeNode: Расходники"):
-                        if (GridView.CurrentRow != null)
+                case ("TreeNode: Расходники"):
+                    if (GridView.CurrentRow != null)
+                    {
+                        Modification.Setup.ModSetup modSetup = new Modification.Setup.ModSetup(); //объявляем форму, которую желаем открыть
+                        if (GridView.CurrentRow.Cells["Установлен"].Value.ToString() == "false")
                         {
-                            Modification.Setup.ModSetup modSetup = new Modification.Setup.ModSetup(); //объявляем форму, которую желаем открыть
+                            Modif = "Установка";
 
                             DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
                             DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(null);
-                        DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["Id"].Value);
+                            DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["Id"].Value);
                             DataBase.Entity.Setup.Setup.Start = null;
                             DataBase.Entity.Setup.Setup.End = null;
                             DataBase.Entity.Setup.Setup.Note = null;
 
-                            modSetup.ShowDialog();
-                            UpdateTable();
                         }
-                        else { MessageBox.Show("Выделите строчку для редактирования"); }
+                        else if(GridView.CurrentRow.Cells["Установлен"].Value.ToString() == "true")
+                        {
+                            Modif = "Снятие";
+
+                            DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
+                            DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(null);
+                            DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["Id"].Value);
+                            DataBase.Entity.Setup.Setup.Start = null;
+                            DataBase.Entity.Setup.Setup.End = null;
+                            DataBase.Entity.Setup.Setup.Note = null;
+                        }
+
+                        modSetup.ShowDialog();
+                        UpdateTable();
+                    }
+                    else { MessageBox.Show("Выделите строчку для редактирования"); }
 
                     break;
-                }
+            }
             db.closeConnection();
-            
+
         }
     }
 }
