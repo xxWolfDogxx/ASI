@@ -97,20 +97,6 @@ namespace ASI.Forms.Modification.Consumable
         {
             DB db = new DB(); //Объявляем подключение к классу "Подключения БД"
 
-            switch (Forms.Main.ASI.Modif)
-            {
-                case ("Изменить"):
-                    LogoLabel.Text = "Изменение расходника";
-                    AddCartrigeBut.Visible = false;
-                    ModCartrigeBut.Visible = true;
-                    break;
-                case ("Добавить"):
-                    LogoLabel.Text = "Добавление расходника";
-                    AddCartrigeBut.Visible = true;
-                    ModCartrigeBut.Visible = false;
-                    break;
-            }
-
 
             //
             //Задаем первичные значения для ComBox
@@ -163,39 +149,72 @@ namespace ASI.Forms.Modification.Consumable
            ModelConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
            WriteoffConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            //
-            //Заносим в поля данные
-            //
-            IdСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Id.ToString();
-            NameСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Name;
-            CodeСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Code;
-            ///MessageBox.Show(DataBase.Entity.Consumable.Consumable.Bay_date.ToString());
-            DateConsumableDatePicker.Value = Convert.ToDateTime(DataBase.Entity.Consumable.Consumable.Bay_date);
 
-            if (DataBase.Entity.Consumable.Consumable.Writeoff == true)
+            switch (Forms.Main.ASI.Modif)
             {
-                WriteoffConsumableComBox.SelectedItem = "Да";
-            }
-            else if (DataBase.Entity.Consumable.Consumable.Writeoff == false)
-            {
-                WriteoffConsumableComBox.SelectedItem = "Нет";
-            }
+                case ("Изменить"):
+                    LogoLabel.Text = "Изменение расходника";
+                    AddCartrigeBut.Visible = false;
+                    ModCartrigeBut.Visible = true;
 
-            RoomConsumableComBox.SelectedValue = DataBase.Entity.Consumable.Consumable.Id_room;
-            NoteConsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Note;
+                    //
+                    //Заносим в поля данные
+                    //
+                    IdСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Id.ToString();
+                    NameСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Name;
+                    CodeСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Code;
+                    ///MessageBox.Show(DataBase.Entity.Consumable.Consumable.Bay_date.ToString());
+                    DateConsumableDatePicker.Value = Convert.ToDateTime(DataBase.Entity.Consumable.Consumable.Bay_date);
 
-            if(DataBase.Entity.Consumable.Consumable.Ready == true)
-            {
-                ReadyConsumableComBox.SelectedItem = "Да";
-            }
-            else if (DataBase.Entity.Consumable.Consumable.Ready == false)
-            {
-                ReadyConsumableComBox.SelectedItem = "Нет";
-            }
-            ModelConsumableComBox.SelectedValue = DataBase.Entity.Consumable.Consumable.Id_model;
-            TypeConsumableComBox.SelectedValue = DataBase.Entity.Consumable.Consumable.Id_cartrige_type;
-            MessageBox.Show(DataBase.Entity.Consumable.Consumable.Id_cartrige_type);
+                    if (DataBase.Entity.Consumable.Consumable.Writeoff == true)
+                    {
+                        WriteoffConsumableComBox.SelectedItem = "Да";
+                    }
+                    else if (DataBase.Entity.Consumable.Consumable.Writeoff == false)
+                    {
+                        WriteoffConsumableComBox.SelectedItem = "Нет";
+                    }
 
+                    RoomConsumableComBox.SelectedValue = DataBase.Entity.Consumable.Consumable.Id_room;
+                    NoteConsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Note;
+
+                    if (DataBase.Entity.Consumable.Consumable.Ready == true)
+                    {
+                        ReadyConsumableComBox.SelectedItem = "Да";
+                    }
+                    else if (DataBase.Entity.Consumable.Consumable.Ready == false)
+                    {
+                        ReadyConsumableComBox.SelectedItem = "Нет";
+                    }
+                    ModelConsumableComBox.SelectedValue = DataBase.Entity.Consumable.Consumable.Id_model;
+                    TypeConsumableComBox.SelectedValue = DataBase.Entity.Consumable.Consumable.Id_cartrige_type;
+
+
+                    break;
+
+
+                case ("Добавить"):
+                    LogoLabel.Text = "Добавление расходника";
+                    AddCartrigeBut.Visible = true;
+                    ModCartrigeBut.Visible = false;
+
+
+                    //
+                    //Заносим в поля данные
+                    //
+                    IdСonsumableTextBox.Text = null;
+                    NameСonsumableTextBox.Text = null;
+                    CodeСonsumableTextBox.Text = null;
+                    //DateConsumableDatePicker.Value = ;
+                    RoomConsumableComBox.SelectedValue = 0;
+                    NoteConsumableTextBox.Text = null;
+                    ModelConsumableComBox.SelectedValue = 0;
+                    TypeConsumableComBox.SelectedValue = 0;
+
+
+                    break;
+            }
+           
         }
 
         private void ModCartrigeBut_Click(object sender, EventArgs e)

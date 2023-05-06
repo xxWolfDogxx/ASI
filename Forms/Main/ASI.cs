@@ -135,6 +135,8 @@ namespace ASI.Forms.Main
 
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["ID"].Visible = visibleColum;
+                    GridView.Columns["id_room"].Visible = false;
+                    GridView.Columns["id_model"].Visible = false;
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
                     SetupToolBut.Visible = false;
@@ -184,6 +186,8 @@ namespace ASI.Forms.Main
 
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["id"].Visible = visibleColum;
+                    GridView.Columns["id_printer"].Visible = false;
+                    GridView.Columns["id_cartrige"].Visible = false ;
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
                     SetupToolBut.Visible = false;
@@ -305,7 +309,6 @@ namespace ASI.Forms.Main
 
         }
 
-
         private void AddToolBut_Click(object sender, EventArgs e)
         {
 
@@ -341,9 +344,9 @@ namespace ASI.Forms.Main
                     DataBase.Entity.Printer.Printer.Id = Convert.ToInt32(null);
                     DataBase.Entity.Printer.Printer.Name = null;
                     DataBase.Entity.Printer.Printer.Inventory = null;
-                    DataBase.Entity.Printer.Printer.Id_room = Convert.ToString(null);
-                    DataBase.Entity.Printer.Printer.Note = null;
-                    DataBase.Entity.Printer.Printer.Id_model = Convert.ToString(null);
+                    DataBase.Entity.Printer.Printer.Id_room = Convert.ToInt32(null);
+                    DataBase.Entity.Printer.Printer.Note = DBNull.Value.ToString();
+                    DataBase.Entity.Printer.Printer.Id_model = Convert.ToInt32(null);
 
                     modPrinter.ShowDialog();
                     UpdateTable();
@@ -384,8 +387,8 @@ namespace ASI.Forms.Main
                     Modification.Setup.ModSetup modSetup = new Modification.Setup.ModSetup(); //объявляем форму, которую желаем открыть
 
                     DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
-                    DataBase.Entity.Setup.Setup.Id_printer = Convert.ToString(null);
-                    DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToString(null);
+                    DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(null);
+                    DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(null);
                     DataBase.Entity.Setup.Setup.Start = null;
                     DataBase.Entity.Setup.Setup.End = null;
                     DataBase.Entity.Setup.Setup.Note = null;
@@ -471,13 +474,13 @@ namespace ASI.Forms.Main
                     if (GridView.CurrentRow != null)
                     {
                         Modification.Printer.ModPrinter modPrinter = new Modification.Printer.ModPrinter(); //объявляем форму, которую желаем открыть
-
-                        DataBase.Entity.Printer.Printer.Id = Convert.ToInt32(GridView.CurrentRow.Cells[0].Value.ToString());
-                        DataBase.Entity.Printer.Printer.Name = GridView.CurrentRow.Cells[1].Value.ToString();
-                        DataBase.Entity.Printer.Printer.Inventory = GridView.CurrentRow.Cells[2].Value.ToString();
-                        DataBase.Entity.Printer.Printer.Id_room = Convert.ToString(GridView.CurrentRow.Cells[3].Value);
-                        DataBase.Entity.Printer.Printer.Note = GridView.CurrentRow.Cells[4].Value.ToString();
-                        DataBase.Entity.Printer.Printer.Id_model = Convert.ToString(GridView.CurrentRow.Cells[5].Value);
+                        
+                        DataBase.Entity.Printer.Printer.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
+                        DataBase.Entity.Printer.Printer.Name = GridView.CurrentRow.Cells["Название"].Value.ToString();
+                        DataBase.Entity.Printer.Printer.Inventory = GridView.CurrentRow.Cells["Инвентарный номер"].Value.ToString();
+                        DataBase.Entity.Printer.Printer.Id_room = Convert.ToInt32(GridView.CurrentRow.Cells["id_room"].Value);
+                        DataBase.Entity.Printer.Printer.Note = GridView.CurrentRow.Cells["Заметки"].Value.ToString();
+                        DataBase.Entity.Printer.Printer.Id_model = Convert.ToInt32(GridView.CurrentRow.Cells["id_model"].Value);
 
                         modPrinter.ShowDialog();
                         UpdateTable();
@@ -491,14 +494,16 @@ namespace ASI.Forms.Main
                     if (GridView.CurrentRow != null)
                     {
                         Modification.Consumable.ModConsumable modConsumable = new Modification.Consumable.ModConsumable(); //объявляем форму, которую желаем открыть
+                        
+                        //modConsumable.IdСonsumableTextBox = Convert.ToString(GridView.CurrentRow.Cells["i"].Value.ToString());
 
-                        DataBase.Entity.Consumable.Consumable.Id = Convert.ToInt32(GridView.CurrentRow.Cells[0].Value.ToString());
-                        DataBase.Entity.Consumable.Consumable.Name = GridView.CurrentRow.Cells[1].Value.ToString();
-                        DataBase.Entity.Consumable.Consumable.Code = GridView.CurrentRow.Cells[2].Value.ToString();
-                        DataBase.Entity.Consumable.Consumable.Bay_date = Convert.ToDateTime(GridView.CurrentRow.Cells[3].Value);
-                        DataBase.Entity.Consumable.Consumable.Writeoff = Convert.ToBoolean(GridView.CurrentRow.Cells[4].Value);
-                        DataBase.Entity.Consumable.Consumable.Note = GridView.CurrentRow.Cells[5].Value.ToString();
-                        DataBase.Entity.Consumable.Consumable.Ready = Convert.ToBoolean(GridView.CurrentRow.Cells[6].Value);
+                        DataBase.Entity.Consumable.Consumable.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value.ToString());
+                        DataBase.Entity.Consumable.Consumable.Name = GridView.CurrentRow.Cells["Название"].Value.ToString();
+                        DataBase.Entity.Consumable.Consumable.Code = GridView.CurrentRow.Cells["Уникальный номер"].Value.ToString();
+                        DataBase.Entity.Consumable.Consumable.Bay_date = Convert.ToDateTime(GridView.CurrentRow.Cells["Дата покупки"].Value);
+                        DataBase.Entity.Consumable.Consumable.Writeoff = Convert.ToBoolean(GridView.CurrentRow.Cells["Списанный"].Value);
+                        DataBase.Entity.Consumable.Consumable.Note = GridView.CurrentRow.Cells["Заметки"].Value.ToString();
+                        DataBase.Entity.Consumable.Consumable.Ready = Convert.ToBoolean(GridView.CurrentRow.Cells["Готовность"].Value);
                         DataBase.Entity.Consumable.Consumable.Id_cartrige_type = Convert.ToString(GridView.CurrentRow.Cells["id_type"].Value);
                         DataBase.Entity.Consumable.Consumable.Id_room = Convert.ToString(GridView.CurrentRow.Cells["id_room"].Value);
                         DataBase.Entity.Consumable.Consumable.Id_model = Convert.ToString(GridView.CurrentRow.Cells["id_model"].Value);
@@ -532,12 +537,12 @@ namespace ASI.Forms.Main
                     {
                         Modification.Setup.ModSetup modSetup = new Modification.Setup.ModSetup(); //объявляем форму, которую желаем открыть
 
-                        DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(GridView.CurrentRow.Cells[0].Value);
-                        DataBase.Entity.Setup.Setup.Id_printer = Convert.ToString(GridView.CurrentRow.Cells[1].Value.ToString());
-                        DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToString(GridView.CurrentRow.Cells[2].Value.ToString());
-                        DataBase.Entity.Setup.Setup.Start = GridView.CurrentRow.Cells[3].Value.ToString();
-                        DataBase.Entity.Setup.Setup.End = GridView.CurrentRow.Cells[4].Value.ToString();
-                        DataBase.Entity.Setup.Setup.Note = GridView.CurrentRow.Cells[5].Value.ToString();
+                        DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
+                        DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(GridView.CurrentRow.Cells["id_printer"].Value);
+                        DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["id_cartrige"].Value);   
+                        DataBase.Entity.Setup.Setup.Start = GridView.CurrentRow.Cells["Дата установки"].Value.ToString();
+                        DataBase.Entity.Setup.Setup.End = GridView.CurrentRow.Cells["Дата снятия"].Value.ToString();
+                        DataBase.Entity.Setup.Setup.Note = GridView.CurrentRow.Cells["Заметки"].Value.ToString();
 
                         modSetup.ShowDialog();
                         UpdateTable();
@@ -762,8 +767,6 @@ namespace ASI.Forms.Main
             }
         }
 
-
-
         private void ASI_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult result = MessageBox.Show(
@@ -791,7 +794,6 @@ namespace ASI.Forms.Main
             }
         }
 
-
         private void Search()
         {
 
@@ -818,7 +820,6 @@ namespace ASI.Forms.Main
             }
 
         }
-
 
         private void searchTextBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -890,8 +891,8 @@ namespace ASI.Forms.Main
                             Modification.Setup.ModSetup modSetup = new Modification.Setup.ModSetup(); //объявляем форму, которую желаем открыть
 
                             DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
-                            DataBase.Entity.Setup.Setup.Id_printer = null;
-                            DataBase.Entity.Setup.Setup.Id_cartrige = GridView.CurrentRow.Cells["id"].Value.ToString();
+                            DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(null);
+                        DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["Id"].Value);
                             DataBase.Entity.Setup.Setup.Start = null;
                             DataBase.Entity.Setup.Setup.End = null;
                             DataBase.Entity.Setup.Setup.Note = null;

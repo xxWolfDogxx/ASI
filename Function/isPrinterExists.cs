@@ -29,6 +29,10 @@ namespace ASI.Function
             {
                 return false;
             }
+            else if (Forms.Modification.Printer.ModPrinter.PrinterName == Forms.Modification.Printer.ModPrinter.PrinterNameDB)
+            {
+                return false;
+            }
             else if (table.Rows.Count >= 1)
             {
                 MessageBox.Show("Инветарный номер принтера уже существует");

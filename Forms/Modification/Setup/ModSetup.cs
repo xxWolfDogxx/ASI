@@ -1,13 +1,7 @@
 ﻿using ASI.DataBase.ConnectionForMySQL;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ASI.Forms.Modification.Setup
@@ -43,7 +37,7 @@ namespace ASI.Forms.Modification.Setup
             CartrigeSetupComBox.DataSource = tableCartrige;
 
             //Отбираем все значения что хотим показать и те что хотим скрыть
-            PrinterSetupComBox.DisplayMember = "inventory";
+            PrinterSetupComBox.DisplayMember = "name";
             PrinterSetupComBox.ValueMember = "id";
             CartrigeSetupComBox.DisplayMember = "code";
             CartrigeSetupComBox.ValueMember = "id";
@@ -64,8 +58,8 @@ namespace ASI.Forms.Modification.Setup
                     //Заносим в поля данные
                     //
                     IdSetupTextBox.Text = DataBase.Entity.Setup.Setup.Id.ToString();
-                    PrinterSetupComBox.SelectedItem = DataBase.Entity.Setup.Setup.Id_printer;
-                    CartrigeSetupComBox.SelectedItem = DataBase.Entity.Setup.Setup.Id_cartrige;
+                    PrinterSetupComBox.SelectedValue = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_printer);
+                    CartrigeSetupComBox.SelectedValue = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_cartrige);
                     DateStartDatePicker.Text = DataBase.Entity.Setup.Setup.Start;
                     DateEndDatePicker.Text = DataBase.Entity.Setup.Setup.End;
                     NoteSetupTextBox.Text = DataBase.Entity.Setup.Setup.Note;
@@ -81,8 +75,8 @@ namespace ASI.Forms.Modification.Setup
                     //Заносим в поля данные
                     //
                     IdSetupTextBox.Text = DataBase.Entity.Setup.Setup.Id.ToString();
-                    PrinterSetupComBox.SelectedItem = DataBase.Entity.Setup.Setup.Id_printer;
-                    CartrigeSetupComBox.SelectedItem = DataBase.Entity.Setup.Setup.Id_cartrige;
+                    PrinterSetupComBox.SelectedValue = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_printer);
+                    CartrigeSetupComBox.SelectedValue = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_cartrige);
                     DateStartDatePicker.Text = DataBase.Entity.Setup.Setup.Start;
                     DateEndDatePicker.Text = DataBase.Entity.Setup.Setup.End;
                     NoteSetupTextBox.Text = DataBase.Entity.Setup.Setup.Note;
@@ -98,8 +92,8 @@ namespace ASI.Forms.Modification.Setup
                     //Заносим в поля данные
                     //
                     IdSetupTextBox.Text = DataBase.Entity.Setup.Setup.Id.ToString();
-                    PrinterSetupComBox.SelectedItem = DataBase.Entity.Setup.Setup.Id_printer;
-                    CartrigeSetupComBox.SelectedValue = DataBase.Entity.Setup.Setup.Id_cartrige;
+                    CartrigeSetupComBox.SelectedValue = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_cartrige);
+                    PrinterSetupComBox.SelectedValue = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_printer); 
                     DateStartDatePicker.Text = DataBase.Entity.Setup.Setup.Start;
                     DateEndDatePicker.Text = DataBase.Entity.Setup.Setup.End;
                     NoteSetupTextBox.Text = DataBase.Entity.Setup.Setup.Note;

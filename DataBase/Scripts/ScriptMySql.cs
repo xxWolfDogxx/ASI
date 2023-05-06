@@ -46,9 +46,9 @@ namespace ASI.DataBase.Scripts
         //Скрипты для основной формы
         //
         //Запрос на справочник принтеров
-        internal static string script_SelectPrinter = "SELECT printer.id AS ID, printer.name AS Название, printer.inventory AS 'Инвентарный номер', room.name AS Аудитория , printer.note AS Заметки, model.name AS Модель " +
+        internal static string script_SelectPrinter = "SELECT printer.id AS ID, printer.name AS Название, printer.inventory AS 'Инвентарный номер', printer.id_room, room.name AS Аудитория , printer.note AS Заметки, printer.id_model, model.name AS Модель " +
                 "FROM printer " +
-                "INNER JOIN room ON printer.id_room = room.Id " +
+                "INNER JOIN room ON printer.id_room = room.id " +
                 "INNER JOIN model ON printer.id_model = model.id";
         //Запрос на справочник картриджей
         internal static string script_SelectCartrige = "SELECT cartrige.id AS ID, cartrige.name AS Название, cartrige.code AS 'Уникальный номер', cartrige.buy_date AS 'Дата покупки', cartrige.writeoff AS Списанный, cartrige.note AS Заметки, cartrige.ready AS Готовность, cartrige.id_cartrige_type AS 'id_type',cartrige_type.name AS 'Тип расходника', cartrige.id_room, room.name AS Аудитория, cartrige.id_model, model.name AS 'Подходит к модели'" +
@@ -61,7 +61,7 @@ namespace ASI.DataBase.Scripts
 
 
         //Запрос на справочник Установок
-        internal static string script_SelectSetup = "SELECT setup.id AS 'ID', printer.name AS 'Название принтера', cartrige.code AS 'Номер расходника', setup.start AS 'Дата установки', setup.end AS 'Дата снятия', setup.note AS 'Заметки' " + 
+        internal static string script_SelectSetup = "SELECT setup.id AS 'ID', printer.id AS id_printer, printer.name AS 'Название принтера', cartrige.id AS id_cartrige, cartrige.code AS 'Номер расходника', setup.start AS 'Дата установки', setup.end AS 'Дата снятия', setup.note AS 'Заметки' " + 
                 "FROM setup "+
                 "INNER JOIN printer ON setup.id_printer = printer.id "+
                 "INNER JOIN cartrige ON setup.id_cartrige = cartrige.id";
