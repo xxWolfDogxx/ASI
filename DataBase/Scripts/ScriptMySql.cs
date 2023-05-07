@@ -67,7 +67,7 @@ namespace ASI.DataBase.Scripts
                 "INNER JOIN cartrige ON setup.id_cartrige = cartrige.id";
 
         //Запрос на справочник перезаправленных картриджей
-        internal static string script_SelectFill = "SELECT fill.id AS 'ID', cartrige.code AS 'Номер картриджа', fill.date AS 'Дата заправки', fill.note AS 'Заметки' "+
+        internal static string script_SelectFill = "SELECT fill.id AS 'ID', cartrige.id AS 'id_cartrige', cartrige.code AS 'Номер картриджа', fill.date AS 'Дата заправки', fill.note AS 'Заметки' "+
                 "FROM fill "+
                 "INNER JOIN cartrige ON fill.id_cartrige = cartrige.id";
 
@@ -130,8 +130,17 @@ namespace ASI.DataBase.Scripts
         internal static string script_UpdateFill_ModFill = "UPDATE `fill` SET `id_cartrige`=@cartrigeFill,`date`=@dateFill,`note`=@noteFill WHERE `id`=@idFill";
         //Запрос на вставку записи статус работоспособности
         internal static string script_InsertFill_ModFill = "INSERT INTO `fill`(`id_cartrige`, `date`, `note`) VALUES (@cartrigeFill,@dateFill,@noteFill)";
+        internal static string script_InsertFillCartrigeReady_ModFill = "Update `cartrige` SET `ready` = @readyCartrige, `note` = @noteCartrige, `setup` = @setupCartrige WHERE `id` = @idCartrige";
         
-        
+        internal static string script_SelectComBox_ModFill = "SELECT cartrige.id, cartrige.code, cartrige.ready, cartrige_type.refill "+
+                "FROM cartrige "+
+                "INNER JOIN cartrige_type ON cartrige.id_cartrige_type = cartrige_type.id WHERE cartrige_type.refill = true && cartrige.ready = 0";
+
+        internal static string script_SelectComBox1_ModFill = "SELECT cartrige.id, cartrige.code, cartrige.ready, cartrige_type.refill " +
+        "FROM cartrige " +
+        "INNER JOIN cartrige_type ON cartrige.id_cartrige_type = cartrige_type.id WHERE cartrige_type.refill = true";
+
+
         //
         //Скрипты для ModModel
         //
@@ -163,6 +172,10 @@ namespace ASI.DataBase.Scripts
         internal static string script_InsertSetup = "INSERT INTO `setup`(`id_printer`, `id_cartrige`, `start`, `end`, `note`) VALUES (@printerSetup,@cartrigeSetup,@dataStartSetup,@dataEndSetup,@noteSetup)";
        
         internal static string script_UpdateSetupCheck_Cartrige = "UPDATE `cartrige` SET `setup`= @setupCheck WHERE `id`=@idCartrige";
+
+        internal static string script_UpdateReadyCheck_Cartrige = "UPDATE cartrige "+
+                    "INNER JOIN cartrige_type ON cartrige.id_cartrige_type = cartrige_type.id "+
+                    "SET `cartrige`.`ready`= @readyCheck,`cartrige`.`setup`= @setupCheck,  `cartrige`.`note` = @note  WHERE `cartrige`.`id` = @idCartrige";
     }
     
 }

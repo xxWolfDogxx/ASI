@@ -203,6 +203,7 @@ namespace ASI.Forms.Main
 
                     //Меняем название столбцов на руссифицированное
                     GridView.Columns["id"].Visible = visibleColum;
+                    GridView.Columns["id_cartrige"].Visible = false;
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
                     SetupToolBut.Visible = false;
@@ -402,7 +403,7 @@ namespace ASI.Forms.Main
 
                     DataBase.Entity.Fill.Fill.Id = Convert.ToInt32(null);
                     DataBase.Entity.Fill.Fill.Id_cartrige = Convert.ToInt32(null);
-                    DataBase.Entity.Fill.Fill.Date = Convert.ToDateTime(value: null);
+                    DataBase.Entity.Fill.Fill.Date = Convert.ToString(null);
                     DataBase.Entity.Fill.Fill.Note = null;
 
                     modFill.ShowDialog();
@@ -552,16 +553,19 @@ namespace ASI.Forms.Main
                     break;
 
                 case ("TreeNode: Перезаправлен"):
-                    Modification.Fill.ModFill modFill = new Modification.Fill.ModFill(); //объявляем форму, которую желаем открыть
+                    if (GridView.CurrentRow != null)
+                    {
+                        Modification.Fill.ModFill modFill = new Modification.Fill.ModFill(); //объявляем форму, которую желаем открыть
 
-                    DataBase.Entity.Fill.Fill.Id = Convert.ToInt32(GridView.CurrentRow.Cells[0].Value.ToString());
-                    DataBase.Entity.Fill.Fill.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells[1].Value.ToString());
-                    DataBase.Entity.Fill.Fill.Date = Convert.ToDateTime(value: GridView.CurrentRow.Cells[2].Value.ToString());
-                    DataBase.Entity.Fill.Fill.Note = GridView.CurrentRow.Cells[3].Value.ToString();
+                    DataBase.Entity.Fill.Fill.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
+                    DataBase.Entity.Fill.Fill.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["id_cartrige"].Value);
+                    DataBase.Entity.Fill.Fill.Date = GridView.CurrentRow.Cells["Дата заправки"].Value.ToString();
+                    DataBase.Entity.Fill.Fill.Note = GridView.CurrentRow.Cells["Заметки"].Value.ToString();
 
                     modFill.ShowDialog();
                     UpdateTable();
-
+                    }
+                    else { MessageBox.Show("Выделите строчку для редактирования"); }
                     break;
 
                 case ("TreeNode: Тип расходника"):
@@ -643,7 +647,7 @@ namespace ASI.Forms.Main
                         if (result == DialogResult.Yes)
                         {
                             MySqlCommand DelCom = new MySqlCommand("DELETE FROM printer WHERE `id` = @id", db.getConnection());
-                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells["ID"].Value;
 
                             DelCom.ExecuteNonQuery();
                             MessageBox.Show("Запись удалена!");
@@ -660,7 +664,7 @@ namespace ASI.Forms.Main
                         if (result == DialogResult.Yes)
                         {
                             MySqlCommand DelCom = new MySqlCommand("DELETE FROM cartrige WHERE `id` = @id", db.getConnection());
-                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells["ID"].Value;
 
                             DelCom.ExecuteNonQuery();
                             MessageBox.Show("Запись удалена!");
@@ -678,7 +682,7 @@ namespace ASI.Forms.Main
                         if (result == DialogResult.Yes)
                         {
                             MySqlCommand DelCom = new MySqlCommand("DELETE FROM room WHERE `id` = @id", db.getConnection());
-                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells["ID"].Value;
 
                             DelCom.ExecuteNonQuery();
                             MessageBox.Show("Запись удалена!");
@@ -711,7 +715,7 @@ namespace ASI.Forms.Main
                         if (result == DialogResult.Yes)
                         {
                             MySqlCommand DelCom = new MySqlCommand("DELETE FROM fill WHERE `id` = @id", db.getConnection());
-                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells["ID"].Value;
 
                             DelCom.ExecuteNonQuery();
                             MessageBox.Show("Запись удалена!");
@@ -727,7 +731,7 @@ namespace ASI.Forms.Main
                         if (result == DialogResult.Yes)
                         {
                             MySqlCommand DelCom = new MySqlCommand("DELETE FROM cartrige_type WHERE `id` = @id", db.getConnection());
-                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells["ID"].Value;
 
                             DelCom.ExecuteNonQuery();
                             MessageBox.Show("Запись удалена!");
@@ -742,7 +746,7 @@ namespace ASI.Forms.Main
                         if (result == DialogResult.Yes)
                         {
                             MySqlCommand DelCom = new MySqlCommand("DELETE FROM model WHERE `id` = @id", db.getConnection());
-                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells[0].Value.ToString();
+                            DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells["ID"].Value;
 
                             DelCom.ExecuteNonQuery();
                             MessageBox.Show("Запись удалена!");
@@ -875,7 +879,7 @@ namespace ASI.Forms.Main
         {
             TreeNode CurrentNode = treeView1.SelectedNode;
             DB db = new DB();
-            Modif = "Установка";
+            //Modif = "Установка";
 
             db.openConnection();
             switch (Convert.ToString(CurrentNode))
@@ -888,33 +892,38 @@ namespace ASI.Forms.Main
                 case ("TreeNode: Расходники"):
                     if (GridView.CurrentRow != null)
                     {
-                        Modification.Setup.ModSetup modSetup = new Modification.Setup.ModSetup(); //объявляем форму, которую желаем открыть
-                        if (GridView.CurrentRow.Cells["Установлен"].Value.ToString() == "false")
+                        if (GridView.CurrentRow.Cells["Готовность"].Value.ToString() == "True")
                         {
-                            Modif = "Установка";
+                            Modification.Setup.ModSetup modSetup = new Modification.Setup.ModSetup(); //объявляем форму, которую желаем открыть
+                                                                                                      //MessageBox.Show(GridView.CurrentRow.Cells["Установлен"].Value.ToString());
+                            if (GridView.CurrentRow.Cells["Установлен"].Value.ToString() == "False")
+                            {
+                                Modif = "Установка";
+                                MessageBox.Show("Не установлен");
+                                DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
+                                DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(null);
+                                DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["Id"].Value);
+                                DataBase.Entity.Setup.Setup.Start = null;
+                                DataBase.Entity.Setup.Setup.End = null;
+                                DataBase.Entity.Setup.Setup.Note = null;
 
-                            DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
-                            DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(null);
-                            DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["Id"].Value);
-                            DataBase.Entity.Setup.Setup.Start = null;
-                            DataBase.Entity.Setup.Setup.End = null;
-                            DataBase.Entity.Setup.Setup.Note = null;
+                            }
+                            else if (GridView.CurrentRow.Cells["Установлен"].Value.ToString() == "True")
+                            {
+                                Modif = "Снятие";
+                                MessageBox.Show("Установлен");
+                                DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
+                                DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(null);
+                                DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["Id"].Value);
+                                DataBase.Entity.Setup.Setup.Start = null;
+                                DataBase.Entity.Setup.Setup.End = null;
+                                DataBase.Entity.Setup.Setup.Note = null;
+                            }
 
+                            modSetup.ShowDialog();
+                            UpdateTable();
                         }
-                        else if(GridView.CurrentRow.Cells["Установлен"].Value.ToString() == "true")
-                        {
-                            Modif = "Снятие";
-
-                            DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
-                            DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(null);
-                            DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["Id"].Value);
-                            DataBase.Entity.Setup.Setup.Start = null;
-                            DataBase.Entity.Setup.Setup.End = null;
-                            DataBase.Entity.Setup.Setup.Note = null;
-                        }
-
-                        modSetup.ShowDialog();
-                        UpdateTable();
+                        else { MessageBox.Show("Данный расходник не готов для установки"); }
                     }
                     else { MessageBox.Show("Выделите строчку для редактирования"); }
 

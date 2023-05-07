@@ -79,7 +79,7 @@ namespace ASI.Forms.Modification.Consumable
                 db.openConnection();
                 if (AddCom.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("Заявка Добавлена");
+                    MessageBox.Show("Расходник добавлен");
                     //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
                     Hide();
                     this.Close();

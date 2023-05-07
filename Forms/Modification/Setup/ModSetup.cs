@@ -53,7 +53,7 @@ namespace ASI.Forms.Modification.Setup
                     AddSetupBut.Visible = false;
                     ModSetupBut.Visible = true;
                     CartrigeSetupComBox.Enabled = true;
-                    EndGB.Visible = true;
+                    endGB.Visible = true;
                     //
                     //Заносим в поля данные
                     //
@@ -70,7 +70,7 @@ namespace ASI.Forms.Modification.Setup
                     AddSetupBut.Visible = true;
                     ModSetupBut.Visible = false;
                     CartrigeSetupComBox.Enabled = true;
-                    EndGB.Visible = false;
+                    endGB.Visible = false;
                     //
                     //Заносим в поля данные
                     //
@@ -100,39 +100,69 @@ namespace ASI.Forms.Modification.Setup
 
                     CartrigeSetupComBox.Enabled = false;
 
-
+                    endGB.Visible = false;
 
                     break;
                 case ("Снятие"):
                     LogoLabel.Text = "Изменение записи";
+                    string id_DB = "";
+                    string id_printer_DB = "";
+                    string id_cartrige_DB = "";
+                    string start_DB = "";
+                    string end_DB = "";
+                    string note_DB = "";
 
                     AddSetupBut.Visible = false;
                     ModSetupBut.Visible = true;
 
-                    MySqlCommand mySqlCommand = new MySqlCommand("SELECT * FROM `setup` WHERE `id_cartrige` = {DataBase.Entity.Setup.Setup.Id_cartrige} && `end` is null;", db.getConnection());
+                    db.openConnection();
+                    MySqlCommand mySqlCommand = new MySqlCommand("SELECT * FROM `setup` WHERE `id_cartrige` =@idCartrige && `end` is null;", db.getConnection());
                     mySqlCommand.Parameters.Add("@idCartrige", MySqlDbType.Int32).Value = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_cartrige);
 
+                    MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
                     DataTable setup = new DataTable();
-                    
+                    mySqlDataAdapter.Fill(setup);
 
-                    if(mySqlCommand.ExecuteNonQuery() == 1)
+                    foreach (DataRow row in setup.Rows)
                     {
+                        id_DB = row["id"].ToString();
+                        id_printer_DB = row["id_printer"].ToString();
+                        id_cartrige_DB = row["id_cartrige"].ToString();
+                        start_DB = row["start"].ToString();
+                        end_DB = row["end"].ToString();
+                        note_DB = row["note"].ToString();
+                    }
+
+                    if (setup.Rows.Count == 1)
+                    {
+                        //  
+                        //Заносим в поля данные
+                        //
+                        IdSetupTextBox.Text = id_DB;
+                        CartrigeSetupComBox.SelectedValue = id_cartrige_DB;
+                        PrinterSetupComBox.SelectedValue = id_printer_DB;
+                        DateStartDatePicker.Text = start_DB;
+                        DateEndDatePicker.Text = end_DB;
+                        NoteSetupTextBox.Text = note_DB;
+
+                        endGB.Visible = true;
+
+                        IdSetupTextBox.Enabled = false;
+                        CartrigeSetupComBox.Enabled = false;
+                        PrinterSetupComBox.Enabled = false;
+                        DateStartDatePicker.Enabled = false;
+                        DateEndDatePicker.Enabled = true;
+                        NoteSetupTextBox.Enabled = true;
 
                     }
-                    //
-                    //Заносим в поля данные
-                    //
-                    IdSetupTextBox.Text = DataBase.Entity.Setup.Setup.Id.ToString();
-                    CartrigeSetupComBox.SelectedValue = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_cartrige);
-                    PrinterSetupComBox.SelectedValue = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_printer);
-                    DateStartDatePicker.Text = DataBase.Entity.Setup.Setup.Start;
-                    DateEndDatePicker.Text = DataBase.Entity.Setup.Setup.End;
-                    NoteSetupTextBox.Text = DataBase.Entity.Setup.Setup.Note;
-
-                    CartrigeSetupComBox.Enabled = false;
-
-
-
+                    else if (setup.Rows.Count > 1)
+                    {
+                        MessageBox.Show("Этот картридж установлен одновременно более одного раза\n" +
+                            "Произведите поправку в истории установок вручную");
+                        this.Close();
+                    }
+                    else MessageBox.Show("ModSetup Error");
+                    db.closeConnection();
                     break;
 
                 default:
@@ -159,15 +189,15 @@ namespace ASI.Forms.Modification.Setup
             MySqlCommand AddCheckSetupCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateSetupCheck_Cartrige, db.getConnection());
             AddCheckSetupCom.Parameters.Add("@idCartrige", MySqlDbType.Int32).Value = Convert.ToInt32(CartrigeSetupComBox.SelectedValue);
 
-            if (DateEndDatePicker.Checked)
+            if (DateEndDatePicker.Checked == false)
             {
                 AddCheckSetupCom.Parameters.Add("@setupCheck", MySqlDbType.UByte).Value = Convert.ToBoolean(true);
-                AddCom.Parameters.AddWithValue("@dataEndSetup", DateEndDatePicker.Value);
+                AddCom.Parameters.AddWithValue("@dataEndSetup", DBNull.Value);
 
             }
             else
             {
-                AddCom.Parameters.AddWithValue("@dataEndSetup", DBNull.Value);
+                AddCom.Parameters.AddWithValue("@dataEndSetup", DateEndDatePicker.Value);
                 AddCheckSetupCom.Parameters.Add("@setupCheck", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
             }
 
@@ -179,7 +209,7 @@ namespace ASI.Forms.Modification.Setup
             db.openConnection();
             if (AddCom.ExecuteNonQuery() == 1 && AddCheckSetupCom.ExecuteNonQuery() == 1)
             {
-                MessageBox.Show("Запись добавлена");
+                MessageBox.Show("Установлен");
                 //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
                 Hide();
                 this.Close();
@@ -207,19 +237,28 @@ namespace ASI.Forms.Modification.Setup
             AddCom.Parameters.Add("@dataStartSetup", MySqlDbType.Date).Value = Convert.ToDateTime(value: DateStartDatePicker.Value);
             AddCom.Parameters.Add("@noteSetup", MySqlDbType.VarChar).Value = NoteSetupTextBox.Text;
 
-            MySqlCommand AddCheckSetupCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateSetupCheck_Cartrige, db.getConnection());
-            AddCheckSetupCom.Parameters.Add("@idCartrige", MySqlDbType.Int32).Value = Convert.ToInt32(CartrigeSetupComBox.SelectedValue);
+            /* MySqlCommand AddCheckSetupCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateSetupCheck_Cartrige, db.getConnection());
+             AddCheckSetupCom.Parameters.Add("@idCartrige", MySqlDbType.Int32).Value = Convert.ToInt32(CartrigeSetupComBox.SelectedValue);*/
 
-            if (DateEndDatePicker.Checked)
+            MySqlCommand AddCheckReadyCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateReadyCheck_Cartrige, db.getConnection());
+            AddCheckReadyCom.Parameters.Add("@idCartrige", MySqlDbType.Int32).Value = Convert.ToInt32(CartrigeSetupComBox.SelectedValue);
+
+            if (DateEndDatePicker.Checked == false)
             {
-                AddCheckSetupCom.Parameters.Add("@setupCheck", MySqlDbType.UByte).Value = Convert.ToBoolean(true);
-                AddCom.Parameters.AddWithValue("@dataEndSetup", DateEndDatePicker.Value);
+                AddCheckReadyCom.Parameters.Add("@setupCheck", MySqlDbType.UByte).Value = Convert.ToBoolean(true);
+                AddCheckReadyCom.Parameters.Add("@readyCheck", MySqlDbType.UByte).Value = Convert.ToBoolean(true);
+                AddCheckReadyCom.Parameters.AddWithValue("@note", DBNull.Value);
+
+                AddCom.Parameters.AddWithValue("@dataEndSetup", DBNull.Value);
 
             }
             else
             {
-                AddCom.Parameters.AddWithValue("@dataEndSetup", DBNull.Value);
-                AddCheckSetupCom.Parameters.Add("@setupCheck", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
+                AddCom.Parameters.AddWithValue("@dataEndSetup", DateEndDatePicker.Value);
+                AddCheckReadyCom.Parameters.Add("@setupCheck", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
+                AddCheckReadyCom.Parameters.Add("@readyCheck", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
+                AddCheckReadyCom.Parameters.Add("@note", MySqlDbType.VarChar).Value = "Ожидает перезаправку или списание";
+
             }
 
 
@@ -229,9 +268,9 @@ namespace ASI.Forms.Modification.Setup
 
             //Проверка на успешную отправку запроса
             db.openConnection();
-            if (AddCom.ExecuteNonQuery() == 1 && AddCheckSetupCom.ExecuteNonQuery() == 1)
+            if ((AddCom.ExecuteNonQuery() == 1) && (AddCheckReadyCom.ExecuteNonQuery() == 1))
             {
-                MessageBox.Show("Запись изменина");
+                MessageBox.Show("Снято");
                 //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
                 Hide();
                 this.Close();
@@ -239,7 +278,7 @@ namespace ASI.Forms.Modification.Setup
             }
             else
             {
-                MessageBox.Show("Заполните все поля");
+                MessageBox.Show("Заполните все поля ппп");
             }
             db.closeConnection(); //Закрываем подключение к БД
         }
@@ -257,6 +296,16 @@ namespace ASI.Forms.Modification.Setup
                 dtp.CustomFormat = "dd.MM.yyyy";
             else
                 dtp.CustomFormat = null;
+        }
+
+        private void CartrigeSetupComBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           /* DB dB = new DB();
+            MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
+            DataTable table
+            mySqlDataAdapter.SelectCommand = new MySqlCommand("", dB.getConnection());*/
+
+
         }
     }
 }

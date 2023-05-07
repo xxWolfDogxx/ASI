@@ -31,17 +31,17 @@ namespace ASI.Forms.Modification.Setup
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModSetup));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.noteGR = new System.Windows.Forms.GroupBox();
             this.NoteSetupTextBox = new System.Windows.Forms.TextBox();
-            this.EndGB = new System.Windows.Forms.GroupBox();
+            this.endGB = new System.Windows.Forms.GroupBox();
             this.DateEndDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.startGR = new System.Windows.Forms.GroupBox();
             this.DateStartDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.gr4 = new System.Windows.Forms.GroupBox();
+            this.consumableGR = new System.Windows.Forms.GroupBox();
             this.CartrigeSetupComBox = new System.Windows.Forms.ComboBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.printerGR = new System.Windows.Forms.GroupBox();
             this.PrinterSetupComBox = new System.Windows.Forms.ComboBox();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.idGR = new System.Windows.Forms.GroupBox();
             this.IdSetupTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.CancleBut = new System.Windows.Forms.Button();
@@ -50,12 +50,12 @@ namespace ASI.Forms.Modification.Setup
             this.LogoPanel = new System.Windows.Forms.Panel();
             this.LogoLabel = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.EndGB.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.gr4.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox10.SuspendLayout();
+            this.noteGR.SuspendLayout();
+            this.endGB.SuspendLayout();
+            this.startGR.SuspendLayout();
+            this.consumableGR.SuspendLayout();
+            this.printerGR.SuspendLayout();
+            this.idGR.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.LogoPanel.SuspendLayout();
             this.SuspendLayout();
@@ -63,12 +63,12 @@ namespace ASI.Forms.Modification.Setup
             // groupBox2
             // 
             this.groupBox2.AutoSize = true;
-            this.groupBox2.Controls.Add(this.groupBox7);
-            this.groupBox2.Controls.Add(this.EndGB);
-            this.groupBox2.Controls.Add(this.groupBox5);
-            this.groupBox2.Controls.Add(this.gr4);
-            this.groupBox2.Controls.Add(this.groupBox3);
-            this.groupBox2.Controls.Add(this.groupBox10);
+            this.groupBox2.Controls.Add(this.noteGR);
+            this.groupBox2.Controls.Add(this.endGB);
+            this.groupBox2.Controls.Add(this.startGR);
+            this.groupBox2.Controls.Add(this.printerGR);
+            this.groupBox2.Controls.Add(this.consumableGR);
+            this.groupBox2.Controls.Add(this.idGR);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 90);
             this.groupBox2.Name = "groupBox2";
@@ -78,18 +78,18 @@ namespace ASI.Forms.Modification.Setup
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Поля";
             // 
-            // groupBox7
+            // noteGR
             // 
-            this.groupBox7.AutoSize = true;
-            this.groupBox7.Controls.Add(this.NoteSetupTextBox);
-            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox7.Location = new System.Drawing.Point(10, 341);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox7.Size = new System.Drawing.Size(564, 64);
-            this.groupBox7.TabIndex = 6;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Заметки";
+            this.noteGR.AutoSize = true;
+            this.noteGR.Controls.Add(this.NoteSetupTextBox);
+            this.noteGR.Dock = System.Windows.Forms.DockStyle.Top;
+            this.noteGR.Location = new System.Drawing.Point(10, 341);
+            this.noteGR.Name = "noteGR";
+            this.noteGR.Padding = new System.Windows.Forms.Padding(10);
+            this.noteGR.Size = new System.Drawing.Size(564, 64);
+            this.noteGR.TabIndex = 6;
+            this.noteGR.TabStop = false;
+            this.noteGR.Text = "Заметки";
             // 
             // NoteSetupTextBox
             // 
@@ -100,18 +100,18 @@ namespace ASI.Forms.Modification.Setup
             this.NoteSetupTextBox.Size = new System.Drawing.Size(544, 31);
             this.NoteSetupTextBox.TabIndex = 1;
             // 
-            // EndGB
+            // endGB
             // 
-            this.EndGB.AutoSize = true;
-            this.EndGB.Controls.Add(this.DateEndDatePicker);
-            this.EndGB.Dock = System.Windows.Forms.DockStyle.Top;
-            this.EndGB.Location = new System.Drawing.Point(10, 278);
-            this.EndGB.Name = "EndGB";
-            this.EndGB.Padding = new System.Windows.Forms.Padding(10);
-            this.EndGB.Size = new System.Drawing.Size(564, 63);
-            this.EndGB.TabIndex = 5;
-            this.EndGB.TabStop = false;
-            this.EndGB.Text = "Дата снятия";
+            this.endGB.AutoSize = true;
+            this.endGB.Controls.Add(this.DateEndDatePicker);
+            this.endGB.Dock = System.Windows.Forms.DockStyle.Top;
+            this.endGB.Location = new System.Drawing.Point(10, 278);
+            this.endGB.Name = "endGB";
+            this.endGB.Padding = new System.Windows.Forms.Padding(10);
+            this.endGB.Size = new System.Drawing.Size(564, 63);
+            this.endGB.TabIndex = 5;
+            this.endGB.TabStop = false;
+            this.endGB.Text = "Дата снятия";
             // 
             // DateEndDatePicker
             // 
@@ -130,21 +130,22 @@ namespace ASI.Forms.Modification.Setup
             this.DateEndDatePicker.Value = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.DateEndDatePicker.ValueChanged += new System.EventHandler(this.DateEndDatePicker_ValueChanged);
             // 
-            // groupBox5
+            // startGR
             // 
-            this.groupBox5.AutoSize = true;
-            this.groupBox5.Controls.Add(this.DateStartDatePicker);
-            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox5.Location = new System.Drawing.Point(10, 215);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox5.Size = new System.Drawing.Size(564, 63);
-            this.groupBox5.TabIndex = 4;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Дата установки";
+            this.startGR.AutoSize = true;
+            this.startGR.Controls.Add(this.DateStartDatePicker);
+            this.startGR.Dock = System.Windows.Forms.DockStyle.Top;
+            this.startGR.Location = new System.Drawing.Point(10, 215);
+            this.startGR.Name = "startGR";
+            this.startGR.Padding = new System.Windows.Forms.Padding(10);
+            this.startGR.Size = new System.Drawing.Size(564, 63);
+            this.startGR.TabIndex = 4;
+            this.startGR.TabStop = false;
+            this.startGR.Text = "Дата установки";
             // 
             // DateStartDatePicker
             // 
+            this.DateStartDatePicker.Checked = false;
             this.DateStartDatePicker.CustomFormat = "dd.MM.yyyy";
             this.DateStartDatePicker.Dock = System.Windows.Forms.DockStyle.Top;
             this.DateStartDatePicker.Font = new System.Drawing.Font("Calibri", 14F);
@@ -157,18 +158,18 @@ namespace ASI.Forms.Modification.Setup
             this.DateStartDatePicker.TabIndex = 1;
             this.DateStartDatePicker.Value = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             // 
-            // gr4
+            // consumableGR
             // 
-            this.gr4.AutoSize = true;
-            this.gr4.Controls.Add(this.CartrigeSetupComBox);
-            this.gr4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gr4.Location = new System.Drawing.Point(10, 151);
-            this.gr4.Name = "gr4";
-            this.gr4.Padding = new System.Windows.Forms.Padding(10);
-            this.gr4.Size = new System.Drawing.Size(564, 64);
-            this.gr4.TabIndex = 3;
-            this.gr4.TabStop = false;
-            this.gr4.Text = "Расходник";
+            this.consumableGR.AutoSize = true;
+            this.consumableGR.Controls.Add(this.CartrigeSetupComBox);
+            this.consumableGR.Dock = System.Windows.Forms.DockStyle.Top;
+            this.consumableGR.Location = new System.Drawing.Point(10, 87);
+            this.consumableGR.Name = "consumableGR";
+            this.consumableGR.Padding = new System.Windows.Forms.Padding(10);
+            this.consumableGR.Size = new System.Drawing.Size(564, 64);
+            this.consumableGR.TabIndex = 2;
+            this.consumableGR.TabStop = false;
+            this.consumableGR.Text = "Расходник";
             // 
             // CartrigeSetupComBox
             // 
@@ -179,19 +180,20 @@ namespace ASI.Forms.Modification.Setup
             this.CartrigeSetupComBox.Name = "CartrigeSetupComBox";
             this.CartrigeSetupComBox.Size = new System.Drawing.Size(544, 31);
             this.CartrigeSetupComBox.TabIndex = 3;
+            this.CartrigeSetupComBox.SelectedIndexChanged += new System.EventHandler(this.CartrigeSetupComBox_SelectedIndexChanged);
             // 
-            // groupBox3
+            // printerGR
             // 
-            this.groupBox3.AutoSize = true;
-            this.groupBox3.Controls.Add(this.PrinterSetupComBox);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox3.Location = new System.Drawing.Point(10, 87);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox3.Size = new System.Drawing.Size(564, 64);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Принтер";
+            this.printerGR.AutoSize = true;
+            this.printerGR.Controls.Add(this.PrinterSetupComBox);
+            this.printerGR.Dock = System.Windows.Forms.DockStyle.Top;
+            this.printerGR.Location = new System.Drawing.Point(10, 151);
+            this.printerGR.Name = "printerGR";
+            this.printerGR.Padding = new System.Windows.Forms.Padding(10);
+            this.printerGR.Size = new System.Drawing.Size(564, 64);
+            this.printerGR.TabIndex = 3;
+            this.printerGR.TabStop = false;
+            this.printerGR.Text = "Принтер";
             // 
             // PrinterSetupComBox
             // 
@@ -203,18 +205,18 @@ namespace ASI.Forms.Modification.Setup
             this.PrinterSetupComBox.Size = new System.Drawing.Size(544, 31);
             this.PrinterSetupComBox.TabIndex = 2;
             // 
-            // groupBox10
+            // idGR
             // 
-            this.groupBox10.AutoSize = true;
-            this.groupBox10.Controls.Add(this.IdSetupTextBox);
-            this.groupBox10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox10.Location = new System.Drawing.Point(10, 23);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox10.Size = new System.Drawing.Size(564, 64);
-            this.groupBox10.TabIndex = 1;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "ID";
+            this.idGR.AutoSize = true;
+            this.idGR.Controls.Add(this.IdSetupTextBox);
+            this.idGR.Dock = System.Windows.Forms.DockStyle.Top;
+            this.idGR.Location = new System.Drawing.Point(10, 23);
+            this.idGR.Name = "idGR";
+            this.idGR.Padding = new System.Windows.Forms.Padding(10);
+            this.idGR.Size = new System.Drawing.Size(564, 64);
+            this.idGR.TabIndex = 1;
+            this.idGR.TabStop = false;
+            this.idGR.Text = "ID";
             // 
             // IdSetupTextBox
             // 
@@ -317,14 +319,14 @@ namespace ASI.Forms.Modification.Setup
             this.Load += new System.EventHandler(this.ModSetup_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
-            this.EndGB.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.gr4.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
+            this.noteGR.ResumeLayout(false);
+            this.noteGR.PerformLayout();
+            this.endGB.ResumeLayout(false);
+            this.startGR.ResumeLayout(false);
+            this.consumableGR.ResumeLayout(false);
+            this.printerGR.ResumeLayout(false);
+            this.idGR.ResumeLayout(false);
+            this.idGR.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.LogoPanel.ResumeLayout(false);
             this.LogoPanel.PerformLayout();
@@ -336,13 +338,13 @@ namespace ASI.Forms.Modification.Setup
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox EndGB;
+        private System.Windows.Forms.GroupBox endGB;
         private System.Windows.Forms.DateTimePicker DateEndDatePicker;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox startGR;
         private System.Windows.Forms.DateTimePicker DateStartDatePicker;
-        private System.Windows.Forms.GroupBox gr4;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.GroupBox consumableGR;
+        private System.Windows.Forms.GroupBox printerGR;
+        private System.Windows.Forms.GroupBox idGR;
         public System.Windows.Forms.TextBox IdSetupTextBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button CancleBut;
@@ -350,7 +352,7 @@ namespace ASI.Forms.Modification.Setup
         private System.Windows.Forms.Button AddSetupBut;
         private System.Windows.Forms.Panel LogoPanel;
         private System.Windows.Forms.Label LogoLabel;
-        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.GroupBox noteGR;
         public System.Windows.Forms.TextBox NoteSetupTextBox;
         internal System.Windows.Forms.ComboBox CartrigeSetupComBox;
         internal System.Windows.Forms.ComboBox PrinterSetupComBox;
