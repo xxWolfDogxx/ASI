@@ -20,6 +20,9 @@ namespace ASI.Forms.Modification.CartrigeType
         public ModCartrigeType()
         {
             InitializeComponent();
+
+            RefillComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
         }
 
         private void ModCartrigeType_Load(object sender, EventArgs e)
@@ -54,8 +57,6 @@ namespace ASI.Forms.Modification.CartrigeType
                 RefillComBox.SelectedItem = "Нет";
             }
 
-
-            RefillComBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void AddFillBut_Click(object sender, EventArgs e)
@@ -72,17 +73,12 @@ namespace ASI.Forms.Modification.CartrigeType
                 var _convertStringToBoolRefill = false;
                 refillBool = _convertStringToBoolRefill;
             }
+
             DB db = new DB();
 
             MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_InsertType_ModCartrigeType, db.getConnection());
-
-            db.openConnection();
-            //Заносим данные в запрос
             AddCom.Parameters.Add("@type", MySqlDbType.VarChar).Value = TypeTextBox.Text;
             AddCom.Parameters.Add("@refill", MySqlDbType.UByte).Value = refillBool;
-
-
-            db.closeConnection(); //Закрываем подключение к БД
 
             type = TypeTextBox.Text;
 
@@ -124,13 +120,12 @@ namespace ASI.Forms.Modification.CartrigeType
                 refillBool = _convertStringToBoolRefill;
             }
 
-
             DB db = new DB();
 
             //Заносим в 
             db.openConnection(); // Открываем подключение к БД
             var ConsumableDBCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
-            ConsumableDBCom.CommandText = "Select name From cartrige_type Where id = @idType"; // Запрос на какие либо даные
+            ConsumableDBCom.CommandText = DataBase.Scripts.ScriptMySql.script_SelectConsumableDB_ModCartrigeType; // Запрос на какие либо даные
             ConsumableDBCom.Connection = db.getConnection(); //Отправляем запрос
             ConsumableDBCom.Parameters.Add("@idType", MySqlDbType.Int32).Value = IdTypeTextBox.Text;
 
@@ -139,15 +134,9 @@ namespace ASI.Forms.Modification.CartrigeType
             db.closeConnection(); // Закрываем подключение к БД 
 
             MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateType_ModCartrigeType, db.getConnection());
-
-            db.openConnection();
-            //Заносим данные в запрос
             AddCom.Parameters.Add("@idType", MySqlDbType.Int32).Value = Convert.ToInt32(IdTypeTextBox.Text);
             AddCom.Parameters.Add("@type", MySqlDbType.VarChar).Value = TypeTextBox.Text;
             AddCom.Parameters.Add("@refill", MySqlDbType.UByte).Value = refillBool;
-
-
-            db.closeConnection(); //Закрываем подключение к БД
 
             type = TypeTextBox.Text;
 
@@ -183,5 +172,6 @@ namespace ASI.Forms.Modification.CartrigeType
             Hide();
             this.Close();
         }
+    
     }
 }

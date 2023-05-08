@@ -14,6 +14,7 @@ namespace ASI.Forms.Modification.Room
 {
     public partial class ModRoom : Form
     {
+
         internal static string Room;
         internal static string RoomDB;
         public ModRoom()
@@ -24,7 +25,7 @@ namespace ASI.Forms.Modification.Room
 
         private void ModAudit_Load(object sender, EventArgs e)
         {
-            
+
 
             switch (Forms.Main.ASI.Modif)
             {
@@ -41,29 +42,21 @@ namespace ASI.Forms.Modification.Room
                     break;
             }
 
-            IdRoomTextBox.Text = Convert.ToString( DataBase.Entity.Audit.Audiences.Id);
+            IdRoomTextBox.Text = Convert.ToString(DataBase.Entity.Audit.Audiences.Id);
             RoomTextBox.Text = DataBase.Entity.Audit.Audiences.Name;
-        }
-
-        private void CancleBut_Click(object sender, EventArgs e)
-        {
-            Hide();
-            this.Close();
         }
 
         private void AddAuditBut_Click(object sender, EventArgs e)
         {
-            DB db = new DB();
-            MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_InsertRoom_ModRoom, db.getConnection());
             Room = RoomTextBox.Text;
             RoomDB = null;
-            db.openConnection();
-            //Заносим данные в запрос
+
+            DB db = new DB();
+
+            MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_InsertRoom_ModRoom, db.getConnection());
             AddCom.Parameters.Add("@room", MySqlDbType.VarChar).Value = RoomTextBox.Text;
 
-            db.closeConnection(); //Закрываем подключение к БД
-
-            // Проверка на повторного пользователя
+            // Проверка на повторную аудиторию
             if (Function.isAudiencesExists.isAuditExists())
             {
                 return;
@@ -73,9 +66,7 @@ namespace ASI.Forms.Modification.Room
                 db.openConnection();
                 if (AddCom.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("Запись добавлена");
-                    //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
-
+                    MessageBox.Show("Аудитория добавлена");
                     Hide();
                     this.Close();
                 }
@@ -94,24 +85,17 @@ namespace ASI.Forms.Modification.Room
             //Заносим в 
             db.openConnection(); // Открываем подключение к БД
             var RoomDBCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
-            RoomDBCom.CommandText = "Select name  From room Where id = @idRoom"; // Запрос на какие либо даные
+            RoomDBCom.CommandText = DataBase.Scripts.ScriptMySql.script_SelectRoomDB_ModRoom; // Запрос на какие либо даные
             RoomDBCom.Connection = db.getConnection(); //Отправляем запрос
-            RoomDBCom.Parameters.Add("@idRoom", MySqlDbType.Int32).Value = IdRoomTextBox.Text;            
+            RoomDBCom.Parameters.Add("@idRoom", MySqlDbType.Int32).Value = IdRoomTextBox.Text;
 
             var roomDB = RoomDBCom.ExecuteReader(); // Создаем переменную, в которую будем вносить по порядку все полученные данные из запроса
             while (roomDB.Read()) { RoomDB = (roomDB.GetString(0)); }; // Перебираем данные занося их в переменную
             db.closeConnection(); // Закрываем подключение к БД
 
-
             MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateRoom_ModRoom, db.getConnection());
-
-            db.openConnection();
-            //Заносим данные в запрос
             AddCom.Parameters.Add("@idRoom", MySqlDbType.VarChar).Value = IdRoomTextBox.Text;
             AddCom.Parameters.Add("@room", MySqlDbType.VarChar).Value = RoomTextBox.Text;
-
-
-            db.closeConnection(); //Закрываем подключение к БД
 
             Room = RoomTextBox.Text;
 
@@ -137,6 +121,12 @@ namespace ASI.Forms.Modification.Room
             else { MessageBox.Show("Поправить - разработчику\nModRoom, проверка на повторы при изменении записи"); }
             db.closeConnection();
 
+        }
+
+        private void CancleBut_Click(object sender, EventArgs e)
+        {
+            Hide();
+            this.Close();
         }
 
     }

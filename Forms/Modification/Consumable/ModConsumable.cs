@@ -14,21 +14,139 @@ namespace ASI.Forms.Modification.Consumable
 {
     public partial class ModConsumable : Form
     {
+
         internal static string numCartrige;
         internal static string numCartrigeDB;
         private static bool writeoffBool;
         private static bool readyBool;
+
         public ModConsumable()
         {
             InitializeComponent();
+
+            //
+            //Блокируем ввод от руки в combox
+            //
+            ReadyConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            TypeConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            RoomConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            ModelConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            WriteoffConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        private void ModCartrige_Load(object sender, EventArgs e)
+        {
+            DB db = new DB(); //Объявляем подключение к классу "Подключения БД"
+
+            //
+            //Задаем первичные значения для ComBox
+            //
+            MySqlDataAdapter mySql_dataAdapter = new MySqlDataAdapter();
+            DataTable tableRoom = new DataTable();
+            DataTable tableModel = new DataTable();
+            DataTable tableType = new DataTable();
+
+            //RoomComBox insert iteam
+            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectRoom_ModConsumable, db.getConnection());
+            mySql_dataAdapter.Fill(tableRoom);
+
+            //ModelComBox insert iteam
+            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectModel_ModConsumable, db.getConnection());
+            mySql_dataAdapter.Fill(tableModel);
+
+            //ModelComBox insert iteam
+            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectCartrigeType_ModConsumable, db.getConnection());
+            mySql_dataAdapter.Fill(tableType);
+
+            //Source for ComBox
+            RoomConsumableComBox.DataSource = tableRoom;
+            ModelConsumableComBox.DataSource = tableModel;
+            TypeConsumableComBox.DataSource = tableType;
+
+            //Отбираем все значения что хотим показать и те что хотим скрыть
+            RoomConsumableComBox.DisplayMember = "name_room";
+            RoomConsumableComBox.ValueMember = "id_room";
+
+            ModelConsumableComBox.DisplayMember = "name_model";
+            ModelConsumableComBox.ValueMember = "id_model";
+
+            TypeConsumableComBox.DisplayMember = "name_type";
+            TypeConsumableComBox.ValueMember = "id_type";
+
+            WriteoffConsumableComBox.Items.Add("Да");
+            WriteoffConsumableComBox.Items.Add("Нет");
+
+            ReadyConsumableComBox.Items.Add("Да");
+            ReadyConsumableComBox.Items.Add("Нет");
+
+            switch (Forms.Main.ASI.Modif)
+            {
+                case ("Изменить"):
+                    LogoLabel.Text = "Изменение расходника";
+                    AddCartrigeBut.Visible = false;
+                    ModCartrigeBut.Visible = true;
+
+                    //
+                    //Заносим в поля данные
+                    //
+                    IdСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Id.ToString();
+                    NameСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Name;
+                    CodeСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Code;
+                    DateConsumableDatePicker.Value = Convert.ToDateTime(DataBase.Entity.Consumable.Consumable.Bay_date);
+
+                    if (DataBase.Entity.Consumable.Consumable.Writeoff == true)
+                    {
+                        WriteoffConsumableComBox.SelectedItem = "Да";
+                    }
+                    else if (DataBase.Entity.Consumable.Consumable.Writeoff == false)
+                    {
+                        WriteoffConsumableComBox.SelectedItem = "Нет";
+                    }
+
+                    RoomConsumableComBox.SelectedValue = DataBase.Entity.Consumable.Consumable.Id_room;
+                    NoteConsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Note;
+
+                    if (DataBase.Entity.Consumable.Consumable.Ready == true)
+                    {
+                        ReadyConsumableComBox.SelectedItem = "Да";
+                    }
+                    else if (DataBase.Entity.Consumable.Consumable.Ready == false)
+                    {
+                        ReadyConsumableComBox.SelectedItem = "Нет";
+                    }
+                    ModelConsumableComBox.SelectedValue = DataBase.Entity.Consumable.Consumable.Id_model;
+                    TypeConsumableComBox.SelectedValue = DataBase.Entity.Consumable.Consumable.Id_cartrige_type;
+
+                    break;
+
+
+                case ("Добавить"):
+                    LogoLabel.Text = "Добавление расходника";
+                    AddCartrigeBut.Visible = true;
+                    ModCartrigeBut.Visible = false;
+
+                    //
+                    //Заносим в поля данные
+                    //
+                    IdСonsumableTextBox.Text = null;
+                    NameСonsumableTextBox.Text = null;
+                    CodeСonsumableTextBox.Text = null;
+                    RoomConsumableComBox.SelectedValue = 0;
+                    NoteConsumableTextBox.Text = null;
+                    ModelConsumableComBox.SelectedValue = 0;
+                    TypeConsumableComBox.SelectedValue = 0;
+
+                    break;
+            }
+
         }
 
         private void AddCartrigeBut_Click(object sender, EventArgs e)
         {
             DB db = new DB();
 
-            if (Convert.ToString(WriteoffConsumableComBox.SelectedItem) == "Да") 
-            { 
+            if (Convert.ToString(WriteoffConsumableComBox.SelectedItem) == "Да")
+            {
                 var _convertStringToBoolWriteoff = true;
                 writeoffBool = _convertStringToBoolWriteoff;
 
@@ -91,131 +209,6 @@ namespace ASI.Forms.Modification.Consumable
                 db.closeConnection(); //Закрываем подключение к БД
             }
         }
-    
-
-        private void ModCartrige_Load(object sender, EventArgs e)
-        {
-            DB db = new DB(); //Объявляем подключение к классу "Подключения БД"
-
-
-            //
-            //Задаем первичные значения для ComBox
-            //
-            MySqlDataAdapter mySql_dataAdapter = new MySqlDataAdapter();
-            DataTable tableRoom = new DataTable();
-            DataTable tableModel = new DataTable();
-            DataTable tableType = new DataTable();
-
-            //RoomComBox insert iteam
-            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectRoom, db.getConnection());
-            mySql_dataAdapter.Fill(tableRoom);
-
-            //ModelComBox insert iteam
-            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectModel, db.getConnection());
-            mySql_dataAdapter.Fill(tableModel);
-            
-            //ModelComBox insert iteam
-            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectCartrigeType, db.getConnection());
-            mySql_dataAdapter.Fill(tableType);
-
-            //Source for ComBox
-            RoomConsumableComBox.DataSource = tableRoom;
-            ModelConsumableComBox.DataSource = tableModel;
-            TypeConsumableComBox.DataSource = tableType;
-
-            //Отбираем все значения что хотим показать и те что хотим скрыть
-            RoomConsumableComBox.DisplayMember = "name";
-            RoomConsumableComBox.ValueMember = "id";
-
-            ModelConsumableComBox.DisplayMember = "name";
-            ModelConsumableComBox.ValueMember = "id";
-            
-            TypeConsumableComBox.DisplayMember = "name";
-            TypeConsumableComBox.ValueMember = "id";
-
-            WriteoffConsumableComBox.Items.Add("Да");
-            WriteoffConsumableComBox.Items.Add("Нет");
-
-            ReadyConsumableComBox.Items.Add("Да");
-            ReadyConsumableComBox.Items.Add("Нет");
-
-
-            //
-            //Блокируем ввод от руки в combox
-            //
-            ReadyConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
-           TypeConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
-           RoomConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
-           ModelConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
-           WriteoffConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
-
-
-            switch (Forms.Main.ASI.Modif)
-            {
-                case ("Изменить"):
-                    LogoLabel.Text = "Изменение расходника";
-                    AddCartrigeBut.Visible = false;
-                    ModCartrigeBut.Visible = true;
-
-                    //
-                    //Заносим в поля данные
-                    //
-                    IdСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Id.ToString();
-                    NameСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Name;
-                    CodeСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Code;
-                    ///MessageBox.Show(DataBase.Entity.Consumable.Consumable.Bay_date.ToString());
-                    DateConsumableDatePicker.Value = Convert.ToDateTime(DataBase.Entity.Consumable.Consumable.Bay_date);
-
-                    if (DataBase.Entity.Consumable.Consumable.Writeoff == true)
-                    {
-                        WriteoffConsumableComBox.SelectedItem = "Да";
-                    }
-                    else if (DataBase.Entity.Consumable.Consumable.Writeoff == false)
-                    {
-                        WriteoffConsumableComBox.SelectedItem = "Нет";
-                    }
-
-                    RoomConsumableComBox.SelectedValue = DataBase.Entity.Consumable.Consumable.Id_room;
-                    NoteConsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Note;
-
-                    if (DataBase.Entity.Consumable.Consumable.Ready == true)
-                    {
-                        ReadyConsumableComBox.SelectedItem = "Да";
-                    }
-                    else if (DataBase.Entity.Consumable.Consumable.Ready == false)
-                    {
-                        ReadyConsumableComBox.SelectedItem = "Нет";
-                    }
-                    ModelConsumableComBox.SelectedValue = DataBase.Entity.Consumable.Consumable.Id_model;
-                    TypeConsumableComBox.SelectedValue = DataBase.Entity.Consumable.Consumable.Id_cartrige_type;
-
-
-                    break;
-
-
-                case ("Добавить"):
-                    LogoLabel.Text = "Добавление расходника";
-                    AddCartrigeBut.Visible = true;
-                    ModCartrigeBut.Visible = false;
-
-
-                    //
-                    //Заносим в поля данные
-                    //
-                    IdСonsumableTextBox.Text = null;
-                    NameСonsumableTextBox.Text = null;
-                    CodeСonsumableTextBox.Text = null;
-                    //DateConsumableDatePicker.Value = ;
-                    RoomConsumableComBox.SelectedValue = 0;
-                    NoteConsumableTextBox.Text = null;
-                    ModelConsumableComBox.SelectedValue = 0;
-                    TypeConsumableComBox.SelectedValue = 0;
-
-
-                    break;
-            }
-           
-        }
 
         private void ModCartrigeBut_Click(object sender, EventArgs e)
         {
@@ -248,7 +241,7 @@ namespace ASI.Forms.Modification.Consumable
             //Заносим в 
             db.openConnection(); // Открываем подключение к БД
             var ConsumableDBCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
-            ConsumableDBCom.CommandText = "Select code From cartrige Where id = @idConsumable"; // Запрос на какие либо даные
+            ConsumableDBCom.CommandText = DataBase.Scripts.ScriptMySql.script_SelectConsumableDB_ModConsumable; // Запрос на какие либо даные
             ConsumableDBCom.Connection = db.getConnection(); //Отправляем запрос
             ConsumableDBCom.Parameters.Add("@idConsumable", MySqlDbType.Int32).Value = IdСonsumableTextBox.Text;
 
@@ -257,7 +250,7 @@ namespace ASI.Forms.Modification.Consumable
             db.closeConnection(); // Закрываем подключение к БД 
 
             MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateConsumable_ModConsumable, db.getConnection());
-           
+
             db.openConnection();
             //Заносим данные в запрос
             AddCom.Parameters.Add("@idConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(IdСonsumableTextBox.Text);
@@ -304,5 +297,6 @@ namespace ASI.Forms.Modification.Consumable
             Hide();
             this.Close();
         }
+
     }
 }

@@ -17,6 +17,12 @@ namespace ASI.Forms.Modification.Printer
         {
            
             InitializeComponent();
+
+            //
+            //Блокируем ввод от руки в combox
+            //
+            RoomComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            ModelComBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void ModPrinter_Load(object sender, EventArgs e)
@@ -46,11 +52,11 @@ namespace ASI.Forms.Modification.Printer
             DataTable tableModel = new DataTable();
 
             //RoomComBox insert iteam
-            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectRoom, db.getConnection());
+            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectRoom_ModPrinter, db.getConnection());
             mySql_dataAdapter.Fill(tableRoom);
 
             //ModelComBox insert iteam
-            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectModel, db.getConnection());
+            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectModel_ModPrinter, db.getConnection());
             mySql_dataAdapter.Fill(tableModel);
 
             //Source for ComBox
@@ -58,14 +64,10 @@ namespace ASI.Forms.Modification.Printer
             ModelComBox.DataSource = tableModel;
 
             //Отбираем все значения что хотим показать и те что хотим скрыть
-            RoomComBox.DisplayMember = "name";
-            RoomComBox.ValueMember = "id";
-            ModelComBox.DisplayMember = "name";
-            ModelComBox.ValueMember = "id";
-
-            //Блокируем ввод от руки в ComBox
-            RoomComBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            ModelComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            RoomComBox.DisplayMember = "name_room";
+            RoomComBox.ValueMember = "id_room";
+            ModelComBox.DisplayMember = "name_model";
+            ModelComBox.ValueMember = "id_model";
 
 
             //
@@ -108,7 +110,7 @@ namespace ASI.Forms.Modification.Printer
             {
                 if (AddCom.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("Запись изменина");
+                    MessageBox.Show("Принтер добавлен");
                     //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
                     Hide();
                     this.Close();
@@ -131,8 +133,8 @@ namespace ASI.Forms.Modification.Printer
             //
             db.openConnection(); // Открываем подключение к БД
             var PrinterInventDBCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
-            PrinterInventDBCom.CommandText = "Select Inventory From printer Where id = @idPrinter"; // Запрос на какие либо даные
-            PrinterInventDBCom.Connection = db.getConnection(); //Отправляем запрос
+            PrinterInventDBCom.CommandText = DataBase.Scripts.ScriptMySql.script_SelectPrinterInventDB_ModPrinter; // Запрос на какие либо даные
+            PrinterInventDBCom.Connection = db.getConnection(); //Отправляем запроса
             PrinterInventDBCom.Parameters.Add("@idPrinter", MySqlDbType.Int32).Value = IdPrinterTextBox.Text;
 
             var printerInventDB = PrinterInventDBCom.ExecuteReader(); // Создаем переменную, в которую будем вносить по порядку все полученные данные из запроса
@@ -141,7 +143,7 @@ namespace ASI.Forms.Modification.Printer
 
             db.openConnection(); // Открываем подключение к БД
             var PrinterNameDBCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
-            PrinterNameDBCom.CommandText = "Select Name From printer Where id = @idPrinter"; // Запрос на какие либо даные
+            PrinterNameDBCom.CommandText = DataBase.Scripts.ScriptMySql.script_SelectPrinterNameDB_ModPrinter; // Запрос на какие либо даные
             PrinterNameDBCom.Connection = db.getConnection(); //Отправляем запрос
             PrinterNameDBCom.Parameters.Add("@idPrinter", MySqlDbType.Int32).Value = IdPrinterTextBox.Text;
 

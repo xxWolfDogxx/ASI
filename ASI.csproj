@@ -189,7 +189,6 @@
     <Compile Include="Function\isCartrigeType.cs" />
     <Compile Include="Function\isModelExists.cs" />
     <Compile Include="Function\isPrinterExists.cs" />
-    <Compile Include="Function\isStatusWorkExists.cs" />
     <Compile Include="Function\isUsersExists.cs" />
     <Compile Include="Function\SHA256.cs" />
     <Compile Include="Program.cs" />

@@ -37,10 +37,10 @@ namespace ASI.Forms.Modification.Setup
             this.DateEndDatePicker = new System.Windows.Forms.DateTimePicker();
             this.startGR = new System.Windows.Forms.GroupBox();
             this.DateStartDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.consumableGR = new System.Windows.Forms.GroupBox();
-            this.CartrigeSetupComBox = new System.Windows.Forms.ComboBox();
             this.printerGR = new System.Windows.Forms.GroupBox();
             this.PrinterSetupComBox = new System.Windows.Forms.ComboBox();
+            this.consumableGR = new System.Windows.Forms.GroupBox();
+            this.CartrigeSetupComBox = new System.Windows.Forms.ComboBox();
             this.idGR = new System.Windows.Forms.GroupBox();
             this.IdSetupTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -53,8 +53,8 @@ namespace ASI.Forms.Modification.Setup
             this.noteGR.SuspendLayout();
             this.endGB.SuspendLayout();
             this.startGR.SuspendLayout();
-            this.consumableGR.SuspendLayout();
             this.printerGR.SuspendLayout();
+            this.consumableGR.SuspendLayout();
             this.idGR.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.LogoPanel.SuspendLayout();
@@ -158,30 +158,6 @@ namespace ASI.Forms.Modification.Setup
             this.DateStartDatePicker.TabIndex = 1;
             this.DateStartDatePicker.Value = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             // 
-            // consumableGR
-            // 
-            this.consumableGR.AutoSize = true;
-            this.consumableGR.Controls.Add(this.CartrigeSetupComBox);
-            this.consumableGR.Dock = System.Windows.Forms.DockStyle.Top;
-            this.consumableGR.Location = new System.Drawing.Point(10, 87);
-            this.consumableGR.Name = "consumableGR";
-            this.consumableGR.Padding = new System.Windows.Forms.Padding(10);
-            this.consumableGR.Size = new System.Drawing.Size(564, 64);
-            this.consumableGR.TabIndex = 2;
-            this.consumableGR.TabStop = false;
-            this.consumableGR.Text = "Расходник";
-            // 
-            // CartrigeSetupComBox
-            // 
-            this.CartrigeSetupComBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.CartrigeSetupComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CartrigeSetupComBox.FormattingEnabled = true;
-            this.CartrigeSetupComBox.Location = new System.Drawing.Point(10, 23);
-            this.CartrigeSetupComBox.Name = "CartrigeSetupComBox";
-            this.CartrigeSetupComBox.Size = new System.Drawing.Size(544, 31);
-            this.CartrigeSetupComBox.TabIndex = 3;
-            this.CartrigeSetupComBox.SelectedIndexChanged += new System.EventHandler(this.CartrigeSetupComBox_SelectedIndexChanged);
-            // 
             // printerGR
             // 
             this.printerGR.AutoSize = true;
@@ -204,6 +180,29 @@ namespace ASI.Forms.Modification.Setup
             this.PrinterSetupComBox.Name = "PrinterSetupComBox";
             this.PrinterSetupComBox.Size = new System.Drawing.Size(544, 31);
             this.PrinterSetupComBox.TabIndex = 2;
+            // 
+            // consumableGR
+            // 
+            this.consumableGR.AutoSize = true;
+            this.consumableGR.Controls.Add(this.CartrigeSetupComBox);
+            this.consumableGR.Dock = System.Windows.Forms.DockStyle.Top;
+            this.consumableGR.Location = new System.Drawing.Point(10, 87);
+            this.consumableGR.Name = "consumableGR";
+            this.consumableGR.Padding = new System.Windows.Forms.Padding(10);
+            this.consumableGR.Size = new System.Drawing.Size(564, 64);
+            this.consumableGR.TabIndex = 2;
+            this.consumableGR.TabStop = false;
+            this.consumableGR.Text = "Расходник";
+            // 
+            // CartrigeSetupComBox
+            // 
+            this.CartrigeSetupComBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.CartrigeSetupComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CartrigeSetupComBox.FormattingEnabled = true;
+            this.CartrigeSetupComBox.Location = new System.Drawing.Point(10, 23);
+            this.CartrigeSetupComBox.Name = "CartrigeSetupComBox";
+            this.CartrigeSetupComBox.Size = new System.Drawing.Size(544, 31);
+            this.CartrigeSetupComBox.TabIndex = 3;
             // 
             // idGR
             // 
@@ -323,8 +322,8 @@ namespace ASI.Forms.Modification.Setup
             this.noteGR.PerformLayout();
             this.endGB.ResumeLayout(false);
             this.startGR.ResumeLayout(false);
-            this.consumableGR.ResumeLayout(false);
             this.printerGR.ResumeLayout(false);
+            this.consumableGR.ResumeLayout(false);
             this.idGR.ResumeLayout(false);
             this.idGR.PerformLayout();
             this.groupBox1.ResumeLayout(false);

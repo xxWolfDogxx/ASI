@@ -17,6 +17,65 @@ namespace ASI.Forms.Modification.Fill
         public ModFill()
         {
             InitializeComponent();
+
+            //
+            //Блокируем ввод от руки в combox
+            //
+            RefillComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        private void ModStatusWork_Load(object sender, EventArgs e)
+        {
+            DB db = new DB();
+
+            switch (Forms.Main.ASI.Modif)
+            {
+                case ("Изменить"):
+                    LogoLabel.Text = "Изменение статуса";
+                    AddFillBut.Visible = false;
+                    ModFillBut.Visible = true;
+
+                    IdFillTextBox.Text = DataBase.Entity.Fill.Fill.Id.ToString();
+                    RefillComBox.SelectedValue = DataBase.Entity.Fill.Fill.Id_cartrige;
+                    DateFillDatePicker.Text = DataBase.Entity.Fill.Fill.Date.ToString();
+                    NoteFillTextBox.Text = DataBase.Entity.Fill.Fill.Note.ToString();
+
+                    MySqlDataAdapter mySqlDataAdapter1 = new MySqlDataAdapter(DataBase.Scripts.ScriptMySql.script_SelectComBox1_ModFill, db.getConnection()); ;
+                    DataTable tableCartrige1 = new DataTable();
+                    mySqlDataAdapter1.Fill(tableCartrige1);
+
+                    RefillComBox.DataSource = tableCartrige1;
+
+                    RefillComBox.DisplayMember = "code";
+                    RefillComBox.ValueMember = "id";
+
+                    break;
+                case ("Добавить"):
+                    LogoLabel.Text = "Добавление статуса";
+                    AddFillBut.Visible = true;
+                    ModFillBut.Visible = false;
+
+                    MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(DataBase.Scripts.ScriptMySql.script_SelectComBox_ModFill, db.getConnection()); ;
+                    DataTable tableCartrige = new DataTable();
+                    mySqlDataAdapter.Fill(tableCartrige);
+
+                    db.openConnection();
+                    if (tableCartrige.Rows.Count > 0)
+                    {
+                        RefillComBox.DataSource = tableCartrige;
+
+                        RefillComBox.DisplayMember = "code";
+                        RefillComBox.ValueMember = "id";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ничего перезаправлять не нужно");
+                        this.Close();
+                    }
+                    db.closeConnection();
+
+                    break;
+            }
         }
 
         private void AddStatusWorkBut_Click(object sender, EventArgs e)
@@ -57,71 +116,6 @@ namespace ASI.Forms.Modification.Fill
             }
             db.closeConnection(); //Закрываем подключение к БД
 
-        }
-
-        private void ModStatusWork_Load(object sender, EventArgs e)
-        {
-            DB db = new DB();
-
-            switch (Forms.Main.ASI.Modif)
-            {
-                case ("Изменить"):
-                    LogoLabel.Text = "Изменение статуса";
-                    AddFillBut.Visible = false;
-                    ModFillBut.Visible = true;
-
-                    IdFillTextBox.Text = DataBase.Entity.Fill.Fill.Id.ToString();
-                    RefillComBox.SelectedValue = DataBase.Entity.Fill.Fill.Id_cartrige;
-                    DateFillDatePicker.Text = DataBase.Entity.Fill.Fill.Date.ToString();
-                    NoteFillTextBox.Text = DataBase.Entity.Fill.Fill.Note.ToString();
-
-                    MySqlDataAdapter mySqlDataAdapter1 = new MySqlDataAdapter(DataBase.Scripts.ScriptMySql.script_SelectComBox1_ModFill, db.getConnection()); ;
-                    DataTable tableCartrige1 = new DataTable();
-                    mySqlDataAdapter1.Fill(tableCartrige1);
-
-                    RefillComBox.DataSource = tableCartrige1;
-
-                    RefillComBox.DisplayMember = "code";
-                    RefillComBox.ValueMember = "id";
-
-                    break;
-                case ("Добавить"):
-                    LogoLabel.Text = "Добавление статуса";
-                    AddFillBut.Visible = true;
-                    ModFillBut.Visible = false;
-
-
-                    db.openConnection();
-                    MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(DataBase.Scripts.ScriptMySql.script_SelectComBox_ModFill, db.getConnection()); ;
-                    DataTable tableCartrige = new DataTable();
-                    mySqlDataAdapter.Fill(tableCartrige);
-
-
-                    if (tableCartrige.Rows.Count > 0)
-                    {
-                        RefillComBox.DataSource = tableCartrige;
-
-                        RefillComBox.DisplayMember = "code";
-                        RefillComBox.ValueMember = "id";
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ничего перезаправлять не нужно");
-                        this.Close();
-                    }
-
-
-                    db.closeConnection();
-
-
-                    break;
-            }
-
-
-            //
-            //Блокируем ввод от руки в combox
-            //
-            RefillComBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void ModStatusWorkBut_Click(object sender, EventArgs e)

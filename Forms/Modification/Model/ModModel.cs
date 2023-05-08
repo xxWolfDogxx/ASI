@@ -50,12 +50,7 @@ namespace ASI.Forms.Modification.Model
             ModelDB = null;
 
             MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_InsertModel_ModModel, db.getConnection());
-            
-            db.openConnection();
-            //Заносим данные в запрос
             AddCom.Parameters.Add("@nameModel", MySqlDbType.VarChar).Value = NameTextBox.Text;
-
-            db.closeConnection(); //Закрываем подключение к БД
 
             db.openConnection();
             if (Function.isModelExists.isModExists() == true)
@@ -66,8 +61,7 @@ namespace ASI.Forms.Modification.Model
             {
                 if (AddCom.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("Запись изменина");
-                    //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
+                    MessageBox.Show("Модель принтера добавлена");
                     Hide();
                     this.Close();
                 }
@@ -89,7 +83,7 @@ namespace ASI.Forms.Modification.Model
             //Заносим в 
             db.openConnection(); // Открываем подключение к БД
             var ConsumableDBCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
-            ConsumableDBCom.CommandText = "Select name From model Where id = @idModel"; // Запрос на какие либо даные
+            ConsumableDBCom.CommandText = DataBase.Scripts.ScriptMySql.script_SelectConsumableDB_ModModel; // Запрос на какие либо даные
             ConsumableDBCom.Connection = db.getConnection(); //Отправляем запрос
             ConsumableDBCom.Parameters.Add("@idModel", MySqlDbType.Int32).Value = IdModelTextBox.Text;
 
@@ -98,13 +92,8 @@ namespace ASI.Forms.Modification.Model
             db.closeConnection(); // Закрываем подключение к БД 
 
             MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateModel_ModModel, db.getConnection());
-
-            db.openConnection();
-            //Заносим данные в запрос
             AddCom.Parameters.Add("@idModel", MySqlDbType.Int32).Value =Convert.ToInt32(IdModelTextBox.Text);
             AddCom.Parameters.Add("@nameModel", MySqlDbType.VarChar).Value = NameTextBox.Text;
-
-            db.closeConnection(); //Закрываем подключение к БД
 
             Model = NameTextBox.Text;
 
@@ -136,5 +125,6 @@ namespace ASI.Forms.Modification.Model
             Hide();
             this.Close();
         }
+    
     }
 }

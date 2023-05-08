@@ -16,251 +16,20 @@ namespace ASI.Forms.Main
     public partial class ASI : Form
     {
         internal static string Modif;
-        //private string table;
 
         public ASI()
         {
             InitializeComponent();
+            
+            
             GridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             GridView.AllowUserToAddRows = false;
-        }
+            treeView1.ExpandAll();
 
-        private void UpdateTable()
-        {
-            bool visibleColum = true;
-
-            DataBase.ConnectionForMySQL.DB db = new DataBase.ConnectionForMySQL.DB();
-            MySqlDataAdapter mySql_dataAdapter = new MySqlDataAdapter(); //Через класс MySqlDataAdapter отправляем запрос в БД для получения данных
-            DataTable table = new DataTable(); //Создаем класс DataTable для того чтоб занести данные из запроса в виртуальную таблицу          
-            TreeNode CurrentNode = treeView1.SelectedNode; // Отслеживаем фокус иерархии. Общий вид вывода информации TreeNode: Принтер
-
-            //
-            //Заполняем таблицу данными с запросов
-            //
-            //-----------------------------------------------------------
-            //Расставить выборку по ролям
-            //-----------------------------------------------------------
-            db.openConnection();
-
-            switch (Convert.ToString(CurrentNode))
-            {
-                case ("TreeNode: Все"):
-                    GridView.ClearSelection(); //Чистим таблицу
-                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectAllUsers, db.getConnection());
-                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
-                    GridView.DataSource = table; //Заполняем саму таблицу на форме
-
-
-
-                    //Меняем название столбцов на руссифицированное
-                    GridView.Columns["Id"].Visible = visibleColum;
-                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-                    GridView.Columns["FullName"].HeaderText = "ФИО";
-                    GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
-                    GridView.Columns["Phone"].HeaderText = "Номер телефона";
-                    GridView.Columns["Email"].HeaderText = "Эл. почта";
-                    GridView.Columns["Password"].Visible = false;
-                    GridView.Columns["Role"].HeaderText = "Роль";
-
-                    SetupToolBut.Visible = false;
-
-
-                    break;
-
-                case ("TreeNode: Администратор"):
-                    GridView.ClearSelection(); //Чистим таблицу
-                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectUser_Admin, db.getConnection());
-                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
-                    GridView.DataSource = table; //Заполняем саму таблицу на форме
-
-                    //Меняем название столбцов на руссифицированное
-                    //Меняем название столбцов на руссифицированное
-                    GridView.Columns["Id"].Visible = visibleColum;
-                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-                    GridView.Columns["FullName"].HeaderText = "ФИО";
-                    GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
-                    GridView.Columns["Phone"].HeaderText = "Номер телефона";
-                    GridView.Columns["Email"].HeaderText = "Эл. почта";
-                    GridView.Columns["Password"].Visible = false;
-                    GridView.Columns["Role"].HeaderText = "Роль";
-
-                    SetupToolBut.Visible = false;
-
-
-                    break;
-
-                case ("TreeNode: Пользователь"):
-                    GridView.ClearSelection(); //Чистим таблицу
-                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectUser_User, db.getConnection());
-                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
-                    GridView.DataSource = table; //Заполняем саму таблицу на форме
-
-                    //Меняем название столбцов на руссифицированное
-                    //Меняем название столбцов на руссифицированное
-                    GridView.Columns["Id"].Visible = visibleColum;
-                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-                    GridView.Columns["FullName"].HeaderText = "ФИО";
-                    GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
-                    GridView.Columns["Phone"].HeaderText = "Номер телефона";
-                    GridView.Columns["Email"].HeaderText = "Эл. почта";
-                    GridView.Columns["Password"].Visible = false;
-                    GridView.Columns["Role"].HeaderText = "Роль";
-
-                    SetupToolBut.Visible = false;
-
-
-                    break;
-
-                case ("TreeNode: Роли"):
-                    GridView.ClearSelection(); //Чистим таблицу
-                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectGuideRole, db.getConnection());
-                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
-                    GridView.DataSource = table; //Заполняем саму таблицу на форме
-
-                    //Меняем название столбцов на руссифицированное
-                    GridView.Columns["Id"].Visible = visibleColum;
-                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-                    GridView.Columns["role"].HeaderText = "Роли";
-
-                    SetupToolBut.Visible = false;
-
-
-                    break;
-
-                case ("TreeNode: Принтер"):
-                    GridView.ClearSelection(); //Чистим таблицу
-                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectPrinter, db.getConnection());
-                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
-                    GridView.DataSource = table; //Заполняем саму таблицу на форме                 
-
-                    //Меняем название столбцов на руссифицированное
-                    GridView.Columns["ID"].Visible = visibleColum;
-                    GridView.Columns["id_room"].Visible = false;
-                    GridView.Columns["id_model"].Visible = false;
-                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-
-                    SetupToolBut.Visible = false;
-
-
-                    break;
-
-                case ("TreeNode: Расходники"):
-                    GridView.ClearSelection(); //Чистим таблицу
-                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectCartrige, db.getConnection());
-                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
-                    GridView.DataSource = table; //Заполняем саму таблицу на форме
-
-                    //Меняем название столбцов на руссифицированное
-                    GridView.Columns["ID"].Visible = visibleColum;
-                    GridView.Columns["id_type"].Visible = false;
-                    GridView.Columns["id_room"].Visible = false;
-                    GridView.Columns["id_model"].Visible = false;
-                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-
-                    SetupToolBut.Visible = true;
-
-
-                    break;
-
-                case ("TreeNode: Аудитория"):
-                    GridView.ClearSelection(); //Чистим таблицу
-                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectRoom, db.getConnection());
-                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
-                    GridView.DataSource = table; //Заполняем саму таблицу на форме
-
-                    //Меняем название столбцов на руссифицированное
-                    GridView.Columns["id"].Visible = visibleColum;
-                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-                    GridView.Columns["name"].HeaderText = "Аудитория";
-
-                    SetupToolBut.Visible = false;
-
-
-                    break;
-
-                case ("TreeNode: Установки"):
-                    GridView.ClearSelection(); //Чистим таблицу
-                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectSetup, db.getConnection());
-                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
-                    GridView.DataSource = table; //Заполняем саму таблицу на форме
-
-                    //Меняем название столбцов на руссифицированное
-                    GridView.Columns["id"].Visible = visibleColum;
-                    GridView.Columns["id_printer"].Visible = false;
-                    GridView.Columns["id_cartrige"].Visible = false;
-                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-
-                    SetupToolBut.Visible = false;
-
-
-                    break;
-
-                case ("TreeNode: Перезаправлен"):
-                    GridView.ClearSelection(); //Чистим таблицу
-                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectFill, db.getConnection());
-                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
-                    GridView.DataSource = table; //Заполняем саму таблицу на форме
-
-                    //Меняем название столбцов на руссифицированное
-                    GridView.Columns["id"].Visible = visibleColum;
-                    GridView.Columns["id_cartrige"].Visible = false;
-                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-
-                    SetupToolBut.Visible = false;
-
-
-                    break;
-
-                case ("TreeNode: Тип расходника"):
-                    GridView.ClearSelection(); //Чистим таблицу
-                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectCartrigeType, db.getConnection());
-                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
-                    GridView.DataSource = table; //Заполняем саму таблицу на форме
-
-                    //Меняем название столбцов на руссифицированное
-                    GridView.Columns["Id"].Visible = visibleColum;
-                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-
-                    GridView.Columns["name"].HeaderText = "Название";
-                    GridView.Columns["refill"].HeaderText = "Доступна перезаправка";
-
-                    SetupToolBut.Visible = false;
-
-
-                    break;
-
-                case ("TreeNode: Модели"):
-                    GridView.ClearSelection(); //Чистим таблицу
-                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectModel, db.getConnection());
-                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
-                    GridView.DataSource = table; //Заполняем саму таблицу на форме
-
-                    //Меняем название столбцов на руссифицированное
-                    GridView.Columns["Id"].Visible = visibleColum;
-                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-
-                    GridView.Columns["name"].HeaderText = "Название";
-
-                    SetupToolBut.Visible = false;
-
-
-                    break;
-                default:
-
-                    break;
-
-            }
-            db.closeConnection();
-        }
-
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            UpdateTable();
         }
 
         private void ASI_Load(object sender, EventArgs e)
         {
-            treeView1.ExpandAll();
 
             switch (DataBase.Entity.Identification.DB_Users.RoleUsersForRole)
             {
@@ -310,6 +79,230 @@ namespace ASI.Forms.Main
 
         }
 
+        private void UpdateTable()
+        {
+            bool visibleColum = true;
+
+            DataBase.ConnectionForMySQL.DB db = new DataBase.ConnectionForMySQL.DB();
+            MySqlDataAdapter mySql_dataAdapter = new MySqlDataAdapter(); //Через класс MySqlDataAdapter отправляем запрос в БД для получения данных
+            DataTable table = new DataTable(); //Создаем класс DataTable для того чтоб занести данные из запроса в виртуальную таблицу          
+            TreeNode CurrentNode = treeView1.SelectedNode; // Отслеживаем фокус иерархии. Общий вид вывода информации TreeNode: Принтер
+
+            //
+            //Заполняем таблицу данными с запросов
+            //
+            //-----------------------------------------------------------
+            //Расставить выборку по ролям
+            //-----------------------------------------------------------
+            db.openConnection();
+
+            switch (Convert.ToString(CurrentNode))
+            {
+                case ("TreeNode: Все"):
+                    GridView.ClearSelection(); //Чистим таблицу
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectAllUsers_ASI, db.getConnection());
+                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                    GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+
+
+                    //Меняем название столбцов на руссифицированное
+                    GridView.Columns["Id"].Visible = visibleColum;
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+                    GridView.Columns["FullName"].HeaderText = "ФИО";
+                    GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
+                    GridView.Columns["Phone"].HeaderText = "Номер телефона";
+                    GridView.Columns["Email"].HeaderText = "Эл. почта";
+                    GridView.Columns["Password"].Visible = false;
+                    GridView.Columns["Role"].HeaderText = "Роль";
+
+                    SetupToolBut.Visible = false;
+
+
+                    break;
+
+                case ("TreeNode: Администратор"):
+                    GridView.ClearSelection(); //Чистим таблицу
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectUser_Admin_ASI, db.getConnection());
+                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                    GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                    //Меняем название столбцов на руссифицированное
+                    //Меняем название столбцов на руссифицированное
+                    GridView.Columns["Id"].Visible = visibleColum;
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+                    GridView.Columns["FullName"].HeaderText = "ФИО";
+                    GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
+                    GridView.Columns["Phone"].HeaderText = "Номер телефона";
+                    GridView.Columns["Email"].HeaderText = "Эл. почта";
+                    GridView.Columns["Password"].Visible = false;
+                    GridView.Columns["Role"].HeaderText = "Роль";
+
+                    SetupToolBut.Visible = false;
+
+
+                    break;
+
+                case ("TreeNode: Пользователь"):
+                    GridView.ClearSelection(); //Чистим таблицу
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectUser_User_ASI, db.getConnection());
+                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                    GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                    //Меняем название столбцов на руссифицированное
+                    //Меняем название столбцов на руссифицированное
+                    GridView.Columns["Id"].Visible = visibleColum;
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+                    GridView.Columns["FullName"].HeaderText = "ФИО";
+                    GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
+                    GridView.Columns["Phone"].HeaderText = "Номер телефона";
+                    GridView.Columns["Email"].HeaderText = "Эл. почта";
+                    GridView.Columns["Password"].Visible = false;
+                    GridView.Columns["Role"].HeaderText = "Роль";
+
+                    SetupToolBut.Visible = false;
+
+
+                    break;
+
+                case ("TreeNode: Роли"):
+                    GridView.ClearSelection(); //Чистим таблицу
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectRole_ASI, db.getConnection());
+                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                    GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                    //Меняем название столбцов на руссифицированное
+                    GridView.Columns["Id"].Visible = visibleColum;
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+                    GridView.Columns["role"].HeaderText = "Роли";
+
+                    SetupToolBut.Visible = false;
+
+
+                    break;
+
+                case ("TreeNode: Принтер"):
+                    GridView.ClearSelection(); //Чистим таблицу
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectPrinter_ASI, db.getConnection());
+                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                    GridView.DataSource = table; //Заполняем саму таблицу на форме                 
+
+                    //Меняем название столбцов на руссифицированное
+                    GridView.Columns["ID"].Visible = visibleColum;
+                    GridView.Columns["id_room"].Visible = false;
+                    GridView.Columns["id_model"].Visible = false;
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                    SetupToolBut.Visible = false;
+
+
+                    break;
+
+                case ("TreeNode: Расходники"):
+                    GridView.ClearSelection(); //Чистим таблицу
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectCartrige_ASI, db.getConnection());
+                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                    GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                    //Меняем название столбцов на руссифицированное
+                    GridView.Columns["ID"].Visible = visibleColum;
+                    GridView.Columns["id_type"].Visible = false;
+                    GridView.Columns["id_room"].Visible = false;
+                    GridView.Columns["id_model"].Visible = false;
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                    SetupToolBut.Visible = true;
+
+
+                    break;
+
+                case ("TreeNode: Аудитория"):
+                    GridView.ClearSelection(); //Чистим таблицу
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectRoom_ASI, db.getConnection());
+                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                    GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                    //Меняем название столбцов на руссифицированное
+                    GridView.Columns["ID"].Visible = visibleColum;
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                    SetupToolBut.Visible = false;
+
+
+                    break;
+
+                case ("TreeNode: Установки"):
+                    GridView.ClearSelection(); //Чистим таблицу
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectModel_ASI, db.getConnection());
+                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                    GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                    //Меняем название столбцов на руссифицированное
+                    GridView.Columns["id"].Visible = visibleColum;
+                    GridView.Columns["id_printer"].Visible = false;
+                    GridView.Columns["id_cartrige"].Visible = false;
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                    SetupToolBut.Visible = false;
+
+
+                    break;
+
+                case ("TreeNode: Перезаправлен"):
+                    GridView.ClearSelection(); //Чистим таблицу
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectFill_ASI, db.getConnection());
+                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                    GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                    //Меняем название столбцов на руссифицированное
+                    GridView.Columns["id"].Visible = visibleColum;
+                    GridView.Columns["id_cartrige"].Visible = false;
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                    SetupToolBut.Visible = false;
+
+                    break;
+
+                case ("TreeNode: Тип расходника"):
+                    GridView.ClearSelection(); //Чистим таблицу
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectCartrigeType_ASI, db.getConnection());
+                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                    GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                    //Меняем название столбцов на руссифицированное
+                    GridView.Columns["Id"].Visible = visibleColum;
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                    SetupToolBut.Visible = false;
+
+                    break;
+
+                case ("TreeNode: Модели"):
+                    GridView.ClearSelection(); //Чистим таблицу
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectModel_ASI, db.getConnection());
+                    mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                    GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                    //Меняем название столбцов на руссифицированное
+                    GridView.Columns["ID"].Visible = visibleColum;
+                    GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                    SetupToolBut.Visible = false;
+
+                    break;
+                default:
+
+                    break;
+
+            }
+            db.closeConnection();
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            UpdateTable();
+        }
+
         private void AddToolBut_Click(object sender, EventArgs e)
         {
 
@@ -346,7 +339,7 @@ namespace ASI.Forms.Main
                     DataBase.Entity.Printer.Printer.Name = null;
                     DataBase.Entity.Printer.Printer.Inventory = null;
                     DataBase.Entity.Printer.Printer.Id_room = Convert.ToInt32(null);
-                    DataBase.Entity.Printer.Printer.Note = DBNull.Value.ToString();
+                    DataBase.Entity.Printer.Printer.Note = null;
                     DataBase.Entity.Printer.Printer.Id_model = Convert.ToInt32(null);
 
                     modPrinter.ShowDialog();
@@ -498,7 +491,7 @@ namespace ASI.Forms.Main
 
                         //modConsumable.IdСonsumableTextBox = Convert.ToString(GridView.CurrentRow.Cells["i"].Value.ToString());
 
-                        DataBase.Entity.Consumable.Consumable.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value.ToString());
+                        DataBase.Entity.Consumable.Consumable.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
                         DataBase.Entity.Consumable.Consumable.Name = GridView.CurrentRow.Cells["Название"].Value.ToString();
                         DataBase.Entity.Consumable.Consumable.Code = GridView.CurrentRow.Cells["Уникальный номер"].Value.ToString();
                         DataBase.Entity.Consumable.Consumable.Bay_date = Convert.ToDateTime(GridView.CurrentRow.Cells["Дата покупки"].Value);
@@ -522,8 +515,8 @@ namespace ASI.Forms.Main
                     {
                         Modification.Room.ModRoom modAudit = new Modification.Room.ModRoom(); //объявляем форму, которую желаем открыть
 
-                        DataBase.Entity.Audit.Audiences.Id = Convert.ToInt32(GridView.CurrentRow.Cells[0].Value.ToString());
-                        DataBase.Entity.Audit.Audiences.Name = GridView.CurrentRow.Cells[1].Value.ToString();
+                        DataBase.Entity.Audit.Audiences.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
+                        DataBase.Entity.Audit.Audiences.Name = GridView.CurrentRow.Cells["Название"].Value.ToString();
 
                         modAudit.ShowDialog();
                         UpdateTable();
@@ -571,10 +564,9 @@ namespace ASI.Forms.Main
                 case ("TreeNode: Тип расходника"):
                     Modification.CartrigeType.ModCartrigeType modCartrigeType = new Modification.CartrigeType.ModCartrigeType(); //объявляем форму, которую желаем открыть
 
-                    DataBase.Entity.CartrigeType.CartrigeType.Id = Convert.ToInt32(GridView.CurrentRow.Cells[0].Value.ToString());
-                    DataBase.Entity.CartrigeType.CartrigeType.Name = GridView.CurrentRow.Cells[1].Value.ToString();
-                    DataBase.Entity.CartrigeType.CartrigeType.Refill = Convert.ToBoolean(GridView.CurrentRow.Cells[2].Value.ToString());
-
+                    DataBase.Entity.CartrigeType.CartrigeType.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value.ToString());
+                    DataBase.Entity.CartrigeType.CartrigeType.Name = GridView.CurrentRow.Cells["Название"].Value.ToString();
+                    DataBase.Entity.CartrigeType.CartrigeType.Refill = Convert.ToBoolean(GridView.CurrentRow.Cells["Доступна перезапрака"].Value.ToString());
 
                     modCartrigeType.ShowDialog();
                     UpdateTable();
@@ -584,8 +576,8 @@ namespace ASI.Forms.Main
                 case ("TreeNode: Модели"):
                     Modification.Model.ModModel modModel = new Modification.Model.ModModel(); //объявляем форму, которую желаем открыть
 
-                    DataBase.Entity.Model.Model.Id = Convert.ToInt32(GridView.CurrentRow.Cells[0].Value.ToString());
-                    DataBase.Entity.Model.Model.Name = GridView.CurrentRow.Cells[1].Value.ToString();
+                    DataBase.Entity.Model.Model.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value.ToString());
+                    DataBase.Entity.Model.Model.Name = GridView.CurrentRow.Cells["Название"].Value.ToString();
 
                     modModel.ShowDialog();
                     UpdateTable();
@@ -600,6 +592,64 @@ namespace ASI.Forms.Main
         private void UpdateToolBut_Click(object sender, EventArgs e)
         {
             UpdateTable();
+        }
+
+        private void SetupToolBut_Click(object sender, EventArgs e)
+        {
+            TreeNode CurrentNode = treeView1.SelectedNode;
+            DB db = new DB();
+            //Modif = "Установка";
+
+            db.openConnection();
+            switch (Convert.ToString(CurrentNode))
+            {
+                case ("TreeNode: Принтер"):
+
+
+                    break;
+
+                case ("TreeNode: Расходники"):
+                    if (GridView.CurrentRow != null)
+                    {
+                        if (GridView.CurrentRow.Cells["Готовность"].Value.ToString() == "True")
+                        {
+                            Modification.Setup.ModSetup modSetup = new Modification.Setup.ModSetup(); //объявляем форму, которую желаем открыть
+                                                                                                      //MessageBox.Show(GridView.CurrentRow.Cells["Установлен"].Value.ToString());
+                            if (GridView.CurrentRow.Cells["Установлен"].Value.ToString() == "False")
+                            {
+                                Modif = "Установка";
+                                MessageBox.Show("Не установлен");
+                                DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
+                                DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(null);
+                                DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["Id"].Value);
+                                DataBase.Entity.Setup.Setup.Start = null;
+                                DataBase.Entity.Setup.Setup.End = null;
+                                DataBase.Entity.Setup.Setup.Note = null;
+
+                            }
+                            else if (GridView.CurrentRow.Cells["Установлен"].Value.ToString() == "True")
+                            {
+                                Modif = "Снятие";
+                                MessageBox.Show("Установлен");
+                                DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
+                                DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(null);
+                                DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["Id"].Value);
+                                DataBase.Entity.Setup.Setup.Start = null;
+                                DataBase.Entity.Setup.Setup.End = null;
+                                DataBase.Entity.Setup.Setup.Note = null;
+                            }
+
+                            modSetup.ShowDialog();
+                            UpdateTable();
+                        }
+                        else { MessageBox.Show("Данный расходник не готов для установки"); }
+                    }
+                    else { MessageBox.Show("Выделите строчку для редактирования"); }
+
+                    break;
+            }
+            db.closeConnection();
+
         }
 
         private void DelToolBut_Click(object sender, EventArgs e)
@@ -771,33 +821,6 @@ namespace ASI.Forms.Main
             }
         }
 
-        private void ASI_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            DialogResult result = MessageBox.Show(
-                "Вы уверены, что хотели бы выйти из профиля?",
-                "Выход",
-                MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Information,
-                MessageBoxDefaultButton.Button1
-                );
-
-            if (result == DialogResult.Yes)
-            {
-                Forms.Identification.Authentication.Auth auth = new Forms.Identification.Authentication.Auth();
-                this.Hide();
-                auth.ShowDialog();
-                this.Close();
-            }
-            else if (result == DialogResult.No)
-            {
-                e.Cancel = true;
-            }
-            else
-            {
-                e.Cancel = true;
-            }
-        }
-
         private void Search()
         {
 
@@ -875,62 +898,32 @@ namespace ASI.Forms.Main
             db.closeConnection();
         }
 
-        private void SetupToolBut_Click(object sender, EventArgs e)
+        private void ASI_FormClosing(object sender, FormClosingEventArgs e)
         {
-            TreeNode CurrentNode = treeView1.SelectedNode;
-            DB db = new DB();
-            //Modif = "Установка";
+            DialogResult result = MessageBox.Show(
+                "Вы уверены, что хотели бы выйти из профиля?",
+                "Выход",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1
+                );
 
-            db.openConnection();
-            switch (Convert.ToString(CurrentNode))
+            if (result == DialogResult.Yes)
             {
-                case ("TreeNode: Принтер"):
-
-
-                    break;
-
-                case ("TreeNode: Расходники"):
-                    if (GridView.CurrentRow != null)
-                    {
-                        if (GridView.CurrentRow.Cells["Готовность"].Value.ToString() == "True")
-                        {
-                            Modification.Setup.ModSetup modSetup = new Modification.Setup.ModSetup(); //объявляем форму, которую желаем открыть
-                                                                                                      //MessageBox.Show(GridView.CurrentRow.Cells["Установлен"].Value.ToString());
-                            if (GridView.CurrentRow.Cells["Установлен"].Value.ToString() == "False")
-                            {
-                                Modif = "Установка";
-                                MessageBox.Show("Не установлен");
-                                DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
-                                DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(null);
-                                DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["Id"].Value);
-                                DataBase.Entity.Setup.Setup.Start = null;
-                                DataBase.Entity.Setup.Setup.End = null;
-                                DataBase.Entity.Setup.Setup.Note = null;
-
-                            }
-                            else if (GridView.CurrentRow.Cells["Установлен"].Value.ToString() == "True")
-                            {
-                                Modif = "Снятие";
-                                MessageBox.Show("Установлен");
-                                DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
-                                DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(null);
-                                DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["Id"].Value);
-                                DataBase.Entity.Setup.Setup.Start = null;
-                                DataBase.Entity.Setup.Setup.End = null;
-                                DataBase.Entity.Setup.Setup.Note = null;
-                            }
-
-                            modSetup.ShowDialog();
-                            UpdateTable();
-                        }
-                        else { MessageBox.Show("Данный расходник не готов для установки"); }
-                    }
-                    else { MessageBox.Show("Выделите строчку для редактирования"); }
-
-                    break;
+                Forms.Identification.Authentication.Auth auth = new Forms.Identification.Authentication.Auth();
+                this.Hide();
+                auth.ShowDialog();
+                this.Close();
             }
-            db.closeConnection();
-
+            else if (result == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
+
     }
 }

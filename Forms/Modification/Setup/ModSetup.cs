@@ -11,6 +11,12 @@ namespace ASI.Forms.Modification.Setup
         public ModSetup()
         {
             InitializeComponent();
+
+            //
+            //Блокируем ввод от руки в ComBox
+            //
+            PrinterSetupComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            CartrigeSetupComBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void ModSetup_Load(object sender, EventArgs e)
@@ -41,10 +47,6 @@ namespace ASI.Forms.Modification.Setup
             PrinterSetupComBox.ValueMember = "id";
             CartrigeSetupComBox.DisplayMember = "code";
             CartrigeSetupComBox.ValueMember = "id";
-
-            //Блокируем ввод от руки в ComBox
-            PrinterSetupComBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            CartrigeSetupComBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
             switch (Forms.Main.ASI.Modif)
             {
@@ -237,9 +239,6 @@ namespace ASI.Forms.Modification.Setup
             AddCom.Parameters.Add("@dataStartSetup", MySqlDbType.Date).Value = Convert.ToDateTime(value: DateStartDatePicker.Value);
             AddCom.Parameters.Add("@noteSetup", MySqlDbType.VarChar).Value = NoteSetupTextBox.Text;
 
-            /* MySqlCommand AddCheckSetupCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateSetupCheck_Cartrige, db.getConnection());
-             AddCheckSetupCom.Parameters.Add("@idCartrige", MySqlDbType.Int32).Value = Convert.ToInt32(CartrigeSetupComBox.SelectedValue);*/
-
             MySqlCommand AddCheckReadyCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_UpdateReadyCheck_Cartrige, db.getConnection());
             AddCheckReadyCom.Parameters.Add("@idCartrige", MySqlDbType.Int32).Value = Convert.ToInt32(CartrigeSetupComBox.SelectedValue);
 
@@ -296,16 +295,6 @@ namespace ASI.Forms.Modification.Setup
                 dtp.CustomFormat = "dd.MM.yyyy";
             else
                 dtp.CustomFormat = null;
-        }
-
-        private void CartrigeSetupComBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           /* DB dB = new DB();
-            MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
-            DataTable table
-            mySqlDataAdapter.SelectCommand = new MySqlCommand("", dB.getConnection());*/
-
-
         }
     }
 }
