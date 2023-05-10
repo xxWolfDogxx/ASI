@@ -96,7 +96,7 @@ namespace ASI.Forms.Modification.Fill
 
             UpdCartrigeCom.Parameters.Add("@idCartrige", MySqlDbType.Int32).Value = Convert.ToInt32(RefillComBox.SelectedValue);
             UpdCartrigeCom.Parameters.Add("@readyCartrige", MySqlDbType.UByte).Value = Convert.ToBoolean(true);
-            UpdCartrigeCom.Parameters.Add("@noteCartrige", MySqlDbType.VarChar).Value = "Перезаправлен";
+            //UpdCartrigeCom.Parameters.Add("@noteCartrige", MySqlDbType.VarChar).Value = "Перезаправлен";
             UpdCartrigeCom.Parameters.Add("@setupCartrige", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
 
 
@@ -136,7 +136,7 @@ namespace ASI.Forms.Modification.Fill
 
             UpdCartrigeCom.Parameters.Add("@idCartrige", MySqlDbType.Int32).Value = Convert.ToInt32(RefillComBox.SelectedValue);
             UpdCartrigeCom.Parameters.Add("@readyCartrige", MySqlDbType.UByte).Value = Convert.ToBoolean(true);
-            UpdCartrigeCom.Parameters.Add("@noteCartrige", MySqlDbType.VarChar).Value = "Перезаправлен";
+            //UpdCartrigeCom.Parameters.Add("@noteCartrige", MySqlDbType.VarChar).Value = "Перезаправлен";
             UpdCartrigeCom.Parameters.Add("@setupCartrige", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
 
 

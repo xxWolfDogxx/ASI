@@ -42,11 +42,11 @@
             this.RoomConsumableComBox = new System.Windows.Forms.ComboBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.TypeConsumableComBox = new System.Windows.Forms.ComboBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.ReadyGr = new System.Windows.Forms.GroupBox();
             this.ReadyConsumableComBox = new System.Windows.Forms.ComboBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.NoteConsumableTextBox = new System.Windows.Forms.TextBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.WriteoffGr = new System.Windows.Forms.GroupBox();
             this.WriteoffConsumableComBox = new System.Windows.Forms.ComboBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.DateConsumableDatePicker = new System.Windows.Forms.DateTimePicker();
@@ -62,9 +62,9 @@
             this.groupBox12.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox8.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.ReadyGr.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            this.groupBox7.SuspendLayout();
+            this.WriteoffGr.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -150,9 +150,9 @@
             this.groupBox2.Controls.Add(this.groupBox12);
             this.groupBox2.Controls.Add(this.groupBox11);
             this.groupBox2.Controls.Add(this.groupBox8);
-            this.groupBox2.Controls.Add(this.groupBox4);
+            this.groupBox2.Controls.Add(this.ReadyGr);
             this.groupBox2.Controls.Add(this.groupBox9);
-            this.groupBox2.Controls.Add(this.groupBox7);
+            this.groupBox2.Controls.Add(this.WriteoffGr);
             this.groupBox2.Controls.Add(this.groupBox6);
             this.groupBox2.Controls.Add(this.groupBox5);
             this.groupBox2.Controls.Add(this.groupBox3);
@@ -235,18 +235,18 @@
             this.TypeConsumableComBox.Size = new System.Drawing.Size(544, 31);
             this.TypeConsumableComBox.TabIndex = 0;
             // 
-            // groupBox4
+            // ReadyGr
             // 
-            this.groupBox4.AutoSize = true;
-            this.groupBox4.Controls.Add(this.ReadyConsumableComBox);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox4.Location = new System.Drawing.Point(10, 407);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox4.Size = new System.Drawing.Size(564, 64);
-            this.groupBox4.TabIndex = 8;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Готовность";
+            this.ReadyGr.AutoSize = true;
+            this.ReadyGr.Controls.Add(this.ReadyConsumableComBox);
+            this.ReadyGr.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ReadyGr.Location = new System.Drawing.Point(10, 407);
+            this.ReadyGr.Name = "ReadyGr";
+            this.ReadyGr.Padding = new System.Windows.Forms.Padding(10);
+            this.ReadyGr.Size = new System.Drawing.Size(564, 64);
+            this.ReadyGr.TabIndex = 8;
+            this.ReadyGr.TabStop = false;
+            this.ReadyGr.Text = "Готовность";
             // 
             // ReadyConsumableComBox
             // 
@@ -280,18 +280,18 @@
             this.NoteConsumableTextBox.Size = new System.Drawing.Size(544, 31);
             this.NoteConsumableTextBox.TabIndex = 2;
             // 
-            // groupBox7
+            // WriteoffGr
             // 
-            this.groupBox7.AutoSize = true;
-            this.groupBox7.Controls.Add(this.WriteoffConsumableComBox);
-            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox7.Location = new System.Drawing.Point(10, 279);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox7.Size = new System.Drawing.Size(564, 64);
-            this.groupBox7.TabIndex = 6;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Списанный";
+            this.WriteoffGr.AutoSize = true;
+            this.WriteoffGr.Controls.Add(this.WriteoffConsumableComBox);
+            this.WriteoffGr.Dock = System.Windows.Forms.DockStyle.Top;
+            this.WriteoffGr.Location = new System.Drawing.Point(10, 279);
+            this.WriteoffGr.Name = "WriteoffGr";
+            this.WriteoffGr.Padding = new System.Windows.Forms.Padding(10);
+            this.WriteoffGr.Size = new System.Drawing.Size(564, 64);
+            this.WriteoffGr.TabIndex = 6;
+            this.WriteoffGr.TabStop = false;
+            this.WriteoffGr.Text = "Списанный";
             // 
             // WriteoffConsumableComBox
             // 
@@ -422,10 +422,10 @@
             this.groupBox12.ResumeLayout(false);
             this.groupBox11.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
+            this.ReadyGr.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
+            this.WriteoffGr.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
@@ -448,7 +448,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox9;
         public System.Windows.Forms.TextBox NoteConsumableTextBox;
-        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.GroupBox WriteoffGr;
         internal System.Windows.Forms.ComboBox WriteoffConsumableComBox;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox5;
@@ -459,7 +459,7 @@
         public System.Windows.Forms.TextBox IdСonsumableTextBox;
         private System.Windows.Forms.GroupBox groupBox8;
         internal System.Windows.Forms.ComboBox TypeConsumableComBox;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox ReadyGr;
         internal System.Windows.Forms.ComboBox ReadyConsumableComBox;
         private System.Windows.Forms.GroupBox groupBox12;
         internal System.Windows.Forms.ComboBox ModelConsumableComBox;

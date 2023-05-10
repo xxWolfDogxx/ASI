@@ -184,6 +184,12 @@
     <Compile Include="Forms\Modification\Fill\ModFill.Designer.cs">
       <DependentUpon>ModFill.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Modification\Story\ModStory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Modification\Story\ModStory.Designer.cs">
+      <DependentUpon>ModStory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Function\isAudiencesExists.cs" />
     <Compile Include="Function\isCartrigeExists.cs" />
     <Compile Include="Function\isCartrigeType.cs" />
@@ -222,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Modification\Fill\ModFill.resx">
       <DependentUpon>ModFill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Modification\Story\ModStory.resx">
+      <DependentUpon>ModStory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

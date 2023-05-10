@@ -137,7 +137,7 @@ namespace ASI.DataBase.Scripts
         //Отправка запроса на вставку записи заправок
         internal static string script_InsertFill_ModFill = "INSERT INTO `fill`(`id_cartrige`, `date`, `note`) VALUES (@cartrigeFill, @dateFill, @noteFill)";
         //Отправка запроса на изменение записи картриджа (Готовность, установка, заметки)
-        internal static string script_InsertFillCartrigeReady_ModFill = "Update `cartrige` SET `ready` = @readyCartrige, `note` = @noteCartrige, `setup` = @setupCartrige WHERE `id` = @idCartrige";
+        internal static string script_InsertFillCartrigeReady_ModFill = "Update `cartrige` SET `ready` = @readyCartrige, `setup` = @setupCartrige WHERE `id` = @idCartrige";
         //Запрос на вытягивание записей в ComBox расходников (перезаправляемых) при изменении
         internal static string script_SelectComBox_ModFill = "SELECT cartrige.id, cartrige.code, cartrige.ready, cartrige_type.refill " +
                 "FROM cartrige " +
@@ -182,9 +182,9 @@ namespace ASI.DataBase.Scripts
         //Отправка запроса на изменение записи картриджа (готовность, установка, заметки)
         internal static string script_UpdateReadyCheck_Cartrige = "UPDATE cartrige " +
                     "INNER JOIN cartrige_type ON cartrige.id_cartrige_type = cartrige_type.id " +
-                    "SET `cartrige`.`ready`= @readyCheck,`cartrige`.`setup`= @setupCheck,  `cartrige`.`note` = @note  WHERE `cartrige`.`id` = @idCartrige";
+                    "SET `cartrige`.`ready`= @readyCheck,`cartrige`.`setup`= @setupCheck  WHERE `cartrige`.`id` = @idCartrige";
         //Запрос на вытаскивание данных в combobox название принтера
-        internal static string script_SelectPrinter_ModSetup = "SELECT * FROM `printer`";
+        internal static string script_SelectPrinter_ModSetup = "SELECT * FROM `printer` WHERE id_model =@idModelPrinter";
         //Запрос на вытаскивание данных в combobox код картриджа
         internal static string script_SelectCartrige_ModSetup = "SELECT * FROM `cartrige`";
     }

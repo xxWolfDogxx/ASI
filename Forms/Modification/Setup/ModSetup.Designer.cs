@@ -203,6 +203,7 @@ namespace ASI.Forms.Modification.Setup
             this.CartrigeSetupComBox.Name = "CartrigeSetupComBox";
             this.CartrigeSetupComBox.Size = new System.Drawing.Size(544, 31);
             this.CartrigeSetupComBox.TabIndex = 3;
+            this.CartrigeSetupComBox.SelectionChangeCommitted += new System.EventHandler(this.CartrigeSetupComBox_SelectionChangeCommitted);
             // 
             // idGR
             // 

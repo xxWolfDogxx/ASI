@@ -32,6 +32,8 @@ namespace ASI.Forms.Modification.Consumable
             RoomConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
             ModelConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
             WriteoffConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            
         }
 
         private void ModCartrige_Load(object sender, EventArgs e)
@@ -86,6 +88,11 @@ namespace ASI.Forms.Modification.Consumable
                     AddCartrigeBut.Visible = false;
                     ModCartrigeBut.Visible = true;
 
+                    WriteoffGr.Visible = true;
+                    ReadyGr.Visible = true;
+                    this.Width = 600;
+                    this.Height = 937;
+
                     //
                     //Заносим в поля данные
                     //
@@ -117,6 +124,8 @@ namespace ASI.Forms.Modification.Consumable
                     ModelConsumableComBox.SelectedValue = DataBase.Entity.Consumable.Consumable.Id_model;
                     TypeConsumableComBox.SelectedValue = DataBase.Entity.Consumable.Consumable.Id_cartrige_type;
 
+
+
                     break;
 
 
@@ -124,6 +133,12 @@ namespace ASI.Forms.Modification.Consumable
                     LogoLabel.Text = "Добавление расходника";
                     AddCartrigeBut.Visible = true;
                     ModCartrigeBut.Visible = false;
+
+                    WriteoffGr.Visible = false;
+                    ReadyGr.Visible = false;
+
+                    this.Width = 600;
+                    this.Height = 800;
 
                     //
                     //Заносим в поля данные
@@ -176,9 +191,11 @@ namespace ASI.Forms.Modification.Consumable
             AddCom.Parameters.Add("@nameConsumable", MySqlDbType.VarChar).Value = NameСonsumableTextBox.Text;
             AddCom.Parameters.Add("@codeConsumable", MySqlDbType.VarChar).Value = CodeСonsumableTextBox.Text;
             AddCom.Parameters.Add("@buy_dateConsumable", MySqlDbType.Date).Value = DateConsumableDatePicker.Value;
-            AddCom.Parameters.Add("@writeoffConsumable", MySqlDbType.UByte).Value = writeoffBool;
+            //AddCom.Parameters.Add("@writeoffConsumable", MySqlDbType.UByte).Value = writeoffBool;
+            AddCom.Parameters.Add("@writeoffConsumable", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
             AddCom.Parameters.Add("@noteConsumable", MySqlDbType.VarChar).Value = NoteConsumableTextBox.Text;
-            AddCom.Parameters.Add("@readyConsumable", MySqlDbType.UByte).Value = readyBool;
+            //AddCom.Parameters.Add("@readyConsumable", MySqlDbType.UByte).Value = readyBool;
+            AddCom.Parameters.Add("@readyConsumable", MySqlDbType.UByte).Value = Convert.ToBoolean(true);
             AddCom.Parameters.Add("@typeConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(TypeConsumableComBox.SelectedValue);
             AddCom.Parameters.Add("@roomConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(RoomConsumableComBox.SelectedValue);
             AddCom.Parameters.Add("@modelConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(ModelConsumableComBox.SelectedValue);

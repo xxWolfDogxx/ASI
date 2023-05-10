@@ -20,8 +20,8 @@ namespace ASI.Forms.Main
         public ASI()
         {
             InitializeComponent();
-            
-            
+
+
             GridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             GridView.AllowUserToAddRows = false;
             treeView1.ExpandAll();
@@ -117,8 +117,10 @@ namespace ASI.Forms.Main
                     GridView.Columns["Role"].HeaderText = "Роль";
 
                     SetupToolBut.Visible = false;
-
-
+                    WriteoffToolBut.Visible = false;
+                    Ser5.Visible = false;
+                    StoryToolBut.Visible = false;
+                    Ser6.Visible = false;
                     break;
 
                 case ("TreeNode: Администратор"):
@@ -139,8 +141,10 @@ namespace ASI.Forms.Main
                     GridView.Columns["Role"].HeaderText = "Роль";
 
                     SetupToolBut.Visible = false;
-
-
+                    WriteoffToolBut.Visible = false;
+                    Ser5.Visible = false;
+                    StoryToolBut.Visible = false;
+                    Ser6.Visible = false;
                     break;
 
                 case ("TreeNode: Пользователь"):
@@ -161,8 +165,10 @@ namespace ASI.Forms.Main
                     GridView.Columns["Role"].HeaderText = "Роль";
 
                     SetupToolBut.Visible = false;
-
-
+                    WriteoffToolBut.Visible = false;
+                    Ser5.Visible = false;
+                    StoryToolBut.Visible = false;
+                    Ser6.Visible = false;
                     break;
 
                 case ("TreeNode: Роли"):
@@ -177,8 +183,10 @@ namespace ASI.Forms.Main
                     GridView.Columns["role"].HeaderText = "Роли";
 
                     SetupToolBut.Visible = false;
-
-
+                    WriteoffToolBut.Visible = false;
+                    Ser5.Visible = false;
+                    StoryToolBut.Visible = false;
+                    Ser6.Visible = false;
                     break;
 
                 case ("TreeNode: Принтер"):
@@ -194,7 +202,12 @@ namespace ASI.Forms.Main
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
                     SetupToolBut.Visible = false;
+                    WriteoffToolBut.Visible = false;
+                    Ser5.Visible = false;
 
+                    StoryToolBut.Visible = false;
+                    Ser6.Visible = false;
+                     
 
                     break;
 
@@ -212,7 +225,11 @@ namespace ASI.Forms.Main
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
                     SetupToolBut.Visible = true;
+                    WriteoffToolBut.Visible = true;
+                    Ser5.Visible = true;
 
+                    StoryToolBut.Visible = true;
+                    Ser6.Visible = true;
 
                     break;
 
@@ -227,13 +244,17 @@ namespace ASI.Forms.Main
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
                     SetupToolBut.Visible = false;
+                    WriteoffToolBut.Visible = false;
+                    Ser5.Visible = false;
 
+                    StoryToolBut.Visible = false;
+                    Ser6.Visible = false;
 
                     break;
 
                 case ("TreeNode: Установки"):
                     GridView.ClearSelection(); //Чистим таблицу
-                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectModel_ASI, db.getConnection());
+                    mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectSetup_ASI, db.getConnection());
                     mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
                     GridView.DataSource = table; //Заполняем саму таблицу на форме
 
@@ -244,7 +265,11 @@ namespace ASI.Forms.Main
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
                     SetupToolBut.Visible = false;
+                    WriteoffToolBut.Visible = false;
+                    Ser5.Visible = false;
 
+                    StoryToolBut.Visible = false;
+                    Ser6.Visible = false;
 
                     break;
 
@@ -260,6 +285,11 @@ namespace ASI.Forms.Main
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
                     SetupToolBut.Visible = false;
+                    WriteoffToolBut.Visible = false;
+                    Ser5.Visible = false;
+
+                    StoryToolBut.Visible = false;
+                    Ser6.Visible = false;
 
                     break;
 
@@ -274,6 +304,11 @@ namespace ASI.Forms.Main
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
                     SetupToolBut.Visible = false;
+                    WriteoffToolBut.Visible = false;
+                    Ser5.Visible = false;
+
+                    StoryToolBut.Visible = false;
+                    Ser6.Visible = false;
 
                     break;
 
@@ -288,6 +323,12 @@ namespace ASI.Forms.Main
                     GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
                     SetupToolBut.Visible = false;
+                    WriteoffToolBut.Visible = false;
+                    Ser5.Visible = false;
+
+                    StoryToolBut.Visible = false;
+                    Ser6.Visible = false;
+
 
                     break;
                 default:
@@ -550,13 +591,13 @@ namespace ASI.Forms.Main
                     {
                         Modification.Fill.ModFill modFill = new Modification.Fill.ModFill(); //объявляем форму, которую желаем открыть
 
-                    DataBase.Entity.Fill.Fill.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
-                    DataBase.Entity.Fill.Fill.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["id_cartrige"].Value);
-                    DataBase.Entity.Fill.Fill.Date = GridView.CurrentRow.Cells["Дата заправки"].Value.ToString();
-                    DataBase.Entity.Fill.Fill.Note = GridView.CurrentRow.Cells["Заметки"].Value.ToString();
+                        DataBase.Entity.Fill.Fill.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
+                        DataBase.Entity.Fill.Fill.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["id_cartrige"].Value);
+                        DataBase.Entity.Fill.Fill.Date = GridView.CurrentRow.Cells["Дата заправки"].Value.ToString();
+                        DataBase.Entity.Fill.Fill.Note = GridView.CurrentRow.Cells["Заметки"].Value.ToString();
 
-                    modFill.ShowDialog();
-                    UpdateTable();
+                        modFill.ShowDialog();
+                        UpdateTable();
                     }
                     else { MessageBox.Show("Выделите строчку для редактирования"); }
                     break;
@@ -611,40 +652,46 @@ namespace ASI.Forms.Main
                 case ("TreeNode: Расходники"):
                     if (GridView.CurrentRow != null)
                     {
-                        if (GridView.CurrentRow.Cells["Готовность"].Value.ToString() == "True")
+                        if (GridView.CurrentRow.Cells["Списанный"].Value.ToString() == "False")
                         {
-                            Modification.Setup.ModSetup modSetup = new Modification.Setup.ModSetup(); //объявляем форму, которую желаем открыть
-                                                                                                      //MessageBox.Show(GridView.CurrentRow.Cells["Установлен"].Value.ToString());
-                            if (GridView.CurrentRow.Cells["Установлен"].Value.ToString() == "False")
+                            if (GridView.CurrentRow.Cells["Готовность"].Value.ToString() == "True")
                             {
-                                Modif = "Установка";
-                                MessageBox.Show("Не установлен");
-                                DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
-                                DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(null);
-                                DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["Id"].Value);
-                                DataBase.Entity.Setup.Setup.Start = null;
-                                DataBase.Entity.Setup.Setup.End = null;
-                                DataBase.Entity.Setup.Setup.Note = null;
+                                Modification.Setup.ModSetup modSetup = new Modification.Setup.ModSetup(); //объявляем форму, которую желаем открыть
+                                                                                                          //MessageBox.Show(GridView.CurrentRow.Cells["Установлен"].Value.ToString());
+                                if (GridView.CurrentRow.Cells["Установлен"].Value.ToString() == "False")
+                                {
+                                    Modif = "Установка";
 
-                            }
-                            else if (GridView.CurrentRow.Cells["Установлен"].Value.ToString() == "True")
-                            {
-                                Modif = "Снятие";
-                                MessageBox.Show("Установлен");
-                                DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
-                                DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(null);
-                                DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["Id"].Value);
-                                DataBase.Entity.Setup.Setup.Start = null;
-                                DataBase.Entity.Setup.Setup.End = null;
-                                DataBase.Entity.Setup.Setup.Note = null;
-                            }
+                                    //MessageBox.Show("Не установлен");
+                                    DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
+                                    DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(null);
+                                    DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["Id"].Value);
+                                    DataBase.Entity.Consumable.Consumable.Id_model = Convert.ToString(GridView.CurrentRow.Cells["id_model"].Value);
+                                    DataBase.Entity.Setup.Setup.Start = null;
+                                    DataBase.Entity.Setup.Setup.End = null;
+                                    DataBase.Entity.Setup.Setup.Note = null;
 
-                            modSetup.ShowDialog();
-                            UpdateTable();
-                        }
-                        else { MessageBox.Show("Данный расходник не готов для установки"); }
-                    }
-                    else { MessageBox.Show("Выделите строчку для редактирования"); }
+                                }
+                                else if (GridView.CurrentRow.Cells["Установлен"].Value.ToString() == "True")
+                                {
+                                    Modif = "Снятие";
+
+                                    //MessageBox.Show("Установлен");
+                                    DataBase.Entity.Setup.Setup.Id = Convert.ToInt32(null);
+                                    DataBase.Entity.Setup.Setup.Id_printer = Convert.ToInt32(null);
+                                    DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["Id"].Value);
+                                    DataBase.Entity.Consumable.Consumable.Id_model = Convert.ToString(GridView.CurrentRow.Cells["id_model"].Value);
+
+                                    DataBase.Entity.Setup.Setup.Start = null;
+                                    DataBase.Entity.Setup.Setup.End = null;
+                                    DataBase.Entity.Setup.Setup.Note = null;
+                                }
+
+                                modSetup.ShowDialog();
+                                UpdateTable();
+                            }else { MessageBox.Show("Данный расходник не готов для установки"); }
+                        }else { MessageBox.Show("Расходник списан!"); return; }
+                    }else { MessageBox.Show("Выделите строчку для редактирования"); }
 
                     break;
             }
@@ -821,6 +868,62 @@ namespace ASI.Forms.Main
             }
         }
 
+        private void WriteoffToolBut_Click(object sender, EventArgs e)
+        {
+            DB db = new DB();
+
+            if (GridView.CurrentRow != null)
+            {
+                if (GridView.CurrentRow.Cells["Списанный"].Value.ToString() == "False")
+                {
+                    DialogResult result = MessageBox.Show(
+                        "Вы уверены, что хотите удалить эту запись: " +
+                        "ID = " +
+                        GridView.CurrentRow.Cells[0].Value.ToString() + "\nДанные после удаления, вернуть будет невозможно!",
+                        "Подтвердите удаление",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Information,
+                        MessageBoxDefaultButton.Button1,
+                        MessageBoxOptions.RightAlign
+                        );
+                    if (result == DialogResult.Yes)
+                    {
+
+                        db.openConnection();
+                        MySqlCommand WriteoffCom = new MySqlCommand("UPDATE cartrige SET writeoff = @writeoff, ready = @ready, setup = @setup WHERE id = @idCartrige", db.getConnection());
+                        WriteoffCom.Parameters.Add("@idCartrige", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells["ID"].Value;
+                        WriteoffCom.Parameters.Add("@writeoff", MySqlDbType.Int32).Value = Convert.ToBoolean(true);
+                        WriteoffCom.Parameters.Add("@ready", MySqlDbType.Int32).Value = Convert.ToBoolean(false);
+                        WriteoffCom.Parameters.Add("@setup", MySqlDbType.Int32).Value = Convert.ToBoolean(false);
+
+                        WriteoffCom.ExecuteNonQuery();
+                        MessageBox.Show("Расходник списан!");
+                        UpdateTable();
+                        db.closeConnection();
+                    }
+                }
+                else { MessageBox.Show("Данный расходник уже списан!"); }
+            }
+            else { MessageBox.Show("Выделите строку для удаления"); }
+
+
+        }
+
+        private void StoryToolBut_Click(object sender, EventArgs e)
+        {
+
+            if (GridView.CurrentRow != null)
+            {
+                DataBase.Entity.Setup.Setup.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
+                DataBase.Entity.Fill.Fill.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
+
+                Forms.Modification.Story.ModStory modStory = new Modification.Story.ModStory();
+                modStory.ShowDialog();
+
+            }else { MessageBox.Show("Выделите строчку для редактирования"); }
+
+        }
+
         private void Search()
         {
 
@@ -924,6 +1027,7 @@ namespace ASI.Forms.Main
                 e.Cancel = true;
             }
         }
+
 
     }
 }

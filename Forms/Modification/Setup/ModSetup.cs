@@ -17,36 +17,54 @@ namespace ASI.Forms.Modification.Setup
             //
             PrinterSetupComBox.DropDownStyle = ComboBoxStyle.DropDownList;
             CartrigeSetupComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            LoadComBox();
+        }
+
+        private void LoadComBox()
+        {
+            DB db = new DB(); //Объявляем подключение к классу "Подключения БД"
+                              //
+                              //Задаем первичные значения для ComBox
+                              //
+            MySqlDataAdapter mySql_dataAdapter = new MySqlDataAdapter();
+            DataTable tablePrinter = new DataTable();
+            DataTable tableCartrige = new DataTable();
+
+
+            //ModelComBox insert iteam
+            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectCartrige_ModSetup, db.getConnection());
+            mySql_dataAdapter.Fill(tableCartrige);
+
+
+            //RoomComBox insert iteam
+            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectPrinter_ModSetup, db.getConnection());
+            mySql_dataAdapter.SelectCommand.Parameters.Add("@idModelPrinter", MySqlDbType.Int32).Value = Convert.ToInt32(DataBase.Entity.Consumable.Consumable.Id_model);
+            mySql_dataAdapter.Fill(tablePrinter);
+
+            //MessageBox.Show(DataBase.Entity.Consumable.Consumable.Id_model.ToString());
+
+            //Source for ComBox
+            CartrigeSetupComBox.DataSource = tableCartrige;
+            PrinterSetupComBox.DataSource = tablePrinter;
+
+
+            //Отбираем все значения что хотим показать и те что хотим скрыть
+
+            CartrigeSetupComBox.DisplayMember = "code";
+            CartrigeSetupComBox.ValueMember = "id";
+
+            PrinterSetupComBox.DisplayMember = "name";
+            PrinterSetupComBox.ValueMember = "id";
         }
 
         private void ModSetup_Load(object sender, EventArgs e)
         {
             DB db = new DB(); //Объявляем подключение к классу "Подключения БД"
 
-            //
-            //Задаем первичные значения для ComBox
-            //
-            MySqlDataAdapter mySql_dataAdapter = new MySqlDataAdapter();
-            DataTable tablePrinter = new DataTable();
-            DataTable tableCartrige = new DataTable();
+            LoadComBox();
 
-            //RoomComBox insert iteam
-            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectPrinter_ModSetup, db.getConnection());
-            mySql_dataAdapter.Fill(tablePrinter);
 
-            //ModelComBox insert iteam
-            mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectCartrige_ModSetup, db.getConnection());
-            mySql_dataAdapter.Fill(tableCartrige);
 
-            //Source for ComBox
-            PrinterSetupComBox.DataSource = tablePrinter;
-            CartrigeSetupComBox.DataSource = tableCartrige;
-
-            //Отбираем все значения что хотим показать и те что хотим скрыть
-            PrinterSetupComBox.DisplayMember = "name";
-            PrinterSetupComBox.ValueMember = "id";
-            CartrigeSetupComBox.DisplayMember = "code";
-            CartrigeSetupComBox.ValueMember = "id";
 
             switch (Forms.Main.ASI.Modif)
             {
@@ -95,7 +113,8 @@ namespace ASI.Forms.Modification.Setup
                     //
                     IdSetupTextBox.Text = DataBase.Entity.Setup.Setup.Id.ToString();
                     CartrigeSetupComBox.SelectedValue = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_cartrige);
-                    PrinterSetupComBox.SelectedValue = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_printer);
+                    //PrinterSetupComBox.SelectedValue = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_printer);
+                    PrinterSetupComBox.SelectedValue = 0;
                     DateStartDatePicker.Text = DataBase.Entity.Setup.Setup.Start;
                     DateEndDatePicker.Text = DataBase.Entity.Setup.Setup.End;
                     NoteSetupTextBox.Text = DataBase.Entity.Setup.Setup.Note;
@@ -118,7 +137,7 @@ namespace ASI.Forms.Modification.Setup
                     ModSetupBut.Visible = true;
 
                     db.openConnection();
-                    MySqlCommand mySqlCommand = new MySqlCommand("SELECT * FROM `setup` WHERE `id_cartrige` =@idCartrige && `end` is null;", db.getConnection());
+                    MySqlCommand mySqlCommand = new MySqlCommand("SELECT * FROM `setup` WHERE `id_cartrige` = @idCartrige && `end` is null;", db.getConnection());
                     mySqlCommand.Parameters.Add("@idCartrige", MySqlDbType.Int32).Value = Convert.ToInt32(DataBase.Entity.Setup.Setup.Id_cartrige);
 
                     MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
@@ -140,6 +159,7 @@ namespace ASI.Forms.Modification.Setup
                         //  
                         //Заносим в поля данные
                         //
+                        MessageBox.Show(id_printer_DB);
                         IdSetupTextBox.Text = id_DB;
                         CartrigeSetupComBox.SelectedValue = id_cartrige_DB;
                         PrinterSetupComBox.SelectedValue = id_printer_DB;
@@ -246,7 +266,7 @@ namespace ASI.Forms.Modification.Setup
             {
                 AddCheckReadyCom.Parameters.Add("@setupCheck", MySqlDbType.UByte).Value = Convert.ToBoolean(true);
                 AddCheckReadyCom.Parameters.Add("@readyCheck", MySqlDbType.UByte).Value = Convert.ToBoolean(true);
-                AddCheckReadyCom.Parameters.AddWithValue("@note", DBNull.Value);
+                //AddCheckReadyCom.Parameters.AddWithValue("@note", DBNull.Value);
 
                 AddCom.Parameters.AddWithValue("@dataEndSetup", DBNull.Value);
 
@@ -256,7 +276,7 @@ namespace ASI.Forms.Modification.Setup
                 AddCom.Parameters.AddWithValue("@dataEndSetup", DateEndDatePicker.Value);
                 AddCheckReadyCom.Parameters.Add("@setupCheck", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
                 AddCheckReadyCom.Parameters.Add("@readyCheck", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
-                AddCheckReadyCom.Parameters.Add("@note", MySqlDbType.VarChar).Value = "Ожидает перезаправку или списание";
+                //AddCheckReadyCom.Parameters.Add("@note", MySqlDbType.VarChar).Value = "Ожидает перезаправку или списание";
 
             }
 
@@ -295,6 +315,16 @@ namespace ASI.Forms.Modification.Setup
                 dtp.CustomFormat = "dd.MM.yyyy";
             else
                 dtp.CustomFormat = null;
+        }
+
+        private void CartrigeSetupComBox_DropDownClosed(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void CartrigeSetupComBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            LoadComBox();
         }
     }
 }
