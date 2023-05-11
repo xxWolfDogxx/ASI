@@ -8,6 +8,7 @@ namespace ASI.DataBase.ConnectionForMySQL
 
         //MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root; password=root; database=asi");
         MySqlConnection connection = new MySqlConnection("server=100.100.44.70;port=33061;username=sobol; password=6vxEE8u#; database=asi");
+        MySqlConnection connection = new MySqlConnection("server=100.100.44.0;port=33061;username=sobol; password=6vxEE8u#; database=asi");
 
         public void openConnection()
         {
