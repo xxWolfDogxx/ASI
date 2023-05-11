@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Windows.Forms;
 
 namespace ASI.DataBase.ConnectionForMySQL
 {
@@ -6,26 +7,53 @@ namespace ASI.DataBase.ConnectionForMySQL
     {
 
         //MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root; password=root; database=asi");
-        MySqlConnection connection = new MySqlConnection("server=100.100.44.70; port=3306; uid=root; pwd=hvost; database=asi");
+        MySqlConnection connection = new MySqlConnection("server=100.100.44.70;port=33061;username=sobol; password=6vxEE8u#; database=asi");
 
         public void openConnection()
         {
-
+            try
+            {
                 if (connection.State == System.Data.ConnectionState.Closed)
-                    connection.Open();               
+                    connection.Open();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+                        
             
             
         }
 
         public void closeConnection()
         {
-            if (connection.State == System.Data.ConnectionState.Open)
-                connection.Close();
+            try
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                    connection.Close();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+
         }
 
         public MySqlConnection getConnection()
         {
-            return connection;
+            try
+            {
+                return connection;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return connection;
+
+            }
+            
         }
 
 

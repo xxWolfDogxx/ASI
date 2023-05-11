@@ -1,12 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ASI.Forms.Identification.Registration
@@ -20,40 +14,62 @@ namespace ASI.Forms.Identification.Registration
 
         private void CheckPassBox_CheckedChanged(object sender, EventArgs e)
         {
-            switch (CheckPassBox.Checked)
+            try
             {
-                case (true):
-                    PassTextBox.UseSystemPasswordChar = false;
-                    PassRepitTextBox.UseSystemPasswordChar = false;
-                    break;
-                case (false):
-                    PassTextBox.UseSystemPasswordChar = true;
-                    PassRepitTextBox.UseSystemPasswordChar = true;
-                    break;
+                switch (CheckPassBox.Checked)
+                {
+                    case (true):
+                        PassTextBox.UseSystemPasswordChar = false;
+                        PassRepitTextBox.UseSystemPasswordChar = false;
+                        break;
+                    case (false):
+                        PassTextBox.UseSystemPasswordChar = true;
+                        PassRepitTextBox.UseSystemPasswordChar = true;
+                        break;
+                }
             }
-                
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void BackBut_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Regs_Load(object sender, EventArgs e)
         {
+            try
+            {
 
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void RegsBut_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
                 //Инициализируем классы
                 DataBase.ConnectionForMySQL.DB db = new DataBase.ConnectionForMySQL.DB();
 
                 //Заносим эл. почту в глобальную переменную
                 DataBase.Entity.Identification.DB_Users.EmailUsers = EmailTextBox.Text;
 
-                
+
                 if ((FIOTextBox.Text != "") && (PhoneMaskTextBox.Text != null) && (EmailTextBox.Text != ""))
                 {
                     // Проверка на повторного пользователя
@@ -100,11 +116,11 @@ namespace ASI.Forms.Identification.Registration
                 {
                     MessageBox.Show("Заполните все поля!");
                 }
-                
-            
-            
-
-
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }         
         }
 
         private void FIOTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -143,5 +159,6 @@ namespace ASI.Forms.Identification.Registration
         {
             this.Close();
         }
+    
     }
 }

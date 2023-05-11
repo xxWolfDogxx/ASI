@@ -1,4 +1,5 @@
-﻿namespace ASI.DataBase.Entity.Identification
+﻿
+namespace ASI.DataBase.Entity.Identification
 {
     public class DB_Role
     {

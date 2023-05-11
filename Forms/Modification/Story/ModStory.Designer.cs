@@ -36,19 +36,20 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModStory));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.SetupGridView = new System.Windows.Forms.DataGridView();
-            this.RefillGridView = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.SetupGridView = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.RefillGridView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SetupGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RefillGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SetupGridView)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RefillGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -74,6 +75,18 @@
             this.splitContainer1.SplitterWidth = 10;
             this.splitContainer1.TabIndex = 0;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.SetupGridView);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox1.Location = new System.Drawing.Point(10, 10);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1260, 430);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Установки";
+            // 
             // SetupGridView
             // 
             this.SetupGridView.AllowUserToAddRows = false;
@@ -84,7 +97,7 @@
             this.SetupGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 8.25F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.NullValue = "NULL";
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -108,7 +121,7 @@
             this.SetupGridView.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 8.25F);
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(5);
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -120,6 +133,20 @@
             this.SetupGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.SetupGridView.Size = new System.Drawing.Size(1254, 400);
             this.SetupGridView.TabIndex = 1;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.RefillGridView);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(10);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox2.Size = new System.Drawing.Size(1280, 251);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Перезаправки";
             // 
             // RefillGridView
             // 
@@ -168,32 +195,6 @@
             this.RefillGridView.Size = new System.Drawing.Size(1260, 207);
             this.RefillGridView.TabIndex = 1;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.SetupGridView);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox1.Location = new System.Drawing.Point(10, 10);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1260, 430);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Установки";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.RefillGridView);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(10);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox2.Size = new System.Drawing.Size(1280, 251);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Перезаправки";
-            // 
             // ModStory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -202,6 +203,7 @@
             this.ClientSize = new System.Drawing.Size(1280, 711);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModStory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "История";
@@ -210,10 +212,10 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.SetupGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RefillGridView)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SetupGridView)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.RefillGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
