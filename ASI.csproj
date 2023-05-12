@@ -240,6 +240,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -258,6 +259,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="resource\icons\AppIcon.ico" />
+    <Content Include="resource\icons\filtre\filter.png" />
     <Content Include="resource\icons\identification\2203549_admin_avatar_human_login_user_icon.png" />
     <Content Include="resource\icons\identification\309058_key_login_private_protect_protection_icon.png" />
     <Content Include="resource\icons\identification\3841805_device_devices_multimedia_print_printing_icon.png" />

@@ -10,7 +10,7 @@ namespace ASI.DataBase.Scripts
         //Идентификация пользователей
         internal static string script_SelectUser = "SELECT * FROM `users` WHERE `email` = @uL AND `password` = @uP;";
         //Запрос на вытаскивание роли пользователя
-        internal static string script_SelectUserRole = $"SELECT `Role` FROM `users` WHERE `Email` = @uL;";
+        internal static string script_SelectUserRole = $"SELECT roles.role  FROM `users` INNER JOIN roles ON users.role = roles.id WHERE `Email` = @uL;";
         //Запрос на вытаскивание пароля пользователя, по логину
         internal static string script_SelectUserPassDB = $"SELECT `Password` FROM `users` WHERE `Email` = @uPL;";
 
@@ -72,11 +72,11 @@ namespace ASI.DataBase.Scripts
         //Запрос на справочник Роли (доступ только у рута)
         internal static string script_SelectRole_ASI = $"SELECT * FROM `roles`";
         //Запрос на справочник всех пользователей (доступ только у рута)
-        internal static string script_SelectAllUsers_ASI = $"SELECT * FROM `asi`.`users`";
+        internal static string script_SelectAllUsers_ASI = $"SELECT users.Id,users.FullName,users.DateOfBirth,users.Phone,users.Email,roles.role FROM users INNER JOIN roles ON users.role = roles.id  ";
         //Запрос на справочник администраторов (доступ только у рута)
-        internal static string script_SelectUser_Admin_ASI = $"SELECT * FROM `asi`.`users` WHERE `role` = 'ROLE_ADMIN'";
+        internal static string script_SelectUser_Admin_ASI = $"SELECT users.Id,users.FullName,users.DateOfBirth,users.Phone,users.Email,roles.role FROM users INNER JOIN roles ON users.role = roles.id WHERE roles.role = 'ROLE_AMDMIN'";
         //Запрос на справочник пользователей(доступ только у рута)
-        internal static string script_SelectUser_User_ASI = $"SELECT * FROM `asi`.`users` WHERE `role` = 'ROLE_USER'";
+        internal static string script_SelectUser_User_ASI = $"SELECT users.Id,users.FullName,users.DateOfBirth,users.Phone,users.Email,roles.role FROM users INNER JOIN roles ON users.role = roles.id WHERE roles.role = 'ROLE_USER'";
 
 
         //

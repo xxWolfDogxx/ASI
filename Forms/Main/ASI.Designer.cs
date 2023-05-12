@@ -30,36 +30,36 @@ namespace ASI.Forms.Main
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ASI));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Все");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Администратор");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Пользователь");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Роли");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Пользователи", new System.Windows.Forms.TreeNode[] {
-            treeNode16,
-            treeNode17,
-            treeNode18,
-            treeNode19});
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Расходники");
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Принтер");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Представление", new System.Windows.Forms.TreeNode[] {
-            treeNode21,
-            treeNode22});
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Установки");
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Перезаправлен");
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Истории", new System.Windows.Forms.TreeNode[] {
-            treeNode24,
-            treeNode25});
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Аудитория");
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Тип расходника");
-            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Модели");
-            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Справочник", new System.Windows.Forms.TreeNode[] {
-            treeNode27,
-            treeNode28,
-            treeNode29});
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Все");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Администратор");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Пользователь");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Роли");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Пользователи", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Расходники");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Принтер");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Представление", new System.Windows.Forms.TreeNode[] {
+            treeNode6,
+            treeNode7});
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Установки");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Перезаправлен");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Истории", new System.Windows.Forms.TreeNode[] {
+            treeNode9,
+            treeNode10});
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Аудитория");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Тип расходника");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Модели");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Справочник", new System.Windows.Forms.TreeNode[] {
+            treeNode12,
+            treeNode13,
+            treeNode14});
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,8 +97,8 @@ namespace ASI.Forms.Main
             this.сменаПароляToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.выходToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ButtonPanel = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.FiltrPanel = new System.Windows.Forms.Panel();
+            this.FiltrGrBox = new System.Windows.Forms.GroupBox();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.RightMainPanel = new System.Windows.Forms.Panel();
             this.GridView = new System.Windows.Forms.DataGridView();
@@ -109,21 +109,22 @@ namespace ASI.Forms.Main
             this.ModToolBut = new System.Windows.Forms.ToolStripButton();
             this.Sep3 = new System.Windows.Forms.ToolStripSeparator();
             this.UpdateToolBut = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.Ser7 = new System.Windows.Forms.ToolStripSeparator();
             this.DelToolBut = new System.Windows.Forms.ToolStripButton();
+            this.FiltrToolBut = new System.Windows.Forms.ToolStripButton();
             this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.searchBut = new System.Windows.Forms.ToolStripButton();
             this.Sep4 = new System.Windows.Forms.ToolStripSeparator();
             this.SetupToolBut = new System.Windows.Forms.ToolStripButton();
             this.Ser5 = new System.Windows.Forms.ToolStripSeparator();
             this.WriteoffToolBut = new System.Windows.Forms.ToolStripButton();
+            this.Ser6 = new System.Windows.Forms.ToolStripSeparator();
+            this.StoryToolBut = new System.Windows.Forms.ToolStripButton();
             this.LeftMainPanel = new System.Windows.Forms.Panel();
             this.SelectTableGroupBox = new System.Windows.Forms.GroupBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.StoryToolBut = new System.Windows.Forms.ToolStripButton();
-            this.Ser6 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
-            this.ButtonPanel.SuspendLayout();
+            this.FiltrPanel.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this.RightMainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
@@ -145,9 +146,10 @@ namespace ASI.Forms.Main
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(10, 4, 0, 4);
-            this.menuStrip1.Size = new System.Drawing.Size(1284, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(1284, 27);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.Visible = false;
             // 
             // файлToolStripMenuItem
             // 
@@ -163,7 +165,7 @@ namespace ASI.Forms.Main
             this.toolStripSeparator2,
             this.выходToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(46, 18);
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(46, 19);
             this.файлToolStripMenuItem.Text = "&Файл";
             // 
             // создатьToolStripMenuItem
@@ -249,7 +251,7 @@ namespace ASI.Forms.Main
             this.toolStripSeparator4,
             this.выделитьвсеToolStripMenuItem});
             this.правкаToolStripMenuItem.Name = "правкаToolStripMenuItem";
-            this.правкаToolStripMenuItem.Size = new System.Drawing.Size(59, 18);
+            this.правкаToolStripMenuItem.Size = new System.Drawing.Size(59, 19);
             this.правкаToolStripMenuItem.Text = "&Правка";
             // 
             // отменадействияToolStripMenuItem
@@ -315,7 +317,7 @@ namespace ASI.Forms.Main
             this.настройкиToolStripMenuItem,
             this.параметрыToolStripMenuItem});
             this.сервисToolStripMenuItem.Name = "сервисToolStripMenuItem";
-            this.сервисToolStripMenuItem.Size = new System.Drawing.Size(56, 18);
+            this.сервисToolStripMenuItem.Size = new System.Drawing.Size(56, 19);
             this.сервисToolStripMenuItem.Text = "&Сервис";
             // 
             // настройкиToolStripMenuItem
@@ -339,7 +341,7 @@ namespace ASI.Forms.Main
             this.toolStripSeparator5,
             this.опрограммеToolStripMenuItem});
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(64, 18);
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(64, 19);
             this.справкаToolStripMenuItem.Text = "Спра&вка";
             // 
             // содержаниеToolStripMenuItem
@@ -382,7 +384,7 @@ namespace ASI.Forms.Main
             this.toolStripSeparator7,
             this.выходToolStripMenuItem1});
             this.аккаунтToolStripMenuItem.Name = "аккаунтToolStripMenuItem";
-            this.аккаунтToolStripMenuItem.Size = new System.Drawing.Size(61, 18);
+            this.аккаунтToolStripMenuItem.Size = new System.Drawing.Size(61, 19);
             this.аккаунтToolStripMenuItem.Text = "Аккаунт";
             // 
             // обАккаунтеToolStripMenuItem
@@ -420,39 +422,39 @@ namespace ASI.Forms.Main
             this.выходToolStripMenuItem1.Size = new System.Drawing.Size(169, 22);
             this.выходToolStripMenuItem1.Text = "Выход";
             // 
-            // ButtonPanel
+            // FiltrPanel
             // 
-            this.ButtonPanel.Controls.Add(this.groupBox1);
-            this.ButtonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ButtonPanel.Location = new System.Drawing.Point(0, 395);
-            this.ButtonPanel.Margin = new System.Windows.Forms.Padding(5);
-            this.ButtonPanel.Name = "ButtonPanel";
-            this.ButtonPanel.Padding = new System.Windows.Forms.Padding(15);
-            this.ButtonPanel.Size = new System.Drawing.Size(1284, 286);
-            this.ButtonPanel.TabIndex = 1;
+            this.FiltrPanel.Controls.Add(this.FiltrGrBox);
+            this.FiltrPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.FiltrPanel.Location = new System.Drawing.Point(0, 395);
+            this.FiltrPanel.Margin = new System.Windows.Forms.Padding(5);
+            this.FiltrPanel.Name = "FiltrPanel";
+            this.FiltrPanel.Padding = new System.Windows.Forms.Padding(15);
+            this.FiltrPanel.Size = new System.Drawing.Size(1284, 286);
+            this.FiltrPanel.TabIndex = 1;
             // 
-            // groupBox1
+            // FiltrGrBox
             // 
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(15, 15);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(10);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox1.Size = new System.Drawing.Size(1254, 256);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Фильтры";
+            this.FiltrGrBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FiltrGrBox.Location = new System.Drawing.Point(15, 15);
+            this.FiltrGrBox.Margin = new System.Windows.Forms.Padding(10);
+            this.FiltrGrBox.Name = "FiltrGrBox";
+            this.FiltrGrBox.Padding = new System.Windows.Forms.Padding(10);
+            this.FiltrGrBox.Size = new System.Drawing.Size(1254, 256);
+            this.FiltrGrBox.TabIndex = 1;
+            this.FiltrGrBox.TabStop = false;
+            this.FiltrGrBox.Text = "Фильтры";
             // 
             // MainPanel
             // 
             this.MainPanel.Controls.Add(this.RightMainPanel);
             this.MainPanel.Controls.Add(this.LeftMainPanel);
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(0, 26);
+            this.MainPanel.Location = new System.Drawing.Point(0, 0);
             this.MainPanel.Margin = new System.Windows.Forms.Padding(5);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.MainPanel.Size = new System.Drawing.Size(1284, 369);
+            this.MainPanel.Size = new System.Drawing.Size(1284, 395);
             this.MainPanel.TabIndex = 2;
             // 
             // RightMainPanel
@@ -463,7 +465,7 @@ namespace ASI.Forms.Main
             this.RightMainPanel.Location = new System.Drawing.Point(334, 5);
             this.RightMainPanel.Name = "RightMainPanel";
             this.RightMainPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.RightMainPanel.Size = new System.Drawing.Size(945, 359);
+            this.RightMainPanel.Size = new System.Drawing.Size(945, 385);
             this.RightMainPanel.TabIndex = 1;
             // 
             // GridView
@@ -472,45 +474,45 @@ namespace ASI.Forms.Main
             this.GridView.AllowUserToDeleteRows = false;
             this.GridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.GridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            this.GridView.BackgroundColor = System.Drawing.Color.Silver;
+            this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.NullValue = "NULL";
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.NullValue = "NULL";
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.NullValue = "—";
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.NullValue = "—";
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.GridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridView.Location = new System.Drawing.Point(5, 45);
             this.GridView.Name = "GridView";
             this.GridView.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.GridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridView.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            this.GridView.Size = new System.Drawing.Size(935, 309);
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.GridView.Size = new System.Drawing.Size(935, 335);
             this.GridView.TabIndex = 0;
             // 
             // toolStrip1
@@ -525,8 +527,9 @@ namespace ASI.Forms.Main
             this.ModToolBut,
             this.Sep3,
             this.UpdateToolBut,
-            this.toolStripSeparator8,
+            this.Ser7,
             this.DelToolBut,
+            this.FiltrToolBut,
             this.searchTextBox,
             this.searchBut,
             this.Sep4,
@@ -558,6 +561,7 @@ namespace ASI.Forms.Main
             this.AddToolBut.Name = "AddToolBut";
             this.AddToolBut.Size = new System.Drawing.Size(100, 27);
             this.AddToolBut.Text = "Добавить";
+            this.AddToolBut.ToolTipText = "Добавить запись";
             this.AddToolBut.Click += new System.EventHandler(this.AddToolBut_Click);
             // 
             // Sep2
@@ -576,7 +580,7 @@ namespace ASI.Forms.Main
             this.ModToolBut.Name = "ModToolBut";
             this.ModToolBut.Size = new System.Drawing.Size(101, 27);
             this.ModToolBut.Text = "Изменить";
-            this.ModToolBut.ToolTipText = "Изменить";
+            this.ModToolBut.ToolTipText = "Изменить запись";
             this.ModToolBut.Click += new System.EventHandler(this.ModToolBut_Click);
             // 
             // Sep3
@@ -595,13 +599,14 @@ namespace ASI.Forms.Main
             this.UpdateToolBut.Name = "UpdateToolBut";
             this.UpdateToolBut.Size = new System.Drawing.Size(100, 27);
             this.UpdateToolBut.Text = "Обновить";
+            this.UpdateToolBut.ToolTipText = "Обновить таблицу";
             this.UpdateToolBut.Click += new System.EventHandler(this.UpdateToolBut_Click);
             // 
-            // toolStripSeparator8
+            // Ser7
             // 
-            this.toolStripSeparator8.AutoSize = false;
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(30, 30);
+            this.Ser7.AutoSize = false;
+            this.Ser7.Name = "Ser7";
+            this.Ser7.Size = new System.Drawing.Size(30, 30);
             // 
             // DelToolBut
             // 
@@ -613,7 +618,22 @@ namespace ASI.Forms.Main
             this.DelToolBut.Name = "DelToolBut";
             this.DelToolBut.Size = new System.Drawing.Size(87, 27);
             this.DelToolBut.Text = "Удалить";
+            this.DelToolBut.ToolTipText = "Удалить запись";
             this.DelToolBut.Click += new System.EventHandler(this.DelToolBut_Click);
+            // 
+            // FiltrToolBut
+            // 
+            this.FiltrToolBut.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.FiltrToolBut.BackColor = System.Drawing.Color.DarkGray;
+            this.FiltrToolBut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.FiltrToolBut.Font = new System.Drawing.Font("Calibri", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FiltrToolBut.Image = global::ASI.Properties.Resources.filter;
+            this.FiltrToolBut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FiltrToolBut.Name = "FiltrToolBut";
+            this.FiltrToolBut.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.FiltrToolBut.Size = new System.Drawing.Size(23, 27);
+            this.FiltrToolBut.ToolTipText = "Показать/Скрыть фильтры";
+            this.FiltrToolBut.Click += new System.EventHandler(this.FiltrToolBut_Click);
             // 
             // searchTextBox
             // 
@@ -621,6 +641,7 @@ namespace ASI.Forms.Main
             this.searchTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(150, 30);
+            this.searchTextBox.ToolTipText = "Введите текст для поиска";
             this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextBox_KeyDown);
             // 
             // searchBut
@@ -632,6 +653,7 @@ namespace ASI.Forms.Main
             this.searchBut.Name = "searchBut";
             this.searchBut.Size = new System.Drawing.Size(63, 27);
             this.searchBut.Text = "Поиск";
+            this.searchBut.ToolTipText = "Поиск по таблице";
             this.searchBut.Click += new System.EventHandler(this.searchBut_Click);
             // 
             // Sep4
@@ -650,6 +672,7 @@ namespace ASI.Forms.Main
             this.SetupToolBut.Name = "SetupToolBut";
             this.SetupToolBut.Size = new System.Drawing.Size(188, 27);
             this.SetupToolBut.Text = "Установить / Снять";
+            this.SetupToolBut.ToolTipText = "Установить / Снять расходник";
             this.SetupToolBut.Click += new System.EventHandler(this.SetupToolBut_Click);
             // 
             // Ser5
@@ -668,7 +691,27 @@ namespace ASI.Forms.Main
             this.WriteoffToolBut.Name = "WriteoffToolBut";
             this.WriteoffToolBut.Size = new System.Drawing.Size(86, 27);
             this.WriteoffToolBut.Text = "Списать";
+            this.WriteoffToolBut.ToolTipText = "Списать расходник";
             this.WriteoffToolBut.Click += new System.EventHandler(this.WriteoffToolBut_Click);
+            // 
+            // Ser6
+            // 
+            this.Ser6.AutoSize = false;
+            this.Ser6.Name = "Ser6";
+            this.Ser6.Size = new System.Drawing.Size(30, 30);
+            // 
+            // StoryToolBut
+            // 
+            this.StoryToolBut.BackColor = System.Drawing.Color.Bisque;
+            this.StoryToolBut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.StoryToolBut.Font = new System.Drawing.Font("Calibri", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.StoryToolBut.Image = ((System.Drawing.Image)(resources.GetObject("StoryToolBut.Image")));
+            this.StoryToolBut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.StoryToolBut.Name = "StoryToolBut";
+            this.StoryToolBut.Size = new System.Drawing.Size(178, 27);
+            this.StoryToolBut.Text = "Показать историю";
+            this.StoryToolBut.ToolTipText = "Показать историю установок и перезаправок данного расходника";
+            this.StoryToolBut.Click += new System.EventHandler(this.StoryToolBut_Click);
             // 
             // LeftMainPanel
             // 
@@ -678,7 +721,7 @@ namespace ASI.Forms.Main
             this.LeftMainPanel.Margin = new System.Windows.Forms.Padding(5);
             this.LeftMainPanel.Name = "LeftMainPanel";
             this.LeftMainPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.LeftMainPanel.Size = new System.Drawing.Size(329, 359);
+            this.LeftMainPanel.Size = new System.Drawing.Size(329, 385);
             this.LeftMainPanel.TabIndex = 0;
             // 
             // SelectTableGroupBox
@@ -690,7 +733,7 @@ namespace ASI.Forms.Main
             this.SelectTableGroupBox.Margin = new System.Windows.Forms.Padding(5);
             this.SelectTableGroupBox.Name = "SelectTableGroupBox";
             this.SelectTableGroupBox.Padding = new System.Windows.Forms.Padding(5);
-            this.SelectTableGroupBox.Size = new System.Drawing.Size(319, 349);
+            this.SelectTableGroupBox.Size = new System.Drawing.Size(319, 375);
             this.SelectTableGroupBox.TabIndex = 0;
             this.SelectTableGroupBox.TabStop = false;
             this.SelectTableGroupBox.Text = "Таблицы";
@@ -706,63 +749,45 @@ namespace ASI.Forms.Main
             this.treeView1.Location = new System.Drawing.Point(5, 25);
             this.treeView1.Margin = new System.Windows.Forms.Padding(10);
             this.treeView1.Name = "treeView1";
-            treeNode16.Name = "AllUsersTableView";
-            treeNode16.Text = "Все";
-            treeNode17.Name = "AdminsTable";
-            treeNode17.Text = "Администратор";
-            treeNode18.Name = "UsersTable";
-            treeNode18.Text = "Пользователь";
-            treeNode19.Name = "RoleGuide";
-            treeNode19.Text = "Роли";
-            treeNode20.Name = "UsersKnot";
-            treeNode20.Text = "Пользователи";
-            treeNode21.Name = "consumableView";
-            treeNode21.Text = "Расходники";
-            treeNode22.Name = "printerView";
-            treeNode22.Text = "Принтер";
-            treeNode23.Name = "ViewsKnot";
-            treeNode23.Text = "Представление";
-            treeNode24.Checked = true;
-            treeNode24.Name = "setupView";
-            treeNode24.Text = "Установки";
-            treeNode25.Name = "fillView";
-            treeNode25.Text = "Перезаправлен";
-            treeNode26.Name = "StoryKnot";
-            treeNode26.Text = "Истории";
-            treeNode27.Name = "RoomView";
-            treeNode27.Text = "Аудитория";
-            treeNode28.Name = "cartrigeTypeView";
-            treeNode28.Text = "Тип расходника";
-            treeNode29.Name = "modelView";
-            treeNode29.Text = "Модели";
-            treeNode30.Name = "GuideKnot";
-            treeNode30.Text = "Справочник";
+            treeNode1.Name = "AllUsersTableView";
+            treeNode1.Text = "Все";
+            treeNode2.Name = "AdminsTable";
+            treeNode2.Text = "Администратор";
+            treeNode3.Name = "UsersTable";
+            treeNode3.Text = "Пользователь";
+            treeNode4.Name = "RoleGuide";
+            treeNode4.Text = "Роли";
+            treeNode5.Name = "UsersKnot";
+            treeNode5.Text = "Пользователи";
+            treeNode6.Name = "consumableView";
+            treeNode6.Text = "Расходники";
+            treeNode7.Name = "printerView";
+            treeNode7.Text = "Принтер";
+            treeNode8.Name = "ViewsKnot";
+            treeNode8.Text = "Представление";
+            treeNode9.Checked = true;
+            treeNode9.Name = "setupView";
+            treeNode9.Text = "Установки";
+            treeNode10.Name = "fillView";
+            treeNode10.Text = "Перезаправлен";
+            treeNode11.Name = "StoryKnot";
+            treeNode11.Text = "Истории";
+            treeNode12.Name = "RoomView";
+            treeNode12.Text = "Аудитория";
+            treeNode13.Name = "cartrigeTypeView";
+            treeNode13.Text = "Тип расходника";
+            treeNode14.Name = "modelView";
+            treeNode14.Text = "Модели";
+            treeNode15.Name = "GuideKnot";
+            treeNode15.Text = "Справочник";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode20,
-            treeNode23,
-            treeNode26,
-            treeNode30});
-            this.treeView1.Size = new System.Drawing.Size(309, 319);
+            treeNode5,
+            treeNode8,
+            treeNode11,
+            treeNode15});
+            this.treeView1.Size = new System.Drawing.Size(309, 345);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            // 
-            // StoryToolBut
-            // 
-            this.StoryToolBut.BackColor = System.Drawing.Color.Bisque;
-            this.StoryToolBut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.StoryToolBut.Font = new System.Drawing.Font("Calibri", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.StoryToolBut.Image = ((System.Drawing.Image)(resources.GetObject("StoryToolBut.Image")));
-            this.StoryToolBut.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.StoryToolBut.Name = "StoryToolBut";
-            this.StoryToolBut.Size = new System.Drawing.Size(178, 27);
-            this.StoryToolBut.Text = "Показать историю";
-            this.StoryToolBut.Click += new System.EventHandler(this.StoryToolBut_Click);
-            // 
-            // Ser6
-            // 
-            this.Ser6.AutoSize = false;
-            this.Ser6.Name = "Ser6";
-            this.Ser6.Size = new System.Drawing.Size(30, 30);
             // 
             // ASI
             // 
@@ -771,7 +796,7 @@ namespace ASI.Forms.Main
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1284, 681);
             this.Controls.Add(this.MainPanel);
-            this.Controls.Add(this.ButtonPanel);
+            this.Controls.Add(this.FiltrPanel);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -784,7 +809,7 @@ namespace ASI.Forms.Main
             this.Load += new System.EventHandler(this.ASI_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.ButtonPanel.ResumeLayout(false);
+            this.FiltrPanel.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
             this.RightMainPanel.ResumeLayout(false);
             this.RightMainPanel.PerformLayout();
@@ -830,21 +855,21 @@ namespace ASI.Forms.Main
         private System.Windows.Forms.ToolStripMenuItem поискToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem опрограммеToolStripMenuItem;
-        private System.Windows.Forms.Panel ButtonPanel;
+        private System.Windows.Forms.Panel FiltrPanel;
         private System.Windows.Forms.Panel MainPanel;
         private System.Windows.Forms.Panel LeftMainPanel;
         private System.Windows.Forms.GroupBox SelectTableGroupBox;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Panel RightMainPanel;
         public System.Windows.Forms.DataGridView GridView;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox FiltrGrBox;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripSeparator Sep1;
         private System.Windows.Forms.ToolStripButton AddToolBut;
         private System.Windows.Forms.ToolStripSeparator Sep2;
         private System.Windows.Forms.ToolStripButton ModToolBut;
         private System.Windows.Forms.ToolStripSeparator Sep3;
-        private System.Windows.Forms.ToolStripButton DelToolBut;
+        private System.Windows.Forms.ToolStripButton FiltrToolBut;
         private System.Windows.Forms.ToolStripButton UpdateToolBut;
         private System.Windows.Forms.ToolStripSeparator Sep4;
         private System.Windows.Forms.ToolStripTextBox searchTextBox;
@@ -856,11 +881,12 @@ namespace ASI.Forms.Main
         private System.Windows.Forms.ToolStripMenuItem сменаПароляToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripSeparator Ser7;
         private System.Windows.Forms.ToolStripButton SetupToolBut;
         private System.Windows.Forms.ToolStripSeparator Ser5;
         private System.Windows.Forms.ToolStripButton WriteoffToolBut;
         private System.Windows.Forms.ToolStripSeparator Ser6;
         private System.Windows.Forms.ToolStripButton StoryToolBut;
+        private System.Windows.Forms.ToolStripButton DelToolBut;
     }
 }

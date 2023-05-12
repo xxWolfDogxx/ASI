@@ -1,14 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ASI.DataBase.Scripts;
 using ASI.DataBase.ConnectionForMySQL;
 
 namespace ASI.Forms.Main
@@ -26,7 +20,7 @@ namespace ASI.Forms.Main
             GridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             GridView.AllowUserToAddRows = false;
             treeView1.ExpandAll();
-
+            FiltrPanel.Visible = false;
         }
 
         private void ASI_Load(object sender, EventArgs e)
@@ -43,10 +37,13 @@ namespace ASI.Forms.Main
                         Sep2.Visible = true;
                         Sep3.Visible = true;
                         Sep4.Visible = true;
+                        Ser5.Visible = true;
+                        Ser6.Visible = true;
                         AddToolBut.Visible = true;
                         ModToolBut.Visible = true;
-                        DelToolBut.Visible = true;
+                        FiltrToolBut.Visible = true;
                         SetupToolBut.Visible = true;
+
 
                         break;
 
@@ -56,9 +53,11 @@ namespace ASI.Forms.Main
                         Sep2.Visible = true;
                         Sep3.Visible = true;
                         Sep4.Visible = true;
+                        Ser5.Visible = true;
+                        Ser6.Visible = true;
                         AddToolBut.Visible = true;
                         ModToolBut.Visible = true;
-                        DelToolBut.Visible = true;
+                        FiltrToolBut.Visible = true;
                         SetupToolBut.Visible = true;
 
                         break;
@@ -68,10 +67,12 @@ namespace ASI.Forms.Main
 
                         Sep2.Visible = false;
                         Sep3.Visible = false;
-                        Sep4.Visible = false;
+                        Sep4.Visible = true;
+                        Ser5.Visible = false;
+                        Ser6.Visible = false;
                         AddToolBut.Visible = false;
                         ModToolBut.Visible = false;
-                        DelToolBut.Visible = false;
+                        FiltrToolBut.Visible = false;
                         SetupToolBut.Visible = false;
 
                         break;
@@ -125,7 +126,7 @@ namespace ASI.Forms.Main
                         GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
                         GridView.Columns["Phone"].HeaderText = "Номер телефона";
                         GridView.Columns["Email"].HeaderText = "Эл. почта";
-                        GridView.Columns["Password"].Visible = false;
+                       // GridView.Columns["Password"].Visible = false;
                         GridView.Columns["Role"].HeaderText = "Роль";
 
                         SetupToolBut.Visible = false;
@@ -149,7 +150,7 @@ namespace ASI.Forms.Main
                         GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
                         GridView.Columns["Phone"].HeaderText = "Номер телефона";
                         GridView.Columns["Email"].HeaderText = "Эл. почта";
-                        GridView.Columns["Password"].Visible = false;
+                       // GridView.Columns["Password"].Visible = false;
                         GridView.Columns["Role"].HeaderText = "Роль";
 
                         SetupToolBut.Visible = false;
@@ -173,7 +174,7 @@ namespace ASI.Forms.Main
                         GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
                         GridView.Columns["Phone"].HeaderText = "Номер телефона";
                         GridView.Columns["Email"].HeaderText = "Эл. почта";
-                        GridView.Columns["Password"].Visible = false;
+                       // GridView.Columns["Password"].Visible = false;
                         GridView.Columns["Role"].HeaderText = "Роль";
 
                         SetupToolBut.Visible = false;
@@ -348,6 +349,8 @@ namespace ASI.Forms.Main
                         break;
 
                 }
+
+
                 db.closeConnection();
             }
             catch (MySqlException ex)
@@ -1087,27 +1090,60 @@ namespace ASI.Forms.Main
 
         private void InsertGlobalVar_Users()
         {
-            DB db = new DB();
+          /*  DB db = new DB();
             db.openConnection();
-            /* MySqlCommand idCom = new MySqlCommand("Select id From users WHERE Email = @email", db.getConnection());
-             idCom.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;
-             idCom.ExecuteNonQuery();
-             MySqlDataReader reader = idCom.ExecuteReader();
-             while (reader.Read()) { Convert.ToString(DataBase.Entity.Identification.DB_Users.IdUsers)= Convert.ToString(reader); };
-             MessageBox.Show(Convert.ToString(DataBase.Entity.Identification.DB_Users.IdUsers));
 
-             /* MySqlCommand fullnameCom = new MySqlCommand("Select fullname From users WHERE Email = @email", db.getConnection());
-              fullnameCom.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;
+            MySqlCommand mySqlCommand = new MySqlCommand("Select * From users INNER JOIN room ON printer.id_room = room.id  WHERE Email = @email ", db.getConnection());
+            mySqlCommand.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;
 
-              MySqlCommand dateCom = new MySqlCommand("Select DateOfBirth From users WHERE Email = @email", db.getConnection());
-              dateCom.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;
+            MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
+            DataTable user = new DataTable();
+            mySqlDataAdapter.Fill(user);
+
+            foreach (DataRow row in user.Rows)
+            {
+                DataBase.Entity.Identification.DB_Users.IdUsers = row["id"].ToString();
+                DataBase.Entity.Identification.DB_Users.FullnameUsers = row["FullName"].ToString();
+                DataBase.Entity.Identification.DB_Users.PhoneUsers = row["id_cartrige"].ToString();
+                DataBase.Entity.Identification.DB_Users.EmailUsers = row["start"].ToString();
+                DataBase.Entity.Identification.DB_Users.RoleUsersForRole = row["end"].ToString();
+                
+            }
+
+            if (setup.Rows.Count == 1)
+            {
+                //  
+                //Заносим в поля данные
+                //
+                MessageBox.Show(id_printer_DB);
+                IdSetupTextBox.Text = id_DB;
+                CartrigeSetupComBox.SelectedValue = id_cartrige_DB;
+                PrinterSetupComBox.SelectedValue = id_printer_DB;
+                DateStartDatePicker.Text = start_DB;
+                DateEndDatePicker.Text = end_DB;
+                NoteSetupTextBox.Text = note_DB;
+
+                endGB.Visible = true;
+
+                IdSetupTextBox.Enabled = false;
+                CartrigeSetupComBox.Enabled = false;
+                PrinterSetupComBox.Enabled = false;
+                DateStartDatePicker.Enabled = false;
+                DateEndDatePicker.Enabled = true;
+                NoteSetupTextBox.Enabled = true;
+
+            }
+            else if (setup.Rows.Count > 1)
+            {
+                MessageBox.Show("Этот картридж установлен одновременно более одного раза\n" +
+                    "Произведите поправку в истории установок вручную");
+                this.Close();
+            }
+            else MessageBox.Show("ModSetup Error");
+            db.closeConnection();*/
 
 
-              MySqlCommand phoneCom = new MySqlCommand("Select Phone From users WHERE Email = @email", db.getConnection());
-              phoneCom.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;*/
-
-
-            db.closeConnection();
+            
         }
 
         private void ASI_FormClosing(object sender, FormClosingEventArgs e)
@@ -1142,8 +1178,19 @@ namespace ASI.Forms.Main
             {
                 MessageBox.Show(ex.Message);
 
-            }            
+            }
         }
 
+        private void FiltrToolBut_Click(object sender, EventArgs e)
+        {
+            if (FiltrPanel.Visible == false)
+            {
+                FiltrPanel.Visible = true;
+            }
+            else if (FiltrPanel.Visible == true)
+            {
+                FiltrPanel.Visible = false;
+            }
+        }
     }
 }

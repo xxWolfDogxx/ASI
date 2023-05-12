@@ -86,7 +86,7 @@ namespace ASI.Forms.Identification.Registration
                         commandUsers.Parameters.Add("@dOb", MySqlDbType.Date).Value = DateOfBirthDateTimePicker.Value;
                         commandUsers.Parameters.Add("@phone", MySqlDbType.VarChar).Value = PhoneMaskTextBox.Text;
                         commandUsers.Parameters.Add("@email", MySqlDbType.VarChar).Value = EmailTextBox.Text;
-                        commandUsers.Parameters.Add("@role", MySqlDbType.VarChar).Value = "ROLE_USER";
+                        commandUsers.Parameters.Add("@role", MySqlDbType.Int32).Value = 2;
 
                         if (PassTextBox.Text == PassRepitTextBox.Text && PassTextBox.Text != "" && PassRepitTextBox.Text != "")
                         {
