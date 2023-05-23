@@ -21,12 +21,12 @@ namespace ASI.Forms.Modification.Model
                 switch (Forms.Main.ASI.Modif)
                 {
                     case ("Изменить"):
-                        LogoLabel.Text = "Изменение аудитории";
+                        LogoLabel.Text = "Изменение модели";
                         AddAuditBut.Visible = false;
                         ModAuditBut.Visible = true;
                         break;
                     case ("Добавить"):
-                        LogoLabel.Text = "Добавление аудитории";
+                        LogoLabel.Text = "Добавление модели";
 
                         AddAuditBut.Visible = true;
                         ModAuditBut.Visible = false;

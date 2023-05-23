@@ -31,9 +31,7 @@ namespace ASI.Forms.Main
                 switch (DataBase.Entity.Identification.DB_Users.RoleUsersForRole)
                 {
                     case ("ROLE_ROOT"):
-                        treeView1.Nodes[0].Nodes[1].Remove();
-                        treeView1.Nodes[0].Nodes[2].Remove();
-
+                        
                         Sep2.Visible = true;
                         Sep3.Visible = true;
                         Sep4.Visible = true;
@@ -48,7 +46,7 @@ namespace ASI.Forms.Main
                         break;
 
                     case ("ROLE_ADMIN"):
-                        treeView1.Nodes[0].Remove();
+                        treeView1.Nodes[3].Remove();
 
                         Sep2.Visible = true;
                         Sep3.Visible = true;
@@ -63,7 +61,7 @@ namespace ASI.Forms.Main
                         break;
 
                     case ("ROLE_USER"):
-                        treeView1.Nodes[0].Remove();
+                        treeView1.Nodes[3].Remove();
 
                         Sep2.Visible = false;
                         Sep3.Visible = false;
@@ -94,7 +92,7 @@ namespace ASI.Forms.Main
 
             try
             {
-                bool visibleColum = true;
+                bool visibleColum = false;
 
                 DataBase.ConnectionForMySQL.DB db = new DataBase.ConnectionForMySQL.DB();
                 MySqlDataAdapter mySql_dataAdapter = new MySqlDataAdapter(); //Через класс MySqlDataAdapter отправляем запрос в БД для получения данных
@@ -202,7 +200,7 @@ namespace ASI.Forms.Main
                         Ser6.Visible = false;
                         break;
 
-                    case ("TreeNode: Принтер"):
+                    case ("TreeNode: Оборудование"):
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectPrinter_ASI, db.getConnection());
                         mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
@@ -246,7 +244,7 @@ namespace ASI.Forms.Main
 
                         break;
 
-                    case ("TreeNode: Аудитория"):
+                    case ("TreeNode: Местоположение"):
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectRoom_ASI, db.getConnection());
                         mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
@@ -306,7 +304,7 @@ namespace ASI.Forms.Main
 
                         break;
 
-                    case ("TreeNode: Тип расходника"):
+                    case ("TreeNode: Типы расходников"):
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectCartrigeType_ASI, db.getConnection());
                         mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
@@ -404,7 +402,7 @@ namespace ASI.Forms.Main
 
                         break;
 
-                    case ("TreeNode: Принтер"):
+                    case ("TreeNode: Оборудование"):
                         Modification.Printer.ModPrinter modPrinter = new Modification.Printer.ModPrinter(); //объявляем форму, которую желаем открыть
 
                         DataBase.Entity.Printer.Printer.Id = Convert.ToInt32(null);
@@ -437,7 +435,7 @@ namespace ASI.Forms.Main
                         UpdateTable();
                         break;
 
-                    case ("TreeNode: Аудитория"):
+                    case ("TreeNode: Местоположение"):
 
                         Modification.Room.ModRoom modAudit = new Modification.Room.ModRoom(); //объявляем форму, которую желаем открыть
 
@@ -476,7 +474,7 @@ namespace ASI.Forms.Main
 
                         break;
 
-                    case ("TreeNode: Тип расходника"):
+                    case ("TreeNode: Типы расходников"):
                         Modification.CartrigeType.ModCartrigeType modCartrigeType = new Modification.CartrigeType.ModCartrigeType(); //объявляем форму, которую желаем открыть
 
                         DataBase.Entity.CartrigeType.CartrigeType.Id = Convert.ToInt32(null);
@@ -543,7 +541,7 @@ namespace ASI.Forms.Main
 
                         break;
 
-                    case ("TreeNode: Принтер"):
+                    case ("TreeNode: Оборудование"):
 
                         if (GridView.CurrentRow != null)
                         {
@@ -590,7 +588,7 @@ namespace ASI.Forms.Main
 
                         break;
 
-                    case ("TreeNode: Аудитория"):
+                    case ("TreeNode: Местоположение"):
                         if (GridView.CurrentRow != null)
                         {
                             Modification.Room.ModRoom modAudit = new Modification.Room.ModRoom(); //объявляем форму, которую желаем открыть
@@ -641,7 +639,7 @@ namespace ASI.Forms.Main
                         else { MessageBox.Show("Выделите строчку для редактирования"); }
                         break;
 
-                    case ("TreeNode: Тип расходника"):
+                    case ("TreeNode: Типы расходников"):
                         Modification.CartrigeType.ModCartrigeType modCartrigeType = new Modification.CartrigeType.ModCartrigeType(); //объявляем форму, которую желаем открыть
 
                         DataBase.Entity.CartrigeType.CartrigeType.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value.ToString());
@@ -692,7 +690,7 @@ namespace ASI.Forms.Main
                 db.openConnection();
                 switch (Convert.ToString(CurrentNode))
                 {
-                    case ("TreeNode: Принтер"):
+                    case ("TreeNode: Оборудование"):
 
 
                         break;
@@ -801,7 +799,7 @@ namespace ASI.Forms.Main
 
                             break;
 
-                        case ("TreeNode: Принтер"):
+                        case ("TreeNode: Оборудование"):
 
                             if (result == DialogResult.Yes)
                             {
@@ -835,7 +833,7 @@ namespace ASI.Forms.Main
 
                             break;
 
-                        case ("TreeNode: Аудитория"):
+                        case ("TreeNode: Местоположение"):
 
 
                             if (result == DialogResult.Yes)
@@ -886,7 +884,7 @@ namespace ASI.Forms.Main
 
                             break;
 
-                        case ("TreeNode: Тип расходника"):
+                        case ("TreeNode: Типы расходников"):
                             if (result == DialogResult.Yes)
                             {
                                 MySqlCommand DelCom = new MySqlCommand("DELETE FROM cartrige_type WHERE `id` = @id", db.getConnection());

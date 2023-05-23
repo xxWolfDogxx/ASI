@@ -110,7 +110,7 @@ namespace ASI.DataBase.Scripts
         //Отправка запроса на изменение записи картриджа
         internal static string script_UpdateConsumable_ModConsumable = "UPDATE `cartrige` SET `name`= @nameConsumable,`code`= @codeConsumable,`buy_date`= @buy_dateConsumable,`writeoff`= @writeoffConsumable,`note`= @noteConsumable,`ready`= @readyConsumable,`id_cartrige_type`= @typeConsumable,`id_room`= @roomConsumable,`id_model`= @modelConsumable WHERE `id`= @idConsumable";
         //Отправка запроса на вставку записи картриджа
-        internal static string script_InsertConsumable_ModConsumable = "INSERT INTO `cartrige`(`name`, `code`, `buy_date`, `writeoff`, `note`, `ready`, `id_cartrige_type`, `id_room`, `id_model`) VALUES (@nameConsumable, @codeConsumable, @buy_dateConsumable, @writeoffConsumable,@noteConsumable,@readyConsumable,@typeConsumable,@roomConsumable,@modelConsumable)";
+        internal static string script_InsertConsumable_ModConsumable = "INSERT INTO `cartrige`(`name`, `code`, `buy_date`, `writeoff`, `note`, `ready`, `setup`, `id_cartrige_type`, `id_room`, `id_model`) VALUES (@nameConsumable, @codeConsumable, @buy_dateConsumable, @writeoffConsumable,@noteConsumable,@readyConsumable,@setupConsumable, @typeConsumable,@roomConsumable,@modelConsumable)";
 
 
         //

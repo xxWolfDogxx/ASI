@@ -200,6 +200,7 @@ namespace ASI.Forms.Modification.Consumable
                 AddCom.Parameters.Add("@noteConsumable", MySqlDbType.VarChar).Value = NoteConsumableTextBox.Text;
                 //AddCom.Parameters.Add("@readyConsumable", MySqlDbType.UByte).Value = readyBool;
                 AddCom.Parameters.Add("@readyConsumable", MySqlDbType.UByte).Value = Convert.ToBoolean(true);
+                AddCom.Parameters.Add("@setupConsumable", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
                 AddCom.Parameters.Add("@typeConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(TypeConsumableComBox.SelectedValue);
                 AddCom.Parameters.Add("@roomConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(RoomConsumableComBox.SelectedValue);
                 AddCom.Parameters.Add("@modelConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(ModelConsumableComBox.SelectedValue);

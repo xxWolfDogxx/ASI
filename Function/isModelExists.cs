@@ -15,7 +15,7 @@ namespace ASI.Function
                 DataTable table = new DataTable();
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
 
-                MySqlCommand command = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_isRoomExists, db.getConnection());
+                MySqlCommand command = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_isModelExists, db.getConnection());
                 command.Parameters.Add("@nameExists", MySqlDbType.VarChar).Value = Forms.Modification.Room.ModRoom.Room;
 
                 adapter.SelectCommand = command;
