@@ -249,18 +249,25 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Scripts\jquery-2.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="README.txt" />
+    <Content Include="resource\BackUpDataBase\asi.sql" />
     <Content Include="resource\icons\AppIcon.ico" />
     <Content Include="resource\icons\filtre\filter.png" />
     <Content Include="resource\icons\identification\2203549_admin_avatar_human_login_user_icon.png" />
     <Content Include="resource\icons\identification\309058_key_login_private_protect_protection_icon.png" />
     <Content Include="resource\icons\identification\3841805_device_devices_multimedia_print_printing_icon.png" />
     <Content Include="resource\icons\identification\511942_lock_login_protection_secure_icon.png" />
+    <Content Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\nugetexample.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
