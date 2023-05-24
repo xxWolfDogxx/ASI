@@ -3,7 +3,6 @@ using System;
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
-using ASI.DataBase.ConnectionForMySQL;
 
 namespace ASI.Forms.Main
 {
