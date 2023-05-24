@@ -15,7 +15,7 @@ namespace ASI.Forms.Modification.Printer
 
         public ModPrinter()
         {
-           
+
             InitializeComponent();
 
             //
@@ -85,9 +85,9 @@ namespace ASI.Forms.Modification.Printer
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
-            }            
+            }
         }
- 
+
         private void AddPrinterBut_Click(object sender, EventArgs e)
         {
             try
@@ -118,7 +118,7 @@ namespace ASI.Forms.Modification.Printer
                 {
                     if (AddCom.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("Принтер добавлен");
+                        //MessageBox.Show("Принтер добавлен");
                         //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
                         Hide();
                         this.Close();
@@ -135,9 +135,9 @@ namespace ASI.Forms.Modification.Printer
             {
                 MessageBox.Show(ex.Message);
             }
-           
+
         }
-        
+
         private void ModPrinterBut_Click(object sender, EventArgs e)
         {
             try
@@ -193,7 +193,7 @@ namespace ASI.Forms.Modification.Printer
                 {
                     if (ModCom.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("Запись изменина");
+                        //MessageBox.Show("Запись изменина");
                         //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
                         Hide();
                         this.Close();
@@ -209,13 +209,13 @@ namespace ASI.Forms.Modification.Printer
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
-            }          
+            }
 
         }
 
         private void CancleBut_Click(object sender, EventArgs e)
         {
-            
+
             Hide();
             this.Close();
         }

@@ -43,7 +43,7 @@ namespace ASI.Forms.Modification.Room
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private void AddAuditBut_Click(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace ASI.Forms.Modification.Room
                     db.openConnection();
                     if (AddCom.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("Аудитория добавлена");
+                        //MessageBox.Show("Аудитория добавлена");
                         Hide();
                         this.Close();
                     }
@@ -83,7 +83,7 @@ namespace ASI.Forms.Modification.Room
             {
                 MessageBox.Show(ex.Message);
             }
-           
+
         }
 
         private void ModAuditBut_Click(object sender, EventArgs e)
@@ -118,7 +118,7 @@ namespace ASI.Forms.Modification.Room
                 {
                     if (AddCom.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("Запись изменина");
+                        //MessageBox.Show("Запись изменина");
                         //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
                         Hide();
                         this.Close();
@@ -134,7 +134,7 @@ namespace ASI.Forms.Modification.Room
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
-            }           
+            }
 
         }
 

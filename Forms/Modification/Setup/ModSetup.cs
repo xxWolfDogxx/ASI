@@ -62,7 +62,7 @@ namespace ASI.Forms.Modification.Setup
             {
                 MessageBox.Show(ex.Message);
             }
-           
+
         }
 
         private void ModSetup_Load(object sender, EventArgs e)
@@ -205,7 +205,7 @@ namespace ASI.Forms.Modification.Setup
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
-            }       
+            }
 
         }
 
@@ -247,7 +247,7 @@ namespace ASI.Forms.Modification.Setup
                 db.openConnection();
                 if (AddCom.ExecuteNonQuery() == 1 && AddCheckSetupCom.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("Установлен");
+                    //MessageBox.Show("Установлен");
                     //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
                     Hide();
                     this.Close();
@@ -263,7 +263,7 @@ namespace ASI.Forms.Modification.Setup
             {
                 MessageBox.Show(ex.Message);
             }
-           
+
         }
 
         private void ModSetupBut_Click(object sender, EventArgs e)
@@ -313,7 +313,7 @@ namespace ASI.Forms.Modification.Setup
                 db.openConnection();
                 if ((AddCom.ExecuteNonQuery() == 1) && (AddCheckReadyCom.ExecuteNonQuery() == 1))
                 {
-                    MessageBox.Show("Снято");
+                    //MessageBox.Show("Снято");
                     //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
                     Hide();
                     this.Close();
@@ -329,7 +329,7 @@ namespace ASI.Forms.Modification.Setup
             {
                 MessageBox.Show(ex.Message);
             }
-           
+
         }
 
         private void CancleBut_Click(object sender, EventArgs e)

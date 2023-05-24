@@ -27,7 +27,7 @@ namespace ASI.Forms.Modification.Consumable
             ModelConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
             WriteoffConsumableComBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            
+
         }
 
         private void ModCartrige_Load(object sender, EventArgs e)
@@ -153,7 +153,7 @@ namespace ASI.Forms.Modification.Consumable
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
-            }           
+            }
 
         }
 
@@ -219,7 +219,7 @@ namespace ASI.Forms.Modification.Consumable
                     db.openConnection();
                     if (AddCom.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("Расходник добавлен");
+                        //MessageBox.Show("Расходник добавлен");
                         //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
                         Hide();
                         this.Close();
@@ -235,7 +235,7 @@ namespace ASI.Forms.Modification.Consumable
             {
                 MessageBox.Show(ex.Message);
             }
-           
+
         }
 
         private void ModCartrigeBut_Click(object sender, EventArgs e)
@@ -307,7 +307,7 @@ namespace ASI.Forms.Modification.Consumable
                 {
                     if (AddCom.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("Запись изменина");
+                        //MessageBox.Show("Запись изменина");
                         //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
                         Hide();
                         this.Close();
@@ -323,7 +323,7 @@ namespace ASI.Forms.Modification.Consumable
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
-            }         
+            }
 
         }
 

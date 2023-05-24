@@ -108,7 +108,7 @@ namespace ASI.Forms.Identification.Authentication
                         while (RoleUsersDB.Read()) { DataBase.Entity.Identification.DB_Users.RoleUsersForRole = RoleUsersDB.GetString(0); }; //Перебираем все значения
                         db.closeConnection();
 
-                        MessageBox.Show("Ваш уровень доступа: " + DataBase.Entity.Identification.DB_Users.RoleUsersForRole);
+                        //MessageBox.Show("Ваш уровень доступа: " + DataBase.Entity.Identification.DB_Users.RoleUsersForRole);
 
 
                         //Переход на главную форму
@@ -168,7 +168,7 @@ namespace ASI.Forms.Identification.Authentication
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private void Auth_FormClosed(object sender, FormClosedEventArgs e)

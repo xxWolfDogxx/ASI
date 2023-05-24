@@ -79,11 +79,11 @@ namespace ASI.Forms.Identification.Authentication
             this.LogoLabel.AutoSize = true;
             this.LogoLabel.Font = new System.Drawing.Font("Calibri", 25.81132F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LogoLabel.Location = new System.Drawing.Point(157, 20);
+            this.LogoLabel.Location = new System.Drawing.Point(230, 22);
             this.LogoLabel.Name = "LogoLabel";
-            this.LogoLabel.Size = new System.Drawing.Size(144, 42);
+            this.LogoLabel.Size = new System.Drawing.Size(64, 42);
             this.LogoLabel.TabIndex = 0;
-            this.LogoLabel.Text = "Вход ASI";
+            this.LogoLabel.Text = "ASI";
             // 
             // AuthPanel
             // 
@@ -115,12 +115,12 @@ namespace ASI.Forms.Identification.Authentication
             this.ForgotPassLinkLabel.AutoSize = true;
             this.ForgotPassLinkLabel.Dock = System.Windows.Forms.DockStyle.Right;
             this.ForgotPassLinkLabel.Font = new System.Drawing.Font("Calibri", 10.26415F, System.Drawing.FontStyle.Italic);
-            this.ForgotPassLinkLabel.Location = new System.Drawing.Point(408, 0);
+            this.ForgotPassLinkLabel.Location = new System.Drawing.Point(422, 0);
             this.ForgotPassLinkLabel.Name = "ForgotPassLinkLabel";
-            this.ForgotPassLinkLabel.Size = new System.Drawing.Size(96, 17);
+            this.ForgotPassLinkLabel.Size = new System.Drawing.Size(82, 17);
             this.ForgotPassLinkLabel.TabIndex = 5;
             this.ForgotPassLinkLabel.TabStop = true;
-            this.ForgotPassLinkLabel.Text = "Забыл пароль?";
+            this.ForgotPassLinkLabel.Text = "База данных";
             this.ForgotPassLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ForgotPassLinkLabel_LinkClicked);
             // 
             // RegsLinkLabel
@@ -134,6 +134,7 @@ namespace ASI.Forms.Identification.Authentication
             this.RegsLinkLabel.TabIndex = 4;
             this.RegsLinkLabel.TabStop = true;
             this.RegsLinkLabel.Text = "Зарегистрироваться?";
+            this.RegsLinkLabel.Visible = false;
             this.RegsLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RegsLinkLabel_LinkClicked);
             // 
             // AuthButGrupBox
@@ -242,7 +243,7 @@ namespace ASI.Forms.Identification.Authentication
             this.LoginGrupBox.Size = new System.Drawing.Size(504, 75);
             this.LoginGrupBox.TabIndex = 0;
             this.LoginGrupBox.TabStop = false;
-            this.LoginGrupBox.Text = "Эл. почта";
+            this.LoginGrupBox.Text = "Логин";
             // 
             // LoginTextBox
             // 

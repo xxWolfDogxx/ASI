@@ -55,7 +55,7 @@ namespace ASI.Forms.Modification.CartrigeType
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
-            }           
+            }
 
         }
 
@@ -93,7 +93,7 @@ namespace ASI.Forms.Modification.CartrigeType
                     db.openConnection();
                     if (AddCom.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("Заявка Добавлена");
+                        //MessageBox.Show("Заявка Добавлена");
                         //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
                         Hide();
                         this.Close();
@@ -109,7 +109,7 @@ namespace ASI.Forms.Modification.CartrigeType
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
 
         }
 
@@ -160,7 +160,7 @@ namespace ASI.Forms.Modification.CartrigeType
                 {
                     if (AddCom.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("Запись изменина");
+                        //MessageBox.Show("Запись изменина");
                         //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
                         Hide();
                         this.Close();
@@ -178,7 +178,7 @@ namespace ASI.Forms.Modification.CartrigeType
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
 
 
         }
@@ -188,6 +188,6 @@ namespace ASI.Forms.Modification.CartrigeType
             Hide();
             this.Close();
         }
-    
+
     }
 }

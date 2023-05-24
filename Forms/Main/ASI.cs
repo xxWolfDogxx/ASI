@@ -1,9 +1,9 @@
-﻿using MySql.Data.MySqlClient;
+﻿using ASI.DataBase.ConnectionForMySQL;
+using MySql.Data.MySqlClient;
 using System;
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
-using ASI.DataBase.ConnectionForMySQL;
 
 namespace ASI.Forms.Main
 {
@@ -31,7 +31,7 @@ namespace ASI.Forms.Main
                 switch (DataBase.Entity.Identification.DB_Users.RoleUsersForRole)
                 {
                     case ("ROLE_ROOT"):
-                        
+
                         Sep2.Visible = true;
                         Sep3.Visible = true;
                         Sep4.Visible = true;
@@ -76,7 +76,7 @@ namespace ASI.Forms.Main
                         break;
                 }
 
-                treeView1.SelectedNode = treeView1.Nodes[0].Nodes[0];
+                treeView1.SelectedNode = treeView1.Nodes[0];
                 treeView1.Focus();
             }
             catch (MySqlException ex)
@@ -99,6 +99,7 @@ namespace ASI.Forms.Main
                 DataTable table = new DataTable(); //Создаем класс DataTable для того чтоб занести данные из запроса в виртуальную таблицу          
                 TreeNode CurrentNode = treeView1.SelectedNode; // Отслеживаем фокус иерархии. Общий вид вывода информации TreeNode: Принтер
 
+                GridView.CurrentCell = null;
                 //
                 //Заполняем таблицу данными с запросов
                 //
@@ -124,7 +125,7 @@ namespace ASI.Forms.Main
                         GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
                         GridView.Columns["Phone"].HeaderText = "Номер телефона";
                         GridView.Columns["Email"].HeaderText = "Эл. почта";
-                       // GridView.Columns["Password"].Visible = false;
+                        // GridView.Columns["Password"].Visible = false;
                         GridView.Columns["Role"].HeaderText = "Роль";
 
                         SetupToolBut.Visible = false;
@@ -148,7 +149,7 @@ namespace ASI.Forms.Main
                         GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
                         GridView.Columns["Phone"].HeaderText = "Номер телефона";
                         GridView.Columns["Email"].HeaderText = "Эл. почта";
-                       // GridView.Columns["Password"].Visible = false;
+                        // GridView.Columns["Password"].Visible = false;
                         GridView.Columns["Role"].HeaderText = "Роль";
 
                         SetupToolBut.Visible = false;
@@ -172,7 +173,7 @@ namespace ASI.Forms.Main
                         GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
                         GridView.Columns["Phone"].HeaderText = "Номер телефона";
                         GridView.Columns["Email"].HeaderText = "Эл. почта";
-                       // GridView.Columns["Password"].Visible = false;
+                        // GridView.Columns["Password"].Visible = false;
                         GridView.Columns["Role"].HeaderText = "Роль";
 
                         SetupToolBut.Visible = false;
@@ -548,10 +549,10 @@ namespace ASI.Forms.Main
                             Modification.Printer.ModPrinter modPrinter = new Modification.Printer.ModPrinter(); //объявляем форму, которую желаем открыть
 
                             DataBase.Entity.Printer.Printer.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
-                            DataBase.Entity.Printer.Printer.Name = GridView.CurrentRow.Cells["Название"].Value.ToString();
-                            DataBase.Entity.Printer.Printer.Inventory = GridView.CurrentRow.Cells["Инвентарный номер"].Value.ToString();
+                            DataBase.Entity.Printer.Printer.Name = GridView.CurrentRow.Cells["Имя"].Value.ToString();
+                            DataBase.Entity.Printer.Printer.Inventory = GridView.CurrentRow.Cells["Инв. №"].Value.ToString();
                             DataBase.Entity.Printer.Printer.Id_room = Convert.ToInt32(GridView.CurrentRow.Cells["id_room"].Value);
-                            DataBase.Entity.Printer.Printer.Note = GridView.CurrentRow.Cells["Заметки"].Value.ToString();
+                            DataBase.Entity.Printer.Printer.Note = GridView.CurrentRow.Cells["Примечание"].Value.ToString();
                             DataBase.Entity.Printer.Printer.Id_model = Convert.ToInt32(GridView.CurrentRow.Cells["id_model"].Value);
 
                             modPrinter.ShowDialog();
@@ -570,12 +571,12 @@ namespace ASI.Forms.Main
                             //modConsumable.IdСonsumableTextBox = Convert.ToString(GridView.CurrentRow.Cells["i"].Value.ToString());
 
                             DataBase.Entity.Consumable.Consumable.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
-                            DataBase.Entity.Consumable.Consumable.Name = GridView.CurrentRow.Cells["Название"].Value.ToString();
-                            DataBase.Entity.Consumable.Consumable.Code = GridView.CurrentRow.Cells["Уникальный номер"].Value.ToString();
-                            DataBase.Entity.Consumable.Consumable.Bay_date = Convert.ToDateTime(GridView.CurrentRow.Cells["Дата покупки"].Value);
-                            DataBase.Entity.Consumable.Consumable.Writeoff = Convert.ToBoolean(GridView.CurrentRow.Cells["Списанный"].Value);
-                            DataBase.Entity.Consumable.Consumable.Note = GridView.CurrentRow.Cells["Заметки"].Value.ToString();
-                            DataBase.Entity.Consumable.Consumable.Ready = Convert.ToBoolean(GridView.CurrentRow.Cells["Готовность"].Value);
+                            DataBase.Entity.Consumable.Consumable.Name = GridView.CurrentRow.Cells["Имя"].Value.ToString();
+                            DataBase.Entity.Consumable.Consumable.Code = GridView.CurrentRow.Cells["Код"].Value.ToString();
+                            DataBase.Entity.Consumable.Consumable.Bay_date = Convert.ToDateTime(GridView.CurrentRow.Cells["Дата"].Value);
+                            DataBase.Entity.Consumable.Consumable.Writeoff = Convert.ToBoolean(GridView.CurrentRow.Cells["Списан"].Value);
+                            DataBase.Entity.Consumable.Consumable.Note = GridView.CurrentRow.Cells["Примечание"].Value.ToString();
+                            DataBase.Entity.Consumable.Consumable.Ready = Convert.ToBoolean(GridView.CurrentRow.Cells["Готов"].Value);
                             DataBase.Entity.Consumable.Consumable.Id_cartrige_type = Convert.ToString(GridView.CurrentRow.Cells["id_type"].Value);
                             DataBase.Entity.Consumable.Consumable.Id_room = Convert.ToString(GridView.CurrentRow.Cells["id_room"].Value);
                             DataBase.Entity.Consumable.Consumable.Id_model = Convert.ToString(GridView.CurrentRow.Cells["id_model"].Value);
@@ -594,7 +595,7 @@ namespace ASI.Forms.Main
                             Modification.Room.ModRoom modAudit = new Modification.Room.ModRoom(); //объявляем форму, которую желаем открыть
 
                             DataBase.Entity.Audit.Audiences.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
-                            DataBase.Entity.Audit.Audiences.Name = GridView.CurrentRow.Cells["Название"].Value.ToString();
+                            DataBase.Entity.Audit.Audiences.Name = GridView.CurrentRow.Cells["Имя"].Value.ToString();
 
                             modAudit.ShowDialog();
                             UpdateTable();
@@ -631,7 +632,7 @@ namespace ASI.Forms.Main
                             DataBase.Entity.Fill.Fill.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
                             DataBase.Entity.Fill.Fill.Id_cartrige = Convert.ToInt32(GridView.CurrentRow.Cells["id_cartrige"].Value);
                             DataBase.Entity.Fill.Fill.Date = GridView.CurrentRow.Cells["Дата заправки"].Value.ToString();
-                            DataBase.Entity.Fill.Fill.Note = GridView.CurrentRow.Cells["Заметки"].Value.ToString();
+                            DataBase.Entity.Fill.Fill.Note = GridView.CurrentRow.Cells["Примечание"].Value.ToString();
 
                             modFill.ShowDialog();
                             UpdateTable();
@@ -643,8 +644,8 @@ namespace ASI.Forms.Main
                         Modification.CartrigeType.ModCartrigeType modCartrigeType = new Modification.CartrigeType.ModCartrigeType(); //объявляем форму, которую желаем открыть
 
                         DataBase.Entity.CartrigeType.CartrigeType.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value.ToString());
-                        DataBase.Entity.CartrigeType.CartrigeType.Name = GridView.CurrentRow.Cells["Название"].Value.ToString();
-                        DataBase.Entity.CartrigeType.CartrigeType.Refill = Convert.ToBoolean(GridView.CurrentRow.Cells["Доступна перезапрака"].Value.ToString());
+                        DataBase.Entity.CartrigeType.CartrigeType.Name = GridView.CurrentRow.Cells["Имя"].Value.ToString();
+                        DataBase.Entity.CartrigeType.CartrigeType.Refill = Convert.ToBoolean(GridView.CurrentRow.Cells["Перезаправка"].Value.ToString());
 
                         modCartrigeType.ShowDialog();
                         UpdateTable();
@@ -655,7 +656,7 @@ namespace ASI.Forms.Main
                         Modification.Model.ModModel modModel = new Modification.Model.ModModel(); //объявляем форму, которую желаем открыть
 
                         DataBase.Entity.Model.Model.Id = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value.ToString());
-                        DataBase.Entity.Model.Model.Name = GridView.CurrentRow.Cells["Название"].Value.ToString();
+                        DataBase.Entity.Model.Model.Name = GridView.CurrentRow.Cells["Имя"].Value.ToString();
 
                         modModel.ShowDialog();
                         UpdateTable();
@@ -698,13 +699,13 @@ namespace ASI.Forms.Main
                     case ("TreeNode: Расходники"):
                         if (GridView.CurrentRow != null)
                         {
-                            if (GridView.CurrentRow.Cells["Списанный"].Value.ToString() == "False")
+                            if (GridView.CurrentRow.Cells["Списан"].Value.ToString() == "False")
                             {
-                                if (GridView.CurrentRow.Cells["Готовность"].Value.ToString() == "True")
+                                if (GridView.CurrentRow.Cells["Готов"].Value.ToString() == "True")
                                 {
                                     Modification.Setup.ModSetup modSetup = new Modification.Setup.ModSetup(); //объявляем форму, которую желаем открыть
                                                                                                               //MessageBox.Show(GridView.CurrentRow.Cells["Установлен"].Value.ToString());
-                                    if (GridView.CurrentRow.Cells["Установлен"].Value.ToString() == "False")
+                                    if (GridView.CurrentRow.Cells["Установ."].Value.ToString() == "False")
                                     {
                                         Modif = "Установка";
 
@@ -944,13 +945,13 @@ namespace ASI.Forms.Main
 
                 if (GridView.CurrentRow != null)
                 {
-                    if (GridView.CurrentRow.Cells["Списанный"].Value.ToString() == "False")
+                    if (GridView.CurrentRow.Cells["Списан"].Value.ToString() == "False")
                     {
                         DialogResult result = MessageBox.Show(
-                            "Вы уверены, что хотите удалить эту запись: " +
+                            "Вы уверены, что хотите списать данный расходник: " +
                             "ID = " +
-                            GridView.CurrentRow.Cells[0].Value.ToString() + "\nДанные после удаления, вернуть будет невозможно!",
-                            "Подтвердите удаление",
+                            GridView.CurrentRow.Cells[0].Value.ToString(),
+                            "Подтвердите списание",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Information,
                             MessageBoxDefaultButton.Button1,
@@ -974,7 +975,7 @@ namespace ASI.Forms.Main
                     }
                     else { MessageBox.Show("Данный расходник уже списан!"); }
                 }
-                else { MessageBox.Show("Выделите строку для удаления"); }
+                else { MessageBox.Show("Выделите строку для списания"); }
 
             }
             catch (MySqlException ex)
@@ -1088,60 +1089,60 @@ namespace ASI.Forms.Main
 
         private void InsertGlobalVar_Users()
         {
-          /*  DB db = new DB();
-            db.openConnection();
+            /*  DB db = new DB();
+              db.openConnection();
 
-            MySqlCommand mySqlCommand = new MySqlCommand("Select * From users INNER JOIN room ON printer.id_room = room.id  WHERE Email = @email ", db.getConnection());
-            mySqlCommand.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;
+              MySqlCommand mySqlCommand = new MySqlCommand("Select * From users INNER JOIN room ON printer.id_room = room.id  WHERE Email = @email ", db.getConnection());
+              mySqlCommand.Parameters.Add("@email", MySqlDbType.VarChar).Value = DataBase.Entity.Identification.DB_Auth.EmailAuthForUsers;
 
-            MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
-            DataTable user = new DataTable();
-            mySqlDataAdapter.Fill(user);
+              MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
+              DataTable user = new DataTable();
+              mySqlDataAdapter.Fill(user);
 
-            foreach (DataRow row in user.Rows)
-            {
-                DataBase.Entity.Identification.DB_Users.IdUsers = row["id"].ToString();
-                DataBase.Entity.Identification.DB_Users.FullnameUsers = row["FullName"].ToString();
-                DataBase.Entity.Identification.DB_Users.PhoneUsers = row["id_cartrige"].ToString();
-                DataBase.Entity.Identification.DB_Users.EmailUsers = row["start"].ToString();
-                DataBase.Entity.Identification.DB_Users.RoleUsersForRole = row["end"].ToString();
-                
-            }
+              foreach (DataRow row in user.Rows)
+              {
+                  DataBase.Entity.Identification.DB_Users.IdUsers = row["id"].ToString();
+                  DataBase.Entity.Identification.DB_Users.FullnameUsers = row["FullName"].ToString();
+                  DataBase.Entity.Identification.DB_Users.PhoneUsers = row["id_cartrige"].ToString();
+                  DataBase.Entity.Identification.DB_Users.EmailUsers = row["start"].ToString();
+                  DataBase.Entity.Identification.DB_Users.RoleUsersForRole = row["end"].ToString();
 
-            if (setup.Rows.Count == 1)
-            {
-                //  
-                //Заносим в поля данные
-                //
-                MessageBox.Show(id_printer_DB);
-                IdSetupTextBox.Text = id_DB;
-                CartrigeSetupComBox.SelectedValue = id_cartrige_DB;
-                PrinterSetupComBox.SelectedValue = id_printer_DB;
-                DateStartDatePicker.Text = start_DB;
-                DateEndDatePicker.Text = end_DB;
-                NoteSetupTextBox.Text = note_DB;
+              }
 
-                endGB.Visible = true;
+              if (setup.Rows.Count == 1)
+              {
+                  //  
+                  //Заносим в поля данные
+                  //
+                  MessageBox.Show(id_printer_DB);
+                  IdSetupTextBox.Text = id_DB;
+                  CartrigeSetupComBox.SelectedValue = id_cartrige_DB;
+                  PrinterSetupComBox.SelectedValue = id_printer_DB;
+                  DateStartDatePicker.Text = start_DB;
+                  DateEndDatePicker.Text = end_DB;
+                  NoteSetupTextBox.Text = note_DB;
 
-                IdSetupTextBox.Enabled = false;
-                CartrigeSetupComBox.Enabled = false;
-                PrinterSetupComBox.Enabled = false;
-                DateStartDatePicker.Enabled = false;
-                DateEndDatePicker.Enabled = true;
-                NoteSetupTextBox.Enabled = true;
+                  endGB.Visible = true;
 
-            }
-            else if (setup.Rows.Count > 1)
-            {
-                MessageBox.Show("Этот картридж установлен одновременно более одного раза\n" +
-                    "Произведите поправку в истории установок вручную");
-                this.Close();
-            }
-            else MessageBox.Show("ModSetup Error");
-            db.closeConnection();*/
+                  IdSetupTextBox.Enabled = false;
+                  CartrigeSetupComBox.Enabled = false;
+                  PrinterSetupComBox.Enabled = false;
+                  DateStartDatePicker.Enabled = false;
+                  DateEndDatePicker.Enabled = true;
+                  NoteSetupTextBox.Enabled = true;
+
+              }
+              else if (setup.Rows.Count > 1)
+              {
+                  MessageBox.Show("Этот картридж установлен одновременно более одного раза\n" +
+                      "Произведите поправку в истории установок вручную");
+                  this.Close();
+              }
+              else MessageBox.Show("ModSetup Error");
+              db.closeConnection();*/
 
 
-            
+
         }
 
         private void ASI_FormClosing(object sender, FormClosingEventArgs e)

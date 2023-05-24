@@ -77,7 +77,7 @@ namespace ASI.Forms.Modification.Fill
             {
                 MessageBox.Show(ex.Message);
             }
-           
+
         }
 
         private void AddStatusWorkBut_Click(object sender, EventArgs e)
@@ -109,7 +109,7 @@ namespace ASI.Forms.Modification.Fill
                 db.openConnection();
                 if (AddCom.ExecuteNonQuery() == 1 && UpdCartrigeCom.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("Расходник перезаправлен");
+                    //MessageBox.Show("Расходник перезаправлен");
                     //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
                     Hide();
                     this.Close();
@@ -123,7 +123,7 @@ namespace ASI.Forms.Modification.Fill
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
-            }           
+            }
 
         }
 
@@ -156,7 +156,7 @@ namespace ASI.Forms.Modification.Fill
                 db.openConnection();
                 if (ModCom.ExecuteNonQuery() == 1 && UpdCartrigeCom.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("Запись изменина");
+                    //MessageBox.Show("Запись изменина");
                     //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
                     Hide();
                     this.Close();
@@ -173,7 +173,7 @@ namespace ASI.Forms.Modification.Fill
             }
 
 
-           
+
         }
 
         private void CancleBut_Click(object sender, EventArgs e)

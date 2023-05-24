@@ -40,7 +40,7 @@ namespace ASI.Forms.Modification.Model
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private void AddAuditBut_Click(object sender, EventArgs e)
@@ -64,7 +64,7 @@ namespace ASI.Forms.Modification.Model
                 {
                     if (AddCom.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("Модель принтера добавлена");
+                        //MessageBox.Show("Модель принтера добавлена");
                         Hide();
                         this.Close();
                     }
@@ -81,7 +81,7 @@ namespace ASI.Forms.Modification.Model
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
 
         }
 
@@ -118,7 +118,7 @@ namespace ASI.Forms.Modification.Model
                 {
                     if (AddCom.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("Запись изменина");
+                        //MessageBox.Show("Запись изменина");
                         //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
                         Hide();
                         this.Close();
@@ -135,7 +135,7 @@ namespace ASI.Forms.Modification.Model
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private void CancleBut_Click(object sender, EventArgs e)
@@ -143,6 +143,6 @@ namespace ASI.Forms.Modification.Model
             Hide();
             this.Close();
         }
-    
+
     }
 }

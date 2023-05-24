@@ -43,31 +43,31 @@ namespace ASI.DataBase.Scripts
         //Скрипты для основной формы ASI
         //
         //Запрос на вывод в таблицу принтеров
-        internal static string script_SelectPrinter_ASI = "SELECT printer.id AS ID, printer.name AS Название, printer.inventory AS 'Инвентарный номер', printer.id_room, room.name AS Аудитория , printer.note AS Заметки, printer.id_model, model.name AS Модель " +
+        internal static string script_SelectPrinter_ASI = "SELECT printer.id AS ID, printer.name AS Имя, printer.inventory AS 'Инв. №', printer.id_room, room.name AS Аудитория , printer.note AS Примечание, printer.id_model, model.name AS Модель " +
                 "FROM printer " +
                 "INNER JOIN room ON printer.id_room = room.id " +
                 "INNER JOIN model ON printer.id_model = model.id";
         //Запрос на вывод в таблицу расходников
-        internal static string script_SelectCartrige_ASI = "SELECT cartrige.id AS ID, cartrige.name AS Название, cartrige.code AS 'Уникальный номер', cartrige.buy_date AS 'Дата покупки', cartrige.writeoff AS Списанный, cartrige.note AS Заметки, cartrige.ready AS Готовность, cartrige.setup AS 'Установлен', cartrige.id_cartrige_type AS 'id_type',cartrige_type.name AS 'Тип расходника', cartrige.id_room, room.name AS Аудитория, cartrige.id_model, model.name AS 'Подходит к модели'" +
+        internal static string script_SelectCartrige_ASI = "SELECT cartrige.id AS ID, cartrige.name AS Имя, cartrige.code AS 'Код', cartrige.buy_date AS 'Дата', cartrige.writeoff AS Списан, cartrige.note AS Примечание, cartrige.ready AS Готов, cartrige.setup AS 'Установ.', cartrige.id_cartrige_type AS 'id_type',cartrige_type.name AS 'Тип', cartrige.id_room, room.name AS Место, cartrige.id_model, model.name AS 'Совместим'" +
                 "FROM cartrige " +
                 "INNER JOIN cartrige_type ON cartrige.id_cartrige_type = cartrige_type.id " +
                 "INNER JOIN room ON cartrige.id_room = room.Id " +
                 "INNER JOIN model ON cartrige.id_model = model.id";
         //Запрос на вывод в таблицу установок
-        internal static string script_SelectSetup_ASI = "SELECT setup.id AS 'ID', printer.id AS id_printer, printer.name AS 'Название принтера', cartrige.id AS id_cartrige, cartrige.code AS 'Номер расходника', setup.start AS 'Дата установки', setup.end AS 'Дата снятия', setup.note AS 'Заметки' " +
+        internal static string script_SelectSetup_ASI = "SELECT setup.id AS 'ID', printer.id AS id_printer, printer.name AS 'Принтер', cartrige.id AS id_cartrige, cartrige.code AS 'Ррасходник', setup.start AS 'Дата установки', setup.end AS 'Дата снятия', setup.note AS 'Заметки' " +
                 "FROM setup " +
                 "INNER JOIN printer ON setup.id_printer = printer.id " +
                 "INNER JOIN cartrige ON setup.id_cartrige = cartrige.id";
         //Запрос на вывод в таблицу перезаправок
-        internal static string script_SelectFill_ASI = "SELECT fill.id AS 'ID', cartrige.id AS 'id_cartrige', cartrige.code AS 'Номер картриджа', fill.date AS 'Дата заправки', fill.note AS 'Заметки' " +
+        internal static string script_SelectFill_ASI = "SELECT fill.id AS 'ID', cartrige.id AS 'id_cartrige', cartrige.code AS 'Код расходника', fill.date AS 'Дата заправки', fill.note AS 'Примечание' " +
                 "FROM fill " +
                 "INNER JOIN cartrige ON fill.id_cartrige = cartrige.id";
         //Запрос вывод в таблицу аудиторий
-        internal static string script_SelectRoom_ASI = "SELECT room.id AS 'ID', room.name AS 'Название' FROM `room`";
+        internal static string script_SelectRoom_ASI = "SELECT room.id AS 'ID', room.name AS 'Имя' FROM `room`";
         //Запрос на вывод в таблицу моделей принтеров
-        internal static string script_SelectModel_ASI = $"SELECT model.id AS 'ID', model.name AS 'Название' FROM `model`";
+        internal static string script_SelectModel_ASI = $"SELECT model.id AS 'ID', model.name AS 'Имя' FROM `model`";
         //Запрос на вывод в таблицу тип расходника
-        internal static string script_SelectCartrigeType_ASI = $"SELECT cartrige_type.id AS 'ID', cartrige_type.name AS 'Название', cartrige_type.refill AS 'Доступна перезаправка' FROM `cartrige_type`";
+        internal static string script_SelectCartrigeType_ASI = $"SELECT cartrige_type.id AS 'ID', cartrige_type.name AS 'Имя', cartrige_type.refill AS 'Перезаправка' FROM `cartrige_type`";
 
         //Запрос на справочник Роли (доступ только у рута)
         internal static string script_SelectRole_ASI = $"SELECT * FROM `roles`";

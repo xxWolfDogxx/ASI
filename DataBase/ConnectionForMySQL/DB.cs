@@ -21,9 +21,9 @@ namespace ASI.DataBase.ConnectionForMySQL
                 MessageBox.Show(ex.Message);
 
             }
-                        
-            
-            
+
+
+
         }
 
         public void closeConnection()
@@ -53,7 +53,7 @@ namespace ASI.DataBase.ConnectionForMySQL
                 return connection;
 
             }
-            
+
         }
 
 

@@ -1,6 +1,4 @@
 ﻿using ASI.Forms.Identification.Authentication;
-using ASI.Forms.Identification.Registration;
-using ASI.Forms.Main;
 using System;
 using System.Windows.Forms;
 

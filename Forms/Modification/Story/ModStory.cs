@@ -51,7 +51,7 @@ namespace ASI.Forms.Modification.Story
             {
                 MessageBox.Show(ex.Message);
             }
-           
+
         }
     }
 }

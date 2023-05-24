@@ -41,7 +41,7 @@ namespace ASI.Function
                 MessageBox.Show(ex.Message);
                 return true;
 
-            }           
+            }
         }
     }
 }

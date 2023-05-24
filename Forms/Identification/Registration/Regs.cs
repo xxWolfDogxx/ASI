@@ -120,7 +120,7 @@ namespace ASI.Forms.Identification.Registration
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
-            }         
+            }
         }
 
         private void FIOTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -159,6 +159,6 @@ namespace ASI.Forms.Identification.Registration
         {
             this.Close();
         }
-    
+
     }
 }
