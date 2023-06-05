@@ -162,7 +162,9 @@ namespace ASI.Forms.Identification.Authentication
         {
             try
             {
-                MessageBox.Show("Данная функция находится в разработке!\n" + "При возникновении проблемы обратитесь к системному администратору!");
+                // MessageBox.Show("Данная функция находится в разработке!\n" + "При возникновении проблемы обратитесь к системному администратору!");
+                Forms.Connection.ConnDB connDB = new Connection.ConnDB();
+                connDB.ShowDialog();
             }
             catch (MySqlException ex)
             {

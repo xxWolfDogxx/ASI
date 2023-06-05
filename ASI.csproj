@@ -121,6 +121,12 @@
     <Compile Include="DataBase\Entity\Setup\Setup.cs" />
     <Compile Include="DataBase\Entity\CartrigeType\CartrigeType.cs" />
     <Compile Include="DataBase\Scripts\ScriptMySql.cs" />
+    <Compile Include="Forms\Connection\ConnDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Connection\ConnDB.Designer.cs">
+      <DependentUpon>ConnDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Identification\Authentication\Auth.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +202,9 @@
     <Compile Include="Function\SHA256.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Connection\ConnDB.resx">
+      <DependentUpon>ConnDB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Identification\Authentication\Auth.resx">
       <DependentUpon>Auth.cs</DependentUpon>
     </EmbeddedResource>
@@ -256,6 +265,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="ConnDB.txt" />
     <Content Include="README.txt" />
     <Content Include="resource\BackUpDataBase\asi.sql" />
     <Content Include="resource\icons\AppIcon.ico" />
