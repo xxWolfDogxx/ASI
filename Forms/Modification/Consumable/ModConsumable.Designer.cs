@@ -51,11 +51,16 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.DateConsumableDatePicker = new System.Windows.Forms.DateTimePicker();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.CodeСonsumableTextBox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.NameСonsumableTextBox = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.IdСonsumableTextBox = new System.Windows.Forms.TextBox();
+            this.Code00ConsumTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Code99ConsumTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.CodeAAConsumTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.LogoPanel.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -77,7 +82,7 @@
             this.groupBox1.Controls.Add(this.ModCartrigeBut);
             this.groupBox1.Controls.Add(this.AddCartrigeBut);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 764);
+            this.groupBox1.Location = new System.Drawing.Point(0, 787);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(20);
             this.groupBox1.Size = new System.Drawing.Size(584, 134);
@@ -161,7 +166,7 @@
             this.groupBox2.Location = new System.Drawing.Point(0, 87);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox2.Size = new System.Drawing.Size(584, 677);
+            this.groupBox2.Size = new System.Drawing.Size(584, 700);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Поля";
@@ -171,7 +176,7 @@
             this.groupBox12.AutoSize = true;
             this.groupBox12.Controls.Add(this.ModelConsumableComBox);
             this.groupBox12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox12.Location = new System.Drawing.Point(10, 599);
+            this.groupBox12.Location = new System.Drawing.Point(10, 618);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox12.Size = new System.Drawing.Size(564, 64);
@@ -194,7 +199,7 @@
             this.groupBox11.AutoSize = true;
             this.groupBox11.Controls.Add(this.RoomConsumableComBox);
             this.groupBox11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox11.Location = new System.Drawing.Point(10, 535);
+            this.groupBox11.Location = new System.Drawing.Point(10, 554);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox11.Size = new System.Drawing.Size(564, 64);
@@ -217,7 +222,7 @@
             this.groupBox8.AutoSize = true;
             this.groupBox8.Controls.Add(this.TypeConsumableComBox);
             this.groupBox8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox8.Location = new System.Drawing.Point(10, 471);
+            this.groupBox8.Location = new System.Drawing.Point(10, 490);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox8.Size = new System.Drawing.Size(564, 64);
@@ -240,7 +245,7 @@
             this.ReadyGr.AutoSize = true;
             this.ReadyGr.Controls.Add(this.ReadyConsumableComBox);
             this.ReadyGr.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ReadyGr.Location = new System.Drawing.Point(10, 407);
+            this.ReadyGr.Location = new System.Drawing.Point(10, 426);
             this.ReadyGr.Name = "ReadyGr";
             this.ReadyGr.Padding = new System.Windows.Forms.Padding(10);
             this.ReadyGr.Size = new System.Drawing.Size(564, 64);
@@ -263,7 +268,7 @@
             this.groupBox9.AutoSize = true;
             this.groupBox9.Controls.Add(this.NoteConsumableTextBox);
             this.groupBox9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox9.Location = new System.Drawing.Point(10, 343);
+            this.groupBox9.Location = new System.Drawing.Point(10, 362);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox9.Size = new System.Drawing.Size(564, 64);
@@ -285,7 +290,7 @@
             this.WriteoffGr.AutoSize = true;
             this.WriteoffGr.Controls.Add(this.WriteoffConsumableComBox);
             this.WriteoffGr.Dock = System.Windows.Forms.DockStyle.Top;
-            this.WriteoffGr.Location = new System.Drawing.Point(10, 279);
+            this.WriteoffGr.Location = new System.Drawing.Point(10, 298);
             this.WriteoffGr.Name = "WriteoffGr";
             this.WriteoffGr.Padding = new System.Windows.Forms.Padding(10);
             this.WriteoffGr.Size = new System.Drawing.Size(564, 64);
@@ -308,7 +313,7 @@
             this.groupBox6.AutoSize = true;
             this.groupBox6.Controls.Add(this.DateConsumableDatePicker);
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox6.Location = new System.Drawing.Point(10, 215);
+            this.groupBox6.Location = new System.Drawing.Point(10, 234);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox6.Size = new System.Drawing.Size(564, 64);
@@ -334,24 +339,20 @@
             // groupBox5
             // 
             this.groupBox5.AutoSize = true;
-            this.groupBox5.Controls.Add(this.CodeСonsumableTextBox);
+            this.groupBox5.Controls.Add(this.label3);
+            this.groupBox5.Controls.Add(this.CodeAAConsumTextBox);
+            this.groupBox5.Controls.Add(this.label2);
+            this.groupBox5.Controls.Add(this.Code99ConsumTextBox);
+            this.groupBox5.Controls.Add(this.label1);
+            this.groupBox5.Controls.Add(this.Code00ConsumTextBox);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox5.Location = new System.Drawing.Point(10, 151);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox5.Size = new System.Drawing.Size(564, 64);
+            this.groupBox5.Size = new System.Drawing.Size(564, 83);
             this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Уникальный номер";
-            // 
-            // CodeСonsumableTextBox
-            // 
-            this.CodeСonsumableTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.CodeСonsumableTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CodeСonsumableTextBox.Location = new System.Drawing.Point(10, 23);
-            this.CodeСonsumableTextBox.Name = "CodeСonsumableTextBox";
-            this.CodeСonsumableTextBox.Size = new System.Drawing.Size(544, 31);
-            this.CodeСonsumableTextBox.TabIndex = 0;
             // 
             // groupBox3
             // 
@@ -399,12 +400,71 @@
             this.IdСonsumableTextBox.Size = new System.Drawing.Size(544, 31);
             this.IdСonsumableTextBox.TabIndex = 1;
             // 
+            // Code00ConsumTextBox
+            // 
+            this.Code00ConsumTextBox.Font = new System.Drawing.Font("Calibri", 14F);
+            this.Code00ConsumTextBox.Location = new System.Drawing.Point(183, 26);
+            this.Code00ConsumTextBox.Mask = "99";
+            this.Code00ConsumTextBox.Name = "Code00ConsumTextBox";
+            this.Code00ConsumTextBox.Size = new System.Drawing.Size(66, 30);
+            this.Code00ConsumTextBox.TabIndex = 2;
+            this.Code00ConsumTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(117, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 23);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "—";
+            // 
+            // Code99ConsumTextBox
+            // 
+            this.Code99ConsumTextBox.Font = new System.Drawing.Font("Calibri", 14F);
+            this.Code99ConsumTextBox.Location = new System.Drawing.Point(370, 26);
+            this.Code99ConsumTextBox.Mask = "99";
+            this.Code99ConsumTextBox.Name = "Code99ConsumTextBox";
+            this.Code99ConsumTextBox.Size = new System.Drawing.Size(66, 30);
+            this.Code99ConsumTextBox.TabIndex = 4;
+            this.Code99ConsumTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(294, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 23);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Кол-во:";
+            // 
+            // CodeAAConsumTextBox
+            // 
+            this.CodeAAConsumTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CodeAAConsumTextBox.Location = new System.Drawing.Point(10, 26);
+            this.CodeAAConsumTextBox.MaxLength = 255;
+            this.CodeAAConsumTextBox.Name = "CodeAAConsumTextBox";
+            this.CodeAAConsumTextBox.Size = new System.Drawing.Size(101, 31);
+            this.CodeAAConsumTextBox.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 14.25F);
+            this.label3.Location = new System.Drawing.Point(150, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 23);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "От:";
+            // 
             // ModConsumable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(584, 898);
+            this.ClientSize = new System.Drawing.Size(584, 921);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.LogoPanel);
             this.Controls.Add(this.groupBox1);
@@ -452,7 +512,6 @@
         internal System.Windows.Forms.ComboBox WriteoffConsumableComBox;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox5;
-        internal System.Windows.Forms.TextBox CodeСonsumableTextBox;
         private System.Windows.Forms.GroupBox groupBox3;
         internal System.Windows.Forms.TextBox NameСonsumableTextBox;
         private System.Windows.Forms.GroupBox groupBox10;
@@ -466,5 +525,11 @@
         private System.Windows.Forms.GroupBox groupBox11;
         internal System.Windows.Forms.ComboBox RoomConsumableComBox;
         private System.Windows.Forms.DateTimePicker DateConsumableDatePicker;
+        private System.Windows.Forms.MaskedTextBox Code00ConsumTextBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.MaskedTextBox Code99ConsumTextBox;
+        internal System.Windows.Forms.TextBox CodeAAConsumTextBox;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -84,6 +84,13 @@ namespace ASI.Forms.Modification.Consumable
                         AddCartrigeBut.Visible = false;
                         ModCartrigeBut.Visible = true;
 
+                        label1.Visible= false;
+                        label2.Visible= false;
+                        label3.Visible= false;
+
+                        Code00ConsumTextBox.Visible = false;
+                        Code99ConsumTextBox.Visible = false;
+
                         WriteoffGr.Visible = true;
                         ReadyGr.Visible = true;
                         this.Width = 600;
@@ -94,7 +101,7 @@ namespace ASI.Forms.Modification.Consumable
                         //
                         IdСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Id.ToString();
                         NameСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Name;
-                        CodeСonsumableTextBox.Text = DataBase.Entity.Consumable.Consumable.Code;
+                        CodeAAConsumTextBox.Text = DataBase.Entity.Consumable.Consumable.Code;
                         DateConsumableDatePicker.Value = Convert.ToDateTime(DataBase.Entity.Consumable.Consumable.Bay_date);
 
                         if (DataBase.Entity.Consumable.Consumable.Writeoff == true)
@@ -133,6 +140,13 @@ namespace ASI.Forms.Modification.Consumable
                         WriteoffGr.Visible = false;
                         ReadyGr.Visible = false;
 
+                        label1.Visible = true;
+                        label2.Visible = true;
+                        label3.Visible = true;
+
+                        Code00ConsumTextBox.Visible = true;
+                        Code99ConsumTextBox.Visible = true;
+
                         this.Width = 600;
                         this.Height = 800;
 
@@ -141,7 +155,7 @@ namespace ASI.Forms.Modification.Consumable
                         //
                         IdСonsumableTextBox.Text = null;
                         NameСonsumableTextBox.Text = null;
-                        CodeСonsumableTextBox.Text = null;
+                        CodeAAConsumTextBox.Text = null;
                         RoomConsumableComBox.SelectedValue = 0;
                         NoteConsumableTextBox.Text = null;
                         ModelConsumableComBox.SelectedValue = 0;
@@ -188,48 +202,124 @@ namespace ASI.Forms.Modification.Consumable
                     readyBool = _convertStringToBoolReady;
                 }
 
-                MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_InsertConsumable_ModConsumable, db.getConnection());
 
                 db.openConnection();
-                //Заносим данные в запрос
-                AddCom.Parameters.Add("@nameConsumable", MySqlDbType.VarChar).Value = NameСonsumableTextBox.Text;
-                AddCom.Parameters.Add("@codeConsumable", MySqlDbType.VarChar).Value = CodeСonsumableTextBox.Text;
-                AddCom.Parameters.Add("@buy_dateConsumable", MySqlDbType.Date).Value = DateConsumableDatePicker.Value;
-                //AddCom.Parameters.Add("@writeoffConsumable", MySqlDbType.UByte).Value = writeoffBool;
-                AddCom.Parameters.Add("@writeoffConsumable", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
-                AddCom.Parameters.Add("@noteConsumable", MySqlDbType.VarChar).Value = NoteConsumableTextBox.Text;
-                //AddCom.Parameters.Add("@readyConsumable", MySqlDbType.UByte).Value = readyBool;
-                AddCom.Parameters.Add("@readyConsumable", MySqlDbType.UByte).Value = Convert.ToBoolean(true);
-                AddCom.Parameters.Add("@setupConsumable", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
-                AddCom.Parameters.Add("@typeConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(TypeConsumableComBox.SelectedValue);
-                AddCom.Parameters.Add("@roomConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(RoomConsumableComBox.SelectedValue);
-                AddCom.Parameters.Add("@modelConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(ModelConsumableComBox.SelectedValue);
-
-                db.closeConnection(); //Закрываем подключение к БД
-
-                numCartrige = CodeСonsumableTextBox.Text;
-
-                // Проверка на повторного пользователя
-                if (Function.isCartrigeExists.isCarExists())
+                //----------------------------------------------------------------------------------------------------------------------------
+                var _codeAA = CodeAAConsumTextBox.Text;
+                int _code00 = Convert.ToInt32(Code00ConsumTextBox.Text);
+                int _code99 = 0;
+                if (Code99ConsumTextBox.MaskFull)
                 {
-                    return;
+                    MessageBox.Show("fffff");
+
+                    _code99 = Convert.ToInt32(Code99ConsumTextBox.Text);
                 }
                 else
                 {
-                    db.openConnection();
-                    if (AddCom.ExecuteNonQuery() == 1)
+                    _code99 = 0;
+                }
+
+                if (_code99 != 0)
+                {
+                    while (_code00 <= _code99)
                     {
-                        //MessageBox.Show("Расходник добавлен");
-                        //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
-                        Hide();
-                        this.Close();
+                        MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_InsertConsumable_ModConsumable, db.getConnection());
+
+                        //Заносим данные в запрос
+                        AddCom.Parameters.Add("@nameConsumable", MySqlDbType.VarChar).Value = NameСonsumableTextBox.Text;
+
+                        AddCom.Parameters.Add("@codeConsumable", MySqlDbType.VarChar).Value = CodeAAConsumTextBox.Text.ToUpper() + "-" + _code00;
+                        _code00++;
+
+                        AddCom.Parameters.Add("@buy_dateConsumable", MySqlDbType.Date).Value = DateConsumableDatePicker.Value;
+                        //AddCom.Parameters.Add("@writeoffConsumable", MySqlDbType.UByte).Value = writeoffBool;
+                        AddCom.Parameters.Add("@writeoffConsumable", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
+                        AddCom.Parameters.Add("@noteConsumable", MySqlDbType.VarChar).Value = NoteConsumableTextBox.Text;
+                        //AddCom.Parameters.Add("@readyConsumable", MySqlDbType.UByte).Value = readyBool;
+                        AddCom.Parameters.Add("@readyConsumable", MySqlDbType.UByte).Value = Convert.ToBoolean(true);
+                        AddCom.Parameters.Add("@setupConsumable", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
+                        AddCom.Parameters.Add("@typeConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(TypeConsumableComBox.SelectedValue);
+                        AddCom.Parameters.Add("@roomConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(RoomConsumableComBox.SelectedValue);
+                        AddCom.Parameters.Add("@modelConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(ModelConsumableComBox.SelectedValue);
+
+                        db.closeConnection(); //Закрываем подключение к БД
+
+
+                        numCartrige = CodeAAConsumTextBox.Text;
+
+                        // Проверка на повторного пользователя
+                        if (Function.isCartrigeExists.isCarExists())
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            db.openConnection();
+                            if (AddCom.ExecuteNonQuery() == 1)
+                            {
+                                //MessageBox.Show("Расходник добавлен");
+                                //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
+                                Hide();
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Заполните все поля");
+                            }
+                            db.closeConnection(); //Закрываем подключение к БД
+                        }
+                    }
+
+                }
+                else
+                {
+                                MessageBox.Show("ffffgggghhhh");
+
+                    MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_InsertConsumable_ModConsumable, db.getConnection());
+
+                    //Заносим данные в запрос
+                    AddCom.Parameters.Add("@nameConsumable", MySqlDbType.VarChar).Value = NameСonsumableTextBox.Text;
+                    AddCom.Parameters.Add("@codeConsumable", MySqlDbType.VarChar).Value = CodeAAConsumTextBox.Text.ToUpper() + "-" + _code00;                
+                    AddCom.Parameters.Add("@buy_dateConsumable", MySqlDbType.Date).Value = DateConsumableDatePicker.Value;
+                    //AddCom.Parameters.Add("@writeoffConsumable", MySqlDbType.UByte).Value = writeoffBool;
+                    AddCom.Parameters.Add("@writeoffConsumable", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
+                    AddCom.Parameters.Add("@noteConsumable", MySqlDbType.VarChar).Value = NoteConsumableTextBox.Text;
+                    //AddCom.Parameters.Add("@readyConsumable", MySqlDbType.UByte).Value = readyBool;
+                    AddCom.Parameters.Add("@readyConsumable", MySqlDbType.UByte).Value = Convert.ToBoolean(true);
+                    AddCom.Parameters.Add("@setupConsumable", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
+                    AddCom.Parameters.Add("@typeConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(TypeConsumableComBox.SelectedValue);
+                    AddCom.Parameters.Add("@roomConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(RoomConsumableComBox.SelectedValue);
+                    AddCom.Parameters.Add("@modelConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(ModelConsumableComBox.SelectedValue);
+
+                    db.closeConnection(); //Закрываем подключение к БД
+
+
+                    numCartrige = CodeAAConsumTextBox.Text;
+
+                    // Проверка на повторного пользователя
+                    if (Function.isCartrigeExists.isCarExists())
+                    {
+                        return;
                     }
                     else
                     {
-                        MessageBox.Show("Заполните все поля");
+                        db.openConnection();
+                        if (AddCom.ExecuteNonQuery() == 1)
+                        {
+                            //MessageBox.Show("Расходник добавлен");
+                            //Если все хорошо, открывает главную форму для дальнейшего взаймодействия с ней
+                            Hide();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Заполните все поля");
+                        }
+                        db.closeConnection(); //Закрываем подключение к БД
                     }
-                    db.closeConnection(); //Закрываем подключение к БД
                 }
+                //----------------------------------------------------------------------------------------------------------------------------
+
             }
             catch (MySqlException ex)
             {
@@ -285,7 +375,7 @@ namespace ASI.Forms.Modification.Consumable
                 //Заносим данные в запрос
                 AddCom.Parameters.Add("@idConsumable", MySqlDbType.Int32).Value = Convert.ToInt32(IdСonsumableTextBox.Text);
                 AddCom.Parameters.Add("@nameConsumable", MySqlDbType.VarChar).Value = NameСonsumableTextBox.Text;
-                AddCom.Parameters.Add("@codeConsumable", MySqlDbType.VarChar).Value = CodeСonsumableTextBox.Text;
+                AddCom.Parameters.Add("@codeConsumable", MySqlDbType.VarChar).Value = CodeAAConsumTextBox.Text;
                 AddCom.Parameters.Add("@buy_dateConsumable", MySqlDbType.Date).Value = DateConsumableDatePicker.Value;
                 AddCom.Parameters.Add("@writeoffConsumable", MySqlDbType.UByte).Value = writeoffBool;
                 AddCom.Parameters.Add("@noteConsumable", MySqlDbType.VarChar).Value = NoteConsumableTextBox.Text;
@@ -296,7 +386,7 @@ namespace ASI.Forms.Modification.Consumable
 
                 db.closeConnection(); //Закрываем подключение к БД
 
-                numCartrige = CodeСonsumableTextBox.Text;
+                numCartrige = CodeAAConsumTextBox.Text;
 
                 db.openConnection();
                 if (Function.isCartrigeExists.isCarExists() == true)
