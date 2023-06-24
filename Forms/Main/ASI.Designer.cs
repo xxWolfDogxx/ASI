@@ -119,8 +119,14 @@ namespace ASI.Forms.Main
             this.LeftMainPanel = new System.Windows.Forms.Panel();
             this.SelectTableGroupBox = new System.Windows.Forms.GroupBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.FilterName1 = new System.Windows.Forms.GroupBox();
+            this.FilterName2 = new System.Windows.Forms.GroupBox();
+            this.FilterName3 = new System.Windows.Forms.GroupBox();
+            this.FilterName4 = new System.Windows.Forms.GroupBox();
+            this.FilterName5 = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             this.FiltrPanel.SuspendLayout();
+            this.FiltrGrBox.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this.RightMainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
@@ -421,22 +427,27 @@ namespace ASI.Forms.Main
             // FiltrPanel
             // 
             this.FiltrPanel.Controls.Add(this.FiltrGrBox);
-            this.FiltrPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.FiltrPanel.Location = new System.Drawing.Point(0, 755);
+            this.FiltrPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.FiltrPanel.Location = new System.Drawing.Point(1529, 0);
             this.FiltrPanel.Margin = new System.Windows.Forms.Padding(5);
             this.FiltrPanel.Name = "FiltrPanel";
             this.FiltrPanel.Padding = new System.Windows.Forms.Padding(15);
-            this.FiltrPanel.Size = new System.Drawing.Size(1904, 286);
+            this.FiltrPanel.Size = new System.Drawing.Size(375, 1041);
             this.FiltrPanel.TabIndex = 1;
             // 
             // FiltrGrBox
             // 
+            this.FiltrGrBox.Controls.Add(this.FilterName5);
+            this.FiltrGrBox.Controls.Add(this.FilterName4);
+            this.FiltrGrBox.Controls.Add(this.FilterName3);
+            this.FiltrGrBox.Controls.Add(this.FilterName2);
+            this.FiltrGrBox.Controls.Add(this.FilterName1);
             this.FiltrGrBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FiltrGrBox.Location = new System.Drawing.Point(15, 15);
             this.FiltrGrBox.Margin = new System.Windows.Forms.Padding(10);
             this.FiltrGrBox.Name = "FiltrGrBox";
             this.FiltrGrBox.Padding = new System.Windows.Forms.Padding(10);
-            this.FiltrGrBox.Size = new System.Drawing.Size(1874, 256);
+            this.FiltrGrBox.Size = new System.Drawing.Size(345, 1011);
             this.FiltrGrBox.TabIndex = 1;
             this.FiltrGrBox.TabStop = false;
             this.FiltrGrBox.Text = "Фильтры";
@@ -450,7 +461,7 @@ namespace ASI.Forms.Main
             this.MainPanel.Margin = new System.Windows.Forms.Padding(5);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.MainPanel.Size = new System.Drawing.Size(1904, 755);
+            this.MainPanel.Size = new System.Drawing.Size(1529, 1041);
             this.MainPanel.TabIndex = 2;
             // 
             // RightMainPanel
@@ -461,7 +472,7 @@ namespace ASI.Forms.Main
             this.RightMainPanel.Location = new System.Drawing.Point(225, 5);
             this.RightMainPanel.Name = "RightMainPanel";
             this.RightMainPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.RightMainPanel.Size = new System.Drawing.Size(1674, 745);
+            this.RightMainPanel.Size = new System.Drawing.Size(1299, 1031);
             this.RightMainPanel.TabIndex = 1;
             // 
             // GridView
@@ -508,7 +519,7 @@ namespace ASI.Forms.Main
             this.GridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.GridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.GridView.Size = new System.Drawing.Size(1664, 695);
+            this.GridView.Size = new System.Drawing.Size(1289, 981);
             this.GridView.TabIndex = 0;
             // 
             // toolStrip1
@@ -538,7 +549,7 @@ namespace ASI.Forms.Main
             this.toolStrip1.Margin = new System.Windows.Forms.Padding(10);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(5);
-            this.toolStrip1.Size = new System.Drawing.Size(1664, 40);
+            this.toolStrip1.Size = new System.Drawing.Size(1289, 40);
             this.toolStrip1.TabIndex = 1;
             // 
             // Sep1
@@ -710,7 +721,7 @@ namespace ASI.Forms.Main
             this.LeftMainPanel.Margin = new System.Windows.Forms.Padding(5);
             this.LeftMainPanel.Name = "LeftMainPanel";
             this.LeftMainPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.LeftMainPanel.Size = new System.Drawing.Size(220, 745);
+            this.LeftMainPanel.Size = new System.Drawing.Size(220, 1031);
             this.LeftMainPanel.TabIndex = 0;
             // 
             // SelectTableGroupBox
@@ -722,7 +733,7 @@ namespace ASI.Forms.Main
             this.SelectTableGroupBox.Margin = new System.Windows.Forms.Padding(5);
             this.SelectTableGroupBox.Name = "SelectTableGroupBox";
             this.SelectTableGroupBox.Padding = new System.Windows.Forms.Padding(5);
-            this.SelectTableGroupBox.Size = new System.Drawing.Size(210, 735);
+            this.SelectTableGroupBox.Size = new System.Drawing.Size(210, 1021);
             this.SelectTableGroupBox.TabIndex = 0;
             this.SelectTableGroupBox.TabStop = false;
             // 
@@ -769,9 +780,59 @@ namespace ASI.Forms.Main
             treeNode4,
             treeNode8,
             treeNode13});
-            this.treeView1.Size = new System.Drawing.Size(200, 705);
+            this.treeView1.Size = new System.Drawing.Size(200, 991);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            // 
+            // FilterName1
+            // 
+            this.FilterName1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.FilterName1.Location = new System.Drawing.Point(10, 34);
+            this.FilterName1.Name = "FilterName1";
+            this.FilterName1.Size = new System.Drawing.Size(325, 100);
+            this.FilterName1.TabIndex = 0;
+            this.FilterName1.TabStop = false;
+            this.FilterName1.Text = "Фильтр 1";
+            // 
+            // FilterName2
+            // 
+            this.FilterName2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.FilterName2.Location = new System.Drawing.Point(10, 134);
+            this.FilterName2.Name = "FilterName2";
+            this.FilterName2.Size = new System.Drawing.Size(325, 100);
+            this.FilterName2.TabIndex = 1;
+            this.FilterName2.TabStop = false;
+            this.FilterName2.Text = "Фильтр 2";
+            // 
+            // FilterName3
+            // 
+            this.FilterName3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.FilterName3.Location = new System.Drawing.Point(10, 234);
+            this.FilterName3.Name = "FilterName3";
+            this.FilterName3.Size = new System.Drawing.Size(325, 100);
+            this.FilterName3.TabIndex = 2;
+            this.FilterName3.TabStop = false;
+            this.FilterName3.Text = "Фильтр 3";
+            // 
+            // FilterName4
+            // 
+            this.FilterName4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.FilterName4.Location = new System.Drawing.Point(10, 334);
+            this.FilterName4.Name = "FilterName4";
+            this.FilterName4.Size = new System.Drawing.Size(325, 100);
+            this.FilterName4.TabIndex = 3;
+            this.FilterName4.TabStop = false;
+            this.FilterName4.Text = "Фильтр 4";
+            // 
+            // FilterName5
+            // 
+            this.FilterName5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.FilterName5.Location = new System.Drawing.Point(10, 434);
+            this.FilterName5.Name = "FilterName5";
+            this.FilterName5.Size = new System.Drawing.Size(325, 100);
+            this.FilterName5.TabIndex = 4;
+            this.FilterName5.TabStop = false;
+            this.FilterName5.Text = "Фильтр 5";
             // 
             // ASI
             // 
@@ -794,6 +855,7 @@ namespace ASI.Forms.Main
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.FiltrPanel.ResumeLayout(false);
+            this.FiltrGrBox.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
             this.RightMainPanel.ResumeLayout(false);
             this.RightMainPanel.PerformLayout();
@@ -872,5 +934,10 @@ namespace ASI.Forms.Main
         private System.Windows.Forms.ToolStripSeparator Ser6;
         private System.Windows.Forms.ToolStripButton StoryToolBut;
         private System.Windows.Forms.ToolStripButton DelToolBut;
+        private System.Windows.Forms.GroupBox FilterName1;
+        private System.Windows.Forms.GroupBox FilterName5;
+        private System.Windows.Forms.GroupBox FilterName4;
+        private System.Windows.Forms.GroupBox FilterName3;
+        private System.Windows.Forms.GroupBox FilterName2;
     }
 }

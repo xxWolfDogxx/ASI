@@ -18,6 +18,8 @@ namespace ASI.DataBase.ConnectionForMySQL
         public static string Database { get => database; set => database = value; }
 
 
+
+
         //MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root; password=root; database=asi");
         MySqlConnection connection = new MySqlConnection($"server={Server};port={Port};username={Username}; password={Password}; database={Database}");
 

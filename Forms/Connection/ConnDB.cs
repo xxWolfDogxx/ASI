@@ -73,7 +73,7 @@ namespace ASI.Forms.Connection
                 MessageBox.Show("Файл конфигурации обновлен!");
 
             }
-            else MessageBox.Show("Ничего не было сохранено, т.к. не было изменений");
+            else //MessageBox.Show("Ничего не было сохранено, т.к. не было изменений");
 
             DataBase.ConnectionForMySQL.DB.Server = ServerTextBox.Text;
             DataBase.ConnectionForMySQL.DB.Port = PortTextBox.Text;

@@ -133,6 +133,7 @@ namespace ASI.Forms.Main
                         Ser5.Visible = false;
                         StoryToolBut.Visible = false;
                         Ser6.Visible = false;
+                        FiltrToolBut.Visible = false;
                         break;
 
                     case ("TreeNode: Администратор"):
@@ -157,6 +158,7 @@ namespace ASI.Forms.Main
                         Ser5.Visible = false;
                         StoryToolBut.Visible = false;
                         Ser6.Visible = false;
+                        FiltrToolBut.Visible = false;
                         break;
 
                     case ("TreeNode: Пользователь"):
@@ -181,6 +183,7 @@ namespace ASI.Forms.Main
                         Ser5.Visible = false;
                         StoryToolBut.Visible = false;
                         Ser6.Visible = false;
+                        FiltrToolBut.Visible = false;
                         break;
 
                     case ("TreeNode: Роли"):
@@ -199,6 +202,7 @@ namespace ASI.Forms.Main
                         Ser5.Visible = false;
                         StoryToolBut.Visible = false;
                         Ser6.Visible = false;
+                        FiltrToolBut.Visible = false;
                         break;
 
                     case ("TreeNode: Оборудование"):
@@ -219,6 +223,8 @@ namespace ASI.Forms.Main
 
                         StoryToolBut.Visible = false;
                         Ser6.Visible = false;
+                        FiltrToolBut.Visible = true;
+
 
 
                         break;
@@ -242,6 +248,8 @@ namespace ASI.Forms.Main
 
                         StoryToolBut.Visible = true;
                         Ser6.Visible = true;
+                        FiltrToolBut.Visible = true;
+
 
                         break;
 
@@ -261,7 +269,7 @@ namespace ASI.Forms.Main
 
                         StoryToolBut.Visible = false;
                         Ser6.Visible = false;
-
+                        FiltrToolBut.Visible = false;
                         break;
 
                     case ("TreeNode: Установки"):
@@ -282,7 +290,7 @@ namespace ASI.Forms.Main
 
                         StoryToolBut.Visible = false;
                         Ser6.Visible = false;
-
+                        FiltrToolBut.Visible = true;
                         break;
 
                     case ("TreeNode: Перезаправлен"):
@@ -302,7 +310,7 @@ namespace ASI.Forms.Main
 
                         StoryToolBut.Visible = false;
                         Ser6.Visible = false;
-
+                        FiltrToolBut.Visible = true;
                         break;
 
                     case ("TreeNode: Типы расходников"):
@@ -321,7 +329,7 @@ namespace ASI.Forms.Main
 
                         StoryToolBut.Visible = false;
                         Ser6.Visible = false;
-
+                        FiltrToolBut.Visible = false;
                         break;
 
                     case ("TreeNode: Модели"):
@@ -340,6 +348,107 @@ namespace ASI.Forms.Main
 
                         StoryToolBut.Visible = false;
                         Ser6.Visible = false;
+                        FiltrToolBut.Visible = false;
+
+                        break;
+                    default:
+
+                        break;
+
+                }
+
+
+                db.closeConnection();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void FilterUpdateTable()
+        {
+            try
+            {
+                bool visibleColum = false;
+
+                DataBase.ConnectionForMySQL.DB db = new DataBase.ConnectionForMySQL.DB();
+                MySqlDataAdapter mySql_dataAdapter = new MySqlDataAdapter(); //Через класс MySqlDataAdapter отправляем запрос в БД для получения данных
+                DataTable table = new DataTable(); //Создаем класс DataTable для того чтоб занести данные из запроса в виртуальную таблицу          
+                TreeNode CurrentNode = treeView1.SelectedNode; // Отслеживаем фокус иерархии. Общий вид вывода информации TreeNode: Принтер
+
+                GridView.CurrentCell = null;
+                //
+                //Заполняем таблицу данными с запросов
+                //
+                //-----------------------------------------------------------
+
+                db.openConnection();
+
+                switch (Convert.ToString(CurrentNode))
+                {
+                    case ("TreeNode: Все"):
+
+                        break;
+
+                    case ("TreeNode: Администратор"):
+
+                        break;
+
+                    case ("TreeNode: Пользователь"):
+
+                        break;
+
+                    case ("TreeNode: Роли"):
+
+                        break;
+
+                    case ("TreeNode: Оборудование"):
+                        FilterName1.Controls.Clear();
+                        FilterName1.Text = "Модель";
+
+                        ComboBox modelComBox = new ComboBox();
+                        modelComBox.Dock = DockStyle.Fill;
+                        modelComBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                        //Заносим в поле почты клиентов
+
+                        var DirCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
+                        DirCom.CommandText = $"SELECT `name` FROM `model`"; // Запрос на какие либо данные
+                        DirCom.Connection = db.getConnection(); //Отправляем запрос
+
+                        var dir = DirCom.ExecuteReader(); // Создаем переменную, в которую будем вносить по порядку все полученные данные из запроса
+                        while (dir.Read()) { modelComBox.Items.Add(dir.GetString(0)); }; // Перебираем данные занося их в переменную                        
+
+                        FilterName1.Controls.Add(modelComBox);
+
+
+
+                        break;
+
+                    case ("TreeNode: Расходники"):
+                        FilterName1.Controls.Clear();
+                        FilterName1.Text = "Модель";
+                        break;
+
+                    case ("TreeNode: Местоположение"):
+
+                        break;
+
+                    case ("TreeNode: Установки"):
+
+                        break;
+
+                    case ("TreeNode: Перезаправлен"):
+
+                        break;
+
+                    case ("TreeNode: Типы расходников"):
+
+                        break;
+
+                    case ("TreeNode: Модели"):
 
 
                         break;
@@ -1015,32 +1124,286 @@ namespace ASI.Forms.Main
         {
             try
             {
-                if (GridView.RowCount != 0)
-                {
-                    for (int i = GridView.CurrentCell.RowIndex + 1; i < GridView.RowCount; i++)
-                    {
-                        string text = searchTextBox.Text.ToUpper();
-                        for (int j = 0; j < GridView.ColumnCount; j++)
-                            if (GridView.Rows[i].Cells[j].Value.ToString().ToUpper().Contains(text))
-                            {
-                                GridView.CurrentCell = GridView[0, i];
-                                return;
-                            }
+                bool visibleColum = false;
 
-                    }
-                    MessageBox.Show(this, "Достигнут конец, больше совпадений не найдено!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    GridView.CurrentCell = GridView[0, 0];
-                }
-                else
-                {
-                    MessageBox.Show(this, "В таблице нет данных!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                DataBase.ConnectionForMySQL.DB db = new DataBase.ConnectionForMySQL.DB();
+                MySqlDataAdapter mySql_dataAdapter = new MySqlDataAdapter(); //Через класс MySqlDataAdapter отправляем запрос в БД для получения данных
+                DataTable table = new DataTable(); //Создаем класс DataTable для того чтоб занести данные из запроса в виртуальную таблицу          
+                TreeNode CurrentNode = treeView1.SelectedNode; // Отслеживаем фокус иерархии. Общий вид вывода информации TreeNode: Принтер
 
+                GridView.CurrentCell = null;
+                //
+                //Заполняем таблицу данными с запросов
+                //
+                //-----------------------------------------------------------
+                switch (Convert.ToString(CurrentNode))
+                {
+                    case ("TreeNode: Все"):
+                        GridView.ClearSelection(); //Чистим таблицу
+                        mySql_dataAdapter.SelectCommand = new MySqlCommand("SELECT users.Id, users.FullName, users.DateOfBirth, users.Phone, users.Email, roles.role FROM users INNER JOIN roles ON users.role = roles.id " +
+                            "WHERE CONCAT(users.Id, users.FullName, users.DateOfBirth, users.Phone, users.Email, roles.role) LIKE '%" + searchTextBox.Text + "%'", db.getConnection());
+                        mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                        GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+
+
+                        //Меняем название столбцов на руссифицированное
+                        GridView.Columns["Id"].Visible = visibleColum;
+                        GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+                        GridView.Columns["FullName"].HeaderText = "ФИО";
+                        GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
+                        GridView.Columns["Phone"].HeaderText = "Номер телефона";
+                        GridView.Columns["Email"].HeaderText = "Эл. почта";
+                        // GridView.Columns["Password"].Visible = false;
+                        GridView.Columns["Role"].HeaderText = "Роль";
+
+                        SetupToolBut.Visible = false;
+                        WriteoffToolBut.Visible = false;
+                        Ser5.Visible = false;
+                        StoryToolBut.Visible = false;
+                        Ser6.Visible = false;
+                        FiltrToolBut.Visible = false;
+                        break;
+
+                    case ("TreeNode: Администратор"):
+                        GridView.ClearSelection(); //Чистим таблицу
+                        mySql_dataAdapter.SelectCommand = new MySqlCommand("SELECT users.Id,users.FullName,users.DateOfBirth,users.Phone,users.Email,roles.role FROM users INNER JOIN roles ON users.role = roles.id WHERE CONCAT(users.Id,users.FullName,users.DateOfBirth,users.Phone,users.Email,roles.role) LIKE '%" + searchTextBox.Text + "%'", db.getConnection());
+                        mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                        GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                        //Меняем название столбцов на руссифицированное
+                        //Меняем название столбцов на руссифицированное
+                        GridView.Columns["Id"].Visible = visibleColum;
+                        GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+                        GridView.Columns["FullName"].HeaderText = "ФИО";
+                        GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
+                        GridView.Columns["Phone"].HeaderText = "Номер телефона";
+                        GridView.Columns["Email"].HeaderText = "Эл. почта";
+                        // GridView.Columns["Password"].Visible = false;
+                        GridView.Columns["Role"].HeaderText = "Роль";
+
+                        SetupToolBut.Visible = false;
+                        WriteoffToolBut.Visible = false;
+                        Ser5.Visible = false;
+                        StoryToolBut.Visible = false;
+                        Ser6.Visible = false;
+                        FiltrToolBut.Visible = false;
+                        break;
+
+                    case ("TreeNode: Пользователь"):
+                        GridView.ClearSelection(); //Чистим таблицу
+                        mySql_dataAdapter.SelectCommand = new MySqlCommand("SELECT users.Id,users.FullName,users.DateOfBirth,users.Phone,users.Email,roles.role FROM users INNER JOIN roles ON users.role = roles.id WHERE CONCAT (users.Id,users.FullName,users.DateOfBirth,users.Phone,users.Email,roles.role) LIKE '%" + searchTextBox.Text + "%'", db.getConnection());
+                        mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                        GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                        //Меняем название столбцов на руссифицированное
+                        //Меняем название столбцов на руссифицированное
+                        GridView.Columns["Id"].Visible = visibleColum;
+                        GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+                        GridView.Columns["FullName"].HeaderText = "ФИО";
+                        GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
+                        GridView.Columns["Phone"].HeaderText = "Номер телефона";
+                        GridView.Columns["Email"].HeaderText = "Эл. почта";
+                        // GridView.Columns["Password"].Visible = false;
+                        GridView.Columns["Role"].HeaderText = "Роль";
+
+                        SetupToolBut.Visible = false;
+                        WriteoffToolBut.Visible = false;
+                        Ser5.Visible = false;
+                        StoryToolBut.Visible = false;
+                        Ser6.Visible = false;
+                        FiltrToolBut.Visible = false;
+                        break;
+
+                    case ("TreeNode: Роли"):
+                        GridView.ClearSelection(); //Чистим таблицу
+                        mySql_dataAdapter.SelectCommand = new MySqlCommand("SELECT role.id, role.role FROM `roles` WHERE CONCAT (role.id, role.role)  LIKE '%" + searchTextBox.Text + "%'", db.getConnection());
+                        mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                        GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                        //Меняем название столбцов на руссифицированное
+                        GridView.Columns["Id"].Visible = visibleColum;
+                        GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+                        GridView.Columns["role"].HeaderText = "Роли";
+
+                        SetupToolBut.Visible = false;
+                        WriteoffToolBut.Visible = false;
+                        Ser5.Visible = false;
+                        StoryToolBut.Visible = false;
+                        Ser6.Visible = false;
+                        FiltrToolBut.Visible = false;
+                        break;
+
+                    case ("TreeNode: Оборудование"):
+                        GridView.ClearSelection(); //Чистим таблицу
+                        MySqlCommand command = new MySqlCommand("SELECT printer.id AS ID, printer.name AS Имя, printer.inventory AS 'Инв. №', printer.id_room, room.name AS Аудитория, printer.note AS Примечание, printer.id_model, model.name AS Модель " +
+                                        "FROM printer " +
+                                        "INNER JOIN room ON printer.id_room = room.id " +
+                                        "INNER JOIN model ON printer.id_model = model.id " +
+                                        "WHERE CONCAT(printer.id, printer.name, printer.inventory, printer.id_room, room.name, printer.note, printer.id_model, model.name) LIKE '%" + searchTextBox.Text + "%'", db.getConnection());
+                        mySql_dataAdapter.SelectCommand = command;
+                        mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                        GridView.DataSource = table; //Заполняем саму таблицу на форме                 
+
+                        //Меняем название столбцов на руссифицированное
+                        GridView.Columns["ID"].Visible = visibleColum;
+                        GridView.Columns["id_room"].Visible = false;
+                        GridView.Columns["id_model"].Visible = false;
+                        GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+                        SetupToolBut.Visible = false;
+                        WriteoffToolBut.Visible = false;
+                        Ser5.Visible = false;
+                        StoryToolBut.Visible = false;
+                        Ser6.Visible = false;
+                        FiltrToolBut.Visible = true;
+
+
+
+                        break;
+
+                    case ("TreeNode: Расходники"):
+                        GridView.ClearSelection(); //Чистим таблицу
+                        mySql_dataAdapter.SelectCommand = new MySqlCommand("SELECT cartrige.id AS ID, cartrige.name AS Имя, cartrige.code AS 'Код', cartrige.buy_date AS 'Дата', cartrige.writeoff AS Списан, cartrige.note AS Примечание, cartrige.ready AS Готов, cartrige.setup AS 'Установ.', cartrige.id_cartrige_type AS 'id_type',cartrige_type.name AS 'Тип', cartrige.id_room, room.name AS Место, cartrige.id_model, model.name AS 'Совместим'" +
+                "FROM cartrige " +
+                "INNER JOIN cartrige_type ON cartrige.id_cartrige_type = cartrige_type.id " +
+                "INNER JOIN room ON cartrige.id_room = room.Id " +
+                "INNER JOIN model ON cartrige.id_model = model.id " +
+                "WHERE CONCAT ( cartrige.id, cartrige.name, cartrige.code, cartrige.buy_date, cartrige.writeoff, cartrige.note, cartrige.ready, cartrige.setup, cartrige.id_cartrige_type,cartrige_type.name, cartrige.id_room, room.name, cartrige.id_model, model.name) LIKE '%" + searchTextBox.Text + "%'", db.getConnection());
+                        mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                        GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                        //Меняем название столбцов на руссифицированное
+                        GridView.Columns["ID"].Visible = visibleColum;
+                        GridView.Columns["id_type"].Visible = false;
+                        GridView.Columns["id_room"].Visible = false;
+                        GridView.Columns["id_model"].Visible = false;
+                        GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                        SetupToolBut.Visible = true;
+                        WriteoffToolBut.Visible = true;
+                        Ser5.Visible = true;
+
+                        StoryToolBut.Visible = true;
+                        Ser6.Visible = true;
+                        FiltrToolBut.Visible = true;
+
+
+                        break;
+
+                    case ("TreeNode: Местоположение"):
+                        GridView.ClearSelection(); //Чистим таблицу
+                        mySql_dataAdapter.SelectCommand = new MySqlCommand("SELECT room.id AS 'ID', room.name AS 'Имя' FROM `room` WHERE CONCAT (room.id, room.name) LIKE '%" + searchTextBox.Text + "%'", db.getConnection());
+                        mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                        GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                        //Меняем название столбцов на руссифицированное
+                        GridView.Columns["ID"].Visible = visibleColum;
+                        GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                        SetupToolBut.Visible = false;
+                        WriteoffToolBut.Visible = false;
+                        Ser5.Visible = false;
+
+                        StoryToolBut.Visible = false;
+                        Ser6.Visible = false;
+                        FiltrToolBut.Visible = false;
+                        break;
+
+                    case ("TreeNode: Установки"):
+                        GridView.ClearSelection(); //Чистим таблицу
+                        mySql_dataAdapter.SelectCommand = new MySqlCommand("SELECT setup.id AS 'ID', printer.id AS id_printer, printer.name AS 'Принтер', cartrige.id AS id_cartrige, cartrige.code AS 'Ррасходник', setup.start AS 'Дата установки', setup.end AS 'Дата снятия', setup.note AS 'Заметки' " +
+                "FROM setup " +
+                "INNER JOIN printer ON setup.id_printer = printer.id " +
+                "INNER JOIN cartrige ON setup.id_cartrige = cartrige.id "+
+                "WHERE CONCAT (printer.id, printer.name, cartrige.id, cartrige.code, setup.start, setup.end, setup.note) LIKE '%" + searchTextBox.Text + "%'", db.getConnection());
+                        mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                        GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                        //Меняем название столбцов на руссифицированное
+                        GridView.Columns["id"].Visible = visibleColum;
+                        GridView.Columns["id_printer"].Visible = false;
+                        GridView.Columns["id_cartrige"].Visible = false;
+                        GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                        SetupToolBut.Visible = false;
+                        WriteoffToolBut.Visible = false;
+                        Ser5.Visible = false;
+
+                        StoryToolBut.Visible = false;
+                        Ser6.Visible = false;
+                        FiltrToolBut.Visible = true;
+                        break;
+
+                    case ("TreeNode: Перезаправлен"):
+                        GridView.ClearSelection(); //Чистим таблицу
+                        mySql_dataAdapter.SelectCommand = new MySqlCommand("SELECT fill.id AS 'ID', cartrige.id AS 'id_cartrige', cartrige.code AS 'Код расходника', fill.date AS 'Дата заправки', fill.note AS 'Примечание' " +
+                "FROM fill " +
+                "INNER JOIN cartrige ON fill.id_cartrige = cartrige.id "+
+                "WHERE CONCAT (fill.id, cartrige.id, cartrige.code, fill.date, fill.note) LIKE '%" + searchTextBox.Text + "%'", db.getConnection());
+                        mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                        GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                        //Меняем название столбцов на руссифицированное
+                        GridView.Columns["id"].Visible = visibleColum;
+                        GridView.Columns["id_cartrige"].Visible = false;
+                        GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                        SetupToolBut.Visible = false;
+                        WriteoffToolBut.Visible = false;
+                        Ser5.Visible = false;
+
+                        StoryToolBut.Visible = false;
+                        Ser6.Visible = false;
+                        FiltrToolBut.Visible = true;
+                        break;
+
+                    case ("TreeNode: Типы расходников"):
+                        GridView.ClearSelection(); //Чистим таблицу
+                        mySql_dataAdapter.SelectCommand = new MySqlCommand("SELECT cartrige_type.id AS 'ID', cartrige_type.name AS 'Имя', cartrige_type.refill AS 'Перезаправка' FROM `cartrige_type` WHERE CONCAT (cartrige_type.id, cartrige_type.name, cartrige_type.refill)  LIKE '%" + searchTextBox.Text + "%'", db.getConnection());
+                        mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                        GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                        //Меняем название столбцов на руссифицированное
+                        GridView.Columns["Id"].Visible = visibleColum;
+                        GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                        SetupToolBut.Visible = false;
+                        WriteoffToolBut.Visible = false;
+                        Ser5.Visible = false;
+
+                        StoryToolBut.Visible = false;
+                        Ser6.Visible = false;
+                        FiltrToolBut.Visible = false;
+                        break;
+
+                    case ("TreeNode: Модели"):
+                        GridView.ClearSelection(); //Чистим таблицу
+                        mySql_dataAdapter.SelectCommand = new MySqlCommand("SELECT model.id AS 'ID', model.name AS 'Имя' FROM `model` WHERE CONCAT (model.id, model.name) LIKE '%" + searchTextBox.Text + "%'", db.getConnection());
+                        mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                        GridView.DataSource = table; //Заполняем саму таблицу на форме
+
+                        //Меняем название столбцов на руссифицированное
+                        GridView.Columns["ID"].Visible = visibleColum;
+                        GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                        SetupToolBut.Visible = false;
+                        WriteoffToolBut.Visible = false;
+                        Ser5.Visible = false;
+
+                        StoryToolBut.Visible = false;
+                        Ser6.Visible = false;
+                        FiltrToolBut.Visible = false;
+
+                        break;
+                    default:
+
+                        break;
+
+                }
             }
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
-
             }
         }
 

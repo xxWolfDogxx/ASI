@@ -20,6 +20,7 @@ namespace ASI.Forms.Identification.Authentication
         {
             try
             {
+               
                 //Чистим поле для вывода ошибок
                 ErrorLabel.Text = "";
             }
@@ -54,6 +55,11 @@ namespace ASI.Forms.Identification.Authentication
         {
             try
             {
+                DataBase.ConnectionForMySQL.DB.Server = Properties.Settings.Default.Server;
+                DataBase.ConnectionForMySQL.DB.Port = Properties.Settings.Default.Port;
+                DataBase.ConnectionForMySQL.DB.Username = Properties.Settings.Default.Username;
+                DataBase.ConnectionForMySQL.DB.Password = Properties.Settings.Default.Password;
+                DataBase.ConnectionForMySQL.DB.Database = Properties.Settings.Default.Database;
                 //Инициализируем классы
                 DataBase.ConnectionForMySQL.DB db = new DataBase.ConnectionForMySQL.DB();
 
