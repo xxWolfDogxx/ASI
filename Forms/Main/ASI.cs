@@ -21,6 +21,7 @@ namespace ASI.Forms.Main
             GridView.AllowUserToAddRows = false;
             treeView1.ExpandAll();
             FiltrPanel.Visible = false;
+            //FilterUpdateTable();
         }
 
         private void ASI_Load(object sender, EventArgs e)
@@ -107,10 +108,11 @@ namespace ASI.Forms.Main
                 //Расставить выборку по ролям
                 //-----------------------------------------------------------
                 db.openConnection();
-
                 switch (Convert.ToString(CurrentNode))
                 {
                     case ("TreeNode: Все"):
+                        FiltrPanel.Visible = false;
+
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectAllUsers_ASI, db.getConnection());
                         mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
@@ -137,6 +139,8 @@ namespace ASI.Forms.Main
                         break;
 
                     case ("TreeNode: Администратор"):
+                        FiltrPanel.Visible = false;
+
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectUser_Admin_ASI, db.getConnection());
                         mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
@@ -162,6 +166,8 @@ namespace ASI.Forms.Main
                         break;
 
                     case ("TreeNode: Пользователь"):
+                        FiltrPanel.Visible = false;
+
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectUser_User_ASI, db.getConnection());
                         mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
@@ -187,6 +193,8 @@ namespace ASI.Forms.Main
                         break;
 
                     case ("TreeNode: Роли"):
+                        FiltrPanel.Visible = false;
+
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectRole_ASI, db.getConnection());
                         mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
@@ -206,6 +214,8 @@ namespace ASI.Forms.Main
                         break;
 
                     case ("TreeNode: Оборудование"):
+                        FiltrPanel.Visible = false;
+
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectPrinter_ASI, db.getConnection());
                         mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
@@ -223,13 +233,15 @@ namespace ASI.Forms.Main
 
                         StoryToolBut.Visible = false;
                         Ser6.Visible = false;
-                        FiltrToolBut.Visible = true;
+                        FiltrToolBut.Visible = false;
 
 
 
                         break;
 
                     case ("TreeNode: Расходники"):
+                        FiltrPanel.Visible = true;
+
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectCartrige_ASI, db.getConnection());
                         mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
@@ -250,10 +262,62 @@ namespace ASI.Forms.Main
                         Ser6.Visible = true;
                         FiltrToolBut.Visible = true;
 
+                        MySqlDataAdapter filtAdap = new MySqlDataAdapter();
+
+                        DataTable tableModel = new DataTable();
+                        DataTable tableType = new DataTable();
+                        
+
+
+                        //ModelComBox insert iteam
+                        filtAdap.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectModel_ModConsumable, db.getConnection());
+                        filtAdap.Fill(tableModel);
+
+
+
+                        //ModelComBox insert iteam
+                        filtAdap.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectCartrigeType_ModConsumable, db.getConnection());
+                        filtAdap.Fill(tableType);
+
+
+
+                        //Source for ComBox
+                        ModelConsumableComBox.DataSource = tableModel;
+
+                        TypeConsumableComBox.DataSource = tableType;
+
+
+
+                        //Отбираем все значения что хотим показать и те что хотим скрыть
+                        ModelConsumableComBox.DisplayMember = "name_model";
+                        ModelConsumableComBox.ValueMember = "id_model";
+
+                        TypeConsumableComBox.DisplayMember = "name_type";
+                        TypeConsumableComBox.ValueMember = "id_type";
+
+                        DataRow dataRowModel = tableModel.NewRow();
+                        dataRowModel["id_model"] = "0";
+                        dataRowModel["name_model"] = "---";
+                        tableModel.Rows.Add(dataRowModel);
+
+                        DataRow dataRowType = tableType.NewRow();
+                        dataRowType["id_type"] = "0";
+                        dataRowType["name_type"] = "---";
+                        tableType.Rows.Add(dataRowType);
+
+                        ModelConsumableComBox.SelectedValue = 0;
+                        TypeConsumableComBox.SelectedValue = 0;
+                        WriteoffConsumableComBox.SelectedIndex = 0;
+                        ReadyConsumableComBox.SelectedIndex = 0;
+                        SetupConsumComBox.SelectedIndex = 0;
+
+
 
                         break;
 
                     case ("TreeNode: Местоположение"):
+                        FiltrPanel.Visible = false;
+
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectRoom_ASI, db.getConnection());
                         mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
@@ -273,6 +337,8 @@ namespace ASI.Forms.Main
                         break;
 
                     case ("TreeNode: Установки"):
+                        FiltrPanel.Visible = false;
+
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectSetup_ASI, db.getConnection());
                         mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
@@ -290,10 +356,12 @@ namespace ASI.Forms.Main
 
                         StoryToolBut.Visible = false;
                         Ser6.Visible = false;
-                        FiltrToolBut.Visible = true;
+                        FiltrToolBut.Visible = false;
                         break;
 
                     case ("TreeNode: Перезаправлен"):
+                        FiltrPanel.Visible = false;
+
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectFill_ASI, db.getConnection());
                         mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
@@ -310,10 +378,12 @@ namespace ASI.Forms.Main
 
                         StoryToolBut.Visible = false;
                         Ser6.Visible = false;
-                        FiltrToolBut.Visible = true;
+                        FiltrToolBut.Visible = false;
                         break;
 
                     case ("TreeNode: Типы расходников"):
+                        FiltrPanel.Visible = false;
+
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectCartrigeType_ASI, db.getConnection());
                         mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
@@ -333,6 +403,8 @@ namespace ASI.Forms.Main
                         break;
 
                     case ("TreeNode: Модели"):
+                        FiltrPanel.Visible = false;
+
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_SelectModel_ASI, db.getConnection());
                         mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
@@ -371,7 +443,18 @@ namespace ASI.Forms.Main
         {
             try
             {
-                bool visibleColum = false;
+                string _and = "";
+                string query = null;
+                string filt_1;
+                string filt_2;
+                string filt_3;
+                string filt_4;
+                string filt_5;
+                bool writeoffBool;
+                bool readyBool;
+                bool setupBool;
+
+
 
                 DataBase.ConnectionForMySQL.DB db = new DataBase.ConnectionForMySQL.DB();
                 MySqlDataAdapter mySql_dataAdapter = new MySqlDataAdapter(); //Через класс MySqlDataAdapter отправляем запрос в БД для получения данных
@@ -385,6 +468,8 @@ namespace ASI.Forms.Main
                 //-----------------------------------------------------------
 
                 db.openConnection();
+
+                query = DataBase.Scripts.ScriptMySql.script_SelectCartrige_ASI + " WHERE ";
 
                 switch (Convert.ToString(CurrentNode))
                 {
@@ -405,31 +490,123 @@ namespace ASI.Forms.Main
                         break;
 
                     case ("TreeNode: Оборудование"):
-                        FilterName1.Controls.Clear();
-                        FilterName1.Text = "Модель";
 
-                        ComboBox modelComBox = new ComboBox();
-                        modelComBox.Dock = DockStyle.Fill;
-                        modelComBox.DropDownStyle = ComboBoxStyle.DropDownList;
-
-                        //Заносим в поле почты клиентов
-
-                        var DirCom = new MySqlCommand(); // Создаем переменную класса MySqlCommand
-                        DirCom.CommandText = $"SELECT `name` FROM `model`"; // Запрос на какие либо данные
-                        DirCom.Connection = db.getConnection(); //Отправляем запрос
-
-                        var dir = DirCom.ExecuteReader(); // Создаем переменную, в которую будем вносить по порядку все полученные данные из запроса
-                        while (dir.Read()) { modelComBox.Items.Add(dir.GetString(0)); }; // Перебираем данные занося их в переменную                        
-
-                        FilterName1.Controls.Add(modelComBox);
 
 
 
                         break;
 
                     case ("TreeNode: Расходники"):
-                        FilterName1.Controls.Clear();
-                        FilterName1.Text = "Модель";
+
+                        if (Convert.ToString(WriteoffConsumableComBox.SelectedItem) == "Да")
+                        {
+                            var _convertStringToBoolWriteoff = true;
+                            writeoffBool = _convertStringToBoolWriteoff;
+
+                        }
+                        else
+                        {
+                            var _convertStringToBoolWriteoff = false;
+                            writeoffBool = _convertStringToBoolWriteoff;
+                        }
+                        
+                        if (Convert.ToString(SetupConsumComBox.SelectedItem) == "Да")
+                        {
+                            var _convertStringToBoolSetup = true;
+                            setupBool = _convertStringToBoolSetup;
+
+                        }
+                        else
+                        {
+                            var _convertStringToBoolSetup = false;
+                            setupBool = _convertStringToBoolSetup;
+                        }
+
+                        if (Convert.ToString(ReadyConsumableComBox.SelectedItem) == "Да")
+                        {
+                            var _convertStringToBoolReady = true;
+                            readyBool = _convertStringToBoolReady;
+
+                        }
+                        else
+                        {
+                            var _convertStringToBoolReady = false;
+                            readyBool = _convertStringToBoolReady;
+                        }
+
+                        //-----------------------------------------------------------------------------------
+
+                        if (ModelConsumableComBox.SelectedValue.ToString() != "0")
+                        {
+                            filt_1 = " id_model " + "=" + ModelConsumableComBox.SelectedValue.ToString();
+                            query = query + _and + filt_1;
+                            _and = " AND ";
+                        }
+                        else
+                        {
+
+                        }
+                        if (TypeConsumableComBox.SelectedValue.ToString() != "0")
+                        {
+                            filt_2 = " id_cartrige_type " + "=" + TypeConsumableComBox.SelectedValue.ToString();
+                            query = query + _and + filt_2;
+                            _and = " AND ";
+                        }
+                        else
+                        {
+
+                        }
+                        if (WriteoffConsumableComBox.SelectedIndex != 0)
+                        {
+                            filt_3 = " writeoff " + "=" + writeoffBool;
+                            query = query + _and + filt_3;
+                            _and = " AND ";
+                        }
+                        else
+                        {
+
+                        }
+                        if (ReadyConsumableComBox.SelectedIndex != 0)
+                        {
+                            filt_4 = " ready " + "=" + readyBool;
+                            query = query + _and + filt_4;
+                            _and = " AND ";
+                        }
+                        else
+                        {
+
+                        }
+                        if (SetupConsumComBox.SelectedIndex != 0)
+                        {
+                            filt_5 = " setup " + "=" + setupBool;
+                            query = query + _and + filt_5;
+                            _and = " AND ";
+                        }
+                        else
+                        {
+
+
+                        }
+
+                        MessageBox.Show(query);
+                        GridView.ClearSelection(); //Чистим таблицу
+                        mySql_dataAdapter.SelectCommand = new MySqlCommand(query, db.getConnection());
+                        mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                        GridView.DataSource = table; //Заполняем саму таблицу на форме                 
+
+                        //Меняем название столбцов на руссифицированное
+                        GridView.Columns["ID"].Visible = false;
+                        GridView.Columns["id_room"].Visible = false;
+                        GridView.Columns["id_model"].Visible = false;
+                        GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                        SetupToolBut.Visible = false;
+                        WriteoffToolBut.Visible = false;
+                        Ser5.Visible = false;
+
+                        StoryToolBut.Visible = false;
+                        Ser6.Visible = false;
+                        FiltrToolBut.Visible = true;
                         break;
 
                     case ("TreeNode: Местоположение"):
@@ -453,7 +630,7 @@ namespace ASI.Forms.Main
 
                         break;
                     default:
-
+                        UpdateTable();
                         break;
 
                 }
@@ -1314,7 +1491,7 @@ namespace ASI.Forms.Main
                         mySql_dataAdapter.SelectCommand = new MySqlCommand("SELECT setup.id AS 'ID', printer.id AS id_printer, printer.name AS 'Принтер', cartrige.id AS id_cartrige, cartrige.code AS 'Ррасходник', setup.start AS 'Дата установки', setup.end AS 'Дата снятия', setup.note AS 'Заметки' " +
                 "FROM setup " +
                 "INNER JOIN printer ON setup.id_printer = printer.id " +
-                "INNER JOIN cartrige ON setup.id_cartrige = cartrige.id "+
+                "INNER JOIN cartrige ON setup.id_cartrige = cartrige.id " +
                 "WHERE CONCAT (printer.id, printer.name, cartrige.id, cartrige.code, setup.start, setup.end, setup.note) LIKE '%" + searchTextBox.Text + "%'", db.getConnection());
                         mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
                         GridView.DataSource = table; //Заполняем саму таблицу на форме
@@ -1338,7 +1515,7 @@ namespace ASI.Forms.Main
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand("SELECT fill.id AS 'ID', cartrige.id AS 'id_cartrige', cartrige.code AS 'Код расходника', fill.date AS 'Дата заправки', fill.note AS 'Примечание' " +
                 "FROM fill " +
-                "INNER JOIN cartrige ON fill.id_cartrige = cartrige.id "+
+                "INNER JOIN cartrige ON fill.id_cartrige = cartrige.id " +
                 "WHERE CONCAT (fill.id, cartrige.id, cartrige.code, fill.date, fill.note) LIKE '%" + searchTextBox.Text + "%'", db.getConnection());
                         mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
                         GridView.DataSource = table; //Заполняем саму таблицу на форме
@@ -1543,16 +1720,32 @@ namespace ASI.Forms.Main
             }
         }
 
-        private void FiltrToolBut_Click(object sender, EventArgs e)
+        internal void FiltrToolBut_Click(object sender, EventArgs e)
         {
             if (FiltrPanel.Visible == false)
             {
                 FiltrPanel.Visible = true;
+
             }
             else if (FiltrPanel.Visible == true)
             {
                 FiltrPanel.Visible = false;
             }
+        }
+
+        private void FiltrBut_Click(object sender, EventArgs e)
+        {
+            FilterUpdateTable();
+        }
+
+        private void ClearFiltrBut_Click(object sender, EventArgs e)
+        {
+            ModelConsumableComBox.SelectedIndex = 1;
+            TypeConsumableComBox.SelectedIndex = 1;
+            WriteoffConsumableComBox.SelectedIndex = 1;
+            ReadyConsumableComBox.SelectedIndex = 1;
+            SetupConsumComBox.SelectedIndex = 1;
+            UpdateTable();
         }
     }
 }
