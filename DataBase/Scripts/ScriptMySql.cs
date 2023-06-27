@@ -72,11 +72,11 @@ namespace ASI.DataBase.Scripts
         //Запрос на справочник Роли (доступ только у рута)
         internal static string script_SelectRole_ASI = $"SELECT * FROM `roles`";
         //Запрос на справочник всех пользователей (доступ только у рута)
-        internal static string script_SelectAllUsers_ASI = $"SELECT users.Id,users.FullName,users.DateOfBirth,users.Phone,users.Email,roles.role FROM users INNER JOIN roles ON users.role = roles.id  ";
+        internal static string script_SelectAllUsers_ASI = $"SELECT users.Id,users.FullName AS 'ФИО',users.DateOfBirth AS 'Дата рождения',users.Phone AS 'Номер телефона',users.Email AS 'Эл. почта',roles.role AS 'Роль' FROM users INNER JOIN roles ON users.role = roles.id  ";
         //Запрос на справочник администраторов (доступ только у рута)
-        internal static string script_SelectUser_Admin_ASI = $"SELECT users.Id,users.FullName,users.DateOfBirth,users.Phone,users.Email,roles.role FROM users INNER JOIN roles ON users.role = roles.id WHERE roles.role = 'ROLE_AMDMIN'";
+        internal static string script_SelectUser_Admin_ASI = $"SELECT users.Id,users.FullName AS 'ФИО',users.DateOfBirth AS 'Дата рождения',users.Phone AS 'Номер телефона',users.Email AS 'Эл. почта',roles.role AS 'Роль' FROM users INNER JOIN roles ON users.role = roles.id WHERE roles.role = 'ROLE_AMDMIN'";
         //Запрос на справочник пользователей(доступ только у рута)
-        internal static string script_SelectUser_User_ASI = $"SELECT users.Id,users.FullName,users.DateOfBirth,users.Phone,users.Email,roles.role FROM users INNER JOIN roles ON users.role = roles.id WHERE roles.role = 'ROLE_USER'";
+        internal static string script_SelectUser_User_ASI = $"SELECT users.Id,users.FullName AS 'ФИО',users.DateOfBirth AS 'Дата рождения',users.Phone AS 'Номер телефона',users.Email AS 'Эл. почта',roles.role AS 'Роль' FROM users INNER JOIN roles ON users.role = roles.id WHERE roles.role = 'ROLE_USER'";
 
 
         //
