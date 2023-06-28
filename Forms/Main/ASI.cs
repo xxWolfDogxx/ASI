@@ -588,7 +588,7 @@ namespace ASI.Forms.Main
 
                         }
 
-                        MessageBox.Show(query);
+                        //MessageBox.Show(query);
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand(query, db.getConnection());
                         mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
@@ -1005,7 +1005,7 @@ namespace ASI.Forms.Main
                                         DataBase.Entity.Setup.Setup.Note = null;
 
                                     }
-                                    else if (GridView.CurrentRow.Cells["Установлен"].Value.ToString() == "True")
+                                    else if (GridView.CurrentRow.Cells["Установ."].Value.ToString() == "True")
                                     {
                                         Modif = "Снятие";
 

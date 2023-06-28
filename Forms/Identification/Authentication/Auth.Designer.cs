@@ -134,7 +134,6 @@ namespace ASI.Forms.Identification.Authentication
             this.RegsLinkLabel.TabIndex = 4;
             this.RegsLinkLabel.TabStop = true;
             this.RegsLinkLabel.Text = "Зарегистрироваться?";
-            this.RegsLinkLabel.Visible = false;
             this.RegsLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RegsLinkLabel_LinkClicked);
             // 
             // AuthButGrupBox
