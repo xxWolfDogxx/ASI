@@ -30,32 +30,32 @@ namespace ASI.Forms.Main
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ASI));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Установки");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Перезаправлен");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Расходники", new System.Windows.Forms.TreeNode[] {
-            treeNode14,
-            treeNode15});
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Оборудование");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Местоположение");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Типы расходников");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Модели");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Справочник", new System.Windows.Forms.TreeNode[] {
-            treeNode18,
-            treeNode19,
-            treeNode20});
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Все");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Администратор");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Пользователь");
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Роли");
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Пользователи", new System.Windows.Forms.TreeNode[] {
-            treeNode22,
-            treeNode23,
-            treeNode24,
-            treeNode25});
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Установки");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Заправки");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Расходники", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Оборудование");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Местоположение");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Типы расходников");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Модели");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Справочники", new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode6,
+            treeNode7});
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Все");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Администратор");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Пользователь");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Роли");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Пользователи", new System.Windows.Forms.TreeNode[] {
+            treeNode9,
+            treeNode10,
+            treeNode11,
+            treeNode12});
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,11 +95,18 @@ namespace ASI.Forms.Main
             this.выходToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.FiltrPanel = new System.Windows.Forms.Panel();
             this.FiltrGrBox = new System.Windows.Forms.GroupBox();
+            this.FiltrBut = new System.Windows.Forms.Button();
+            this.ClearFiltrBut = new System.Windows.Forms.Button();
             this.FilterName5 = new System.Windows.Forms.GroupBox();
+            this.SetupConsumComBox = new System.Windows.Forms.ComboBox();
             this.FilterName4 = new System.Windows.Forms.GroupBox();
+            this.ReadyConsumableComBox = new System.Windows.Forms.ComboBox();
             this.FilterName3 = new System.Windows.Forms.GroupBox();
+            this.WriteoffConsumableComBox = new System.Windows.Forms.ComboBox();
             this.FilterName2 = new System.Windows.Forms.GroupBox();
+            this.TypeConsumableComBox = new System.Windows.Forms.ComboBox();
             this.FilterName1 = new System.Windows.Forms.GroupBox();
+            this.ModelConsumableComBox = new System.Windows.Forms.ComboBox();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.RightMainPanel = new System.Windows.Forms.Panel();
             this.GridView = new System.Windows.Forms.DataGridView();
@@ -124,13 +131,6 @@ namespace ASI.Forms.Main
             this.LeftMainPanel = new System.Windows.Forms.Panel();
             this.SelectTableGroupBox = new System.Windows.Forms.GroupBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.ClearFiltrBut = new System.Windows.Forms.Button();
-            this.FiltrBut = new System.Windows.Forms.Button();
-            this.ModelConsumableComBox = new System.Windows.Forms.ComboBox();
-            this.TypeConsumableComBox = new System.Windows.Forms.ComboBox();
-            this.ReadyConsumableComBox = new System.Windows.Forms.ComboBox();
-            this.WriteoffConsumableComBox = new System.Windows.Forms.ComboBox();
-            this.SetupConsumComBox = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.FiltrPanel.SuspendLayout();
             this.FiltrGrBox.SuspendLayout();
@@ -466,6 +466,30 @@ namespace ASI.Forms.Main
             this.FiltrGrBox.TabStop = false;
             this.FiltrGrBox.Text = "Фильтры";
             // 
+            // FiltrBut
+            // 
+            this.FiltrBut.AutoSize = true;
+            this.FiltrBut.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.FiltrBut.Location = new System.Drawing.Point(10, 923);
+            this.FiltrBut.Name = "FiltrBut";
+            this.FiltrBut.Size = new System.Drawing.Size(325, 39);
+            this.FiltrBut.TabIndex = 6;
+            this.FiltrBut.Text = "Применить";
+            this.FiltrBut.UseVisualStyleBackColor = true;
+            this.FiltrBut.Click += new System.EventHandler(this.FiltrBut_Click);
+            // 
+            // ClearFiltrBut
+            // 
+            this.ClearFiltrBut.AutoSize = true;
+            this.ClearFiltrBut.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ClearFiltrBut.Location = new System.Drawing.Point(10, 962);
+            this.ClearFiltrBut.Name = "ClearFiltrBut";
+            this.ClearFiltrBut.Size = new System.Drawing.Size(325, 39);
+            this.ClearFiltrBut.TabIndex = 5;
+            this.ClearFiltrBut.Text = "Очистить";
+            this.ClearFiltrBut.UseVisualStyleBackColor = true;
+            this.ClearFiltrBut.Click += new System.EventHandler(this.ClearFiltrBut_Click);
+            // 
             // FilterName5
             // 
             this.FilterName5.Controls.Add(this.SetupConsumComBox);
@@ -476,6 +500,21 @@ namespace ASI.Forms.Main
             this.FilterName5.TabIndex = 4;
             this.FilterName5.TabStop = false;
             this.FilterName5.Text = "Установлен";
+            // 
+            // SetupConsumComBox
+            // 
+            this.SetupConsumComBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.SetupConsumComBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SetupConsumComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SetupConsumComBox.FormattingEnabled = true;
+            this.SetupConsumComBox.Items.AddRange(new object[] {
+            "---",
+            "Да",
+            "Нет"});
+            this.SetupConsumComBox.Location = new System.Drawing.Point(3, 27);
+            this.SetupConsumComBox.Name = "SetupConsumComBox";
+            this.SetupConsumComBox.Size = new System.Drawing.Size(319, 31);
+            this.SetupConsumComBox.TabIndex = 1;
             // 
             // FilterName4
             // 
@@ -488,6 +527,21 @@ namespace ASI.Forms.Main
             this.FilterName4.TabStop = false;
             this.FilterName4.Text = "Готовый";
             // 
+            // ReadyConsumableComBox
+            // 
+            this.ReadyConsumableComBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ReadyConsumableComBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ReadyConsumableComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ReadyConsumableComBox.FormattingEnabled = true;
+            this.ReadyConsumableComBox.Items.AddRange(new object[] {
+            "---",
+            "Да",
+            "Нет"});
+            this.ReadyConsumableComBox.Location = new System.Drawing.Point(3, 27);
+            this.ReadyConsumableComBox.Name = "ReadyConsumableComBox";
+            this.ReadyConsumableComBox.Size = new System.Drawing.Size(319, 31);
+            this.ReadyConsumableComBox.TabIndex = 1;
+            // 
             // FilterName3
             // 
             this.FilterName3.Controls.Add(this.WriteoffConsumableComBox);
@@ -498,6 +552,21 @@ namespace ASI.Forms.Main
             this.FilterName3.TabIndex = 2;
             this.FilterName3.TabStop = false;
             this.FilterName3.Text = "Списан";
+            // 
+            // WriteoffConsumableComBox
+            // 
+            this.WriteoffConsumableComBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.WriteoffConsumableComBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.WriteoffConsumableComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WriteoffConsumableComBox.FormattingEnabled = true;
+            this.WriteoffConsumableComBox.Items.AddRange(new object[] {
+            "---",
+            "Да",
+            "Нет"});
+            this.WriteoffConsumableComBox.Location = new System.Drawing.Point(3, 27);
+            this.WriteoffConsumableComBox.Name = "WriteoffConsumableComBox";
+            this.WriteoffConsumableComBox.Size = new System.Drawing.Size(319, 31);
+            this.WriteoffConsumableComBox.TabIndex = 1;
             // 
             // FilterName2
             // 
@@ -510,6 +579,17 @@ namespace ASI.Forms.Main
             this.FilterName2.TabStop = false;
             this.FilterName2.Text = "Тип";
             // 
+            // TypeConsumableComBox
+            // 
+            this.TypeConsumableComBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TypeConsumableComBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TypeConsumableComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TypeConsumableComBox.FormattingEnabled = true;
+            this.TypeConsumableComBox.Location = new System.Drawing.Point(3, 27);
+            this.TypeConsumableComBox.Name = "TypeConsumableComBox";
+            this.TypeConsumableComBox.Size = new System.Drawing.Size(319, 31);
+            this.TypeConsumableComBox.TabIndex = 1;
+            // 
             // FilterName1
             // 
             this.FilterName1.Controls.Add(this.ModelConsumableComBox);
@@ -520,6 +600,17 @@ namespace ASI.Forms.Main
             this.FilterName1.TabIndex = 0;
             this.FilterName1.TabStop = false;
             this.FilterName1.Text = "Модель";
+            // 
+            // ModelConsumableComBox
+            // 
+            this.ModelConsumableComBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ModelConsumableComBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ModelConsumableComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ModelConsumableComBox.FormattingEnabled = true;
+            this.ModelConsumableComBox.Location = new System.Drawing.Point(3, 27);
+            this.ModelConsumableComBox.Name = "ModelConsumableComBox";
+            this.ModelConsumableComBox.Size = new System.Drawing.Size(319, 31);
+            this.ModelConsumableComBox.TabIndex = 1;
             // 
             // MainPanel
             // 
@@ -552,42 +643,42 @@ namespace ASI.Forms.Main
             this.GridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.NullValue = "NULL";
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.NullValue = "NULL";
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.NullValue = "—";
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.NullValue = "—";
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.GridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridView.Location = new System.Drawing.Point(5, 45);
             this.GridView.Name = "GridView";
             this.GridView.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.GridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridView.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.GridView.Size = new System.Drawing.Size(1289, 981);
             this.GridView.TabIndex = 0;
             // 
@@ -817,132 +908,41 @@ namespace ASI.Forms.Main
             this.treeView1.Location = new System.Drawing.Point(5, 25);
             this.treeView1.Margin = new System.Windows.Forms.Padding(10);
             this.treeView1.Name = "treeView1";
-            treeNode14.Checked = true;
-            treeNode14.Name = "setupView";
-            treeNode14.Text = "Установки";
-            treeNode15.Name = "fillView";
-            treeNode15.Text = "Перезаправлен";
-            treeNode16.Name = "consumableView";
-            treeNode16.Text = "Расходники";
-            treeNode17.Name = "printerView";
-            treeNode17.Text = "Оборудование";
-            treeNode18.Name = "RoomView";
-            treeNode18.Text = "Местоположение";
-            treeNode19.Name = "cartrigeTypeView";
-            treeNode19.Text = "Типы расходников";
-            treeNode20.Name = "modelView";
-            treeNode20.Text = "Модели";
-            treeNode21.Name = "GuideKnot";
-            treeNode21.Text = "Справочник";
-            treeNode22.Name = "AllUsersTableView";
-            treeNode22.Text = "Все";
-            treeNode23.Name = "AdminsTable";
-            treeNode23.Text = "Администратор";
-            treeNode24.Name = "UsersTable";
-            treeNode24.Text = "Пользователь";
-            treeNode25.Name = "RoleGuide";
-            treeNode25.Text = "Роли";
-            treeNode26.Name = "UsersKnot";
-            treeNode26.Text = "Пользователи";
+            treeNode1.Checked = true;
+            treeNode1.Name = "setupView";
+            treeNode1.Text = "Установки";
+            treeNode2.Name = "fillView";
+            treeNode2.Text = "Заправки";
+            treeNode3.Name = "consumableView";
+            treeNode3.Text = "Расходники";
+            treeNode4.Name = "printerView";
+            treeNode4.Text = "Оборудование";
+            treeNode5.Name = "RoomView";
+            treeNode5.Text = "Местоположение";
+            treeNode6.Name = "cartrigeTypeView";
+            treeNode6.Text = "Типы расходников";
+            treeNode7.Name = "modelView";
+            treeNode7.Text = "Модели";
+            treeNode8.Name = "GuideKnot";
+            treeNode8.Text = "Справочники";
+            treeNode9.Name = "AllUsersTableView";
+            treeNode9.Text = "Все";
+            treeNode10.Name = "AdminsTable";
+            treeNode10.Text = "Администратор";
+            treeNode11.Name = "UsersTable";
+            treeNode11.Text = "Пользователь";
+            treeNode12.Name = "RoleGuide";
+            treeNode12.Text = "Роли";
+            treeNode13.Name = "UsersKnot";
+            treeNode13.Text = "Пользователи";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode16,
-            treeNode17,
-            treeNode21,
-            treeNode26});
+            treeNode3,
+            treeNode4,
+            treeNode8,
+            treeNode13});
             this.treeView1.Size = new System.Drawing.Size(200, 991);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            // 
-            // ClearFiltrBut
-            // 
-            this.ClearFiltrBut.AutoSize = true;
-            this.ClearFiltrBut.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ClearFiltrBut.Location = new System.Drawing.Point(10, 962);
-            this.ClearFiltrBut.Name = "ClearFiltrBut";
-            this.ClearFiltrBut.Size = new System.Drawing.Size(325, 39);
-            this.ClearFiltrBut.TabIndex = 5;
-            this.ClearFiltrBut.Text = "Очистить";
-            this.ClearFiltrBut.UseVisualStyleBackColor = true;
-            this.ClearFiltrBut.Click += new System.EventHandler(this.ClearFiltrBut_Click);
-            // 
-            // FiltrBut
-            // 
-            this.FiltrBut.AutoSize = true;
-            this.FiltrBut.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.FiltrBut.Location = new System.Drawing.Point(10, 923);
-            this.FiltrBut.Name = "FiltrBut";
-            this.FiltrBut.Size = new System.Drawing.Size(325, 39);
-            this.FiltrBut.TabIndex = 6;
-            this.FiltrBut.Text = "Применить";
-            this.FiltrBut.UseVisualStyleBackColor = true;
-            this.FiltrBut.Click += new System.EventHandler(this.FiltrBut_Click);
-            // 
-            // ModelConsumableComBox
-            // 
-            this.ModelConsumableComBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ModelConsumableComBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ModelConsumableComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ModelConsumableComBox.FormattingEnabled = true;
-            this.ModelConsumableComBox.Location = new System.Drawing.Point(3, 27);
-            this.ModelConsumableComBox.Name = "ModelConsumableComBox";
-            this.ModelConsumableComBox.Size = new System.Drawing.Size(319, 31);
-            this.ModelConsumableComBox.TabIndex = 1;
-            // 
-            // TypeConsumableComBox
-            // 
-            this.TypeConsumableComBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TypeConsumableComBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.TypeConsumableComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TypeConsumableComBox.FormattingEnabled = true;
-            this.TypeConsumableComBox.Location = new System.Drawing.Point(3, 27);
-            this.TypeConsumableComBox.Name = "TypeConsumableComBox";
-            this.TypeConsumableComBox.Size = new System.Drawing.Size(319, 31);
-            this.TypeConsumableComBox.TabIndex = 1;
-            // 
-            // ReadyConsumableComBox
-            // 
-            this.ReadyConsumableComBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ReadyConsumableComBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ReadyConsumableComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ReadyConsumableComBox.FormattingEnabled = true;
-            this.ReadyConsumableComBox.Items.AddRange(new object[] {
-            "---",
-            "Да",
-            "Нет"});
-            this.ReadyConsumableComBox.Location = new System.Drawing.Point(3, 27);
-            this.ReadyConsumableComBox.Name = "ReadyConsumableComBox";
-            this.ReadyConsumableComBox.Size = new System.Drawing.Size(319, 31);
-            this.ReadyConsumableComBox.TabIndex = 1;
-            // 
-            // WriteoffConsumableComBox
-            // 
-            this.WriteoffConsumableComBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.WriteoffConsumableComBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.WriteoffConsumableComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.WriteoffConsumableComBox.FormattingEnabled = true;
-            this.WriteoffConsumableComBox.Items.AddRange(new object[] {
-            "---",
-            "Да",
-            "Нет"});
-            this.WriteoffConsumableComBox.Location = new System.Drawing.Point(3, 27);
-            this.WriteoffConsumableComBox.Name = "WriteoffConsumableComBox";
-            this.WriteoffConsumableComBox.Size = new System.Drawing.Size(319, 31);
-            this.WriteoffConsumableComBox.TabIndex = 1;
-            // 
-            // SetupConsumComBox
-            // 
-            this.SetupConsumComBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.SetupConsumComBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SetupConsumComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SetupConsumComBox.FormattingEnabled = true;
-            this.SetupConsumComBox.Items.AddRange(new object[] {
-            "---",
-            "Да",
-            "Нет"});
-            this.SetupConsumComBox.Location = new System.Drawing.Point(3, 27);
-            this.SetupConsumComBox.Name = "SetupConsumComBox";
-            this.SetupConsumComBox.Size = new System.Drawing.Size(319, 31);
-            this.SetupConsumComBox.TabIndex = 1;
             // 
             // ASI
             // 

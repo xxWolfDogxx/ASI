@@ -245,7 +245,7 @@ namespace ASI.Forms.Identification.Registration
             this.EmailGroupBox.Size = new System.Drawing.Size(548, 67);
             this.EmailGroupBox.TabIndex = 3;
             this.EmailGroupBox.TabStop = false;
-            this.EmailGroupBox.Text = "Эл. почта*";
+            this.EmailGroupBox.Text = "Логин*";
             // 
             // EmailTextBox
             // 

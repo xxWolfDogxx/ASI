@@ -359,7 +359,7 @@ namespace ASI.Forms.Main
                         FiltrToolBut.Visible = false;
                         break;
 
-                    case ("TreeNode: Перезаправлен"):
+                    case ("TreeNode: Заправки"):
                         FiltrPanel.Visible = false;
 
                         GridView.ClearSelection(); //Чистим таблицу
@@ -498,115 +498,124 @@ namespace ASI.Forms.Main
 
                     case ("TreeNode: Расходники"):
 
-                        if (Convert.ToString(WriteoffConsumableComBox.SelectedItem) == "Да")
+                        if ((ModelConsumableComBox.SelectedValue.ToString() == "0") && (TypeConsumableComBox.SelectedValue.ToString() == "0") && (WriteoffConsumableComBox.SelectedIndex == 0) && (ReadyConsumableComBox.SelectedIndex == 0) && (SetupConsumComBox.SelectedIndex == 0))
                         {
-                            var _convertStringToBoolWriteoff = true;
-                            writeoffBool = _convertStringToBoolWriteoff;
-
+                            //MessageBox.Show("111");
+                            UpdateTable();
+                            return;
                         }
                         else
                         {
-                            var _convertStringToBoolWriteoff = false;
-                            writeoffBool = _convertStringToBoolWriteoff;
-                        }
-                        
-                        if (Convert.ToString(SetupConsumComBox.SelectedItem) == "Да")
-                        {
-                            var _convertStringToBoolSetup = true;
-                            setupBool = _convertStringToBoolSetup;
+                            if (Convert.ToString(WriteoffConsumableComBox.SelectedItem) == "Да")
+                            {
+                                var _convertStringToBoolWriteoff = true;
+                                writeoffBool = _convertStringToBoolWriteoff;
 
-                        }
-                        else
-                        {
-                            var _convertStringToBoolSetup = false;
-                            setupBool = _convertStringToBoolSetup;
-                        }
+                            }
+                            else
+                            {
+                                var _convertStringToBoolWriteoff = false;
+                                writeoffBool = _convertStringToBoolWriteoff;
+                            }
 
-                        if (Convert.ToString(ReadyConsumableComBox.SelectedItem) == "Да")
-                        {
-                            var _convertStringToBoolReady = true;
-                            readyBool = _convertStringToBoolReady;
+                            if (Convert.ToString(SetupConsumComBox.SelectedItem) == "Да")
+                            {
+                                var _convertStringToBoolSetup = true;
+                                setupBool = _convertStringToBoolSetup;
 
+                            }
+                            else
+                            {
+                                var _convertStringToBoolSetup = false;
+                                setupBool = _convertStringToBoolSetup;
+                            }
+
+                            if (Convert.ToString(ReadyConsumableComBox.SelectedItem) == "Да")
+                            {
+                                var _convertStringToBoolReady = true;
+                                readyBool = _convertStringToBoolReady;
+
+                            }
+                            else
+                            {
+                                var _convertStringToBoolReady = false;
+                                readyBool = _convertStringToBoolReady;
+                            }
+
+                            //-----------------------------------------------------------------------------------
+
+                            if (ModelConsumableComBox.SelectedValue.ToString() != "0")
+                            {
+                                filt_1 = " id_model " + "=" + ModelConsumableComBox.SelectedValue.ToString();
+                                query = query + _and + filt_1;
+                                _and = " AND ";
+                            }
+                            else
+                            {
+
+                            }
+                            if (TypeConsumableComBox.SelectedValue.ToString() != "0")
+                            {
+                                filt_2 = " id_cartrige_type " + "=" + TypeConsumableComBox.SelectedValue.ToString();
+                                query = query + _and + filt_2;
+                                _and = " AND ";
+                            }
+                            else
+                            {
+
+                            }
+                            if (WriteoffConsumableComBox.SelectedIndex != 0)
+                            {
+                                filt_3 = " writeoff " + "=" + writeoffBool;
+                                query = query + _and + filt_3;
+                                _and = " AND ";
+                            }
+                            else
+                            {
+
+                            }
+                            if (ReadyConsumableComBox.SelectedIndex != 0)
+                            {
+                                filt_4 = " ready " + "=" + readyBool;
+                                query = query + _and + filt_4;
+                                _and = " AND ";
+                            }
+                            else
+                            {
+
+                            }
+                            if (SetupConsumComBox.SelectedIndex != 0)
+                            {
+                                filt_5 = " setup " + "=" + setupBool;
+                                query = query + _and + filt_5;
+                                _and = " AND ";
+                            }
+                            else
+                            {
+
+
+                            }
+
+                            //MessageBox.Show(query);
+                            GridView.ClearSelection(); //Чистим таблицу
+                            mySql_dataAdapter.SelectCommand = new MySqlCommand(query, db.getConnection());
+                            mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
+                            GridView.DataSource = table; //Заполняем саму таблицу на форме                 
+
+                            //Меняем название столбцов на руссифицированное
+                            GridView.Columns["ID"].Visible = false;
+                            GridView.Columns["id_room"].Visible = false;
+                            GridView.Columns["id_model"].Visible = false;
+                            GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                            SetupToolBut.Visible = false;
+                            WriteoffToolBut.Visible = false;
+                            Ser5.Visible = false;
+
+                            StoryToolBut.Visible = false;
+                            Ser6.Visible = false;
+                            FiltrToolBut.Visible = true;
                         }
-                        else
-                        {
-                            var _convertStringToBoolReady = false;
-                            readyBool = _convertStringToBoolReady;
-                        }
-
-                        //-----------------------------------------------------------------------------------
-
-                        if (ModelConsumableComBox.SelectedValue.ToString() != "0")
-                        {
-                            filt_1 = " id_model " + "=" + ModelConsumableComBox.SelectedValue.ToString();
-                            query = query + _and + filt_1;
-                            _and = " AND ";
-                        }
-                        else
-                        {
-
-                        }
-                        if (TypeConsumableComBox.SelectedValue.ToString() != "0")
-                        {
-                            filt_2 = " id_cartrige_type " + "=" + TypeConsumableComBox.SelectedValue.ToString();
-                            query = query + _and + filt_2;
-                            _and = " AND ";
-                        }
-                        else
-                        {
-
-                        }
-                        if (WriteoffConsumableComBox.SelectedIndex != 0)
-                        {
-                            filt_3 = " writeoff " + "=" + writeoffBool;
-                            query = query + _and + filt_3;
-                            _and = " AND ";
-                        }
-                        else
-                        {
-
-                        }
-                        if (ReadyConsumableComBox.SelectedIndex != 0)
-                        {
-                            filt_4 = " ready " + "=" + readyBool;
-                            query = query + _and + filt_4;
-                            _and = " AND ";
-                        }
-                        else
-                        {
-
-                        }
-                        if (SetupConsumComBox.SelectedIndex != 0)
-                        {
-                            filt_5 = " setup " + "=" + setupBool;
-                            query = query + _and + filt_5;
-                            _and = " AND ";
-                        }
-                        else
-                        {
-
-
-                        }
-
-                        //MessageBox.Show(query);
-                        GridView.ClearSelection(); //Чистим таблицу
-                        mySql_dataAdapter.SelectCommand = new MySqlCommand(query, db.getConnection());
-                        mySql_dataAdapter.Fill(table); //Заполняем данными из запроса в виртуальную таблицу
-                        GridView.DataSource = table; //Заполняем саму таблицу на форме                 
-
-                        //Меняем название столбцов на руссифицированное
-                        GridView.Columns["ID"].Visible = false;
-                        GridView.Columns["id_room"].Visible = false;
-                        GridView.Columns["id_model"].Visible = false;
-                        GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-
-                        SetupToolBut.Visible = false;
-                        WriteoffToolBut.Visible = false;
-                        Ser5.Visible = false;
-
-                        StoryToolBut.Visible = false;
-                        Ser6.Visible = false;
-                        FiltrToolBut.Visible = true;
                         break;
 
                     case ("TreeNode: Местоположение"):
@@ -617,7 +626,7 @@ namespace ASI.Forms.Main
 
                         break;
 
-                    case ("TreeNode: Перезаправлен"):
+                    case ("TreeNode: Заправки"):
 
                         break;
 
@@ -748,7 +757,7 @@ namespace ASI.Forms.Main
                         UpdateTable();
                         break;
 
-                    case ("TreeNode: Перезаправлен"):
+                    case ("TreeNode: Заправки"):
                         Modification.Fill.ModFill modFill = new Modification.Fill.ModFill(); //объявляем форму, которую желаем открыть
 
                         DataBase.Entity.Fill.Fill.Id = Convert.ToInt32(null);
@@ -910,7 +919,7 @@ namespace ASI.Forms.Main
 
                         break;
 
-                    case ("TreeNode: Перезаправлен"):
+                    case ("TreeNode: Заправки"):
                         if (GridView.CurrentRow != null)
                         {
                             Modification.Fill.ModFill modFill = new Modification.Fill.ModFill(); //объявляем форму, которую желаем открыть
@@ -1155,7 +1164,7 @@ namespace ASI.Forms.Main
 
                             break;
 
-                        case ("TreeNode: Перезаправлен"):
+                        case ("TreeNode: Заправки"):
                             if (result == DialogResult.Yes)
                             {
                                 MySqlCommand DelCom = new MySqlCommand("DELETE FROM fill WHERE `id` = @id", db.getConnection());
@@ -1511,7 +1520,7 @@ namespace ASI.Forms.Main
                         FiltrToolBut.Visible = true;
                         break;
 
-                    case ("TreeNode: Перезаправлен"):
+                    case ("TreeNode: Заправки"):
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand("SELECT fill.id AS 'ID', cartrige.id AS 'id_cartrige', cartrige.code AS 'Код расходника', fill.date AS 'Дата заправки', fill.note AS 'Примечание' " +
                 "FROM fill " +
