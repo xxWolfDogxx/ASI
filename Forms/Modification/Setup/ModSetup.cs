@@ -169,7 +169,7 @@ namespace ASI.Forms.Modification.Setup
                             //  
                             //Заносим в поля данные
                             //
-                            MessageBox.Show(id_printer_DB);
+                           // MessageBox.Show(id_printer_DB);
                             IdSetupTextBox.Text = id_DB;
                             CartrigeSetupComBox.SelectedValue = id_cartrige_DB;
                             PrinterSetupComBox.SelectedValue = id_printer_DB;

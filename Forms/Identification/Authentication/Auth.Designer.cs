@@ -125,15 +125,15 @@ namespace ASI.Forms.Identification.Authentication
             // 
             // RegsLinkLabel
             // 
-            this.RegsLinkLabel.AutoSize = true;
             this.RegsLinkLabel.Dock = System.Windows.Forms.DockStyle.Left;
             this.RegsLinkLabel.Font = new System.Drawing.Font("Calibri", 10.26415F, System.Drawing.FontStyle.Italic);
             this.RegsLinkLabel.Location = new System.Drawing.Point(0, 0);
             this.RegsLinkLabel.Name = "RegsLinkLabel";
-            this.RegsLinkLabel.Size = new System.Drawing.Size(145, 17);
+            this.RegsLinkLabel.Size = new System.Drawing.Size(145, 55);
             this.RegsLinkLabel.TabIndex = 4;
             this.RegsLinkLabel.TabStop = true;
             this.RegsLinkLabel.Text = "Зарегистрироваться?";
+            this.RegsLinkLabel.Visible = false;
             this.RegsLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RegsLinkLabel_LinkClicked);
             // 
             // AuthButGrupBox

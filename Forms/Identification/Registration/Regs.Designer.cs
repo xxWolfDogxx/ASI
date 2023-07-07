@@ -43,6 +43,8 @@ namespace ASI.Forms.Identification.Registration
             this.PassRepitTextBox = new System.Windows.Forms.TextBox();
             this.PassGroupBox = new System.Windows.Forms.GroupBox();
             this.PassTextBox = new System.Windows.Forms.TextBox();
+            this.RoleGR = new System.Windows.Forms.GroupBox();
+            this.RoleComBox = new System.Windows.Forms.ComboBox();
             this.EmailGroupBox = new System.Windows.Forms.GroupBox();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
             this.PhoneGroupBox = new System.Windows.Forms.GroupBox();
@@ -59,6 +61,7 @@ namespace ASI.Forms.Identification.Registration
             this.CheckPassPanel.SuspendLayout();
             this.PassRepitGroupBox.SuspendLayout();
             this.PassGroupBox.SuspendLayout();
+            this.RoleGR.SuspendLayout();
             this.EmailGroupBox.SuspendLayout();
             this.PhoneGroupBox.SuspendLayout();
             this.DateOfBirthGroupBox.SuspendLayout();
@@ -79,7 +82,7 @@ namespace ASI.Forms.Identification.Registration
             this.LogoLabel.AutoSize = true;
             this.LogoLabel.Font = new System.Drawing.Font("Calibri", 25.81132F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LogoLabel.Location = new System.Drawing.Point(140, 19);
+            this.LogoLabel.Location = new System.Drawing.Point(98, 19);
             this.LogoLabel.Name = "LogoLabel";
             this.LogoLabel.Size = new System.Drawing.Size(273, 42);
             this.LogoLabel.TabIndex = 1;
@@ -90,6 +93,7 @@ namespace ASI.Forms.Identification.Registration
             this.RegsGrupBox.AutoSize = true;
             this.RegsGrupBox.Controls.Add(this.ButGroupBox);
             this.RegsGrupBox.Controls.Add(this.PasswordGroupBox);
+            this.RegsGrupBox.Controls.Add(this.RoleGR);
             this.RegsGrupBox.Controls.Add(this.EmailGroupBox);
             this.RegsGrupBox.Controls.Add(this.PhoneGroupBox);
             this.RegsGrupBox.Controls.Add(this.DateOfBirthGroupBox);
@@ -98,7 +102,7 @@ namespace ASI.Forms.Identification.Registration
             this.RegsGrupBox.Font = new System.Drawing.Font("Calibri", 8.150944F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.RegsGrupBox.Location = new System.Drawing.Point(13, 97);
             this.RegsGrupBox.Name = "RegsGrupBox";
-            this.RegsGrupBox.Size = new System.Drawing.Size(554, 589);
+            this.RegsGrupBox.Size = new System.Drawing.Size(554, 660);
             this.RegsGrupBox.TabIndex = 1;
             this.RegsGrupBox.TabStop = false;
             this.RegsGrupBox.Text = "Анкета";
@@ -109,7 +113,7 @@ namespace ASI.Forms.Identification.Registration
             this.ButGroupBox.Controls.Add(this.BackBut);
             this.ButGroupBox.Controls.Add(this.RegsBut);
             this.ButGroupBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ButGroupBox.Location = new System.Drawing.Point(3, 478);
+            this.ButGroupBox.Location = new System.Drawing.Point(3, 549);
             this.ButGroupBox.Name = "ButGroupBox";
             this.ButGroupBox.Padding = new System.Windows.Forms.Padding(15, 10, 15, 10);
             this.ButGroupBox.Size = new System.Drawing.Size(548, 108);
@@ -152,7 +156,7 @@ namespace ASI.Forms.Identification.Registration
             this.PasswordGroupBox.Controls.Add(this.PassGroupBox);
             this.PasswordGroupBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.PasswordGroupBox.Font = new System.Drawing.Font("Calibri", 8.150944F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PasswordGroupBox.Location = new System.Drawing.Point(3, 285);
+            this.PasswordGroupBox.Location = new System.Drawing.Point(3, 356);
             this.PasswordGroupBox.Name = "PasswordGroupBox";
             this.PasswordGroupBox.Padding = new System.Windows.Forms.Padding(15, 10, 15, 10);
             this.PasswordGroupBox.Size = new System.Drawing.Size(548, 193);
@@ -232,6 +236,30 @@ namespace ASI.Forms.Identification.Registration
             this.PassTextBox.TabIndex = 1;
             this.PassTextBox.UseSystemPasswordChar = true;
             this.PassTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PassTextBox_KeyPress);
+            // 
+            // RoleGR
+            // 
+            this.RoleGR.AutoSize = true;
+            this.RoleGR.Controls.Add(this.RoleComBox);
+            this.RoleGR.Dock = System.Windows.Forms.DockStyle.Top;
+            this.RoleGR.Font = new System.Drawing.Font("Calibri", 12.22642F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RoleGR.Location = new System.Drawing.Point(3, 285);
+            this.RoleGR.Name = "RoleGR";
+            this.RoleGR.Padding = new System.Windows.Forms.Padding(15, 10, 15, 10);
+            this.RoleGR.Size = new System.Drawing.Size(548, 71);
+            this.RoleGR.TabIndex = 6;
+            this.RoleGR.TabStop = false;
+            this.RoleGR.Text = "Роль*";
+            // 
+            // RoleComBox
+            // 
+            this.RoleComBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.RoleComBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RoleComBox.FormattingEnabled = true;
+            this.RoleComBox.Location = new System.Drawing.Point(15, 30);
+            this.RoleComBox.Name = "RoleComBox";
+            this.RoleComBox.Size = new System.Drawing.Size(518, 31);
+            this.RoleComBox.TabIndex = 2;
             // 
             // EmailGroupBox
             // 
@@ -344,7 +372,7 @@ namespace ASI.Forms.Identification.Registration
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(580, 692);
+            this.ClientSize = new System.Drawing.Size(580, 763);
             this.Controls.Add(this.RegsGrupBox);
             this.Controls.Add(this.LogoPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -370,6 +398,7 @@ namespace ASI.Forms.Identification.Registration
             this.PassRepitGroupBox.PerformLayout();
             this.PassGroupBox.ResumeLayout(false);
             this.PassGroupBox.PerformLayout();
+            this.RoleGR.ResumeLayout(false);
             this.EmailGroupBox.ResumeLayout(false);
             this.EmailGroupBox.PerformLayout();
             this.PhoneGroupBox.ResumeLayout(false);
@@ -406,5 +435,7 @@ namespace ASI.Forms.Identification.Registration
         private MySql.Data.MySqlClient.MySqlDataAdapter mySqlDataAdapter1;
         private System.Windows.Forms.GroupBox PassRepitGroupBox;
         private System.Windows.Forms.TextBox PassRepitTextBox;
+        private System.Windows.Forms.GroupBox RoleGR;
+        internal System.Windows.Forms.ComboBox RoleComBox;
     }
 }

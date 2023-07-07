@@ -22,7 +22,10 @@ namespace ASI.Forms.Main
             treeView1.ExpandAll();
             FiltrPanel.Visible = false;
             //FilterUpdateTable();
+            DoubleBuffered = true;
         }
+
+
 
         private void ASI_Load(object sender, EventArgs e)
         {
@@ -106,7 +109,7 @@ namespace ASI.Forms.Main
                 //
                 //-----------------------------------------------------------
                 //Расставить выборку по ролям
-                //-----------------------------------------------------------
+                //-----------------------------------------------------------("TreeNode: Пользователи")
                 db.openConnection();
                 switch (Convert.ToString(CurrentNode))
                 {
@@ -121,14 +124,11 @@ namespace ASI.Forms.Main
 
 
                         //Меняем название столбцов на руссифицированное
-                        GridView.Columns["Id"].Visible = visibleColum;
+                        GridView.Columns["ID"].Visible = visibleColum;
+                        GridView.Columns["Pass"].Visible = visibleColum;
+                        GridView.Columns["Номер роли"].Visible = visibleColum;
                         GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-                        GridView.Columns["FullName"].HeaderText = "ФИО";
-                        GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
-                        GridView.Columns["Phone"].HeaderText = "Номер телефона";
-                        GridView.Columns["Email"].HeaderText = "Эл. почта";
-                        // GridView.Columns["Password"].Visible = false;
-                        GridView.Columns["Role"].HeaderText = "Роль";
+
 
                         SetupToolBut.Visible = false;
                         WriteoffToolBut.Visible = false;
@@ -136,6 +136,13 @@ namespace ASI.Forms.Main
                         StoryToolBut.Visible = false;
                         Ser6.Visible = false;
                         FiltrToolBut.Visible = false;
+
+                        AddToolBut.Visible = true;
+                        ModToolBut.Visible = true;
+                        DelToolBut.Visible = true;
+                        Sep1.Visible = true;
+                        Sep2.Visible = true;
+                        Sep4.Visible = true;
                         break;
 
                     case ("TreeNode: Администратор"):
@@ -148,14 +155,12 @@ namespace ASI.Forms.Main
 
                         //Меняем название столбцов на руссифицированное
                         //Меняем название столбцов на руссифицированное
-                        GridView.Columns["Id"].Visible = visibleColum;
+                        GridView.Columns["ID"].Visible = visibleColum;
+                        GridView.Columns["Pass"].Visible = visibleColum;
+                        GridView.Columns["Номер роли"].Visible = visibleColum;
+
                         GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-                        GridView.Columns["FullName"].HeaderText = "ФИО";
-                        GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
-                        GridView.Columns["Phone"].HeaderText = "Номер телефона";
-                        GridView.Columns["Email"].HeaderText = "Эл. почта";
-                        // GridView.Columns["Password"].Visible = false;
-                        GridView.Columns["Role"].HeaderText = "Роль";
+
 
                         SetupToolBut.Visible = false;
                         WriteoffToolBut.Visible = false;
@@ -163,6 +168,13 @@ namespace ASI.Forms.Main
                         StoryToolBut.Visible = false;
                         Ser6.Visible = false;
                         FiltrToolBut.Visible = false;
+
+                        AddToolBut.Visible = true;
+                        ModToolBut.Visible = true;
+                        DelToolBut.Visible = true;
+                        Sep1.Visible = true;
+                        Sep2.Visible = true;
+                        Sep4.Visible = true;
                         break;
 
                     case ("TreeNode: Пользователь"):
@@ -175,14 +187,12 @@ namespace ASI.Forms.Main
 
                         //Меняем название столбцов на руссифицированное
                         //Меняем название столбцов на руссифицированное
-                        GridView.Columns["Id"].Visible = visibleColum;
+                        GridView.Columns["ID"].Visible = visibleColum;
+                        GridView.Columns["Pass"].Visible = visibleColum;
+                        GridView.Columns["Номер роли"].Visible = visibleColum;
+
                         GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-                        GridView.Columns["FullName"].HeaderText = "ФИО";
-                        GridView.Columns["DateOfBirth"].HeaderText = "Дата рождения";
-                        GridView.Columns["Phone"].HeaderText = "Номер телефона";
-                        GridView.Columns["Email"].HeaderText = "Эл. почта";
-                        // GridView.Columns["Password"].Visible = false;
-                        GridView.Columns["Role"].HeaderText = "Роль";
+
 
                         SetupToolBut.Visible = false;
                         WriteoffToolBut.Visible = false;
@@ -190,6 +200,13 @@ namespace ASI.Forms.Main
                         StoryToolBut.Visible = false;
                         Ser6.Visible = false;
                         FiltrToolBut.Visible = false;
+
+                        AddToolBut.Visible = true;
+                        ModToolBut.Visible = true;
+                        DelToolBut.Visible = true;
+                        Sep1.Visible = true;
+                        Sep2.Visible = true;
+                        Sep4.Visible = true;
                         break;
 
                     case ("TreeNode: Роли"):
@@ -203,7 +220,6 @@ namespace ASI.Forms.Main
                         //Меняем название столбцов на руссифицированное
                         GridView.Columns["Id"].Visible = visibleColum;
                         GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
-                        GridView.Columns["role"].HeaderText = "Роли";
 
                         SetupToolBut.Visible = false;
                         WriteoffToolBut.Visible = false;
@@ -211,6 +227,13 @@ namespace ASI.Forms.Main
                         StoryToolBut.Visible = false;
                         Ser6.Visible = false;
                         FiltrToolBut.Visible = false;
+                        AddToolBut.Visible = false;
+                        ModToolBut.Visible = false;
+                        DelToolBut.Visible = false;
+                        Sep1.Visible = false;
+                        Sep2.Visible = false;
+                        Sep4.Visible = false;
+                       
                         break;
 
                     case ("TreeNode: Оборудование"):
@@ -226,6 +249,13 @@ namespace ASI.Forms.Main
                         GridView.Columns["id_room"].Visible = false;
                         GridView.Columns["id_model"].Visible = false;
                         GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                        AddToolBut.Visible = true;
+                        ModToolBut.Visible = true;
+                        DelToolBut.Visible = true;
+                        Sep1.Visible = true;
+                        Sep2.Visible = true;
+                        Sep4.Visible = true;
 
                         SetupToolBut.Visible = false;
                         WriteoffToolBut.Visible = false;
@@ -253,6 +283,13 @@ namespace ASI.Forms.Main
                         GridView.Columns["id_room"].Visible = false;
                         GridView.Columns["id_model"].Visible = false;
                         GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                        AddToolBut.Visible = true;
+                        ModToolBut.Visible = true;
+                        DelToolBut.Visible = true;
+                        Sep1.Visible = true;
+                        Sep2.Visible = true;
+                        Sep4.Visible = true;
 
                         SetupToolBut.Visible = true;
                         WriteoffToolBut.Visible = true;
@@ -327,6 +364,13 @@ namespace ASI.Forms.Main
                         GridView.Columns["ID"].Visible = visibleColum;
                         GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
+                        AddToolBut.Visible = true;
+                        ModToolBut.Visible = true;
+                        DelToolBut.Visible = true;
+                        Sep1.Visible = true;
+                        Sep2.Visible = true;
+                        Sep4.Visible = true;
+
                         SetupToolBut.Visible = false;
                         WriteoffToolBut.Visible = false;
                         Ser5.Visible = false;
@@ -350,6 +394,13 @@ namespace ASI.Forms.Main
                         GridView.Columns["id_cartrige"].Visible = false;
                         GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
+                        AddToolBut.Visible = true;
+                        ModToolBut.Visible = true;
+                        DelToolBut.Visible = true;
+                        Sep1.Visible = true;
+                        Sep2.Visible = true;
+                        Sep4.Visible = true;
+
                         SetupToolBut.Visible = false;
                         WriteoffToolBut.Visible = false;
                         Ser5.Visible = false;
@@ -372,6 +423,13 @@ namespace ASI.Forms.Main
                         GridView.Columns["id_cartrige"].Visible = false;
                         GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
+                        AddToolBut.Visible = true;
+                        ModToolBut.Visible = true;
+                        DelToolBut.Visible = true;
+                        Sep1.Visible = true;
+                        Sep2.Visible = true;
+                        Sep4.Visible = true;
+
                         SetupToolBut.Visible = false;
                         WriteoffToolBut.Visible = false;
                         Ser5.Visible = false;
@@ -392,6 +450,13 @@ namespace ASI.Forms.Main
                         //Меняем название столбцов на руссифицированное
                         GridView.Columns["Id"].Visible = visibleColum;
                         GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
+
+                        AddToolBut.Visible = true;
+                        ModToolBut.Visible = true;
+                        DelToolBut.Visible = true;
+                        Sep1.Visible = true;
+                        Sep2.Visible = true;
+                        Sep4.Visible = true;
 
                         SetupToolBut.Visible = false;
                         WriteoffToolBut.Visible = false;
@@ -414,6 +479,13 @@ namespace ASI.Forms.Main
                         GridView.Columns["ID"].Visible = visibleColum;
                         GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
+                        AddToolBut.Visible = true;
+                        ModToolBut.Visible = true;
+                        DelToolBut.Visible = true;
+                        Sep1.Visible = true;
+                        Sep2.Visible = true;
+                        Sep4.Visible = true;
+
                         SetupToolBut.Visible = false;
                         WriteoffToolBut.Visible = false;
                         Ser5.Visible = false;
@@ -423,6 +495,7 @@ namespace ASI.Forms.Main
                         FiltrToolBut.Visible = false;
 
                         break;
+
                     default:
 
                         break;
@@ -608,12 +681,12 @@ namespace ASI.Forms.Main
                             GridView.Columns["id_model"].Visible = false;
                             GridView.Sort(GridView.Columns[0], ListSortDirection.Ascending);
 
-                            SetupToolBut.Visible = false;
-                            WriteoffToolBut.Visible = false;
-                            Ser5.Visible = false;
+                            SetupToolBut.Visible = true;
+                            WriteoffToolBut.Visible = true;
+                            Ser5.Visible = true;
 
-                            StoryToolBut.Visible = false;
-                            Ser6.Visible = false;
+                            StoryToolBut.Visible = true;
+                            Ser6.Visible = true;
                             FiltrToolBut.Visible = true;
                         }
                         break;
@@ -679,17 +752,51 @@ namespace ASI.Forms.Main
                 switch (Convert.ToString(CurrentNode))
                 {
                     case ("TreeNode: Все"):
+                        Identification.Registration.Regs regsVSE = new Identification.Registration.Regs(); //объявляем форму, которую желаем открыть
 
+                        DataBase.Entity.Identification.DB_Users.IdUsers = Convert.ToInt32(null);
+                        DataBase.Entity.Identification.DB_Users.FullnameUsers = null;
+                        DataBase.Entity.Identification.DB_Users.DateOfBirthUsers = Convert.ToDateTime(DateTime.Today);
+                        DataBase.Entity.Identification.DB_Users.PhoneUsers = null;
+                        DataBase.Entity.Identification.DB_Users.EmailUsers = null;
+                        DataBase.Entity.Identification.DB_Users.RoleUsersForRole = null;
+                        DataBase.Entity.Identification.DB_Users.PassUser = null;
+
+
+                        regsVSE.ShowDialog();
+                        UpdateTable();
 
                         break;
 
                     case ("TreeNode: Администратор"):
+                        Identification.Registration.Regs regsADMIN = new Identification.Registration.Regs(); //объявляем форму, которую желаем открыть
 
+                        DataBase.Entity.Identification.DB_Users.IdUsers = Convert.ToInt32(null);
+                        DataBase.Entity.Identification.DB_Users.FullnameUsers = null;
+                        DataBase.Entity.Identification.DB_Users.DateOfBirthUsers = Convert.ToDateTime(DateTime.Today);
+                        DataBase.Entity.Identification.DB_Users.PhoneUsers = null;
+                        DataBase.Entity.Identification.DB_Users.EmailUsers = null;
+                        DataBase.Entity.Identification.DB_Users.RoleUsersForRole = null;
+                        DataBase.Entity.Identification.DB_Users.PassUser = null;
+
+                        regsADMIN.ShowDialog();
+                        UpdateTable();
 
                         break;
 
                     case ("TreeNode: Пользователь"):
+                        Identification.Registration.Regs regsUSER = new Identification.Registration.Regs(); //объявляем форму, которую желаем открыть
 
+                        DataBase.Entity.Identification.DB_Users.IdUsers = Convert.ToInt32(null);
+                        DataBase.Entity.Identification.DB_Users.FullnameUsers = null;
+                        DataBase.Entity.Identification.DB_Users.DateOfBirthUsers = Convert.ToDateTime(DateTime.Today);
+                        DataBase.Entity.Identification.DB_Users.PhoneUsers = null;
+                        DataBase.Entity.Identification.DB_Users.EmailUsers = null;
+                        DataBase.Entity.Identification.DB_Users.RoleUsersForRole = null;
+                        DataBase.Entity.Identification.DB_Users.PassUser = null;
+
+                        regsUSER.ShowDialog();
+                        UpdateTable();
 
                         break;
 
@@ -818,17 +925,52 @@ namespace ASI.Forms.Main
                 switch (Convert.ToString(CurrentNode))
                 {
                     case ("TreeNode: Все"):
+                        Identification.Registration.Regs regsVSE = new Identification.Registration.Regs(); //объявляем форму, которую желаем открыть
 
+                        DataBase.Entity.Identification.DB_Users.IdUsers = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
+                        DataBase.Entity.Identification.DB_Users.FullnameUsers = GridView.CurrentRow.Cells["ФИО"].Value.ToString();
+                        DataBase.Entity.Identification.DB_Users.DateOfBirthUsers = Convert.ToDateTime(GridView.CurrentRow.Cells["Дата рождения"].Value);
+                        DataBase.Entity.Identification.DB_Users.PhoneUsers = GridView.CurrentRow.Cells["Номер телефона"].Value.ToString();
+                        DataBase.Entity.Identification.DB_Users.EmailUsers = GridView.CurrentRow.Cells["Логин"].Value.ToString();
+                        DataBase.Entity.Identification.DB_Users.RoleUsersForRole = GridView.CurrentRow.Cells["Номер роли"].Value.ToString();
+                        DataBase.Entity.Identification.DB_Users.PassUser = GridView.CurrentRow.Cells["Pass"].Value.ToString();
+
+                        regsVSE.ShowDialog();
+                        UpdateTable();
 
                         break;
 
                     case ("TreeNode: Администратор"):
+                        Identification.Registration.Regs regsADMIN = new Identification.Registration.Regs(); //объявляем форму, которую желаем открыть
 
+                        DataBase.Entity.Identification.DB_Users.IdUsers = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
+                        DataBase.Entity.Identification.DB_Users.FullnameUsers = GridView.CurrentRow.Cells["ФИО"].Value.ToString();
+                        DataBase.Entity.Identification.DB_Users.DateOfBirthUsers = Convert.ToDateTime(GridView.CurrentRow.Cells["Дата рождения"].Value);
+                        DataBase.Entity.Identification.DB_Users.PhoneUsers = GridView.CurrentRow.Cells["Номер телефона"].Value.ToString();
+                        DataBase.Entity.Identification.DB_Users.EmailUsers = GridView.CurrentRow.Cells["Логин"].Value.ToString();
+                        DataBase.Entity.Identification.DB_Users.RoleUsersForRole = GridView.CurrentRow.Cells["Номер роли"].Value.ToString();
+                        DataBase.Entity.Identification.DB_Users.PassUser = GridView.CurrentRow.Cells["Pass"].Value.ToString();
+
+
+                        regsADMIN.ShowDialog();
+                        UpdateTable();
 
                         break;
 
                     case ("TreeNode: Пользователь"):
+                        Identification.Registration.Regs regsUSER = new Identification.Registration.Regs(); //объявляем форму, которую желаем открыть
 
+                        DataBase.Entity.Identification.DB_Users.IdUsers = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
+                        DataBase.Entity.Identification.DB_Users.FullnameUsers = GridView.CurrentRow.Cells["ФИО"].Value.ToString();
+                        DataBase.Entity.Identification.DB_Users.DateOfBirthUsers = Convert.ToDateTime(GridView.CurrentRow.Cells["Дата рождения"].Value);
+                        DataBase.Entity.Identification.DB_Users.PhoneUsers = GridView.CurrentRow.Cells["Номер телефона"].Value.ToString();
+                        DataBase.Entity.Identification.DB_Users.EmailUsers = GridView.CurrentRow.Cells["Логин"].Value.ToString();
+                        DataBase.Entity.Identification.DB_Users.RoleUsersForRole = GridView.CurrentRow.Cells["Номер роли"].Value.ToString();
+                        DataBase.Entity.Identification.DB_Users.PassUser = GridView.CurrentRow.Cells["Pass"].Value.ToString();
+
+
+                        regsUSER.ShowDialog();
+                        UpdateTable();
 
                         break;
 
@@ -1076,22 +1218,66 @@ namespace ASI.Forms.Main
                     switch (Convert.ToString(CurrentNode))
                     {
                         case ("TreeNode: Все"):
+                            if (result == DialogResult.Yes)
+                            {
+                                MySqlCommand DelCom = new MySqlCommand("DELETE FROM users WHERE `id` = @id", db.getConnection());
+                                DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells["ID"].Value;
 
+                                DelCom.ExecuteNonQuery();
+                                MessageBox.Show("Запись удалена!");
+                            }
+                            else
+                            {
+
+                            }
 
                             break;
 
                         case ("TreeNode: Администратор"):
+                            if (result == DialogResult.Yes)
+                            {
+                                MySqlCommand DelCom = new MySqlCommand("DELETE FROM users WHERE `id` = @id", db.getConnection());
+                                DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells["ID"].Value;
 
+                                DelCom.ExecuteNonQuery();
+                                MessageBox.Show("Запись удалена!");
+                            }
+                            else
+                            {
+
+                            }
 
                             break;
 
                         case ("TreeNode: Пользователь"):
+                            if (result == DialogResult.Yes)
+                            {
+                                MySqlCommand DelCom = new MySqlCommand("DELETE FROM users WHERE `id` = @id", db.getConnection());
+                                DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells["ID"].Value;
 
+                                DelCom.ExecuteNonQuery();
+                                MessageBox.Show("Запись удалена!");
+                            }
+                            else
+                            {
+
+                            }
 
                             break;
 
                         case ("TreeNode: Роли"):
+                            if (result == DialogResult.Yes)
+                            {
+                                MySqlCommand DelCom = new MySqlCommand("DELETE FROM roles WHERE `id` = @id", db.getConnection());
+                                DelCom.Parameters.Add("@id", MySqlDbType.Int32).Value = GridView.CurrentRow.Cells["ID"].Value;
 
+                                DelCom.ExecuteNonQuery();
+                                MessageBox.Show("Запись удалена!");
+                            }
+                            else
+                            {
+
+                            }
 
                             break;
 
@@ -1699,7 +1885,7 @@ namespace ASI.Forms.Main
             try
             {
                 DialogResult result = MessageBox.Show(
-                "Вы уверены, что хотели бы выйти из профиля?",
+                "Вы уверены, что хотели бы выйти из приложения?",
                 "Выход",
                 MessageBoxButtons.YesNoCancel,
                 MessageBoxIcon.Information,
@@ -1708,14 +1894,15 @@ namespace ASI.Forms.Main
 
                 if (result == DialogResult.Yes)
                 {
+                    Environment.Exit(0);
+
+                }
+                else if (result == DialogResult.No)
+                {
                     Forms.Identification.Authentication.Auth auth = new Forms.Identification.Authentication.Auth();
                     this.Hide();
                     auth.ShowDialog();
                     this.Close();
-                }
-                else if (result == DialogResult.No)
-                {
-                    e.Cancel = true;
                 }
                 else
                 {

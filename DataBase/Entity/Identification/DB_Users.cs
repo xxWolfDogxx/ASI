@@ -9,6 +9,7 @@ namespace ASI.DataBase.Entity.Identification
         private static DateTime dateOfBirthUsers;
         private static string phoneUsers;
         private static string emailUsers;
+        private static string passUser;
         private static string roleUsersForRole;
 
         public static int IdUsers { get => idUsers; set => idUsers = value; }
@@ -17,5 +18,6 @@ namespace ASI.DataBase.Entity.Identification
         public static string PhoneUsers { get => phoneUsers; set => phoneUsers = value; }
         public static string EmailUsers { get => emailUsers; set => emailUsers = value; }
         public static string RoleUsersForRole { get => roleUsersForRole; set => roleUsersForRole = value; }
+        public static string PassUser { get => passUser; set => passUser = value; }
     }
 }
