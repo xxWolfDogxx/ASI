@@ -53,5 +53,15 @@ namespace ASI.Forms.Modification.Story
             }
 
         }
+
+        private void ModStory_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void ModStory_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
     }
 }

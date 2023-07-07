@@ -84,9 +84,9 @@ namespace ASI.Forms.Modification.Consumable
                         AddCartrigeBut.Visible = false;
                         ModCartrigeBut.Visible = true;
 
-                        label1.Visible= false;
-                        label2.Visible= false;
-                        label3.Visible= false;
+                        label1.Visible = false;
+                        label2.Visible = false;
+                        label3.Visible = false;
 
                         Code00ConsumTextBox.Visible = false;
                         Code99ConsumTextBox.Visible = false;
@@ -210,7 +210,7 @@ namespace ASI.Forms.Modification.Consumable
                 int _code99 = 0;
                 if (Code99ConsumTextBox.MaskFull)
                 {
-                    MessageBox.Show("fffff");
+                    //MessageBox.Show("fffff");
 
                     _code99 = Convert.ToInt32(Code99ConsumTextBox.Text);
                 }
@@ -273,13 +273,13 @@ namespace ASI.Forms.Modification.Consumable
                 }
                 else
                 {
-                                MessageBox.Show("ffffgggghhhh");
+                    // MessageBox.Show("ffffgggghhhh");
 
                     MySqlCommand AddCom = new MySqlCommand(DataBase.Scripts.ScriptMySql.script_InsertConsumable_ModConsumable, db.getConnection());
 
                     //Заносим данные в запрос
                     AddCom.Parameters.Add("@nameConsumable", MySqlDbType.VarChar).Value = NameСonsumableTextBox.Text;
-                    AddCom.Parameters.Add("@codeConsumable", MySqlDbType.VarChar).Value = CodeAAConsumTextBox.Text.ToUpper() + "-" + _code00;                
+                    AddCom.Parameters.Add("@codeConsumable", MySqlDbType.VarChar).Value = CodeAAConsumTextBox.Text.ToUpper() + "-" + _code00;
                     AddCom.Parameters.Add("@buy_dateConsumable", MySqlDbType.Date).Value = DateConsumableDatePicker.Value;
                     //AddCom.Parameters.Add("@writeoffConsumable", MySqlDbType.UByte).Value = writeoffBool;
                     AddCom.Parameters.Add("@writeoffConsumable", MySqlDbType.UByte).Value = Convert.ToBoolean(false);
@@ -423,5 +423,20 @@ namespace ASI.Forms.Modification.Consumable
             this.Close();
         }
 
+        private void ModConsumable_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                MessageBox.Show("fff");
+                Hide();
+                this.Close();
+            }
+
+        }
+
+        private void ModConsumable_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+
+        }
     }
 }

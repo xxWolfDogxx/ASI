@@ -219,5 +219,13 @@ namespace ASI.Forms.Modification.Printer
             Hide();
             this.Close();
         }
+
+        private void ModPrinter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

@@ -189,5 +189,12 @@ namespace ASI.Forms.Modification.CartrigeType
             this.Close();
         }
 
+        private void ModCartrigeType_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

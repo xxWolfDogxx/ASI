@@ -144,5 +144,12 @@ namespace ASI.Forms.Modification.Model
             this.Close();
         }
 
+        private void ModModel_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

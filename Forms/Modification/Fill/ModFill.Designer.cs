@@ -256,6 +256,7 @@ namespace ASI.Forms.Modification.Fill
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Заправки";
             this.Load += new System.EventHandler(this.ModStatusWork_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModFill_KeyDown);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox5.ResumeLayout(false);

@@ -36,6 +36,7 @@ namespace ASI.Forms.Modification.Printer
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.ModelComBox = new System.Windows.Forms.ComboBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.NoteTextBox = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.RoomComBox = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -48,7 +49,6 @@ namespace ASI.Forms.Modification.Printer
             this.CancleBut = new System.Windows.Forms.Button();
             this.ModPrinterBut = new System.Windows.Forms.Button();
             this.AddPrinterBut = new System.Windows.Forms.Button();
-            this.NoteTextBox = new System.Windows.Forms.TextBox();
             this.LogoPanel.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -134,6 +134,15 @@ namespace ASI.Forms.Modification.Printer
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Заметки";
+            // 
+            // NoteTextBox
+            // 
+            this.NoteTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.NoteTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NoteTextBox.Location = new System.Drawing.Point(10, 23);
+            this.NoteTextBox.Name = "NoteTextBox";
+            this.NoteTextBox.Size = new System.Drawing.Size(518, 31);
+            this.NoteTextBox.TabIndex = 1;
             // 
             // groupBox6
             // 
@@ -278,15 +287,6 @@ namespace ASI.Forms.Modification.Printer
             this.AddPrinterBut.UseVisualStyleBackColor = true;
             this.AddPrinterBut.Click += new System.EventHandler(this.AddPrinterBut_Click);
             // 
-            // NoteTextBox
-            // 
-            this.NoteTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.NoteTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NoteTextBox.Location = new System.Drawing.Point(10, 23);
-            this.NoteTextBox.Name = "NoteTextBox";
-            this.NoteTextBox.Size = new System.Drawing.Size(518, 31);
-            this.NoteTextBox.TabIndex = 1;
-            // 
             // ModPrinter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,6 +303,7 @@ namespace ASI.Forms.Modification.Printer
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Принтер";
             this.Load += new System.EventHandler(this.ModPrinter_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModPrinter_KeyDown);
             this.LogoPanel.ResumeLayout(false);
             this.LogoPanel.PerformLayout();
             this.groupBox2.ResumeLayout(false);

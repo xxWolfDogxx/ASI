@@ -195,6 +195,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Модели";
             this.Load += new System.EventHandler(this.ModModel_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModModel_KeyDown);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);

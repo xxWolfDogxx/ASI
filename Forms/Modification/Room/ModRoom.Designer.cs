@@ -197,6 +197,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Корпус - Аудитория";
             this.Load += new System.EventHandler(this.ModAudit_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModRoom_KeyDown);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);

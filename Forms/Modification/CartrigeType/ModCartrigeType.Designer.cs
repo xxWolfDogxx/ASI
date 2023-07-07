@@ -222,6 +222,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Тип расходника";
             this.Load += new System.EventHandler(this.ModCartrigeType_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModCartrigeType_KeyDown);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);

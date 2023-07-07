@@ -359,5 +359,13 @@ namespace ASI.Forms.Modification.Setup
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void ModSetup_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

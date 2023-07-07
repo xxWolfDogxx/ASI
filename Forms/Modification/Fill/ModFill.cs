@@ -181,5 +181,13 @@ namespace ASI.Forms.Modification.Fill
             Hide();
             this.Close();
         }
+
+        private void ModFill_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

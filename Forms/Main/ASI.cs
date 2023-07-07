@@ -113,7 +113,7 @@ namespace ASI.Forms.Main
                 db.openConnection();
                 switch (Convert.ToString(CurrentNode))
                 {
-                    case ("TreeNode: Все"):
+                    case ("TreeNode: Пользователи"):
                         FiltrPanel.Visible = false;
 
                         GridView.ClearSelection(); //Чистим таблицу
@@ -546,7 +546,7 @@ namespace ASI.Forms.Main
 
                 switch (Convert.ToString(CurrentNode))
                 {
-                    case ("TreeNode: Все"):
+                    case ("TreeNode: Пользователи"):
 
                         break;
 
@@ -751,7 +751,7 @@ namespace ASI.Forms.Main
 
                 switch (Convert.ToString(CurrentNode))
                 {
-                    case ("TreeNode: Все"):
+                    case ("TreeNode: Пользователи"):
                         Identification.Registration.Regs regsVSE = new Identification.Registration.Regs(); //объявляем форму, которую желаем открыть
 
                         DataBase.Entity.Identification.DB_Users.IdUsers = Convert.ToInt32(null);
@@ -913,9 +913,8 @@ namespace ASI.Forms.Main
 
         }
 
-        private void ModToolBut_Click(object sender, EventArgs e)
+        private void ModifBut()
         {
-
             try
             {
                 TreeNode CurrentNode = treeView1.SelectedNode;
@@ -924,7 +923,7 @@ namespace ASI.Forms.Main
 
                 switch (Convert.ToString(CurrentNode))
                 {
-                    case ("TreeNode: Все"):
+                    case ("TreeNode: Пользователи"):
                         Identification.Registration.Regs regsVSE = new Identification.Registration.Regs(); //объявляем форму, которую желаем открыть
 
                         DataBase.Entity.Identification.DB_Users.IdUsers = Convert.ToInt32(GridView.CurrentRow.Cells["ID"].Value);
@@ -1108,6 +1107,12 @@ namespace ASI.Forms.Main
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void ModToolBut_Click(object sender, EventArgs e)
+        {
+            ModifBut();
+
 
         }
 
@@ -1217,7 +1222,7 @@ namespace ASI.Forms.Main
                     db.openConnection();
                     switch (Convert.ToString(CurrentNode))
                     {
-                        case ("TreeNode: Все"):
+                        case ("TreeNode: Пользователи"):
                             if (result == DialogResult.Yes)
                             {
                                 MySqlCommand DelCom = new MySqlCommand("DELETE FROM users WHERE `id` = @id", db.getConnection());
@@ -1510,7 +1515,7 @@ namespace ASI.Forms.Main
                 //-----------------------------------------------------------
                 switch (Convert.ToString(CurrentNode))
                 {
-                    case ("TreeNode: Все"):
+                    case ("TreeNode: Пользователи"):
                         GridView.ClearSelection(); //Чистим таблицу
                         mySql_dataAdapter.SelectCommand = new MySqlCommand("SELECT users.Id, users.FullName, users.DateOfBirth, users.Phone, users.Email, roles.role FROM users INNER JOIN roles ON users.role = roles.id " +
                             "WHERE CONCAT(users.Id, users.FullName, users.DateOfBirth, users.Phone, users.Email, roles.role) LIKE '%" + searchTextBox.Text + "%'", db.getConnection());
@@ -1787,6 +1792,7 @@ namespace ASI.Forms.Main
                 {
                     Search();
                 }
+
             }
             catch (MySqlException ex)
             {
@@ -1942,6 +1948,11 @@ namespace ASI.Forms.Main
             ReadyConsumableComBox.SelectedIndex = 1;
             SetupConsumComBox.SelectedIndex = 1;
             UpdateTable();
+        }
+
+        private void GridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            ModifBut();
         }
     }
 }

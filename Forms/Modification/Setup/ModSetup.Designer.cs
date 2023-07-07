@@ -317,6 +317,7 @@ namespace ASI.Forms.Modification.Setup
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Установки";
             this.Load += new System.EventHandler(this.ModSetup_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModSetup_KeyDown);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.noteGR.ResumeLayout(false);

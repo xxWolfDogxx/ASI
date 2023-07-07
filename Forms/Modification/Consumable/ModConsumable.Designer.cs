@@ -51,16 +51,16 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.DateConsumableDatePicker = new System.Windows.Forms.DateTimePicker();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.CodeAAConsumTextBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Code99ConsumTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Code00ConsumTextBox = new System.Windows.Forms.MaskedTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.NameСonsumableTextBox = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.IdСonsumableTextBox = new System.Windows.Forms.TextBox();
-            this.Code00ConsumTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Code99ConsumTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.CodeAAConsumTextBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.LogoPanel.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -82,7 +82,7 @@
             this.groupBox1.Controls.Add(this.ModCartrigeBut);
             this.groupBox1.Controls.Add(this.AddCartrigeBut);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 787);
+            this.groupBox1.Location = new System.Drawing.Point(0, 793);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(20);
             this.groupBox1.Size = new System.Drawing.Size(584, 134);
@@ -166,7 +166,7 @@
             this.groupBox2.Location = new System.Drawing.Point(0, 87);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox2.Size = new System.Drawing.Size(584, 700);
+            this.groupBox2.Size = new System.Drawing.Size(584, 706);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Поля";
@@ -354,6 +354,65 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Уникальный номер";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 14.25F);
+            this.label3.Location = new System.Drawing.Point(150, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 23);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "От:";
+            // 
+            // CodeAAConsumTextBox
+            // 
+            this.CodeAAConsumTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CodeAAConsumTextBox.Location = new System.Drawing.Point(10, 26);
+            this.CodeAAConsumTextBox.MaxLength = 255;
+            this.CodeAAConsumTextBox.Name = "CodeAAConsumTextBox";
+            this.CodeAAConsumTextBox.Size = new System.Drawing.Size(101, 31);
+            this.CodeAAConsumTextBox.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(294, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 23);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Кол-во:";
+            // 
+            // Code99ConsumTextBox
+            // 
+            this.Code99ConsumTextBox.Font = new System.Drawing.Font("Calibri", 14F);
+            this.Code99ConsumTextBox.Location = new System.Drawing.Point(370, 26);
+            this.Code99ConsumTextBox.Mask = "99";
+            this.Code99ConsumTextBox.Name = "Code99ConsumTextBox";
+            this.Code99ConsumTextBox.Size = new System.Drawing.Size(66, 30);
+            this.Code99ConsumTextBox.TabIndex = 4;
+            this.Code99ConsumTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(117, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 23);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "—";
+            // 
+            // Code00ConsumTextBox
+            // 
+            this.Code00ConsumTextBox.Font = new System.Drawing.Font("Calibri", 14F);
+            this.Code00ConsumTextBox.Location = new System.Drawing.Point(183, 26);
+            this.Code00ConsumTextBox.Mask = "99";
+            this.Code00ConsumTextBox.Name = "Code00ConsumTextBox";
+            this.Code00ConsumTextBox.Size = new System.Drawing.Size(66, 30);
+            this.Code00ConsumTextBox.TabIndex = 2;
+            this.Code00ConsumTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // groupBox3
             // 
             this.groupBox3.AutoSize = true;
@@ -400,71 +459,12 @@
             this.IdСonsumableTextBox.Size = new System.Drawing.Size(544, 31);
             this.IdСonsumableTextBox.TabIndex = 1;
             // 
-            // Code00ConsumTextBox
-            // 
-            this.Code00ConsumTextBox.Font = new System.Drawing.Font("Calibri", 14F);
-            this.Code00ConsumTextBox.Location = new System.Drawing.Point(183, 26);
-            this.Code00ConsumTextBox.Mask = "99";
-            this.Code00ConsumTextBox.Name = "Code00ConsumTextBox";
-            this.Code00ConsumTextBox.Size = new System.Drawing.Size(66, 30);
-            this.Code00ConsumTextBox.TabIndex = 2;
-            this.Code00ConsumTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(117, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 23);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "—";
-            // 
-            // Code99ConsumTextBox
-            // 
-            this.Code99ConsumTextBox.Font = new System.Drawing.Font("Calibri", 14F);
-            this.Code99ConsumTextBox.Location = new System.Drawing.Point(370, 26);
-            this.Code99ConsumTextBox.Mask = "99";
-            this.Code99ConsumTextBox.Name = "Code99ConsumTextBox";
-            this.Code99ConsumTextBox.Size = new System.Drawing.Size(66, 30);
-            this.Code99ConsumTextBox.TabIndex = 4;
-            this.Code99ConsumTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(294, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 23);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Кол-во:";
-            // 
-            // CodeAAConsumTextBox
-            // 
-            this.CodeAAConsumTextBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CodeAAConsumTextBox.Location = new System.Drawing.Point(10, 26);
-            this.CodeAAConsumTextBox.MaxLength = 255;
-            this.CodeAAConsumTextBox.Name = "CodeAAConsumTextBox";
-            this.CodeAAConsumTextBox.Size = new System.Drawing.Size(101, 31);
-            this.CodeAAConsumTextBox.TabIndex = 6;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 14.25F);
-            this.label3.Location = new System.Drawing.Point(150, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 23);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "От:";
-            // 
             // ModConsumable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(584, 921);
+            this.ClientSize = new System.Drawing.Size(584, 927);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.LogoPanel);
             this.Controls.Add(this.groupBox1);
@@ -474,6 +474,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Расходник";
             this.Load += new System.EventHandler(this.ModCartrige_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModConsumable_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.LogoPanel.ResumeLayout(false);
             this.LogoPanel.PerformLayout();

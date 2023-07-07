@@ -207,7 +207,9 @@
             this.Name = "ModStory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "История";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModStory_FormClosing);
             this.Load += new System.EventHandler(this.ModStory_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModStory_KeyDown);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
